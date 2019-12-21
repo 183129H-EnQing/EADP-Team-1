@@ -1,0 +1,22 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Base.master.cs" Inherits="MyCircles.Base" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500,700&display=swap" rel="stylesheet" />
+
+    <link href="content/css/bootstrap.css" rel="stylesheet" />
+    <link href="content/css/main.css" rel="stylesheet" />
+
+    <title></title>
+
+    <asp:ContentPlaceHolder ID="BaseHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <asp:ContentPlaceHolder ID="BaseContent" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>
