@@ -12,7 +12,7 @@
             </div>
             <div class="col-md-12 float-right my-5">
                 <asp:Button ID="btLogin" runat="server" Text="Login" CssClass="btn btn-primary btn-util-block float-right ml-2" />
-                <asp:Button ID="btGoogleSignIn" runat="server" Text="Sign In With Google" CssClass="btn btn-outline-dark float-right mr-2 btn-google" /> <br />
+                <asp:Button ID="btGoogleSignIn" runat="server" Text="Sign In With Google" CssClass="btn btn-outline-secondary float-right mr-2 btn-google" /> <br />
                 <asp:Button ID="btRegister" runat="server" Text="Register for a new account" CssClass="btn btn-link float-right" OnClick="btRegister_Click" />
             </div>
         </div>

@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-12 float-right my-5">
                 <asp:Button ID="btRegister" runat="server" Text="Register" CssClass="btn btn-primary btn-util-block float-right ml-2" />
-                <asp:Button ID="btBack" runat="server" Text="Go Back" CssClass="btn btn-link-light float-right mr-2" OnClick="btBack_Click" />
+                <asp:Button ID="btBack" runat="server" Text="Go Back" CssClass="btn btn-link float-right mr-2" OnClick="btBack_Click" />
             </div>
         </div>
     </form>
