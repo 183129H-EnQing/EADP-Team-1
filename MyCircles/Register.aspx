@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="SignedOut.master" %>
+﻿<%@ Page MasterPageFile="SignedOut.master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="MyCircles.Register" Title="Register - MyCircles" %>
 
 <asp:Content ContentPlaceHolderId="SignedOutContent" runat="server">
     <form id="formRegister" class="my-5" runat="server">
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-12 float-right my-5">
                 <asp:Button ID="btRegister" runat="server" Text="Register" CssClass="btn btn-primary btn-util-block float-right ml-2" />
-                <asp:Button ID="btBack" runat="server" Text="Go Back" CssClass="btn btn-link float-right mr-2" />
+                <asp:Button ID="btBack" runat="server" Text="Go Back" CssClass="btn btn-link-light float-right mr-2" OnClick="btBack_Click" />
             </div>
         </div>
     </form>

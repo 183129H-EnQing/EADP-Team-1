@@ -13,3 +13,11 @@
     padding-left: 2rem;
     padding-right: 2rem;
 }
+
+.btn-google {
+    background: url("https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-512.png");
+    background-size: 1.25rem 1.25rem;
+    background-position: 16px 7px;
+    background-repeat: no-repeat;
+    padding-left: 2.9rem;
+}

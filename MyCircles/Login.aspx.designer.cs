@@ -11,7 +11,7 @@ namespace MyCircles
 {
 
 
-    public partial class Register
+    public partial class Login
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace MyCircles
         protected global::System.Web.UI.HtmlControls.HtmlForm formRegister;
 
         /// <summary>
-        /// tbName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbName;
-
-        /// <summary>
         /// tbUsername control.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace MyCircles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbUsername;
-
-        /// <summary>
-        /// tbEmailAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmailAddress;
 
         /// <summary>
         /// tbPassword control.
@@ -60,6 +42,24 @@ namespace MyCircles
         protected global::System.Web.UI.WebControls.TextBox tbPassword;
 
         /// <summary>
+        /// btLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btLogin;
+
+        /// <summary>
+        /// btGoogleSignIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btGoogleSignIn;
+
+        /// <summary>
         /// btRegister control.
         /// </summary>
         /// <remarks>
@@ -67,14 +67,5 @@ namespace MyCircles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btRegister;
-
-        /// <summary>
-        /// btBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btBack;
     }
 }
