@@ -161,6 +161,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="ViewAllEventPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="SignedOut.master" />
   </ItemGroup>
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="SignedOut.master.designer.cs">
       <DependentUpon>SignedOut.master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAllEventPage.aspx.cs">
+      <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewAllEventPage.aspx.designer.cs">
+      <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
