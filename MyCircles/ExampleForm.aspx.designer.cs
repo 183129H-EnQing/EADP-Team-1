@@ -11,16 +11,7 @@ namespace MyCircles
 {
 
 
-    public partial class SignedOut
+    public partial class ExampleForm
     {
-
-        /// <summary>
-        /// SignedOutContentPlaceholder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder SignedOutContentPlaceholder;
     }
 }

@@ -15,21 +15,21 @@ namespace MyCircles
     {
 
         /// <summary>
-        /// BaseHead control.
+        /// BaseHeadPlaceholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BaseHead;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BaseHeadPlaceholder;
 
         /// <summary>
-        /// BaseContent control.
+        /// BaseContentPlaceholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BaseContent;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BaseContentPlaceholder;
     }
 }

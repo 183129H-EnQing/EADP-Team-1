@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Base.Master" AutoEventWireup="true" CodeBehind="SignedOut.master.cs" Inherits="MyCircles.SignedOut" %>
 
-<asp:Content ID="SignedOutBase" ContentPlaceHolderID="BaseContent" runat="server">
+<asp:Content ID="SignedOutBase" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
     <div class="container-fluid">
         <div class="row justify-content-center vh-100">
             <div class="col-md-7 signedOutInfoBlock d-none d-md-block">
@@ -19,7 +19,7 @@
                         </svg>
                         <br />
                         <span class="infoBlockBrandName pt-2">My<b>Circles</b></span>
-                        <asp:ContentPlaceHolder ID="SignedOutContent" runat="server" />
+                        <asp:ContentPlaceHolder ID="SignedOutContentPlaceholder" runat="server" />
                     </div>
                 </div>
             </div>

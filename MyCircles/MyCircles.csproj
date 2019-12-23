@@ -80,6 +80,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MyCircles.mdf" />
+    <Content Include="App_Data\MyCircles_log.ldf">
+      <DependentUpon>MyCircles.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap\js\dist\alert.js" />
     <Content Include="Content\bootstrap\js\dist\button.js" />
     <Content Include="Content\bootstrap\js\dist\carousel.js" />
@@ -147,6 +151,7 @@
     <Content Include="Content\images\MyCirclesIcon.svg" />
     <Content Include="Content\images\MyCirclesIconGreyscale.svg" />
     <Content Include="Content\images\MyCirclesIconStatic.png" />
+    <Content Include="ExampleForm.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Base.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -167,6 +172,13 @@
     </Compile>
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ExampleForm.aspx.cs">
+      <DependentUpon>ExampleForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExampleForm.aspx.designer.cs">
+      <DependentUpon>ExampleForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -314,7 +326,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>

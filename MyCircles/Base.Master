@@ -12,12 +12,12 @@
     <title></title>
     <link rel="icon" href="Content/images/MyCirclesIconStatic.png">
 
-    <asp:ContentPlaceHolder ID="BaseHead" runat="server">
+    <asp:ContentPlaceHolder ID="BaseHeadPlaceholder" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
 <body>
-    <asp:ContentPlaceHolder ID="BaseContent" runat="server">
+    <asp:ContentPlaceHolder ID="BaseContentPlaceholder" runat="server">
     </asp:ContentPlaceHolder>
 </body>
 </html>

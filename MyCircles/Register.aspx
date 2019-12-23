@@ -1,6 +1,6 @@
 ﻿<%@ Page MasterPageFile="SignedOut.master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="MyCircles.Register" Title="Register - MyCircles" %>
 
-<asp:Content ContentPlaceHolderId="SignedOutContent" runat="server">
+<asp:Content ContentPlaceHolderId="SignedOutContentPlaceholder" runat="server">
     <form id="formRegister" class="my-5" runat="server">
         <h5 class="p-2 text-left">Register for a new account</h5>
         <div class="row signedOutInputContainer text-center p-2">
