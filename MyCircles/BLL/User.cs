@@ -1,42 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Helpers;
-
-namespace MyCircles.BLL
+namespace MyCircles
 {
-    public class User
-    {
-        public string Username { get; set; }
-        public string EmailAddress { get; set; }
-        public string Name { get; set; }
-        public string Bio { get; set; }
-        public decimal xGeoPos { get; set; }
-        public decimal yGeoPos { get; set; }
-        public string ProfileImage { get; set; }
-        public string HeaderImage { get; set; }
-        public bool isLoggedIn { get; set; }
-        public bool IsPrivileged { get; set; }
-        public string Password
-        {
-            get { return Password; }
-            set { Password = Crypto.HashPassword(value); }
-        }
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-        public User(string username, string emailAddress, string name, string password)
-        {
-            this.Username = username;
-            this.EmailAddress = emailAddress;
-            this.Name = name;
-            this.Password = password;
-            this.Bio = null;
-            this.xGeoPos = 0;
-            this.yGeoPos = 0;
-            this.ProfileImage = null;
-            this.HeaderImage = null;
-            this.isLoggedIn = false;
-            this.IsPrivileged = false;
-        }
+    [Table("User")]
+    public partial class User
+    {
+        public int Id { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Username { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public string EmailAddress { get; set; }
+
+        [StringLength(256)]
+        public string Password { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Name { get; set; }
+
+        [Column(TypeName = "text")]
+        public string Bio { get; set; }
+
+        public double? xGeoPos { get; set; }
+
+        public double? yGeoPos { get; set; }
+
+        [Column(TypeName = "image")]
+        public byte[] ProfileImage { get; set; }
+
+        [Column(TypeName = "image")]
+        public byte[] HeaderImage { get; set; }
+
+        public bool IsLoggedIn { get; set; }
+
+        public bool IsPrivileged { get; set; }
     }
 }
