@@ -200,11 +200,12 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
-    <Compile Include="BLL\ModelEntity.cs" />
+    <Compile Include="BLL\EntityModel.cs" />
+    <Compile Include="BLL\Friend.cs" />
     <Compile Include="BLL\Notification.cs" />
     <Compile Include="BLL\User.cs" />
+    <Compile Include="Models\NotificationTest.cs" />
     <Compile Include="Models\UserTest.cs" />
-    <Compile Include="DAL\User.cs" />
     <Compile Include="ExampleForm.aspx.cs">
       <DependentUpon>ExampleForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -366,6 +367,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="DAL\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

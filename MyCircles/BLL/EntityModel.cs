@@ -7,11 +7,11 @@ namespace MyCircles.BLL
 
     public partial class EntityModel : DbContext
     {
-        public EntityModel()
-            : base("name=EntityModel")
+        public EntityModel() : base("name=EntityModel")
         {
         }
 
+        public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -48,6 +48,18 @@ namespace MyCircles.BLL
             modelBuilder.Entity<User>()
                 .Property(e => e.Bio)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Friends)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.RecieverId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Friends1)
+                .WithRequired(e => e.User1)
+                .HasForeignKey(e => e.SourceId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Notifications)
