@@ -51,6 +51,8 @@ namespace MyCircles.BLL
 
         public bool IsPrivileged { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Friend> Friends { get; set; }
 

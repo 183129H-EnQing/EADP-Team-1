@@ -56,6 +56,7 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -200,12 +201,12 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
-    <Compile Include="BLL\EntityModel.cs" />
     <Compile Include="BLL\Friend.cs" />
+    <Compile Include="BLL\MyCirclesModel.cs" />
     <Compile Include="BLL\Notification.cs" />
     <Compile Include="BLL\User.cs" />
-    <Compile Include="Models\NotificationTest.cs" />
-    <Compile Include="Models\UserTest.cs" />
+    <Compile Include="TestModels\NotificationTest.cs" />
+    <Compile Include="TestModels\UserTest.cs" />
     <Compile Include="ExampleForm.aspx.cs">
       <DependentUpon>ExampleForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,6 +239,7 @@
     <Compile Include="SignedOut.master.designer.cs">
       <DependentUpon>SignedOut.master</DependentUpon>
     </Compile>
+    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="ViewAllEventPage.aspx.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -366,8 +368,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="DAL\" />
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
