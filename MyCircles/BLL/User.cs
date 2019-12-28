@@ -5,6 +5,7 @@ namespace MyCircles.BLL
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Helpers;
 
     [Table("User")]
     public partial class User
@@ -15,11 +16,15 @@ namespace MyCircles.BLL
             Friends = new HashSet<Friend>();
             Friends1 = new HashSet<Friend>();
             Notifications = new HashSet<Notification>();
+            IsDeleted = false;
+            IsLoggedIn = false;
+            IsPrivileged = false;
         }
 
         public int Id { get; set; }
 
         [Required]
+        [CustomValidation(typeof(User), "ValidateContact")]
         [StringLength(20)]
         public string Username { get; set; }
 
@@ -27,8 +32,14 @@ namespace MyCircles.BLL
         [StringLength(30)]
         public string EmailAddress { get; set; }
 
+        private string _password;
+
         [StringLength(256)]
-        public string Password { get; set; }
+        public string Password
+        {
+            get { return this._password; }
+            set { _password = Crypto.HashPassword(value); }
+        }
 
         [Required]
         [StringLength(20)]
