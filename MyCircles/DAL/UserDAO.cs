@@ -7,7 +7,7 @@ using MyCircles.BLL;
 
 namespace MyCircles.DAL
 {
-    public class UserDAL
+    public class UserDAO
     {
         public void AddUser(User newUser)
         {
