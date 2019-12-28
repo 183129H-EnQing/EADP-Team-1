@@ -7,7 +7,8 @@ namespace MyCircles.BLL
 
     public partial class MyCirclesEntityModel : DbContext
     {
-        public MyCirclesEntityModel() : base("name=MyCirclesEntityModel")
+        public MyCirclesEntityModel()
+            : base("name=MyCirclesEntityModel")
         {
         }
 
