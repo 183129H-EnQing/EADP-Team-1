@@ -12,7 +12,6 @@ namespace MyCircles
     public partial class Register : System.Web.UI.Page
     {
         User newUser = new User();
-        UserDAL userDal = new UserDAL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +25,7 @@ namespace MyCircles
             newUser.Username = tbUsername.Text;
             newUser.Password = tbPassword.Text;
 
-            userDal.AddUser(newUser);
+            newUser.AddUser(newUser);
             Response.Redirect("Login.aspx");
         }
 
