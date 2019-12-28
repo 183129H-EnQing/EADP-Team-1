@@ -1,4 +1,4 @@
-﻿namespace MyCircles.BLL
+namespace MyCircles.BLL
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +20,6 @@
         public int Id { get; set; }
 
         [Required]
-        [CustomValidation(typeof(User), "ValidateContact")]
         [StringLength(20)]
         public string Username { get; set; }
 
