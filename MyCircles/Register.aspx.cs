@@ -13,6 +13,8 @@ namespace MyCircles
     {
         User newUser = new User();
 
+        // TODO: Show errors and make it real time
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

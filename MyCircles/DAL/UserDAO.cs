@@ -28,5 +28,40 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public User VerifyCredentials(string identfier, string password)
+        {
+            User testUser = new User();
+            User user = new User();
+
+            testUser.EmailAddress = identfier;
+            testUser.Username = identfier;
+            testUser.Password = password;
+
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                user = db.Users
+                        .Where(u => u.Username == testUser.Username || u.Username == testUser.Username)
+                        .FirstOrDefault();
+
+                Console.WriteLine(user);
+
+                if (user != null)
+                {
+                    if (!Crypto.VerifyHashedPassword(user.Password, testUser.Password))
+                    {
+                        user = null;
+                        throw new ArgumentException("That password is not correct");
+                    }
+
+                }
+                else
+                {
+                    throw new ArgumentException("That account does not exist");
+                }
+            }
+
+            return user;
+        }
     }
 }
