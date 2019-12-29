@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,14 +19,28 @@ namespace MyCircles
 
         protected void btLogin_Click(object sender, EventArgs e)
         {
-            User user = new User();
-            UserDAO userDataAdapter = new UserDAO();
-            string identifier = tbUsername.Text;
-            string password = tbPassword.Text;
+            try
+            {
+                signedOutErrorContainer.Visible = false;
+                User user = new User();
+                UserDAO userDataAdapter = new UserDAO();
+                string identifier = tbUsername.Text;
+                string password = tbPassword.Text;
 
-            user = userDataAdapter.VerifyCredentials(identifier, password);
+                user = userDataAdapter.VerifyCredentials(identifier, password);
 
-            Response.Redirect("/");
+                Response.Redirect("/");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                signedOutErrorContainer.Visible = true;
+                lbErrorMsg.Text = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
+            }
+            catch (Exception ex)
+            {
+                signedOutErrorContainer.Visible = true;
+                lbErrorMsg.Text = ex.Message;
+            }
         }
 
         protected void btGoogleSignIn_Click(object sender, EventArgs e)

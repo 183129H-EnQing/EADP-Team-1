@@ -13,19 +13,26 @@ namespace MyCircles.DAL
         {
             using (var db = new MyCirclesEntityModel())
             {
-                if (db.Users.Any(u => u.Username == newUser.Username))
+                if (String.IsNullOrEmpty(newUser.Password))
                 {
-                    throw new ArgumentException("That username is not available");
+                    throw new ArgumentException("Required fields are not filled up");
                 }
-
-                if (db.Users.Any(u => u.EmailAddress == newUser.EmailAddress))
+                else
                 {
-                    throw new ArgumentException("There's an account registered with that email");
-                }
+                    if (db.Users.Any(u => u.Username == newUser.Username))
+                    {
+                        throw new ArgumentException("That username is not available");
+                    }
 
-                newUser.Password = Crypto.HashPassword(newUser.Password);
-                db.Users.Add(newUser);
-                db.SaveChanges();
+                    if (db.Users.Any(u => u.EmailAddress == newUser.EmailAddress))
+                    {
+                        throw new ArgumentException("There's an account registered with that email");
+                    }
+
+                    newUser.Password = Crypto.HashPassword(newUser.Password);
+                    db.Users.Add(newUser);
+                    db.SaveChanges();
+                }
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,7 +14,7 @@ namespace MyCircles
     {
         User newUser = new User();
 
-        // TODO: Show errors and make it real time
+        // TODO: Show error for required fields
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,13 +23,25 @@ namespace MyCircles
 
         protected void btRegister_Click(object sender, EventArgs e)
         {
-            newUser.Name = tbName.Text;
-            newUser.EmailAddress = tbEmailAddress.Text;
-            newUser.Username = tbUsername.Text;
-            newUser.Password = tbPassword.Text;
+            try { 
+                newUser.Name = tbName.Text;
+                newUser.EmailAddress = tbEmailAddress.Text;
+                newUser.Username = tbUsername.Text;
+                newUser.Password = tbPassword.Text;
 
-            newUser.AddUser(newUser);
-            Response.Redirect("Login.aspx");
+                newUser.AddUser(newUser);
+                Response.Redirect("Login.aspx");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                signedOutErrorContainer.Visible = true;
+                lbErrorMsg.Text = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
+            }
+            catch (Exception ex)
+            {
+                signedOutErrorContainer.Visible = true;
+                lbErrorMsg.Text = ex.Message;
+            }
         }
 
         protected void btBack_Click(object sender, EventArgs e)
