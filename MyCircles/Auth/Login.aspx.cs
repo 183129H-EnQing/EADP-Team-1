@@ -17,6 +17,8 @@ namespace MyCircles
 
         }
 
+        // TODO: Use email verification and forgot password
+
         protected void btLogin_Click(object sender, EventArgs e)
         {
             try
