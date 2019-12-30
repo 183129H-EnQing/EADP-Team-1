@@ -18,6 +18,7 @@ namespace MyCircles
         }
 
         // TODO: Use email verification and forgot password
+        // TODO: Points system to make your circle bigger
 
         protected void btLogin_Click(object sender, EventArgs e)
         {
