@@ -32,6 +32,7 @@ namespace MyCircles
 
                 user = userDataAdapter.VerifyCredentials(identifier, password);
 
+                Session["currentUser"] = user;
                 Response.Redirect("/");
             }
             catch (DbEntityValidationException ex)
