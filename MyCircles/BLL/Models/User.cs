@@ -1,4 +1,4 @@
-namespace MyCircles.BLL
+namespace MyCircles.BLL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -15,6 +15,7 @@ namespace MyCircles.BLL
             Friends = new HashSet<Friend>();
             Friends1 = new HashSet<Friend>();
             Notifications = new HashSet<Notification>();
+            POSTs = new HashSet<POST>();
         }
 
         public int Id { get; set; }
@@ -61,5 +62,8 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notification> Notifications { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<POST> POSTs { get; set; }
     }
 }
