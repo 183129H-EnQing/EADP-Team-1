@@ -14,7 +14,6 @@ namespace MyCircles
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         // TODO: Use email verification and forgot password
