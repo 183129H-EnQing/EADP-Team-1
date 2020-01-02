@@ -1,4 +1,4 @@
-namespace MyCircles.BLL
+namespace MyCircles.BLL.Models
 {
     using System;
     using System.Collections.Generic;

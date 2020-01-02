@@ -1,4 +1,4 @@
-namespace MyCircles.BLL
+namespace MyCircles.BLL.Models
 {
     using System;
     using System.Data.Entity;
@@ -13,6 +13,7 @@ namespace MyCircles.BLL
 
         public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<POST> POSTs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -28,6 +29,14 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Content)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<POST>()
+                .Property(e => e.Content)
+                .IsFixedLength();
+
+            modelBuilder.Entity<POST>()
+                .Property(e => e.Comment)
+                .IsFixedLength();
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)
@@ -63,6 +72,11 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Notifications)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.POSTs)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
         }
