@@ -51,8 +51,6 @@ namespace MyCircles.DAL
                         .Where(u => u.Username == testUser.Username || u.Username == testUser.Username)
                         .FirstOrDefault();
 
-                Console.WriteLine(user);
-
                 if (user != null)
                 {
                     if (!Crypto.VerifyHashedPassword(user.Password, testUser.Password))
