@@ -204,11 +204,11 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
-    <Compile Include="BLL\Models\Friend.cs" />
-    <Compile Include="BLL\Models\MyCirclesEntityModel.cs" />
-    <Compile Include="BLL\Models\Notification.cs" />
-    <Compile Include="BLL\Models\POST.cs" />
-    <Compile Include="BLL\Models\User.cs" />
+    <Compile Include="BLL\Friend.cs" />
+    <Compile Include="BLL\MyCirclesEntityModel.cs" />
+    <Compile Include="BLL\Notification.cs" />
+    <Compile Include="BLL\POST.cs" />
+    <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="DAL\UserDAO.cs" />
     <Compile Include="ExampleForm.aspx.cs">

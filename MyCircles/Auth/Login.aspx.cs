@@ -24,7 +24,7 @@ namespace MyCircles
             try
             {
                 signedOutErrorContainer.Visible = false;
-                User user = new User();
+                User user = new Models.User();
                 UserDAO userDataAdapter = new UserDAO();
                 string identifier = tbUsername.Text;
                 string password = tbPassword.Text;
