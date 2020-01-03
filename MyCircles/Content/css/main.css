@@ -1,4 +1,8 @@
-﻿.signedOutInfoBlock {
+﻿.invisble {
+    display: none;
+}
+
+.signedOutInfoBlock {
     background-image: url("../images/MyCirclesBackground.png");
     background-repeat: no-repeat;
     background-size: cover;

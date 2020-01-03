@@ -16,9 +16,11 @@
 		    <asp:TextBox ID="tbLong" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="Longitude" ClientIDMode="Static"></asp:TextBox>
 	    </div>
 
-        <asp:Button ID="btSubmit" runat="server" CssClass="btn" type="hidden" ClientIDMode="Static" OnClick="geolocationForm_Submit" />
+        <asp:Button ID="btSubmit" runat="server" CssClass="btn invisible" type="hidden" ClientIDMode="Static" OnClick="geolocationForm_Submit" />
     </form>
 </asp:Content>
+
+<%-- TODO: Loading could be a pulse of the user's profile image --%>
 
 <asp:Content ID="LocationScripts" ContentPlaceHolderID="DeferredScriptsPlaceholder" runat="server">
     <%-- below are common locations to simulate geolocation and check the city names --%>

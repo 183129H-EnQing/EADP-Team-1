@@ -18,7 +18,7 @@ namespace MyCircles
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            RedirectValidator.isSignedOut();
         }
 
         protected void btRegister_Click(object sender, EventArgs e)

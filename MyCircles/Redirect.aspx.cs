@@ -12,6 +12,7 @@ namespace MyCircles
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            RedirectValidator.isUser();
         }
 
         protected void geolocationForm_Submit(object sender, EventArgs e)
@@ -19,6 +20,7 @@ namespace MyCircles
             var currentUser = (User)Session["currentUser"];
             currentUser.Latitude = Convert.ToDouble(tbLat.Text);
             currentUser.Longitude = Convert.ToDouble(tbLong.Text);
+
             currentUser.UpdateUserLocation();
             Session["currentUser"] = currentUser;
 

@@ -179,7 +179,6 @@
     <Content Include="Content\images\MyCirclesIcon.svg" />
     <Content Include="Content\images\MyCirclesIconGreyscale.svg" />
     <Content Include="Content\images\MyCirclesIconStatic.png" />
-    <Content Include="ExampleForm.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Base.Master" />
     <Content Include=".editorconfig" />
@@ -213,13 +212,6 @@
     <Compile Include="BLL\POST.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="DAL\UserDAO.cs" />
-    <Compile Include="ExampleForm.aspx.cs">
-      <DependentUpon>ExampleForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ExampleForm.aspx.designer.cs">
-      <DependentUpon>ExampleForm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +222,7 @@
     <Compile Include="Auth\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\RedirectValidator.cs" />
     <Compile Include="HomePost\HomePost.aspx.cs">
       <DependentUpon>HomePost.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
