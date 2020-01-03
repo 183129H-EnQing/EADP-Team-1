@@ -68,5 +68,22 @@ namespace MyCircles.DAL
 
             return user;
         }
+
+        public void UpdateUserLocation(int id, double? latitude, double? longitude)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                var userQuery = db.Users
+                        .Where(u => u.Id == id)
+                        .FirstOrDefault();
+
+                Console.WriteLine(userQuery);
+
+                userQuery.Latitude = latitude;
+                userQuery.Longitude = longitude;
+
+                db.SaveChanges();
+            }
+        }
     }
 }

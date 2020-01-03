@@ -21,5 +21,8 @@
 <body>
     <asp:ContentPlaceHolder ID="BaseContentPlaceholder" runat="server">
     </asp:ContentPlaceHolder>
+
+    <asp:ContentPlaceHolder ID="DeferredScriptsPlaceholder" runat="server">
+    </asp:ContentPlaceHolder>
 </body>
 </html>

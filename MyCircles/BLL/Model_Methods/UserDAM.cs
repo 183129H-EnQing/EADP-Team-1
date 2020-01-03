@@ -11,10 +11,16 @@ namespace MyCircles.BLL
 {
     public partial class User
     {
-        public void AddUser(User newUser)
+        UserDAO userAdapter = new UserDAO();
+
+        public void AddUserToDb()
         {
-            UserDAO userAdapter = new UserDAO();
-            userAdapter.AddUser(newUser);
+            userAdapter.AddUser(this);
+        }
+
+        public void UpdateUserLocation()
+        {
+            userAdapter.UpdateUserLocation(this.Id, this.Latitude, this.Longitude);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace MyCircles
                 newUser.Username = tbUsername.Text;
                 newUser.Password = tbPassword.Text;
 
-                newUser.AddUser(newUser);
+                newUser.AddUserToDb();
                 Response.Redirect("Login.aspx");
             }
             catch (DbEntityValidationException ex)

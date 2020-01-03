@@ -24,7 +24,7 @@ namespace MyCircles
             try
             {
                 signedOutErrorContainer.Visible = false;
-                User user = new Models.User();
+                User user = new User();
                 UserDAO userDataAdapter = new UserDAO();
                 string identifier = tbUsername.Text;
                 string password = tbPassword.Text;
@@ -32,7 +32,7 @@ namespace MyCircles
                 user = userDataAdapter.VerifyCredentials(identifier, password);
 
                 Session["currentUser"] = user;
-                Response.Redirect("/");
+                Response.Redirect("/Redirect.aspx");
             }
             catch (DbEntityValidationException ex)
             {

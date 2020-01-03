@@ -38,9 +38,9 @@ namespace MyCircles.BLL
         [Column(TypeName = "text")]
         public string Bio { get; set; }
 
-        public double? xGeoPos { get; set; }
+        public double? Latitude { get; set; }
 
-        public double? yGeoPos { get; set; }
+        public double? Longitude { get; set; }
 
         [Column(TypeName = "image")]
         public byte[] ProfileImage { get; set; }
