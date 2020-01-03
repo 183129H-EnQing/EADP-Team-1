@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Redirecting... - MyCircles" Language="C#" MasterPageFile="~/Base.Master" AutoEventWireup="true" CodeBehind="Redirect.aspx.cs" Inherits="MyCircles.Redirect" %>
 
 <asp:Content ID="RedirectContent" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
-    <asp:Form runat="server" name="geolocationForm" id="geolocationForm" onsubmit="geolocationForm_Submit">
+    <form runat="server" name="geolocationForm" id="geolocationForm" onsubmit="geolocationForm_Submit">
         <div class="container h-100">
 	        <div class="row h-100 justify-content-center align-items-center text-center">
 		        Loading...
@@ -17,7 +17,7 @@
 	    </div>
 
         <asp:Button ID="btSubmit" runat="server" CssClass="btn" type="hidden" ClientIDMode="Static" OnClick="geolocationForm_Submit" />
-    </asp:Form>
+    </form>
 </asp:Content>
 
 <asp:Content ID="LocationScripts" ContentPlaceHolderID="DeferredScriptsPlaceholder" runat="server">
