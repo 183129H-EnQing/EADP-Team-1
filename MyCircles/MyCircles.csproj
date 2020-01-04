@@ -124,6 +124,12 @@
     <Content Include="Content\bootstrap\js\dist\tab.js" />
     <Content Include="Content\bootstrap\js\dist\toast.js" />
     <Content Include="Content\bootstrap\js\dist\tooltip.js" />
+    <Content Include="Content\bootstrap\js\dist\util.es5.js">
+      <DependentUpon>util.js</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap\js\dist\util.es5.min.js">
+      <DependentUpon>util.es5.js</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap\js\dist\util.js" />
     <Content Include="Content\bootstrap\js\src\alert.js" />
     <Content Include="Content\bootstrap\js\src\button.js" />
@@ -172,6 +178,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\images\ConversationIcon.jpg" />
+    <Content Include="Content\images\DefaultProfileIcon.png" />
     <Content Include="Content\images\JustMeetIcon.png" />
     <Content Include="Content\images\JustMeetIcon.svg" />
     <Content Include="Content\images\MyCirclesBackground.png" />
@@ -179,14 +186,18 @@
     <Content Include="Content\images\MyCirclesIcon.svg" />
     <Content Include="Content\images\MyCirclesIconGreyscale.svg" />
     <Content Include="Content\images\MyCirclesIconStatic.png" />
-    <Content Include="ExampleForm.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Base.Master" />
     <Content Include=".editorconfig" />
+    <Content Include="ItineraryPlanner\Header.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Register.aspx" />
     <Content Include="HomePost\HomePost.aspx" />
+    <Content Include="ItineraryPlanner\Home.aspx" />
+    <Content Include="ItineraryPlanner\Timeline.aspx" />
+    <Content Include="Profile\User.aspx" />
+    <Content Include="Redirect.aspx" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -204,20 +215,13 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
-    <Compile Include="BLL\Models\Friend.cs" />
-    <Compile Include="BLL\Models\MyCirclesEntityModel.cs" />
-    <Compile Include="BLL\Models\Notification.cs" />
-    <Compile Include="BLL\Models\POST.cs" />
-    <Compile Include="BLL\Models\User.cs" />
+    <Compile Include="BLL\Friend.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
+    <Compile Include="BLL\MyCirclesEntityModel.cs" />
+    <Compile Include="BLL\Notification.cs" />
+    <Compile Include="BLL\POST.cs" />
+    <Compile Include="BLL\User.cs" />
     <Compile Include="DAL\UserDAO.cs" />
-    <Compile Include="ExampleForm.aspx.cs">
-      <DependentUpon>ExampleForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ExampleForm.aspx.designer.cs">
-      <DependentUpon>ExampleForm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -228,12 +232,42 @@
     <Compile Include="Auth\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GeneralHelpers.cs" />
+    <Compile Include="Helpers\RedirectValidator.cs" />
     <Compile Include="HomePost\HomePost.aspx.cs">
       <DependentUpon>HomePost.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HomePost\HomePost.aspx.designer.cs">
       <DependentUpon>HomePost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Header.Master.cs">
+      <DependentUpon>Header.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Header.Master.designer.cs">
+      <DependentUpon>Header.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Timeline.aspx.cs">
+      <DependentUpon>Timeline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
+      <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\User.aspx.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\User.aspx.designer.cs">
+      <DependentUpon>User.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Auth\Register.aspx.cs">
@@ -249,6 +283,20 @@
     </Compile>
     <Compile Include="Auth\SignedOut.master.designer.cs">
       <DependentUpon>SignedOut.master</DependentUpon>
+    </Compile>
+    <Compile Include="Redirect.aspx.cs">
+      <DependentUpon>Redirect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Redirect.aspx.designer.cs">
+      <DependentUpon>Redirect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignedIn.master.cs">
+      <DependentUpon>SignedIn.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignedIn.master.designer.cs">
+      <DependentUpon>SignedIn.master</DependentUpon>
     </Compile>
     <Compile Include="ViewAllEventPage.aspx.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
@@ -370,6 +418,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="SignedIn.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,12 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Base.Master" AutoEventWireup="true" CodeBehind="ViewAllEventPage.aspx.cs" Inherits="MyCircles.ViewEventDetails" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="BaseHeadPlaceholder" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.Master" AutoEventWireup="true" CodeBehind="ViewAllEventPage.aspx.cs" Inherits="MyCircles.ViewEventDetails" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
     <style>
         .fliterText{
             font-size:14px;
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form runat="server">
         <div class="container">
             <div class="row" id="fliterOptions">

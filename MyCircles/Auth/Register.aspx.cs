@@ -15,10 +15,11 @@ namespace MyCircles
         User newUser = new User();
 
         // TODO: Show error for required fields
+        // TODO: Give each user their own colour theme
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            RedirectValidator.isSignedOut();
         }
 
         protected void btRegister_Click(object sender, EventArgs e)
@@ -29,7 +30,7 @@ namespace MyCircles
                 newUser.Username = tbUsername.Text;
                 newUser.Password = tbPassword.Text;
 
-                newUser.AddUser(newUser);
+                newUser.AddUserToDb();
                 Response.Redirect("Login.aspx");
             }
             catch (DbEntityValidationException ex)

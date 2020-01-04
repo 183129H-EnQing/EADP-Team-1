@@ -14,6 +14,7 @@ namespace MyCircles
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            RedirectValidator.isSignedOut();
         }
 
         // TODO: Use email verification and forgot password
@@ -32,7 +33,7 @@ namespace MyCircles
                 user = userDataAdapter.VerifyCredentials(identifier, password);
 
                 Session["currentUser"] = user;
-                Response.Redirect("/");
+                Response.Redirect("/Redirect.aspx");
             }
             catch (DbEntityValidationException ex)
             {

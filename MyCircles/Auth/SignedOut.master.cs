@@ -11,7 +11,7 @@ namespace MyCircles
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            RedirectValidator.isSignedOut();
         }
     }
 }

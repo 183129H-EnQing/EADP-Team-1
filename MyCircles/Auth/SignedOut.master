@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Base.Master" AutoEventWireup="true" CodeBehind="SignedOut.master.cs" Inherits="MyCircles.SignedOut" %>
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
-    <div class="container-fluid">
+    <div class="container-fluid bg-white">
         <div class="row justify-content-center vh-100">
             <div class="col-md-7 signedOutInfoBlock d-none d-md-block">
                 <b>This is a very cool app thank</b>

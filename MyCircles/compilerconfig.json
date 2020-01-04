@@ -2,5 +2,9 @@
   {
     "outputFile": "Content/css/bootstrap.css",
     "inputFile": "Content/bootstrap/scss/bootstrap.scss"
+  },
+  {
+    "outputFile": "Content/bootstrap/js/dist/util.es5.js",
+    "inputFile": "Content/bootstrap/js/dist/util.js"
   }
 ]
