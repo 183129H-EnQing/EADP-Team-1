@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row" id="fliterOptions">
                 <!-- Fliter Options--  <!-- d-none d-md-block" for col-3 class-->
-                <div class=" col-md-4 col-lg-3">
+                <div class=" col-md-4 col-lg-3 d-none d-md-block">
                     <div class="card card-body mt-3">
                         <div class="left-filter-container">
                             <div class="form-inline">
@@ -90,6 +90,13 @@
                 <div class="col-sm-12 col-md-8 col-lg-9">
                     <div class="card card-body mt-3">
                         <asp:Label runat="server" Text="Recommended Events"></asp:Label>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card card-body">
+                                    hello world
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 <!-- recommend events -->
                 </div>
