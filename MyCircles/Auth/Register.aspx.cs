@@ -15,6 +15,7 @@ namespace MyCircles
         User newUser = new User();
 
         // TODO: Show error for required fields
+        // TODO: Give each user their own colour theme
 
         protected void Page_Load(object sender, EventArgs e)
         {

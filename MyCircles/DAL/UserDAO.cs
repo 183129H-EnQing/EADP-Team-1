@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -30,6 +31,13 @@ namespace MyCircles.DAL
                     }
 
                     newUser.Password = Crypto.HashPassword(newUser.Password);
+                    newUser.ProfileImage = 
+                        GeneralHelpers.imageToByteArray(
+                            Image.FromFile(
+                                HttpContext.Current.Server.MapPath("~/Content/images/DefaultProfileIcon.png"), true
+                            )
+                        );
+                    
                     db.Users.Add(newUser);
                     db.SaveChanges();
                 }

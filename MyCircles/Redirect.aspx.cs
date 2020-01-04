@@ -24,7 +24,7 @@ namespace MyCircles
             currentUser.UpdateUserLocation();
             Session["currentUser"] = currentUser;
 
-            Response.Redirect("Profile/Settings.aspx");
+            Response.Redirect("Profile/User.aspx");
         }
     }
 }

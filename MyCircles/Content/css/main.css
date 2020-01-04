@@ -1,4 +1,8 @@
-﻿.invisble {
+﻿body {
+    background-color: #f6f6f6;
+}
+
+.invisble {
     display: none;
 }
 
@@ -33,4 +37,14 @@
     background-repeat: no-repeat;
     padding-left: 3.2rem;
     border-width: 1.5px;
+}
+
+.nav-profilepic {
+    height: 40px;
+    width: 40px;
+    border: solid;
+}
+
+.content-container {
+    margin-top: 3rem;
 }

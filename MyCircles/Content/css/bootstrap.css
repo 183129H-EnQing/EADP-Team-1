@@ -3205,7 +3205,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem; }
+  padding: 0.5rem 2rem; }
   .nav-link:hover, .nav-link:focus {
     text-decoration: none; }
   .nav-link.disabled {
@@ -3345,8 +3345,8 @@ input[type="button"].btn-block {
       .navbar-expand-sm .navbar-nav .dropdown-menu {
         position: absolute; }
       .navbar-expand-sm .navbar-nav .nav-link {
-        padding-right: 0.5rem;
-        padding-left: 0.5rem; }
+        padding-right: 4rem;
+        padding-left: 4rem; }
     .navbar-expand-sm > .container,
     .navbar-expand-sm > .container-fluid,
     .navbar-expand-sm > .container-sm,
@@ -3379,8 +3379,8 @@ input[type="button"].btn-block {
       .navbar-expand-md .navbar-nav .dropdown-menu {
         position: absolute; }
       .navbar-expand-md .navbar-nav .nav-link {
-        padding-right: 0.5rem;
-        padding-left: 0.5rem; }
+        padding-right: 4rem;
+        padding-left: 4rem; }
     .navbar-expand-md > .container,
     .navbar-expand-md > .container-fluid,
     .navbar-expand-md > .container-sm,
@@ -3413,8 +3413,8 @@ input[type="button"].btn-block {
       .navbar-expand-lg .navbar-nav .dropdown-menu {
         position: absolute; }
       .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 0.5rem;
-        padding-left: 0.5rem; }
+        padding-right: 4rem;
+        padding-left: 4rem; }
     .navbar-expand-lg > .container,
     .navbar-expand-lg > .container-fluid,
     .navbar-expand-lg > .container-sm,
@@ -3447,8 +3447,8 @@ input[type="button"].btn-block {
       .navbar-expand-xl .navbar-nav .dropdown-menu {
         position: absolute; }
       .navbar-expand-xl .navbar-nav .nav-link {
-        padding-right: 0.5rem;
-        padding-left: 0.5rem; }
+        padding-right: 4rem;
+        padding-left: 4rem; }
     .navbar-expand-xl > .container,
     .navbar-expand-xl > .container-fluid,
     .navbar-expand-xl > .container-sm,
@@ -3478,8 +3478,8 @@ input[type="button"].btn-block {
     .navbar-expand .navbar-nav .dropdown-menu {
       position: absolute; }
     .navbar-expand .navbar-nav .nav-link {
-      padding-right: 0.5rem;
-      padding-left: 0.5rem; }
+      padding-right: 4rem;
+      padding-left: 4rem; }
   .navbar-expand > .container,
   .navbar-expand > .container-fluid,
   .navbar-expand > .container-sm,
