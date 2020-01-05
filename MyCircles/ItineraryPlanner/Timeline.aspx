@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-1">
-                <h2>Nov</h2> <br />
+                <asp:Label ID="lbMonth" runat="server" Text="Label"></asp:Label> <br />
                 <h2>11</h2>  <br />
             </div>
             <div class="col-md-8 border border-primary">
