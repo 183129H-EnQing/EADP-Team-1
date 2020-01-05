@@ -16,7 +16,9 @@ namespace MyCircles.ItineraryPlanner
 
         protected void btnSubmitPlan_Click(object sender, EventArgs e)
         {
-
+            Session["startDate"] = tbStartDate.Text;
+            Session["endDate"] = tbEndDate.Text;
+            Response.Redirect("Timeline.aspx");
         }
     }
 }

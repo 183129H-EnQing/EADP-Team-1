@@ -58,13 +58,13 @@
         <div class="row justify-content">
             <div class="col-md-2"></div>
             <div class="col-md-3">
-                <div class="row">
+                <div class="row mb-3">
                     <asp:Label ID="Label1" runat="server" Text="The next way to <br> plan your next trip" Font-Bold="True" Font-Size="30pt"></asp:Label>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                     <asp:Label ID="Label4" runat="server" Text="OR"></asp:Label>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                     <asp:Button ID="btnImportActivity" class="btn btn-lg" BackColor="Orange" runat="server" Text="Import Activity" ForeColor="White"  />
                 </div>
             </div>
@@ -73,19 +73,19 @@
                 <div class="ml-5 mr-5">
                     <div class="row d-flex justify-content-center">
                         <h1>Itinerary Planner</h1>
-                    </div>
+                    </div>  
                     <div class="row mb-3">
-                         <asp:TextBox ID="tbDestination" class="form-control" runat="server" placeholder="Enter destination (Region, Landmarks)"></asp:TextBox>
+                         <asp:TextBox ID="tbDestination" class="form-control" runat="server" placeholder="Enter destination (Region, Landmarks)" required></asp:TextBox>
                     </div>
                     <div class="row mb-5">
                         <div class="col-md-4">
-                             <asp:TextBox ID="tbStartDate" class="form-control" runat="server" onkeyup="runDate" placeholder="Start"></asp:TextBox>
+                             <asp:TextBox ID="tbStartDate" class="form-control" runat="server" onkeyup="runDate" placeholder="Start" required></asp:TextBox>
                         </div>
                         <div class="col-md-4">
-                             <asp:TextBox ID="tbEndDate" class="form-control" runat="server" onKeyPress="javascript:runDate" placeholder="End"></asp:TextBox>
+                             <asp:TextBox ID="tbEndDate" class="form-control" runat="server" onKeyPress="javascript:runDate" placeholder="End" required></asp:TextBox>
                         </div>
                         <div class="col-md-4">
-                             <asp:TextBox ID="tbNoPeople" class="form-control" runat="server" onclick="show">2 Youth</asp:TextBox>
+                             <asp:TextBox ID="tbNoPeople" class="form-control" runat="server" onclick="show" required>2 Youth</asp:TextBox>
 
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         <div class="panel-heading w-100">
                             <div class="panel-title">
                                 <a href="#panelBody" class="text-decoration-none" data-toggle="collapse" data-parent="#accordion">
-                                    <span class="glyphicon glyphicon-menu-up"></span>ACTIVITY PREFERENCES (OPTIONAL)
+                                    <span class="glyphicon glyphicon-menu-down"></span>&nbsp ACTIVITY PREFERENCES (OPTIONAL)
                                 </a>
                             </div>
                         </div>
