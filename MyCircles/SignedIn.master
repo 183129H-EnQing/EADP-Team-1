@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="SignedInContent" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
-    <nav class="navbar navbar-light navbar-expand-lg bg-white">
-        <div class="container-sm">
+    <nav class="navbar navbar-light navbar-expand-md bg-white">
+        <div class="container-lg">
             <a class="navbar-brand" href="#">
                 <img src="../Content/images/MyCirclesIconStatic.png" width="40" height="40" alt="">
             </a>
@@ -38,7 +38,7 @@
         </div>
     </nav>
 
-    <div class="container-sm content-container bg-white">
+    <div class="container-lg content-container bg-white">
         <asp:ContentPlaceHolder ID="SignedInContentPlaceholder" runat="server" />
     </div>
 
