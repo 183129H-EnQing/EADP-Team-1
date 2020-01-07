@@ -4,7 +4,9 @@
 
 <asp:Content ID="SettingsContent" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form runat="server">
-        sfsbfsbfsbfssbs
+        <div class="container-lg content-container bg-white">
+            sfsbfsbfsbfssbs
+        </div>
     </form>
 </asp:Content>
 

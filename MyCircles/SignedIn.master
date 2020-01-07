@@ -38,9 +38,7 @@
         </div>
     </nav>
 
-    <div class="container-lg content-container bg-white">
-        <asp:ContentPlaceHolder ID="SignedInContentPlaceholder" runat="server" />
-    </div>
+    <asp:ContentPlaceHolder ID="SignedInContentPlaceholder" runat="server" />
 
 </asp:Content>
 
