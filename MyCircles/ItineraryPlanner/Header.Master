@@ -3,35 +3,17 @@
 
 <asp:Content ID="Header" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-3 ml-1">
-                <h1>TIMELINE</h1>
+        <div class="row d-flex justify-content-center mb-3">
+            <div class="col-md-3 ml-1 d-flex justify-content-center">
+                <a href="" class="text-decoration-none">TIMELINE</a>
             </div>
-            <div class="col-md-3 ml-1">
-                <h1>CALENDAR</h1>
+            <div class="col-md-3 ml-1 d-flex justify-content-center">
+                <a href="" class="text-decoration-none">CALENDAR</a>
             </div>
-            <div class="col-md-3">
-                <h1>MAP</h1>
+            <div class="col-md-3 d-flex justify-content-center">
+                <a href="" class="text-decoration-none">MAP</a>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function runDte(){
-
-            $("#<%= tbStartDate.ClientID %>").datepicker({
-                todayBtn: 1,
-                autoclose: true,
-            }).on('changeDate', function (selected) {
-                var minDate = new Date(selected.date.valueOf());
-                $("#<%= tbEndDate.ClientID %>").datepicker('setStartDate', minDate);
-            });
-
-            $("#<%= tbEndDate.ClientID %>").datepicker()
-                .on('changeDate', function (selected) {
-                    var minDate = new Date(selected.date.valueOf());
-                $("#<%= tbStartDate.ClientID %>").datepicker('setEndDate', minDate);
-            });
-        });
-    </script>
     <asp:ContentPlaceHolder ID="BodyContentPlaceHolder" runat="server" />
 </asp:Content>
