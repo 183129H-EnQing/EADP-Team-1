@@ -4,11 +4,13 @@
 
 <asp:Content ID="SettingsContent" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form runat="server">
-        <div class="container-lg content-container bg-white">
-            sfsbfsbfsbfssbs
+        <div class="container-lg content-container bg-white p-0">
+            <asp:Image ID="HeaderImage" runat="server" Width="100%" Height="200px" BorderWidth="0" />
         </div>
     </form>
 </asp:Content>
+
+
 
 <asp:Content ID="Content3" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
 </asp:Content>

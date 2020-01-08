@@ -27,7 +27,7 @@
                         <a class="nav-link" href="#">Planner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Search</a>
+                        <a class="nav-link" href="Profile/User.aspx">Search</a>
                     </li>
                 </ul>
             </div>
