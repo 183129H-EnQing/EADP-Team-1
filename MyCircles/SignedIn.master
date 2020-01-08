@@ -7,7 +7,7 @@
 <asp:Content ID="SignedInContent" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
     <nav class="navbar navbar-light navbar-expand-md bg-white">
         <div class="container-lg">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#" runat="server">
                 <img src="../Content/images/MyCirclesIconStatic.png" width="40" height="40" alt="">
             </a>
 
@@ -18,21 +18,21 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#" runat="server">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Events</a>
+                        <a class="nav-link" href="#" runat="server">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Planner</a>
+                        <a class="nav-link" href="ItineraryPlanner/Home.aspx" runat="server">Planner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Profile/User.aspx">Search</a>
+                        <a class="nav-link" href="Profile/User.aspx" runat="server">Search</a>
                     </li>
                 </ul>
             </div>
 
-            <a class="mr-0 ml-3 navbar-brand" href="#">
+            <a class="mr-0 ml-3 navbar-brand" href="Profile/User.aspx" runat="server">
                 <asp:Image ID="ProfilePicImage" runat="server" CssClass="nav-profilepic rounded-circle p-1" />
             </a>
         </div>

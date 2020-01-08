@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="~/Base.master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Home" Title="Itinerary Planner"%>
+﻿<%@ Page MasterPageFile="~/Base.master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Home" Title="Itinerary Planner" %>
 
 <asp:Content ContentPlaceHolderId="BaseContentPlaceholder" runat="server">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
