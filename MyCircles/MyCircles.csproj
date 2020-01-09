@@ -196,6 +196,7 @@
     <Content Include="HomePost\HomePost.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
+    <Content Include="Profile\Ex1UpdatePanel.aspx" />
     <Content Include="Profile\User.aspx" />
     <Content Include="Redirect.aspx" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -261,6 +262,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Ex1UpdatePanel.aspx.cs">
+      <DependentUpon>Ex1UpdatePanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Ex1UpdatePanel.aspx.designer.cs">
+      <DependentUpon>Ex1UpdatePanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\User.aspx.cs">
       <DependentUpon>User.aspx</DependentUpon>

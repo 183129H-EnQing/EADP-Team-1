@@ -18,8 +18,12 @@ namespace MyCircles
         protected void geolocationForm_Submit(object sender, EventArgs e)
         {
             var currentUser = (User)Session["currentUser"];
-            currentUser.Latitude = Convert.ToDouble(tbLat.Text);
-            currentUser.Longitude = Convert.ToDouble(tbLong.Text);
+
+            if (!String.IsNullOrEmpty(tbLat.Text) || !String.IsNullOrEmpty(tbLong.Text))
+            {
+                currentUser.Latitude = Convert.ToDouble(tbLat.Text);
+                currentUser.Longitude = Convert.ToDouble(tbLong.Text);
+            }
 
             currentUser.UpdateUserLocation();
             Session["currentUser"] = currentUser;
