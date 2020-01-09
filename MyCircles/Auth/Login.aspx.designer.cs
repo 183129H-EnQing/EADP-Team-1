@@ -42,6 +42,24 @@ namespace MyCircles
         protected global::System.Web.UI.WebControls.TextBox tbPassword;
 
         /// <summary>
+        /// LoginScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager LoginScriptManager;
+
+        /// <summary>
+        /// LoginUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel LoginUpdatePanel;
+
+        /// <summary>
         /// signedOutErrorContainer control.
         /// </summary>
         /// <remarks>

@@ -10,14 +10,22 @@
             <div class="col-md-12">
                 <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control-lg m-1" type="password" placeholder="Password" required></asp:TextBox>
             </div>
-            <div id="signedOutErrorContainer" class="col-md-12 my-3" runat="server" visible="false">
-                <div class="signedOutErrorBlock">
-                    <i class="fas fa-exclamation-triangle"></i> &nbsp;
-                    <asp:Label ID="lbErrorMsg" runat="server"></asp:Label>
-                </div>
-            </div>
+            <asp:ScriptManager ID="LoginScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>   
+            <asp:UpdatePanel ID="LoginUpdatePanel" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div id="signedOutErrorContainer" class="col-md-12 my-3" runat="server" visible="false">
+                        <div class="signedOutErrorBlock">
+                            <i class="fas fa-exclamation-triangle"></i> &nbsp;
+                            <asp:Label ID="lbErrorMsg" runat="server"></asp:Label>
+                        </div>
+                    </div>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btLogin" EventName="Click" />        
+                </Triggers>
+            </asp:UpdatePanel>
             <div class="col-md-12 float-left my-5">
-                <asp:Button ID="btLogin" runat="server" Text="Login" CssClass="btn btn-primary btn-util-block float-left mr-2" OnClick="btLogin_Click" />
+                <asp:Button ID="btLogin" runat="server" Text="Login" CssClass="btn btn-primary btn-util-block float-left mr-2" OnClick="btLogin_Click" OnClientClick="disableAsyncButton(this.id)" />
                 <input id="btGoogleSignIn" name="btGoogleSignIn" class="btn btn-outline-dark btn-google float-left ml-2" value="Sign in with Google" type="button" runat="server" onserverclick="btGoogleSignIn_Click" /> <br /> <br />
                 <input id="btRegister" name="btRegister" class="btn btn-link float-left" value="Register for a new account" type="button" runat="server" onserverclick="btRegister_Click" />
             </div>

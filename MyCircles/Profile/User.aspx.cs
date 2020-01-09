@@ -17,5 +17,10 @@ namespace MyCircles.Profile
             currentUser = (BLL.User)Session["currentUser"];
             this.Title = currentUser.Username + " - MyCircles";
         }
+
+        protected void btRefresh_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
