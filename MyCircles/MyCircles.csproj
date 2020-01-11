@@ -45,6 +45,9 @@
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\..\..\..\..\..\..\source\repos\Practical 10 Starter\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -196,7 +199,6 @@
     <Content Include="HomePost\HomePost.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
-    <Content Include="Profile\Ex1UpdatePanel.aspx" />
     <Content Include="Profile\User.aspx" />
     <Content Include="Redirect.aspx" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -265,13 +267,6 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Profile\Ex1UpdatePanel.aspx.cs">
-      <DependentUpon>Ex1UpdatePanel.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Profile\Ex1UpdatePanel.aspx.designer.cs">
-      <DependentUpon>Ex1UpdatePanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\User.aspx.cs">
       <DependentUpon>User.aspx</DependentUpon>

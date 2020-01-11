@@ -33,6 +33,15 @@ namespace MyCircles
         protected global::System.Web.UI.WebControls.TextBox tbName;
 
         /// <summary>
+        /// rfvName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
+
+        /// <summary>
         /// tbUsername control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace MyCircles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbUsername;
+
+        /// <summary>
+        /// rfvUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUsername;
 
         /// <summary>
         /// tbEmailAddress control.
@@ -51,6 +69,24 @@ namespace MyCircles
         protected global::System.Web.UI.WebControls.TextBox tbEmailAddress;
 
         /// <summary>
+        /// rfvEmailAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmailAddress;
+
+        /// <summary>
+        /// revEmailAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmailAddress;
+
+        /// <summary>
         /// tbPassword control.
         /// </summary>
         /// <remarks>
@@ -60,22 +96,31 @@ namespace MyCircles
         protected global::System.Web.UI.WebControls.TextBox tbPassword;
 
         /// <summary>
-        /// LoginScriptManager control.
+        /// rfvPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager LoginScriptManager;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
 
         /// <summary>
-        /// LoginUpdatePanel control.
+        /// RegisterScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel LoginUpdatePanel;
+        protected global::System.Web.UI.ScriptManager RegisterScriptManager;
+
+        /// <summary>
+        /// RegisterUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel RegisterUpdatePanel;
 
         /// <summary>
         /// signedOutErrorContainer control.

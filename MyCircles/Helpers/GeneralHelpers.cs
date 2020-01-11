@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace MyCircles
 {
@@ -16,11 +17,35 @@ namespace MyCircles
             return ms.ToArray();
         }
 
-        public static Image byteArrayToImage(byte[] byteArrayIn)
+        public static System.Drawing.Image byteArrayToImage(byte[] byteArrayIn)
         {
             MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
+            System.Drawing.Image returnImage = System.Drawing.Image.FromStream(ms);
             return returnImage;
+        }
+
+        public static void AddValidationError(Page page, string validationGroup, string errMsg)
+        {
+            CustomValidator err = new CustomValidator();
+            err.ValidationGroup = validationGroup;
+            err.ErrorMessage = errMsg;
+            err.IsValid = false;
+            page.Validators.Add(err);
+        }
+
+        public static string GetFirstValidationError(ValidatorCollection validators)
+        {
+            string errMsg = null;
+
+            foreach (IValidator validator in validators)
+            {
+                if (!validator.IsValid) {
+                    errMsg = validator.ErrorMessage;
+                    break;
+                }
+            }
+
+            return errMsg;
         }
     }
 }
