@@ -49,3 +49,32 @@
 .content-container {
     margin-top: 3rem;
 }
+
+.user-container {
+    position: relative;
+}
+
+.profilepic {
+    border: solid;
+    border-color: white;
+    border-width: thick;
+    height: 12rem;
+    width: 12rem;
+}
+
+.profilepic-container {
+    position: absolute;
+    top: 10rem;
+    left: 4rem;
+}
+
+.desc-container {
+    position: absolute;
+    top: 100%;
+    left: 16rem;
+    padding: 1rem;
+}
+
+.bio-span {
+    font-style: italic;
+}

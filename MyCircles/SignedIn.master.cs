@@ -18,7 +18,7 @@ namespace MyCircles
             byte[] imagem = (byte[])(currentUser.ProfileImage);
             string PROFILE_PIC = Convert.ToBase64String(imagem);
 
-            ProfilePicImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
+            ProfilePicNavImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
         }
     }
 }

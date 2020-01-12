@@ -33,7 +33,7 @@
             </div>
 
             <a class="mr-0 ml-3 navbar-brand" href="Profile/User.aspx" runat="server">
-                <asp:Image ID="ProfilePicImage" runat="server" CssClass="nav-profilepic rounded-circle p-1" />
+                <asp:Image ID="ProfilePicNavImage" runat="server" CssClass="nav-profilepic rounded-circle p-1" />
             </a>
         </div>
     </nav>

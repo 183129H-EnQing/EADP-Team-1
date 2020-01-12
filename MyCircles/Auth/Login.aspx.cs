@@ -15,6 +15,7 @@ namespace MyCircles
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isSignedOut();
+            this.Form.DefaultButton = this.btLogin.ID;
         }
 
         // TODO: Use email verification and forgot password

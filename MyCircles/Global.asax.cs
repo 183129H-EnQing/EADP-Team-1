@@ -12,6 +12,9 @@ namespace MyCircles
 {
     public class Global : HttpApplication
     {
+        public System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        public BLL.User currentUser;
+
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup

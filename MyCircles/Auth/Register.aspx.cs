@@ -20,6 +20,7 @@ namespace MyCircles
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isSignedOut();
+            this.Form.DefaultButton = this.btRegister.ID;
         }
 
         protected void btRegister_Click(object sender, EventArgs e)
