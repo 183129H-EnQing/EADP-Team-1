@@ -1,17 +1,17 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/Base.Master" AutoEventWireup="true" CodeBehind="Header.Master.cs" Inherits="MyCircles.ItineraryPlanner.Header1" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/SignedIn.Master" AutoEventWireup="true" CodeBehind="Header.Master.cs" Inherits="MyCircles.ItineraryPlanner.Header1" %>
 
 
-<asp:Content ID="Header" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
+<asp:Content ID="Header" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <div class="container-fluid">
         <div class="row d-flex justify-content-center mb-3">
             <div class="col-md-3 ml-1 d-flex justify-content-center">
-                <a href="" class="text-decoration-none">TIMELINE</a>
+                <a href="Timeline.aspx" class="text-decoration-none">TIMELINE</a>
             </div>
             <div class="col-md-3 ml-1 d-flex justify-content-center">
-                <a href="" class="text-decoration-none">CALENDAR</a>
+                <a href="#" class="text-decoration-none">CALENDAR</a>
             </div>
             <div class="col-md-3 d-flex justify-content-center">
-                <a href="" class="text-decoration-none">MAP</a>
+                <a href="Map.aspx" class="text-decoration-none">MAP</a>
             </div>
         </div>
     </div>
