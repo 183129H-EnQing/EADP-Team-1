@@ -221,6 +221,7 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
+    <Compile Include="BLL\Event.cs" />
     <Compile Include="BLL\Friend.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
