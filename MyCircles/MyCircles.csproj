@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Test.aspx" />
     <Content Include="App_Data\MyCircles.mdf" />
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
@@ -193,10 +194,11 @@
     <Content Include="Base.Master" />
     <Content Include=".editorconfig" />
     <Content Include="ItineraryPlanner\Header.Master" />
+    <Content Include="Admin\Admin.master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Register.aspx" />
-    <Content Include="HomePost\HomePost.aspx" />
+    <Content Include="Home\Post.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
     <Content Include="Profile\User.aspx" />
@@ -213,6 +215,20 @@
     <Content Include="Auth\SignedOut.master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Admin.master.cs">
+      <DependentUpon>Admin.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.master.designer.cs">
+      <DependentUpon>Admin.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Base.Master.cs">
       <DependentUpon>Base.Master</DependentUpon>
@@ -240,12 +256,12 @@
     </Compile>
     <Compile Include="Helpers\GeneralHelpers.cs" />
     <Compile Include="Helpers\RedirectValidator.cs" />
-    <Compile Include="HomePost\HomePost.aspx.cs">
-      <DependentUpon>HomePost.aspx</DependentUpon>
+    <Compile Include="Home\Post.aspx.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HomePost\HomePost.aspx.designer.cs">
-      <DependentUpon>HomePost.aspx</DependentUpon>
+    <Compile Include="Home\Post.aspx.designer.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Header.Master.cs">
       <DependentUpon>Header.Master</DependentUpon>

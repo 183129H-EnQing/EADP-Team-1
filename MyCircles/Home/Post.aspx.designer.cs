@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles.HomePost {
+namespace MyCircles.Home {
     
     
-    public partial class HomePost {
+    public partial class Post {
         
         /// <summary>
         /// form1 control.
@@ -40,12 +40,21 @@ namespace MyCircles.HomePost {
         protected global::System.Web.UI.WebControls.Button btnUpload;
         
         /// <summary>
-        /// Post control.
+        /// btnPost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Post;
+        protected global::System.Web.UI.WebControls.Button btnPost;
+        
+        /// <summary>
+        /// ImageMap1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageMap ImageMap1;
     }
 }
