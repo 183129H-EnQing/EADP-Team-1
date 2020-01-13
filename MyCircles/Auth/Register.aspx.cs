@@ -40,7 +40,7 @@ namespace MyCircles
             }
             catch (DbEntityValidationException ex)
             {
-                GeneralHelpers.AddValidationError(Page, "registerErrGroup", ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage);
+                GeneralHelpers.AddValidationError(Page,"registerErrGroup", ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage);
             }
             catch (Exception ex)
             {

@@ -12,6 +12,7 @@ namespace MyCircles.BLL
         {
         }
 
+        public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<POST> POSTs { get; set; }
@@ -19,6 +20,22 @@ namespace MyCircles.BLL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventDescription)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventStartDate)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventEndDate)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Type)
                 .IsFixedLength();

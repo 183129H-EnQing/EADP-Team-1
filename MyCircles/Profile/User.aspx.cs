@@ -10,7 +10,6 @@ namespace MyCircles.Profile
 {
     public partial class User : System.Web.UI.Page
     {
-        public JavaScriptSerializer oSerializer = new JavaScriptSerializer();
         public BLL.User currentUser;
         public double? latitude, longitude;
 
@@ -21,9 +20,9 @@ namespace MyCircles.Profile
             currentUser = (BLL.User)Session["currentUser"];
             latitude = currentUser.Latitude;
             longitude = currentUser.Longitude;
-
             Title = currentUser.Username + " - MyCircles";
-            byte[] imagem = (byte[])(currentUser.ProfileImage);
+
+            byte[] imagem = currentUser.ProfileImage;
             string PROFILE_PIC = Convert.ToBase64String(imagem);
 
             ProfilePicImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);

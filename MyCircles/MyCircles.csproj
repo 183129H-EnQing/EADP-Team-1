@@ -243,7 +243,6 @@
     <Compile Include="Helpers\RedirectValidator.cs" />
     <Compile Include="HomePost\HomePost.aspx.cs">
       <DependentUpon>HomePost.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HomePost\HomePost.aspx.designer.cs">
       <DependentUpon>HomePost.aspx</DependentUpon>
