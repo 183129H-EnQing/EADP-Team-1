@@ -85,8 +85,6 @@ namespace MyCircles.DAL
                         .Where(u => u.Id == id)
                         .FirstOrDefault();
 
-                Console.WriteLine(userQuery);
-
                 userQuery.Latitude = latitude;
                 userQuery.Longitude = longitude;
 

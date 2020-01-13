@@ -20,6 +20,7 @@ namespace MyCircles
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isSignedOut();
+            this.Form.DefaultButton = this.btRegister.ID;
         }
 
         protected void btRegister_Click(object sender, EventArgs e)
@@ -29,19 +30,32 @@ namespace MyCircles
                 newUser.EmailAddress = tbEmailAddress.Text;
                 newUser.Username = tbUsername.Text;
                 newUser.Password = tbPassword.Text;
+                Page.Validate();
 
-                newUser.AddUserToDb();
-                Response.Redirect("Login.aspx");
+                if (Page.IsValid)
+                {
+                    newUser.AddUserToDb();
+                    Response.Redirect("Login.aspx");
+                }
             }
             catch (DbEntityValidationException ex)
             {
-                signedOutErrorContainer.Visible = true;
-                lbErrorMsg.Text = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
+                GeneralHelpers.AddValidationError(Page, "registerErrGroup", ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage);
             }
             catch (Exception ex)
             {
-                signedOutErrorContainer.Visible = true;
-                lbErrorMsg.Text = ex.Message;
+                GeneralHelpers.AddValidationError(Page, "registerErrGroup", ex.Message);
+            }
+            finally
+            {
+                if (!Page.IsValid)
+                {
+                    signedOutErrorContainer.Visible = true;
+                    lbErrorMsg.Text = GeneralHelpers.GetFirstValidationError(Page.Validators);
+                }
+
+                btRegister.Enabled = true;
+                btRegister.Text = "Register";
             }
         }
 

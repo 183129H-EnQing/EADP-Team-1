@@ -15,6 +15,7 @@ namespace MyCircles
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isSignedOut();
+            this.Form.DefaultButton = this.btLogin.ID;
         }
 
         // TODO: Use email verification and forgot password
@@ -25,10 +26,12 @@ namespace MyCircles
             try
             {
                 signedOutErrorContainer.Visible = false;
-                User user = new User();
-                UserDAO userDataAdapter = new UserDAO();
                 string identifier = tbUsername.Text;
                 string password = tbPassword.Text;
+                Page.Validate();
+
+                User user = new User();
+                UserDAO userDataAdapter = new UserDAO();
 
                 user = userDataAdapter.VerifyCredentials(identifier, password);
 
@@ -37,13 +40,22 @@ namespace MyCircles
             }
             catch (DbEntityValidationException ex)
             {
-                signedOutErrorContainer.Visible = true;
-                lbErrorMsg.Text = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
+                GeneralHelpers.AddValidationError(Page, "loginErrGroup", ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage);
             }
             catch (Exception ex)
             {
-                signedOutErrorContainer.Visible = true;
-                lbErrorMsg.Text = ex.Message;
+                GeneralHelpers.AddValidationError(Page, "loginErrGroup", ex.Message);
+            }
+            finally
+            {
+                if (!Page.IsValid)
+                {
+                    signedOutErrorContainer.Visible = true;
+                    lbErrorMsg.Text = GeneralHelpers.GetFirstValidationError(Page.Validators);
+                }
+
+                btLogin.Enabled = true;
+                btLogin.Text = "Login";
             }
         }
 
