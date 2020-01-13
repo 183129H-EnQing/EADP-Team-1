@@ -193,7 +193,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Register.aspx" />
-    <Content Include="HomePost\HomePost.aspx" />
+    <Content Include="Home\Post.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
     <Content Include="Profile\User.aspx" />
@@ -234,12 +234,12 @@
     </Compile>
     <Compile Include="Helpers\GeneralHelpers.cs" />
     <Compile Include="Helpers\RedirectValidator.cs" />
-    <Compile Include="HomePost\HomePost.aspx.cs">
-      <DependentUpon>HomePost.aspx</DependentUpon>
+    <Compile Include="Home\Post.aspx.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HomePost\HomePost.aspx.designer.cs">
-      <DependentUpon>HomePost.aspx</DependentUpon>
+    <Compile Include="Home\Post.aspx.designer.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Header.Master.cs">
       <DependentUpon>Header.Master</DependentUpon>
