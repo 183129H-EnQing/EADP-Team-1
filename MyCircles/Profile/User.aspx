@@ -6,10 +6,10 @@
 
 <asp:Content ID="ProfileContent" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form runat="server">
-        <div class="container-lg content-container bg-white p-0">
+        <div class="rounded container-lg content-container bg-white p-0">
             <div class="user-container">
                 <a href="/Profile/Ex1UpdatePanel.aspx" runat="server">
-                    <asp:Image ID="HeaderImage" runat="server" Width="100%" Height="200px" BorderWidth="0" />
+                    <asp:Image ID="HeaderImage" runat="server" Width="100%" Height="200px" BorderWidth="0" CssClass="rounded" />
                 </a>
                 <div class="profilepic-container">
                     <asp:Image ID="ProfilePicImage" runat="server" CssClass="profilepic rounded-circle img-fluid" />
@@ -25,21 +25,21 @@
             <div style="height:200px">
                 <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5" value="Edit Profile" type="button" runat="server" />
             </div>
-            <ul class="nav nav-pills mb-3 nav-justified px-6" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-post" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+                    <a class="nav-link active" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="true">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circle" aria-selected="false">Circles</a>
+                    <a class="nav-link" id="pills-circles-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circles" aria-selected="false">Circles</a>
                 </li>
-                <li class="nav-item">s
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false">People</a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">ljndskjvjkldvskjvdskjkjdvskjldsv</div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">.151351335135135351513</div>
+                <div class="tab-pane fade show active" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">ljndskjvjkldvskjvdskjkjdvskjldsv</div>
+                <div class="tab-pane fade" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">...</div>
+                <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">kljeva51351335135135351513</div>
             </div>
         </div>
     </form>
