@@ -39,7 +39,6 @@
     </nav>
 
     <asp:ContentPlaceHolder ID="SignedInContentPlaceholder" runat="server" />
-
 </asp:Content>
 
 <asp:Content ID="DeferredScriptsTempContent" ContentPlaceHolderID="DeferredScriptsPlaceholder" runat="server">
