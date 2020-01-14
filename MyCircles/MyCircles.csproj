@@ -259,14 +259,22 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
+    <Compile Include="BLL\Activity.cs" />
     <Compile Include="BLL\Circle.cs" />
+    <Compile Include="BLL\Day.cs" />
+    <Compile Include="BLL\DayByDay.cs" />
     <Compile Include="BLL\Event.cs" />
+    <Compile Include="BLL\EventCategory.cs" />
     <Compile Include="BLL\Follow.cs" />
+    <Compile Include="BLL\Itinerary.cs" />
+    <Compile Include="BLL\ItineraryPref.cs" />
+    <Compile Include="BLL\Location.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
     <Compile Include="BLL\Notification.cs" />
     <Compile Include="BLL\Post.cs" />
+    <Compile Include="BLL\Pref.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
