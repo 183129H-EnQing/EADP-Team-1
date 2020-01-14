@@ -158,4 +158,10 @@ CREATE TABLE [dbo].[Location]
 	[locaWeb] NCHAR(10) NULL
 )
 
-
+-- Admin Table
+CREATE TABLE [dbo].[Admin]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [UserId] INT NOT NULL, 
+    CONSTRAINT FK_Admin_UserId FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
+)
