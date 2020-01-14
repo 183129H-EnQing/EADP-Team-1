@@ -1,0 +1,14 @@
+﻿.admin-panel-navbar {
+    border-right: 2px solid black;
+}
+
+.admin-panel-navitem {
+    padding: 15px;
+}
+.admin-panel-navitem:hover, .admin-panel-navitem:active {
+    background-color:lightgray
+}
+
+.admin-content-height {
+    height: 90vh;
+}

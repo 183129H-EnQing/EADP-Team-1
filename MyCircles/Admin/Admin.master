@@ -1,11 +1,24 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="MyCircles.Admin.Admin" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
+
+<asp:Content ID="Head" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
+    <link rel="stylesheet" type="text/css" href="../Content/css/admin.css"/>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
-    <div class="container">
-        testtest
+
+<asp:Content ID="Body" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
+    <div class="container bg-white">
+        <div class="row h-100">
+            <div class="col-2 admin-panel-navbar p-0">
+                <div class="admin-panel-navitem">
+                    Overview
+                </div>
+            </div>
+            <div class="col-9">
+                some content
+            </div>
+        </div>
     </div>
     <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
 </asp:Content>
