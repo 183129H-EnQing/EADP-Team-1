@@ -1,12 +1,28 @@
-﻿.admin-panel-navbar {
+﻿#adminBody {
+    padding-top: 15px;
+}
+
+.admin-panel-navbar {
     border-right: 2px solid black;
 }
 
 .admin-panel-navitem {
     padding: 15px;
 }
-.admin-panel-navitem:hover, .admin-panel-navitem:active {
-    background-color:lightgray
+.admin-panel-navitem:hover {
+    background-color:lightgray;
+}
+.admin-panel-navlink, .admin-panel-navlink:hover {
+    color: inherit;
+    text-decoration: none;
+}
+.admin-panel-navitem > a {
+}
+.admin-panel-navitem-divider {
+    border-top: 1px solid #222;
+}
+.admin-panel-navitem-active {
+    background-color:darkgray;
 }
 
 .admin-content-height {
