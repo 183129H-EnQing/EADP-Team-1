@@ -13,11 +13,10 @@
                 </div>
             </div>
             <div class="col-9">
-                some content
+                <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server"></asp:ContentPlaceHolder>
             </div>
         </div>
     </div>
-    <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
