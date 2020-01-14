@@ -5,14 +5,26 @@
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
-    <div class="container bg-white">
+    <div class="container bg-white mt-3">
         <div class="row h-100">
             <div class="col-2 admin-panel-navbar p-0">
-                <div class="admin-panel-navitem">
-                    Overview
-                </div>
+                <a class="admin-panel-navlink" href="Home.aspx">
+                    <div id="DIVOverview" class="admin-panel-navitem">
+                        Overview
+                    </div>
+                </a>
+                <a class="admin-panel-navlink" href="ManageEventHosts.aspx">
+                    <div id="DIVManageEH" class="admin-panel-navitem">
+                        Manage Event Hosts
+                    </div>
+                </a>
+                <a class="admin-panel-navlink" href="ViewReportedPosts.aspx">
+                    <div id="DIVViewRP" class="admin-panel-navitem admin-panel-navitem-divider">
+                        View Reported Posts
+                    </div>
+                </a>
             </div>
-            <div class="col-9">
+            <div id="adminBody" class="col-9">
                 <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server"></asp:ContentPlaceHolder>
             </div>
         </div>
@@ -20,4 +32,25 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
+    <script>
+        function admin_onload() {
+            var splitURL = window.location.href.split("/");
+            var filename = splitURL[splitURL.length - 1];
+            var name = filename.split(".")[0];
+
+            var selector = null;
+            if (name === "Home") {
+                selector = "DIVOverview";
+            } else if (name === "ManageEventHosts") {
+                selector = "DIVManageEH";
+            } else if (name === "ViewReportedPosts") {
+                selector = "DIVViewRP";
+            }
+
+            if (selector != null) {
+                document.querySelector("div#" + selector).classList.add("admin-panel-navitem-active");
+            }
+        }
+	    window.addEventListener("load", admin_onload, false);
+    </script>
 </asp:Content>
