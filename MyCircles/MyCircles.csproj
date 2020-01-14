@@ -192,6 +192,7 @@
     <Content Include="Global.asax" />
     <Content Include="Base.Master" />
     <Content Include=".editorconfig" />
+    <Content Include="Home\Post.aspx" />
     <Content Include="ItineraryPlanner\Header.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Admin\Admin.master" />
@@ -241,6 +242,13 @@
     </Compile>
     <Compile Include="Helpers\GeneralHelpers.cs" />
     <Compile Include="Helpers\RedirectValidator.cs" />
+    <Compile Include="Home\Post.aspx.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\Post.aspx.designer.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ItineraryPlanner\Header.Master.cs">
       <DependentUpon>Header.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
