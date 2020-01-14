@@ -63,3 +63,19 @@ CREATE TABLE [dbo].[Event] (
     PRIMARY KEY CLUSTERED ([eventId] ASC)
 );
 
+-- Circle Table (may change later)
+CREATE TABLE [dbo].[Circle] (
+    [Id]   INT          IDENTITY (1, 1) NOT NULL,
+    [Name] VARCHAR (30) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+-- UserCircle Table (also may change)
+CREATE TABLE [dbo].[UserCircles] (
+    [Id]       INT NOT NULL,
+    [UserId]   INT NOT NULL,
+    [CircleId] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_UserCircles_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id]),
+    CONSTRAINT [FK_UserCircles_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [dbo].[Circle] ([Id])
+);

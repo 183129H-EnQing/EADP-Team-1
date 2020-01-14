@@ -41,7 +41,7 @@ namespace MyCircles.Profile
             }
             else 
             {
-                Response.Redirect("/Profile/User.aspx?username" + currentUser.Username);
+                Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username);
             }
         }
 
