@@ -6,8 +6,8 @@ namespace MyCircles.BLL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("POST")]
-    public partial class POST
+    [Table("Post")]
+    public partial class Post
     {
         public int Id { get; set; }
 
@@ -16,7 +16,7 @@ namespace MyCircles.BLL
         public string Content { get; set; }
 
         [Column(TypeName = "image")]
-        public byte[] Picture { get; set; }
+        public byte[] Image { get; set; }
 
         [Required]
         [StringLength(20)]

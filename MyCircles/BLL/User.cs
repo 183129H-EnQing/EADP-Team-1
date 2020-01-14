@@ -12,10 +12,13 @@ namespace MyCircles.BLL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            Friends = new HashSet<Friend>();
-            Friends1 = new HashSet<Friend>();
+            Follows = new HashSet<Follow>();
+            Follows1 = new HashSet<Follow>();
+            Mutuals = new HashSet<Mutual>();
+            Mutuals1 = new HashSet<Mutual>();
             Notifications = new HashSet<Notification>();
-            POSTs = new HashSet<POST>();
+            Posts = new HashSet<Post>();
+            UserCircles = new HashSet<UserCircle>();
         }
 
         public int Id { get; set; }
@@ -55,15 +58,24 @@ namespace MyCircles.BLL
         public bool IsDeleted { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Friend> Friends { get; set; }
+        public virtual ICollection<Follow> Follows { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Friend> Friends1 { get; set; }
+        public virtual ICollection<Follow> Follows1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mutual> Mutuals { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mutual> Mutuals1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notification> Notifications { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<POST> POSTs { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserCircle> UserCircles { get; set; }
     }
 }
