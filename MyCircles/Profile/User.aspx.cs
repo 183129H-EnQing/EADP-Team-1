@@ -34,8 +34,7 @@ namespace MyCircles.Profile
             lbName.Text = requestedUser.Name;
             lbUsername.Text = "@" + requestedUser.Username;
             lbBio.InnerText = requestedUser.Bio;
-            latitude = (requestedUser.Latitude == null) ? -1 : requestedUser.Latitude;
-            longitude = (requestedUser.Longitude == null) ? -1 : requestedUser.Longitude;
+            lbCity.InnerText = requestedUser.City;
 
             if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
 

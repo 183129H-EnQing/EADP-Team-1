@@ -6,12 +6,10 @@
 const getCurrentCity = (lat = null, lng = null) => {
     return new Promise((resolve, reject) => {
         try {
-            if (lat == -1 || lng == -1) throw ("Invalid geolocation");
-
             var currentCity = null;
             var latlng = new google.maps.LatLng(lat, lng);
 
-            new google.maps.Geocoder().geocode({ 'latLng': latlng }, function(results, status) {
+            new google.maps.Geocoder().geocode({ 'latLng': latlng }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[1]) {
                         let c, lc, component;
@@ -27,6 +25,9 @@ const getCurrentCity = (lat = null, lng = null) => {
                             }
                         }
                     }
+                }
+                else {
+                    console.log(status);
                 }
             });
         } catch (error) {

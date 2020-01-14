@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="Redirecting... - MyCircles" Language="C#" MasterPageFile="~/Base.Master" AutoEventWireup="true" CodeBehind="Redirect.aspx.cs" Inherits="MyCircles.Redirect" %>
 
+<asp:Content ID="RedirectHead" ContentPlaceHolderID="BaseHeadPlaceholder" runat="server">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlz2KBmeCFI5fsKZd0S0asMYbPIHOLpy0" type="text/javascript"></script>
+</asp:Content>
+
 <asp:Content ID="RedirectContent" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
     <form runat="server" name="geolocationForm" id="geolocationForm" onsubmit="geolocationForm_Submit">
         <div class="container h-100">
@@ -14,6 +18,10 @@
 
 	    <div class="row form-group">
 		    <asp:TextBox ID="tbLong" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="Longitude" ClientIDMode="Static"></asp:TextBox>
+	    </div>
+
+        <div class="row form-group">
+		    <asp:TextBox ID="tbCity" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="City" ClientIDMode="Static"></asp:TextBox>
 	    </div>
 
         <asp:Button ID="btSubmit" runat="server" CssClass="btn invisible" type="hidden" ClientIDMode="Static" OnClick="geolocationForm_Submit" />
@@ -32,13 +40,17 @@
     <script>
         const latitudeInput = document.querySelector("#tbLat");
         const longitudeInput = document.querySelector("#tbLong");
+        const cityInput = document.querySelector("#tbCity");
         const submitButton = document.querySelector("#btSubmit");
         const geolocationForm = document.querySelector("#geolocationForm");
 
         function success(position) {
             latitudeInput.setAttribute("value", position.coords.latitude);
             longitudeInput.setAttribute("value", position.coords.longitude);
-            submitButton.click();
+            getCurrentCity(position.coords.latitude, position.coords.longitude)
+                .then(currentCity => { cityInput.setAttribute("value", currentCity); })
+                .catch(e => { cityInput.setAttribute("value", e); })
+                .finally(f => { submitButton.click(); });
         }
 
         function error() {

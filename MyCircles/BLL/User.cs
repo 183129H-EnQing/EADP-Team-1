@@ -45,6 +45,8 @@ namespace MyCircles.BLL
 
         public double? Longitude { get; set; }
 
+        public string City { get; set; }
+
         public string ProfileImage { get; set; }
 
         public string HeaderImage { get; set; }

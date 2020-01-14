@@ -169,6 +169,10 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
+                .Property(e => e.City)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.Follows)
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.FollowerId)

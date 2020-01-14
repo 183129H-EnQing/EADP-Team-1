@@ -25,6 +25,7 @@ namespace MyCircles
                 currentUser.Longitude = Convert.ToDouble(tbLong.Text);
             }
 
+            currentUser.City = tbCity.Text;
             currentUser.UpdateUserLocation();
             Session["currentUser"] = currentUser;
 

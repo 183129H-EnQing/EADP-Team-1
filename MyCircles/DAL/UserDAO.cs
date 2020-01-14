@@ -86,7 +86,7 @@ namespace MyCircles.DAL
             return user;
         }
 
-        public static void UpdateUserLocation(int id, double? latitude, double? longitude)
+        public static void UpdateUserLocation(int id, double? latitude, double? longitude, string city)
         {
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
@@ -96,6 +96,7 @@ namespace MyCircles.DAL
 
                 userQuery.Latitude = latitude;
                 userQuery.Longitude = longitude;
+                userQuery.City = city;
 
                 db.SaveChanges();
             }
