@@ -278,6 +278,7 @@
     <Compile Include="BLL\Pref.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
+    <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
     <Compile Include="DAL\UserDAO.cs" />
