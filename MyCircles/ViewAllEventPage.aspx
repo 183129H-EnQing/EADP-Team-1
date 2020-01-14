@@ -11,7 +11,9 @@
         <div class="container">
             <div class="row" id="fliterOptions">
                 <!-- Fliter Options--  <!-- d-none d-md-block" for col-3 class-->
-                <div class=" col-md-4 col-lg-3 d-none d-md-block">
+               
+                <!-- Hide if screen smaller than lg-->
+                <div class=" col-md-4 col-lg-3 d-none d-lg-block">
                     <div class="card card-body mt-3">
                         <div class="left-filter-container">
                             <div class="form-inline">
@@ -87,18 +89,114 @@
                     </div>
                 </div>
    
-                <div class="col-sm-12 col-md-8 col-lg-9">
+                <div class="col-sm-12 col-md-12 col-lg-9">
                     <div class="card card-body mt-3">
-                        <asp:Label runat="server" Text="Recommended Events"></asp:Label>
                         <div class="row">
-                            <div class="col-sm-4">
-                                <div class="card card-body">
-                                    hello world
-                                </div>
+                            <!-- my auto basically center your text-->
+                            <div class="col-6 my-auto">
+                                 <asp:Label runat="server" Text="Recommended Events"></asp:Label>
+                            </div>
+                            <div class="col-6 d-lg-none text-right">
+                                     <button type="button" class="btn btn-primary">
+                                         <i class="fas fa-filter"></i>
+                                         <span>Filter</span>
+                                     </button>      
                             </div>
                         </div>
+                       
+                        <div class="row mt-3">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="card card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-12">
+                                               <img src="Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
+                                        </div>
+                                        <div class="col-sm-9 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <span class="EventTitle">NYP IT TALK</span>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="col-12">
+                                                     <span class="eventDate">29 Nov - 01 Dec 2019</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                     <span class="eventOrganiser">By Nanyang polytechnic</span>
+                                                </div>
+                                            </div> 
+
+
+                                         
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="card card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-12">
+                                               <img src="Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
+                                        </div>
+                                        <div class="col-sm-9 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <span class="EventTitle">NYP IT TALK</span>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="col-12">
+                                                     <span class="eventDate">29 Nov - 01 Dec 2019</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                     <span class="eventOrganiser">By Nanyang polytechnic</span>
+                                                </div>
+                                            </div> 
+
+                                        </div>
+                                    </div>                             
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="card card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-12">
+                                               <img src="Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
+                                        </div>
+                                       
+                                        <div class="col-sm-9 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <span class="EventTitle">NYP IT TALK</span>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                                <div class="col-12">
+                                                     <span class="eventDate">29 Nov - 01 Dec 2019</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                     <span class="eventOrganiser">By Nanyang polytechnic</span>
+                                                </div>
+                                            </div> 
+
+                                        </div>
+                                    </div>                             
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
-                <!-- recommend events -->
+     
                 </div>
             </div>
         </div>  
