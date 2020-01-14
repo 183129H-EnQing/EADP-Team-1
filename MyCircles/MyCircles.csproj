@@ -197,7 +197,6 @@
     <Content Include="Admin\Admin.master" />
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Register.aspx" />
-    <Content Include="HomePost\HomePost.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
     <Content Include="ItineraryPlanner\Map.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
@@ -223,6 +222,7 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
+    <Compile Include="BLL\Event.cs" />
     <Compile Include="BLL\Friend.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
@@ -242,12 +242,6 @@
     </Compile>
     <Compile Include="Helpers\GeneralHelpers.cs" />
     <Compile Include="Helpers\RedirectValidator.cs" />
-    <Compile Include="HomePost\HomePost.aspx.cs">
-      <DependentUpon>HomePost.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HomePost\HomePost.aspx.designer.cs">
-      <DependentUpon>HomePost.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ItineraryPlanner\Header.Master.cs">
       <DependentUpon>Header.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -264,7 +258,6 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Map.aspx.cs">
       <DependentUpon>Map.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ItineraryPlanner\Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>

@@ -9,7 +9,7 @@ namespace MyCircles.BLL
     [Table("Event")]
     public partial class Event
     {
-        public int eventID { get; set; }
+        public int eventId { get; set; }
 
         [StringLength(50)]
         public string eventName { get; set; }

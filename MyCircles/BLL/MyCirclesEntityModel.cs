@@ -22,19 +22,19 @@ namespace MyCircles.BLL
         {
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventName)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventDescription)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventStartDate)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventEndDate)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Type)
