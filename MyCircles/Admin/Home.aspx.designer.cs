@@ -11,7 +11,7 @@ namespace MyCircles.Admin
 {
 
 
-    public partial class Test
+    public partial class Home
     {
     }
 }
