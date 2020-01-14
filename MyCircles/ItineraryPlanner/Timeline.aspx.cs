@@ -9,6 +9,7 @@ namespace MyCircles.ItineraryPlanner
 {
     public partial class Timeline : System.Web.UI.Page
     {
+        public string dayStr1;
         protected void Page_Load(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("SomeText");
@@ -45,9 +46,10 @@ namespace MyCircles.ItineraryPlanner
             }
             string dayStr = String.Join(",", daysList);
 
-            noOfDate.Value = dayStr;                        //hidden field to contain dates in-between start and end date
+            //noOfDate.Value = dayStr;                        //hidden field to contain dates in-between start and end date
             aStartDate.InnerHtml = sDate;                   //set <a> start
             aEndDate.InnerHtml = eDate;                     //set <a> end
+            dayStr1 = dayStr;                               //public var dayStr1 accessed by javascript directly
 
             string erMonth;                                //end month in string.. eg Jan
             if (monthDict.TryGetValue(int.Parse(eMonth), out erMonth))

@@ -10,11 +10,15 @@ namespace MyCircles
 {
     public partial class SignedIn : System.Web.UI.MasterPage
     {
+        public User currentUser;
+        public string currentUsername;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();
 
-            var currentUser = (User)Session["currentUser"];
+            currentUser = (User)Session["currentUser"];
+            ProfileLink.HRef = "Profile/User.aspx?username=" + currentUser.Username;
             byte[] imagem = (byte[])(currentUser.ProfileImage);
             string PROFILE_PIC = Convert.ToBase64String(imagem);
 

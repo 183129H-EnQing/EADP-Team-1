@@ -31,9 +31,8 @@ namespace MyCircles
                 Page.Validate();
 
                 User user = new User();
-                UserDAO userDataAdapter = new UserDAO();
 
-                user = userDataAdapter.VerifyCredentials(identifier, password);
+                user = UserDAO.VerifyCredentials(identifier, password);
 
                 Session["currentUser"] = user;
                 Response.Redirect("/Redirect.aspx");

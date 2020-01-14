@@ -27,12 +27,12 @@
                         <a class="nav-link" href="ItineraryPlanner/Home.aspx" runat="server">Planner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Profile/User.aspx" runat="server">Search</a>
+                        <a class="nav-link" href="Profile/Search" runat="server">Search</a>
                     </li>
                 </ul>
             </div>
 
-            <a class="mr-0 ml-3 navbar-brand" href="Profile/User.aspx" runat="server">
+            <a id="ProfileLink" class="mr-0 ml-3 navbar-brand" href="Profile/User?username=Bob.aspx" runat="server" ClientIDMode="static">
                 <asp:Image ID="ProfilePicNavImage" runat="server" CssClass="nav-profilepic rounded-circle p-1" />
             </a>
         </div>

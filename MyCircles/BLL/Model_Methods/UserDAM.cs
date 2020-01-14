@@ -5,22 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Helpers;
-using MyCircles.DAL;
+using static MyCircles.DAL.UserDAO;
 
 namespace MyCircles.BLL
 {
     public partial class User
     {
-        UserDAO userAdapter = new UserDAO();
-
         public void AddUserToDb()
         {
-            userAdapter.AddUser(this);
+            AddUser(this);
         }
 
         public void UpdateUserLocation()
         {
-            userAdapter.UpdateUserLocation(this.Id, this.Latitude, this.Longitude);
+            DAL.UserDAO.UpdateUserLocation(this.Id, this.Latitude, this.Longitude);
         }
     }
 }

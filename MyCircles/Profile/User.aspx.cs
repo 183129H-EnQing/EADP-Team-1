@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
+using MyCircles.BLL;
+using static MyCircles.DAL.UserDAO;
 
 namespace MyCircles.Profile
 {
     public partial class User : System.Web.UI.Page
     {
-        public BLL.User currentUser;
+        public BLL.User currentUser, requestedUser;
         public double? latitude, longitude;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -18,19 +20,29 @@ namespace MyCircles.Profile
             RedirectValidator.isUser();
 
             currentUser = (BLL.User)Session["currentUser"];
-            latitude = currentUser.Latitude;
-            longitude = currentUser.Longitude;
-            Title = currentUser.Username + " - MyCircles";
+            string requestedUsername = Request.QueryString["username"];
+            requestedUser = GetUserByIdentifier(requestedUsername);
 
-            byte[] imagem = currentUser.ProfileImage;
-            string PROFILE_PIC = Convert.ToBase64String(imagem);
+            if (requestedUser != null)
+            {
+                latitude = requestedUser.Latitude;
+                longitude = requestedUser.Longitude;
+                Title = requestedUser.Username + " - MyCircles";
 
-            ProfilePicImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
-            lbName.InnerText = currentUser.Name;
-            lbUsername.InnerText = "@" + currentUser.Username;
-            lbBio.InnerText = currentUser.Bio;
+                byte[] imagem = requestedUser.ProfileImage;
+                string PROFILE_PIC = Convert.ToBase64String(imagem);
 
-            if (String.IsNullOrEmpty(currentUser.Bio)) lbBio.Visible = false;
+                ProfilePicImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
+                lbName.InnerText = requestedUser.Name;
+                lbUsername.InnerText = "@" + requestedUser.Username;
+                lbBio.InnerText = requestedUser.Bio;
+
+                if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
+            }
+            else 
+            {
+                Response.Redirect("/Profile/User.aspx?username" + currentUser.Username);
+            }
         }
 
         protected void btRefresh_Click(object sender, EventArgs e)

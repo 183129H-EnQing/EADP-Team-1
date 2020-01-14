@@ -8,9 +8,9 @@ using MyCircles.BLL;
 
 namespace MyCircles.DAL
 {
-    public class UserDAO
+    public static class UserDAO
     {
-        public void AddUser(User newUser)
+        public static void AddUser(User newUser)
         {
             using (var db = new MyCirclesEntityModel())
             {
@@ -44,7 +44,21 @@ namespace MyCircles.DAL
             }
         }
 
-        public User VerifyCredentials(string identfier, string password)
+        public static User GetUserByIdentifier(string identifier)
+        {
+            User user = new User();
+
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                user = db.Users
+                        .Where(u => u.EmailAddress == identifier || u.Username == identifier)
+                        .FirstOrDefault();
+            }
+
+            return user;
+        }
+
+        public static User VerifyCredentials(string identfier, string password)
         {
             User testUser = new User();
             User user = new User();
@@ -56,7 +70,7 @@ namespace MyCircles.DAL
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
                 user = db.Users
-                        .Where(u => u.Username == testUser.Username || u.Username == testUser.Username)
+                        .Where(u => u.EmailAddress == testUser.EmailAddress || u.Username == testUser.Username)
                         .FirstOrDefault();
 
                 if (user != null)
@@ -77,7 +91,7 @@ namespace MyCircles.DAL
             return user;
         }
 
-        public void UpdateUserLocation(int id, double? latitude, double? longitude)
+        public static void UpdateUserLocation(int id, double? latitude, double? longitude)
         {
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {

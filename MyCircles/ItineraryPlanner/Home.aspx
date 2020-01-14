@@ -1,6 +1,6 @@
-﻿<%@ Page MasterPageFile="~/Base.master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Home" Title="Itinerary Planner" %>
+﻿<%@ Page MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Home" Title="Itinerary Planner" %>
 
-<asp:Content ContentPlaceHolderId="BaseContentPlaceholder" runat="server">
+<asp:Content ContentPlaceHolderId="SignedInContentPlaceholder" runat="server">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>

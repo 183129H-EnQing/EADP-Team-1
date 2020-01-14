@@ -6,10 +6,10 @@
 
 <asp:Content ID="ProfileContent" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form runat="server">
-        <div class="rounded container-lg content-container bg-white p-0">
+        <div class="rounded container-lg content-container bg-white p-0 shadow-sm">
             <div class="user-container">
                 <a href="/Profile/Ex1UpdatePanel.aspx" runat="server">
-                    <asp:Image ID="HeaderImage" runat="server" Width="100%" Height="200px" BorderWidth="0" CssClass="rounded" />
+                    <asp:Image ID="HeaderImage" runat="server" Width="100%" Height="300px" BorderWidth="0" CssClass="rounded" BackColor="#0cb0ca" />
                 </a>
                 <div class="profilepic-container">
                     <asp:Image ID="ProfilePicImage" runat="server" CssClass="profilepic rounded-circle img-fluid" />
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div style="height:200px">
-                <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5" value="Edit Profile" type="button" runat="server" />
+                <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5" value="Edit Profile" type="button" runat="server" data-toggle="modal" data-target="#editprofile-modal" />
             </div>
             <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
                 <li class="nav-item">
@@ -37,9 +37,19 @@
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">ljndskjvjkldvskjvdskjkjdvskjldsv</div>
+                <div class="tab-pane fade show active" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
+                    z xdavavadvadvdava
+                </div>
                 <div class="tab-pane fade" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">...</div>
                 <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">kljeva51351335135135351513</div>
+            </div>
+        </div>
+
+        <div class="modal fade shadow-none" id="editprofile-modal" tabindex="-1" role="dialog" aria-labelledby="editProfileModel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg shadow-none">
+                <div class="modal-content shadow-none">
+                    ...
+                </div>
             </div>
         </div>
     </form>
