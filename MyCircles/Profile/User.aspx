@@ -15,7 +15,7 @@
                     <asp:Image ID="ProfilePicImage" runat="server" CssClass="profilepic rounded-circle img-fluid" />
                 </div>
                 <div class="desc-container">
-                    <h1 id="lbName" class="m-0" runat="server"></h1>
+                    <asp:Label ID="lbName" cssClass="m-0 h1" runat="server"></asp:Label><span id="followBadge" class="badge badge-secondary" runat="server" visible="false">Follows you</span><br />
                     <span id="lbUsername" class="m-0" runat="server">@</span><br />
                     <span id="lbBio" class="bio-span text-muted d-block" runat="server"></span>
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -23,7 +23,17 @@
                 </div>
             </div>
             <div style="height:200px">
-                <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5" value="Edit Profile" type="button" runat="server" data-toggle="modal" data-target="#editprofile-modal" />
+                <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5" value="Edit Profile" type="button" runat="server" />
+                <asp:ScriptManager ID="FollowScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+                    <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+<%--                            <input id="btFollow" name="btFollow" class="btn btn-outline-primary float-right m-5" value="Follow" type="button" runat="server" />--%>
+                            <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5" OnClick="btFollow_Click" />
+                        </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btFollow" EventName="Click" />        
+                    </Triggers>
+                </asp:UpdatePanel>
             </div>
             <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
                 <li class="nav-item">

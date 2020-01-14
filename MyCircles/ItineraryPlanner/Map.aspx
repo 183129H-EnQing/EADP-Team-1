@@ -1,6 +1,7 @@
 ﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Map.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Map" Title="My Map"%>
 
 <asp:Content ContentPlaceHolderId="BodyContentPlaceHolder" runat="server">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlz2KBmeCFI5fsKZd0S0asMYbPIHOLpy0" type="text/javascript"></script>
 
     <style>
         /* Always set the map height explicitly to define the size of the div
@@ -15,12 +16,21 @@
             padding: 0;
         }
     </style>
-     
-    <script>
-        // This example requires the Places library. Include the libraries=places
-        // parameter when you first load the API. For example:
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrvz8Ax4K4wqNN7Bf0cQE6xJ6Alf-GVec&libraries=places"/>
 
+    <form id="form1" runat="server">
+        <h1>hello world</h1>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-8 border border-secondary">
+                <div id="map"></div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
+        </div>
+    </form>
+
+    <script>
         var map;
         var service;
         var infowindow;
@@ -31,7 +41,7 @@
             infowindow = new google.maps.InfoWindow();
 
             map = new google.maps.Map(
-                document.getElementById('map'), {center: sydney, zoom: 15});
+                document.getElementById('map'), { center: sydney, zoom: 15 });
 
             var request = {
                 query: 'Museum of Contemporary Art Australia',
@@ -40,13 +50,13 @@
 
             service = new google.maps.places.PlacesService(map);
 
-            service.findPlaceFromQuery(request, function(results, status) {
+            service.findPlaceFromQuery(request, function (results, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     for (var i = 0; i < results.length; i++) {
                         createMarker(results[i]);
-                }
+                    }
 
-                map.setCenter(results[0].geometry.location);
+                    map.setCenter(results[0].geometry.location);
                 }
             });
         }
@@ -57,26 +67,10 @@
                 position: place.geometry.location
             });
 
-            google.maps.event.addListener(marker, 'click', function() {
+            google.maps.event.addListener(marker, 'click', function () {
                 infowindow.setContent(place.name);
                 infowindow.open(map, this);
             });
         }
-    </script>
-
-    <form id="form1" runat="server">
-        <h1>hello world</h1>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-1"></div>
-            <div class="col-md-8 border border-secondary">
-                <div id="map">hi</div>
-                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrvz8Ax4K4wqNN7Bf0cQE6xJ6Alf-GVec&libraries=places"></script>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-1"></div>
-        </div>
-    </form>
+</script>
 </asp:Content>
-
-

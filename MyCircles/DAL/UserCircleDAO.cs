@@ -12,16 +12,19 @@ namespace MyCircles.DAL
         {
             using (var db = new MyCirclesEntityModel())
             {
-                Circle newCircle = new Circle();
+                UserCircle newUserCircle = new UserCircle();
                 Circle existingCircle = db.Circles.Where(ec => ec.Name == circleName).FirstOrDefault();
 
                 if (existingCircle == null)
                 {
-
-
-                    db.Circles.Add(newCircle);
-                    db.SaveChanges();
+                    existingCircle = CircleDAO.AddCircle(circleName);
                 }
+
+                newUserCircle.CircleId = existingCircle.Id;
+                newUserCircle.UserId = userId;
+
+                db.UserCircles.Add(newUserCircle);
+                db.SaveChanges();
             }
         }
     }
