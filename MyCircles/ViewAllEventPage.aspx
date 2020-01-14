@@ -106,7 +106,10 @@
                        
                         <div class="row mt-3">
                             <div class="col-lg-4 col-md-4 col-sm-12">
-                                <div class="card card-body">
+                                <a href="/ViewEventDetails.aspx">
+                                <div class="card card-body" runat="server" id="event1">
+                                 
+                               
                                     <div class="row">
                                         <div class="col-sm-3 col-md-12">
                                                <img src="Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
@@ -134,6 +137,7 @@
                                     </div>
                                    
                                 </div>
+                                        </a>
                             </div>
 
                             <div class="col-lg-4 col-md-4 col-sm-12">

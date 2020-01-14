@@ -212,7 +212,10 @@
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="ViewAllEventPage.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="ViewEventDetails.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Auth\SignedOut.master" />
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +334,13 @@
     </Compile>
     <Compile Include="ViewAllEventPage.aspx.designer.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEventDetails.aspx.cs">
+      <DependentUpon>ViewEventDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewEventDetails.aspx.designer.cs">
+      <DependentUpon>ViewEventDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
