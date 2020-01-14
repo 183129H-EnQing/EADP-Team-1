@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Home.aspx" />
     <Content Include="App_Data\MyCircles.mdf" />
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
@@ -194,8 +195,8 @@
     <Content Include=".editorconfig" />
     <Content Include="Home\Post.aspx" />
     <Content Include="ItineraryPlanner\Header.Master" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Admin\Admin.master" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Register.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
@@ -214,6 +215,20 @@
     <Content Include="Auth\SignedOut.master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Admin.master.cs">
+      <DependentUpon>Admin.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.master.designer.cs">
+      <DependentUpon>Admin.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Base.Master.cs">
       <DependentUpon>Base.Master</DependentUpon>
