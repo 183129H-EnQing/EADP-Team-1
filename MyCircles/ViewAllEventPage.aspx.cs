@@ -13,5 +13,10 @@ namespace MyCircles
         {
 
         }
+
+        private void hello()
+        {
+            Response.Redirect("ViewEventDetails.aspx");
+        }
     }
 }

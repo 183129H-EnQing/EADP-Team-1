@@ -208,6 +208,7 @@
     <Content Include="Auth\Register.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
     <Content Include="ItineraryPlanner\Map.aspx" />
+    <Content Include="ItineraryPlanner\RequestFund.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
     <Content Include="Profile\EditProfile.aspx" />
     <Content Include="Profile\FollowCircles.aspx" />
@@ -221,7 +222,10 @@
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="ViewAllEventPage.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="ViewEventDetails.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Auth\SignedOut.master" />
   </ItemGroup>
   <ItemGroup>
@@ -261,16 +265,25 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
+    <Compile Include="BLL\Activity.cs" />
     <Compile Include="BLL\Circle.cs" />
+    <Compile Include="BLL\Day.cs" />
+    <Compile Include="BLL\DayByDay.cs" />
     <Compile Include="BLL\Event.cs" />
+    <Compile Include="BLL\EventCategory.cs" />
     <Compile Include="BLL\Follow.cs" />
+    <Compile Include="BLL\Itinerary.cs" />
+    <Compile Include="BLL\ItineraryPref.cs" />
+    <Compile Include="BLL\Location.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
     <Compile Include="BLL\Notification.cs" />
     <Compile Include="BLL\Post.cs" />
+    <Compile Include="BLL\Pref.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
+    <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
@@ -315,6 +328,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\RequestFund.aspx.cs">
+      <DependentUpon>RequestFund.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\RequestFund.aspx.designer.cs">
+      <DependentUpon>RequestFund.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
@@ -379,6 +399,13 @@
     </Compile>
     <Compile Include="ViewAllEventPage.aspx.designer.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEventDetails.aspx.cs">
+      <DependentUpon>ViewEventDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewEventDetails.aspx.designer.cs">
+      <DependentUpon>ViewEventDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
