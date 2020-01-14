@@ -10,6 +10,8 @@ using static MyCircles.DAL.UserDAO;
 
 namespace MyCircles.Profile
 {
+    //TODO: Edit profile with messages if mutuals/don't show location on map
+
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
@@ -18,31 +20,26 @@ namespace MyCircles.Profile
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();
-
             currentUser = (BLL.User)Session["currentUser"];
+
             string requestedUsername = Request.QueryString["username"];
             requestedUser = GetUserByIdentifier(requestedUsername);
 
-            if (requestedUser != null)
-            {
-                latitude = requestedUser.Latitude;
-                longitude = requestedUser.Longitude;
-                Title = requestedUser.Username + " - MyCircles";
+            if (requestedUser == null) requestedUser = currentUser;
 
-                byte[] imagem = requestedUser.ProfileImage;
-                string PROFILE_PIC = Convert.ToBase64String(imagem);
+            latitude = (requestedUser.Latitude == null) ? -1 : requestedUser.Latitude;
+            longitude = (requestedUser.Longitude == null) ? -1 : requestedUser.Longitude;
+            Title = requestedUser.Username + " - MyCircles";
 
-                ProfilePicImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
-                lbName.InnerText = requestedUser.Name;
-                lbUsername.InnerText = "@" + requestedUser.Username;
-                lbBio.InnerText = requestedUser.Bio;
+            byte[] imagem = requestedUser.ProfileImage;
+            string PROFILE_PIC = Convert.ToBase64String(imagem);
 
-                if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
-            }
-            else 
-            {
-                Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username);
-            }
+            ProfilePicImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
+            lbName.InnerText = requestedUser.Name;
+            lbUsername.InnerText = "@" + requestedUser.Username;
+            lbBio.InnerText = requestedUser.Bio;
+
+            if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
         }
 
         protected void btRefresh_Click(object sender, EventArgs e)

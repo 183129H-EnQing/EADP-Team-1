@@ -18,7 +18,7 @@ namespace MyCircles.BLL
 
         public void UpdateUserLocation()
         {
-            DAL.UserDAO.UpdateUserLocation(this.Id, this.Latitude, this.Longitude);
+            DAL.UserDAO.UpdateUserLocation(Id, Latitude, Longitude);
         }
     }
 }
