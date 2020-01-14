@@ -30,19 +30,60 @@
             </div>
             </div>
             <div class="row d-flex justify-content-center">
-            <div class="card mb-3">
-                <div class="card-header d-flex justify-content-between bg-secondary">
-			<div>
-			       <h3>Username</h3>
+            <div class="card">
+               <div class=" card-header d-flex bd-highlight bg-muted mb-3">
+			<div class="mr-auto p-2 bd-highlight">
+			       <h5><asp:Label ID="lblUsername" runat="server"  ></asp:Label></h5>
 			</div>
                     <div>
                          <h3>Time</h3>
                     </div>
                     <div>
                          <h3>Location</h3>
-                        
-                        <asp:ImageMap src="../Content/images/JustMeetIcon.png" ID="ImageMap1"  runat="server" OnClick="ImageMap1_Click"></asp:ImageMap>
                     </div>
+                    <div>
+                        <asp:ImageButton ID="ImageButton2" src="../Content/images/3dot.jpg" runat="server" OnClick="ImageButton2_Click" data-toggle="modal" width="20px" Height="15px"
+					data-target="#reportModal" />
+
+                    </div>
+                   <div class="modal fade" id="reportModal">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">Report Image Or Title</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+
+								<!-- Modal body -->
+								<div class="modal-body">
+									<label class="form-check">Innappropriate
+										<input class="form-check-input" type="radio" name="report" id="Innappropriate"
+											value="Innappropriate" checked>
+										<span class="checkmark"></span>
+									</label>
+									<label class="form-check">Unfollow
+										<input class="form-check-input" type="radio" name="report" id="Unfollow"
+											value="Unfollow">
+										<span class="checkmark"></span>
+									</label>
+									<label class="form-check"> Copy Link
+										<input class="form-check-input" type="radio" name="report" id="Copy Link"
+											value="Copy Link">
+										<span class="checkmark"></span>
+									</label>
+								
+								</div>
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+									<button type="submit" id="butAddReport" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</div>
+				</div>
+
                     
 			<div>
 				
