@@ -132,7 +132,4 @@
             <div class="col-md-1"></div>
         </div>
     </form>
-     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrvz8Ax4K4wqNN7Bf0cQE6xJ6Alf-GVec&callback=initMap">
-    </script>
 </asp:Content>
