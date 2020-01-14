@@ -45,11 +45,9 @@ namespace MyCircles.BLL
 
         public double? Longitude { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] ProfileImage { get; set; }
+        public string ProfileImage { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] HeaderImage { get; set; }
+        public string HeaderImage { get; set; }
 
         public bool IsLoggedIn { get; set; }
 

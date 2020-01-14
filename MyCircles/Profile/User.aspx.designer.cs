@@ -57,7 +57,7 @@ namespace MyCircles.Profile
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbUsername;
+        protected global::System.Web.UI.WebControls.Label lbUsername;
 
         /// <summary>
         /// lbBio control.

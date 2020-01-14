@@ -161,6 +161,14 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
+                .Property(e => e.ProfileImage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.HeaderImage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.Follows)
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.FollowerId)

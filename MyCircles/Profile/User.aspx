@@ -16,8 +16,8 @@
                 </div>
                 <div class="desc-container">
                     <asp:Label ID="lbName" cssClass="m-0 h1" runat="server"></asp:Label><span id="followBadge" class="badge badge-secondary" runat="server" visible="false">Follows you</span><br />
-                    <span id="lbUsername" class="m-0" runat="server">@</span><br />
-                    <span id="lbBio" class="bio-span text-muted d-block" runat="server"></span>
+                    <asp:Label ID="lbUsername" class="m-0 text-muted" runat="server">@</asp:Label><br />
+                    <span id="lbBio" class="bio-span d-block font-italic" runat="server"></span>
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <span id="lbCity" runat="server" ClientIdMode="Static"></span>
                 </div>
@@ -51,9 +51,14 @@
                     
                 </div>
                 <div class="tab-pane fade" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
-
                 </div>
-                <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">kljeva51351335135135351513</div>
+                <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">
+                    <div class="container p-7">
+                        <div class="followinguser-container rounded-lg bg-light-color">
+                            dtnmdnndttdndt
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -16,6 +16,7 @@ namespace MyCircles.Profile
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
+        protected IList<User> followingList;
         public double? latitude, longitude;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,11 +30,9 @@ namespace MyCircles.Profile
             if (requestedUser == null) requestedUser = currentUser;
 
             Title = requestedUser.Username + " - MyCircles";            
-            byte[] imagem = requestedUser.ProfileImage;
-            string PROFILE_PIC = Convert.ToBase64String(imagem);
-            ProfilePicImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
+            ProfilePicImage.ImageUrl = requestedUser.ProfileImage;
             lbName.Text = requestedUser.Name;
-            lbUsername.InnerText = "@" + requestedUser.Username;
+            lbUsername.Text = "@" + requestedUser.Username;
             lbBio.InnerText = requestedUser.Bio;
             latitude = (requestedUser.Latitude == null) ? -1 : requestedUser.Latitude;
             longitude = (requestedUser.Longitude == null) ? -1 : requestedUser.Longitude;
@@ -48,15 +47,15 @@ namespace MyCircles.Profile
             {
                 btEditProfile.Visible = false;
                 updateFollowButton();
+
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
             }
         }
 
         protected void btFollow_Click(object sender, EventArgs e)
         {
-            Follow newFollow = FollowDAO.ToggleFollow(currentUser.Id, requestedUser.Id);
-
-            updateFollowButton()
+            FollowDAO.ToggleFollow(currentUser.Id, requestedUser.Id);
+            updateFollowButton();
         }
 
         protected void btRefresh_Click(object sender, EventArgs e)
@@ -71,10 +70,12 @@ namespace MyCircles.Profile
             if (existingFollow == null)
             {
                 btFollow.Text = "Follow";
+                btFollow.CssClass = "btn btn-outline-primary float-right m-5";
             }
             else
             {
                 btFollow.Text = "Following";
+                btFollow.CssClass = "btn btn-primary float-right m-5";
             }
         }
     }
