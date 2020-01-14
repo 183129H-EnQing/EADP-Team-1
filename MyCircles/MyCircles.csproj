@@ -194,7 +194,6 @@
     <Content Include="Base.Master" />
     <Content Include=".editorconfig" />
     <Content Include="ItineraryPlanner\Header.Master" />
-    <Content Include="Admin\Admin.master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Admin\Admin.master" />
     <Content Include="Auth\Login.aspx" />
