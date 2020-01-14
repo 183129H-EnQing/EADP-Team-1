@@ -1,6 +1,7 @@
 ﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Timeline.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Timeline" Title="Timeline" %>
 
 <asp:Content ContentPlaceHolderId="BodyContentPlaceHolder" runat="server">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <form id="form1" runat="server">
         <div class="row">
             <div class="col-md-1"></div>
@@ -31,7 +32,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-md-1">
+                <a href="RequestFund.aspx" class="text-decoration-none">Request Fund<i class="fas fa-headset"></i></a>
+            </div>
             <div class="col-md-1"></div>
         </div>
     </form>
