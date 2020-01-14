@@ -3,12 +3,14 @@
     btn.disabled = true;
 }
 
-const getCurrentCity = (lat, lng) => {
+const getCurrentCity = (lat = null, lng = null) => {
     return new Promise((resolve, reject) => {
-        var currentCity = null;
-        var latlng = new google.maps.LatLng(lat, lng);
-
         try {
+            if (lat == -1 || lng == -1) throw ("Invalid geolocation");
+
+            var currentCity = null;
+            var latlng = new google.maps.LatLng(lat, lng);
+
             new google.maps.Geocoder().geocode({ 'latLng': latlng }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[1]) {
@@ -28,7 +30,8 @@ const getCurrentCity = (lat, lng) => {
                 }
             });
         } catch (error) {
-            reject("Unknown")
+            console.log(error);
+            reject("Unknown");
         }
     });
 };

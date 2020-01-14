@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Home.aspx" />
+    <Content Include="App_Data\CreateTables.sql" />
     <Content Include="App_Data\MyCircles.mdf" />
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
@@ -238,13 +239,16 @@
     <Compile Include="Base.Master.designer.cs">
       <DependentUpon>Base.Master</DependentUpon>
     </Compile>
+    <Compile Include="BLL\Circle.cs" />
     <Compile Include="BLL\Event.cs" />
-    <Compile Include="BLL\Friend.cs" />
+    <Compile Include="BLL\Follow.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
+    <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
     <Compile Include="BLL\Notification.cs" />
-    <Compile Include="BLL\POST.cs" />
+    <Compile Include="BLL\Post.cs" />
     <Compile Include="BLL\User.cs" />
+    <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="DAL\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

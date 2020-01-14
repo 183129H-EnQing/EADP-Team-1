@@ -107,5 +107,23 @@
         </div>
                 </div>
                 </div>
+      <div class="row d-flex justify-content-reverse">
+      <div class=" col-md-2 mt-3 d-flex flex-column-reverse  bg-white">
+      <div class="p-2">Flex item 1</div>
+      <div class="p-2">Flex item 2</div>
+      <div class="p-2">Flex item 3</div>
+      </div>
+          </div>
+    <div class="container mt-3">
+    <h3>Vehicle</h3>
+    <div class="d-flex justify-content-sm-center bg-warning mb-5">
+      <div class="p-2 bg-danger">Car</div>
+      <div class="p-2 bg-info">Bike</div>
+      <div class="p-2 bg-secondary">Truck</div>
+    </div>
+        </div>
+
+
+          
     </form>
 </asp:Content>

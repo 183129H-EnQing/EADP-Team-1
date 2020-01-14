@@ -58,6 +58,8 @@
 <asp:Content ID="ProfileDeferredScripts" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
     <script>
         const lbCity = document.querySelector("#lbCity");
-        getCurrentCity(<%= latitude %>, <%= longitude %>).then(currentCity => { lbCity.textContent = currentCity });
+        getCurrentCity(<%= latitude %>, <%= longitude %>)
+            .then(currentCity => { lbCity.textContent = currentCity })
+            .catch(e => { lbCity.textContent = e; });
     </script>
 </asp:Content>

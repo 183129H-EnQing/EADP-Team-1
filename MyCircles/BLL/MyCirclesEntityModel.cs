@@ -12,14 +12,26 @@ namespace MyCircles.BLL
         {
         }
 
+        public virtual DbSet<Circle> Circles { get; set; }
         public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<Friend> Friends { get; set; }
+        public virtual DbSet<Follow> Follows { get; set; }
+        public virtual DbSet<Mutual> Mutuals { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
-        public virtual DbSet<POST> POSTs { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserCircle> UserCircles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Circle>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Circle>()
+                .HasMany(e => e.UserCircles)
+                .WithRequired(e => e.Circle)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventName)
                 .IsFixedLength();
@@ -48,11 +60,11 @@ namespace MyCircles.BLL
                 .Property(e => e.Content)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<POST>()
+            modelBuilder.Entity<Post>()
                 .Property(e => e.Content)
                 .IsFixedLength();
 
-            modelBuilder.Entity<POST>()
+            modelBuilder.Entity<Post>()
                 .Property(e => e.Comment)
                 .IsFixedLength();
 
@@ -77,15 +89,27 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
-                .HasMany(e => e.Friends)
+                .HasMany(e => e.Follows)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.RecieverId)
+                .HasForeignKey(e => e.FollowerId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
-                .HasMany(e => e.Friends1)
+                .HasMany(e => e.Follows1)
                 .WithRequired(e => e.User1)
-                .HasForeignKey(e => e.SourceId)
+                .HasForeignKey(e => e.FollowingId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Mutuals)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.User1Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Mutuals1)
+                .WithRequired(e => e.User1)
+                .HasForeignKey(e => e.User2Id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
@@ -94,7 +118,12 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
-                .HasMany(e => e.POSTs)
+                .HasMany(e => e.Posts)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.UserCircles)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
         }
