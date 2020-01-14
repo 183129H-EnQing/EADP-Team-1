@@ -198,7 +198,6 @@
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Register.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
-    <Content Include="ItineraryPlanner\Map.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
     <Content Include="Profile\User.aspx" />
     <Content Include="Redirect.aspx" />
@@ -255,12 +254,6 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ItineraryPlanner\Map.aspx.cs">
-      <DependentUpon>Map.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ItineraryPlanner\Map.aspx.designer.cs">
-      <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
