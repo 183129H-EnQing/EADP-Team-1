@@ -37,7 +37,7 @@ CREATE TABLE [dbo].[UserCircles] (
 );
 
 
--- POST Table
+-- Post Table
 CREATE TABLE [dbo].[Post] (
     [Id]      INT         IDENTITY (1, 1) NOT NULL,
     [Content] NCHAR (120) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE [dbo].[Post] (
     [Comment] NCHAR (20)  NOT NULL,
     [UserId]  INT         NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_POST_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
+    CONSTRAINT [FK_Post_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
 
 
