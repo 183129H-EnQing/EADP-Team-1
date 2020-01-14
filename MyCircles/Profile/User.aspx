@@ -55,7 +55,7 @@
                 <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">
                     <div class="container p-7">
                         <div class="followinguser-container rounded-lg bg-light-color">
-                            dtnmdnndttdndt
+                            yrkrykykryykrykyr
                         </div>
                     </div>
                 </div>
