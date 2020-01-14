@@ -112,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Home.aspx" />
+    <Content Include="Admin\ManageEventHosts.aspx" />
+    <Content Include="Admin\ViewReportedPosts.aspx" />
     <Content Include="App_Data\CreateTables.sql" />
     <Content Include="App_Data\MyCircles.mdf" />
     <Content Include="App_Data\MyCircles_log.ldf">
@@ -179,6 +181,7 @@
     <Content Include="Content\bootstrap\js\tests\visual\tab.html" />
     <Content Include="Content\bootstrap\js\tests\visual\toast.html" />
     <Content Include="Content\bootstrap\js\tests\visual\tooltip.html" />
+    <Content Include="Content\css\admin.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\main.css" />
@@ -201,6 +204,7 @@
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Register.aspx" />
     <Content Include="ItineraryPlanner\Home.aspx" />
+    <Content Include="ItineraryPlanner\Map.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
     <Content Include="Profile\User.aspx" />
     <Content Include="Redirect.aspx" />
@@ -229,6 +233,20 @@
     </Compile>
     <Compile Include="Admin\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageEventHosts.aspx.cs">
+      <DependentUpon>ManageEventHosts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageEventHosts.aspx.designer.cs">
+      <DependentUpon>ManageEventHosts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewReportedPosts.aspx.cs">
+      <DependentUpon>ViewReportedPosts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewReportedPosts.aspx.designer.cs">
+      <DependentUpon>ViewReportedPosts.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Base.Master.cs">
@@ -283,6 +301,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Map.aspx.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Map.aspx.designer.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
