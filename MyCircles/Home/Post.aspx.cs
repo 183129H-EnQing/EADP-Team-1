@@ -9,14 +9,24 @@ namespace MyCircles.Home
 {
     public partial class Post : System.Web.UI.Page
     {
+        public BLL.User currentUser;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();
+            currentUser = (BLL.User)Session["currentUser"];
+
+            lblUsername.Text = currentUser.Name;
         }
 
         protected void ImageMap1_Click(object sender, ImageMapEventArgs e)
         {
             
+        }
+
+        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        {
+
         }
     }
 }
