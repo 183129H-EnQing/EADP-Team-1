@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Windows.Documents;
 
 namespace MyCircles.DAL
 {
@@ -55,6 +56,40 @@ namespace MyCircles.DAL
             }
 
             return existingFollow;
+        }
+
+        public static List<FollowingUsers> GetAllFollowing(int followerId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var followingUsers = db.Follows
+                    .Where(following => following.FollowerId == followerId)
+                    .ToList()
+                    .Join(
+                        db.Users,
+                        follow => follow.FollowingId,
+                        user => user.Id,
+                        (follow, user) => new FollowingUsers(user, follow)
+                        //{
+                        //    uId = user.Id,
+                        //    uName = user.Name,
+                        //    uUsername = user.Username,
+                        //    uEmailAddress = user.EmailAddress,
+                        //    uHeaderImage = user.HeaderImage,
+                        //    uProfileImage = user.ProfileImage,
+                        //    uLatitude = user.Latitude,
+                        //    user.Longitude
+                        //    uBio = user.Bio,
+                        //    uCity = user.City,
+                        //    Follow = follow
+                        //}
+                    )
+                    .ToList();
+
+                return followingUsers;
+            }
         }
     }
 }
