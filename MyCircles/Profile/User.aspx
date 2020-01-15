@@ -47,9 +47,12 @@
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
-                    
+                    <div id="userPostsContainer" class="container py-5 px-7" runat="server">
+                        <h4 class="text-center">You have not made any posts yet</h4>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
+                    <h4 class="text-center">You have not joined any circles yet</h4>
                 </div>
                 <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">
                     <div id="followingUserListContainer" class="container py-5 px-7" runat="server">
@@ -57,11 +60,13 @@
                             <ItemTemplate>
                                 <div class="row followinguser-container rounded-lg bg-light-color py-4 px-6 m-3">
                                     <div class="col-md-3 profilepic-container">
+                                        <a href="User.aspx?username="<%#DataBinder.Eval(Container.DataItem, "User.Username")%>>
                                         <asp:Image runat='server' CssClass='profilepic rounded-circle' Height='150px' Width='150px' ImageUrl=<%#DataBinder.Eval(Container.DataItem, "User.ProfileImage")%> />
                                     </div>
                                     <div class="col-md-6 desc-container">
                                         <span class='m-0 h1'><%#DataBinder.Eval(Container.DataItem, "User.Name")%></span><span class='badge badge-secondary' visible='false'>Follows you</span><br />
                                         <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span>
+                                        </a>
                                         <span class='bio-span d-block font-italic py-2'><%#DataBinder.Eval(Container.DataItem, "User.Bio")%></span>
                                         <i class='fa fa-map-marker' aria-hidden='true'></i> &nbsp;
                                         <span><%#DataBinder.Eval(Container.DataItem, "User.City")%></span>
@@ -72,6 +77,10 @@
                                     </div>
                                 </div>
                             </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label ID="lblErrorMsg" runat="server" Text="Sorry, no item is there to show." Visible="false">
+                                </asp:Label>
+                            </FooterTemplate>
                         </asp:Repeater>
                     </div>
                 </div>

@@ -114,6 +114,15 @@ namespace MyCircles.Profile
         protected global::System.Web.UI.WebControls.Button btFollow;
 
         /// <summary>
+        /// userPostsContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userPostsContainer;
+
+        /// <summary>
         /// followingUserListContainer control.
         /// </summary>
         /// <remarks>
