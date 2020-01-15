@@ -9,12 +9,6 @@ namespace MyCircles.BLL
     [Table("Itinerary")]
     public partial class Itinerary
     {
-        public Itinerary()
-        {
-
-        }
-
-
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int itineraryId { get; set; }
 
@@ -28,8 +22,8 @@ namespace MyCircles.BLL
         [StringLength(10)]
         public string endDate { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string groupSize { get; set; }
+        public int groupSize { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

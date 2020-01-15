@@ -104,7 +104,7 @@ CREATE TABLE [dbo].[Itinerary]
     [userId] INT NOT NULL, 
     [startDate] NCHAR(10) NOT NULL, 
     [endDate] NCHAR(10) NOT NULL, 
-    [groupSize] NCHAR(10) NOT NULL
+    [groupSize]   INT NOT NULL
 )
 
 -- ItineraryPref Table

@@ -93,10 +93,6 @@ namespace MyCircles.BLL
                 .Property(e => e.endDate)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Itinerary>()
-                .Property(e => e.groupSize)
-                .IsFixedLength();
-
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaPic)
                 .IsFixedLength();
@@ -188,6 +184,11 @@ namespace MyCircles.BLL
                 .HasMany(e => e.Follows1)
                 .WithRequired(e => e.User1)
                 .HasForeignKey(e => e.FollowingId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Itineraries)
+                .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
