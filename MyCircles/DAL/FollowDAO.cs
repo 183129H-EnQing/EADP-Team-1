@@ -56,5 +56,26 @@ namespace MyCircles.DAL
 
             return existingFollow;
         }
+
+        public static List<FollowingUsers> GetAllFollowingUsers(int followerId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var followingUsers = db.Follows
+                    .Where(following => following.FollowerId == followerId)
+                    .ToList()
+                    .Join(
+                        db.Users,
+                        follow => follow.FollowingId,
+                        user => user.Id,
+                        (follow, user) => new FollowingUsers(user, follow)
+                    )
+                    .ToList();
+
+                return followingUsers;
+            }
+        }
     }
 }

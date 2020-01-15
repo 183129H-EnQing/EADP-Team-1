@@ -22,12 +22,12 @@
                 </div>
             </div>
             <div style="height:200px">
-                <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5" value="Edit Profile" type="button" runat="server" />
+                <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5 px-5" value="Edit Profile" type="button" runat="server" />
                 <asp:ScriptManager ID="FollowScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
                     <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
 <%--                            <input id="btFollow" name="btFollow" class="btn btn-outline-primary float-right m-5" value="Follow" type="button" runat="server" />--%>
-                            <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5" OnClick="btFollow_Click" />
+                            <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-5" OnClick="btFollow_Click" />
                         </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="btFollow" EventName="Click" />        
@@ -52,21 +52,27 @@
                 <div class="tab-pane fade" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
                 </div>
                 <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">
-                    <div class="container p-5">
-                        <div class="row followinguser-container rounded-lg bg-light-color py-4 px-5 m-3">
-                            <div class="col-md-3 profilepic-container">
-                                <asp:Image ID="FollowingProfilePicture" runat="server" CssClass="profilepic rounded-circle img-fluid" />
-                            </div>
-                            <div class="col-md-6 profilepic-container">
-                                <div class="desc-container">
-                                    <asp:Label ID="Label1" cssClass="m-0 h1" runat="server">John</asp:Label><span id="Span1" class="badge badge-secondary" runat="server" visible="false">Follows you</span><br />
-                                    <asp:Label ID="Label2" class="m-0 text-muted" runat="server">@john</asp:Label><br />
-                                    <span id="Span2" class="bio-span d-block font-italic" runat="server">srhrsbfsbrrbsrbsrbssbs</span>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    <span id="Span3" runat="server" ClientIdMode="Static"></span>
-                                </div>                          
-                            </div>
-                        </div>
+                    <div id="followingUserListContainer" class="container py-5 px-7" runat="server">
+                        <asp:Repeater ID="rptUserFollowing" runat="server" ItemType="MyCircles.DAL.FollowingUsers">
+                            <ItemTemplate>
+                                <div class="row followinguser-container rounded-lg bg-light-color py-4 px-6 m-3">
+                                    <div class="col-md-3 profilepic-container">
+                                        <asp:Image runat='server' CssClass='profilepic rounded-circle' Height='150px' Width='150px' ImageUrl=<%#DataBinder.Eval(Container.DataItem, "User.ProfileImage")%> />
+                                    </div>
+                                    <div class="col-md-6 desc-container">
+                                        <span class='m-0 h1'><%#DataBinder.Eval(Container.DataItem, "User.Name")%></span><span class='badge badge-secondary' visible='false'>Follows you</span><br />
+                                        <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span>
+                                        <span class='bio-span d-block font-italic py-2'><%#DataBinder.Eval(Container.DataItem, "User.Bio")%></span>
+                                        <i class='fa fa-map-marker' aria-hidden='true'></i> &nbsp;
+                                        <span><%#DataBinder.Eval(Container.DataItem, "User.City")%></span>
+                                    </div>
+                                    <div class='col-md-3 button-container'>
+                                        <asp:Button ID='btFollow1' runat='server' Text='Following' CssClass='btn btn-primary float-right m-3 px-4' UserId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> />
+                                        <asp:Button ID='btMessage1' runat='server' Text='Message' CssClass='btn btn-outline-primary float-right m-3 px-4' UserId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> />
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
                 </div>
             </div>
@@ -86,3 +92,4 @@
     <script>
     </script>
 </asp:Content>
+

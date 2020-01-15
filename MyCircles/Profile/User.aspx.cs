@@ -16,8 +16,6 @@ namespace MyCircles.Profile
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
-        protected IList<User> followingList;
-        public double? latitude, longitude;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,6 +33,8 @@ namespace MyCircles.Profile
             lbUsername.Text = "@" + requestedUser.Username;
             lbBio.InnerText = requestedUser.Bio;
             lbCity.InnerText = requestedUser.City;
+            rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
+            rptUserFollowing.DataBind();
 
             if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
 
@@ -69,12 +69,12 @@ namespace MyCircles.Profile
             if (existingFollow == null)
             {
                 btFollow.Text = "Follow";
-                btFollow.CssClass = "btn btn-outline-primary float-right m-5";
+                btFollow.CssClass = "btn btn-outline-primary float-right m-5 px-5";
             }
             else
             {
                 btFollow.Text = "Following";
-                btFollow.CssClass = "btn btn-primary float-right m-5";
+                btFollow.CssClass = "btn btn-primary float-right m-5 px-5";
             }
         }
     }
