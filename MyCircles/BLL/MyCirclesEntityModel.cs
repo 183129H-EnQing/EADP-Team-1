@@ -13,6 +13,7 @@ namespace MyCircles.BLL
         }
 
         public virtual DbSet<Activity> Activities { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Circle> Circles { get; set; }
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<DayByDay> DayByDays { get; set; }
@@ -161,6 +162,10 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
+                .Property(e => e.City)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
                 .Property(e => e.ProfileImage)
                 .IsUnicode(false);
 
@@ -169,8 +174,9 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
-                .Property(e => e.City)
-                .IsUnicode(false);
+                .HasMany(e => e.Admins)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Follows)

@@ -12,6 +12,7 @@ namespace MyCircles.BLL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            Admins = new HashSet<Admin>();
             Follows = new HashSet<Follow>();
             Follows1 = new HashSet<Follow>();
             Mutuals = new HashSet<Mutual>();
@@ -56,6 +57,9 @@ namespace MyCircles.BLL
         public bool IsPrivileged { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Admin> Admins { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Follow> Follows { get; set; }
