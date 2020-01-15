@@ -13,9 +13,9 @@ namespace MyCircles.BLL
             ItineraryDAO.AddItinerayDAO(this);
         }
 
-        public static Itinerary RetrieveItinerary(Itinerary itinerary)
+        public static Itinerary RetrieveItinerary(Itinerary itinerary, User user)
         {
-            return ItineraryDAO.GetItinerary(itinerary);
+            return ItineraryDAO.GetItinerary(itinerary, user);
         }
     }
 }

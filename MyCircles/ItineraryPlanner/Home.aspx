@@ -146,6 +146,7 @@
                             <h5 class="card-title"><b>August Holiday Shopping</b></h5>
                             <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
                             <p class="card-text">Jan 11 - Jan 15</p>
+                            <p class="card-text">5 Youth</p>
                             <a href="#" class="btn btn-primary">Click to view</a>
                         </div>
                     </div>
@@ -155,6 +156,7 @@
                             <h5 class="card-title"><b>August Holiday Shopping</b></h5>
                             <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
                             <p class="card-text">Jan 11 - Jan 15</p>
+                            <p class="card-text">5 Youth</p>
                             <a href="#" class="btn btn-primary">Click to view</a>
                         </div>
                     </div>
@@ -164,6 +166,7 @@
                             <h5 class="card-title"><b>August Holiday Shopping</b></h5>
                             <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
                             <p class="card-text">Jan 11 - Jan 15</p>
+                            <p class="card-text">5 Youth</p>
                             <a href="#" class="btn btn-primary">Click to view</a>
                         </div>
                     </div>
@@ -173,6 +176,7 @@
                             <h5 class="card-title"><b>August Holiday Shopping</b></h5>
                             <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
                             <p class="card-text">Jan 11 - Jan 15</p>
+                            <p class="card-text">5 Youth</p>
                             <a href="#" class="btn btn-primary">Click to view</a>
                         </div>
                     </div>
