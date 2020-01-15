@@ -276,6 +276,7 @@
     <Compile Include="BLL\Itinerary.cs" />
     <Compile Include="BLL\ItineraryPref.cs" />
     <Compile Include="BLL\Location.cs" />
+    <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
