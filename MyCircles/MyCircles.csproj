@@ -289,6 +289,7 @@
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
+    <Compile Include="DAL\ItineraryDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
     <Compile Include="DAL\UserDAO.cs" />

@@ -4,6 +4,9 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <form id="form1" runat="server">
         <div class="row">
+            <h2><asp:Label ID="lbPlannerName" runat="server" Text="plannerName"></asp:Label></h2>
+        </div>
+        <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-1">
                 <h2><asp:Label ID="lbMonth" runat="server" Text="Label"></asp:Label></h2> 

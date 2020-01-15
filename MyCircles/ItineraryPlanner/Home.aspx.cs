@@ -19,6 +19,8 @@ namespace MyCircles.ItineraryPlanner
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
             Response.Redirect("Timeline.aspx");
+
+
         }
     }
 }
