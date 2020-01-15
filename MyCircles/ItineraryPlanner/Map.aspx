@@ -11,7 +11,7 @@
             }
         </style>
 
-        <h1>hello world</h1>
+        <h1>hello map</h1>
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-1"></div>
