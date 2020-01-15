@@ -23,9 +23,11 @@ namespace MyCircles.Admin
                         BLL.Admin admin = new BLL.Admin();
                         admin.UserId = loggedInUser.Id;
                         admin.Add();
+                        System.Diagnostics.Debug.WriteLine("Making DineshGod admin");
                     }
                     else
                     {
+                        System.Diagnostics.Debug.WriteLine("Not an admin");
                         Response.Redirect("/Redirect.aspx");
                     }
                 }
