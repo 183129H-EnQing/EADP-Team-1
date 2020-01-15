@@ -14,12 +14,13 @@ namespace MyCircles.ItineraryPlanner
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            getExistingPlan();
         }
 
         protected void btnSubmitPlan_Click(object sender, EventArgs e)
         {
             //add to table
-            newItinerary.userId = 1;
+            newItinerary.userId = 9;
             newItinerary.startDate = tbStartDate.Text;
             newItinerary.endDate = tbEndDate.Text;
             newItinerary.groupSize = Convert.ToInt32(tbNoPeople.Text);
@@ -28,6 +29,12 @@ namespace MyCircles.ItineraryPlanner
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
             Response.Redirect("Timeline.aspx");
+        }
+
+        private void getExistingPlan()
+        {
+            string s = "select * from Itinerary";
+
         }
     }
 }
