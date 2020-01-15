@@ -12,17 +12,30 @@ namespace MyCircles.BLL
         {
         }
 
+        public virtual DbSet<Activity> Activities { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Circle> Circles { get; set; }
+        public virtual DbSet<Day> Days { get; set; }
+        public virtual DbSet<DayByDay> DayByDays { get; set; }
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<EventCategory> EventCategories { get; set; }
         public virtual DbSet<Follow> Follows { get; set; }
+        public virtual DbSet<Itinerary> Itineraries { get; set; }
+        public virtual DbSet<ItineraryPref> ItineraryPrefs { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Mutual> Mutuals { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Pref> Prefs { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCircle> UserCircles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Activity>()
+                .Property(e => e.activityName)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Circle>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
@@ -31,6 +44,22 @@ namespace MyCircles.BLL
                 .HasMany(e => e.UserCircles)
                 .WithRequired(e => e.Circle)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Day>()
+                .Property(e => e.timeStamp)
+                .IsFixedLength();
+
+            modelBuilder.Entity<DayByDay>()
+                .Property(e => e.date)
+                .IsFixedLength();
+
+            modelBuilder.Entity<DayByDay>()
+                .Property(e => e.startTime)
+                .IsFixedLength();
+
+            modelBuilder.Entity<DayByDay>()
+                .Property(e => e.endTime)
+                .IsFixedLength();
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventName)
@@ -46,6 +75,46 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventEndDate)
+                .IsFixedLength();
+
+            modelBuilder.Entity<EventCategory>()
+                .Property(e => e.categoryName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EventCategory>()
+                .Property(e => e.categoryDescription)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Itinerary>()
+                .Property(e => e.startDate)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Itinerary>()
+                .Property(e => e.endDate)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Itinerary>()
+                .Property(e => e.groupSize)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaPic)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaName)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaRating)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaContact)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaWeb)
                 .IsFixedLength();
 
             modelBuilder.Entity<Notification>()
@@ -68,6 +137,10 @@ namespace MyCircles.BLL
                 .Property(e => e.Comment)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Pref>()
+                .Property(e => e.prefName)
+                .IsFixedLength();
+
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)
                 .IsFixedLength();
@@ -87,6 +160,23 @@ namespace MyCircles.BLL
             modelBuilder.Entity<User>()
                 .Property(e => e.Bio)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.City)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.ProfileImage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.HeaderImage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Admins)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Follows)

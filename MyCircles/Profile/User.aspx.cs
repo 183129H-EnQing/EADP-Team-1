@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using MyCircles.BLL;
 using static MyCircles.DAL.UserDAO;
+using MyCircles.DAL;
 
 namespace MyCircles.Profile
 {
@@ -15,6 +16,7 @@ namespace MyCircles.Profile
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
+        protected IList<User> followingList;
         public double? latitude, longitude;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,24 +29,53 @@ namespace MyCircles.Profile
 
             if (requestedUser == null) requestedUser = currentUser;
 
-            latitude = (requestedUser.Latitude == null) ? -1 : requestedUser.Latitude;
-            longitude = (requestedUser.Longitude == null) ? -1 : requestedUser.Longitude;
-            Title = requestedUser.Username + " - MyCircles";
-
-            byte[] imagem = requestedUser.ProfileImage;
-            string PROFILE_PIC = Convert.ToBase64String(imagem);
-
-            ProfilePicImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
-            lbName.InnerText = requestedUser.Name;
-            lbUsername.InnerText = "@" + requestedUser.Username;
+            Title = requestedUser.Username + " - MyCircles";            
+            ProfilePicImage.ImageUrl = requestedUser.ProfileImage;
+            lbName.Text = requestedUser.Name;
+            lbUsername.Text = "@" + requestedUser.Username;
             lbBio.InnerText = requestedUser.Bio;
+            lbCity.InnerText = requestedUser.City;
 
             if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
+
+            if (requestedUser.Id == currentUser.Id)
+            {
+                btFollow.Visible = false;
+            }
+            else
+            {
+                btEditProfile.Visible = false;
+                updateFollowButton();
+
+                if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
+            }
+        }
+
+        protected void btFollow_Click(object sender, EventArgs e)
+        {
+            FollowDAO.ToggleFollow(currentUser.Id, requestedUser.Id);
+            updateFollowButton();
         }
 
         protected void btRefresh_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void updateFollowButton()
+        {
+            Follow existingFollow = FollowDAO.SearchFollow(currentUser.Id, requestedUser.Id);
+
+            if (existingFollow == null)
+            {
+                btFollow.Text = "Follow";
+                btFollow.CssClass = "btn btn-outline-primary float-right m-5";
+            }
+            else
+            {
+                btFollow.Text = "Following";
+                btFollow.CssClass = "btn btn-primary float-right m-5";
+            }
         }
     }
 }

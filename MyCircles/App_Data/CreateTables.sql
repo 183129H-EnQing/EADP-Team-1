@@ -96,3 +96,72 @@ CREATE TABLE [dbo].[Event] (
     [eventEndDate]     NCHAR (50) NULL,
     PRIMARY KEY CLUSTERED ([eventId] ASC)
 );
+
+-- Itinerary Table
+CREATE TABLE [dbo].[Itinerary]
+(
+	[itineraryId] INT NOT NULL PRIMARY KEY, 
+    [userId] INT NOT NULL, 
+    [startDate] NCHAR(10) NOT NULL, 
+    [endDate] NCHAR(10) NOT NULL, 
+    [groupSize] NCHAR(10) NOT NULL
+)
+
+-- ItineraryPref Table
+CREATE TABLE [dbo].[ItineraryPref]
+(
+	[itineraryId] INT NOT NULL , 
+    [prefId] INT NOT NULL, 
+    PRIMARY KEY ([prefId])
+)
+
+-- Pref Table
+CREATE TABLE [dbo].[Pref]
+(
+	[prefId] INT NOT NULL PRIMARY KEY, 
+    [prefName] NCHAR(10) NOT NULL
+)
+
+-- DayByDay Table
+CREATE TABLE [dbo].[DayByDay]
+(
+	[itineraryId] INT NOT NULL PRIMARY KEY, 
+	[dayByDayId] INT NOT NULL, 
+    [date] NCHAR(10) NOT NULL, 
+    [startTime] NCHAR(10) NOT NULL, 
+    [endTime] NCHAR(10) NOT NULL
+)
+
+-- Day Table
+CREATE TABLE [dbo].[Day]
+(
+	[dayByDayId] INT NOT NULL PRIMARY KEY, 
+    [timeStamp] NCHAR(10) NOT NULL, 
+    [activityId] INT NOT NULL
+)
+
+-- Day Table
+CREATE TABLE [dbo].[Activity]
+(
+	[activityId] INT NOT NULL PRIMARY KEY, 
+    [locaId] INT NOT NULL
+)
+
+-- Location Table
+CREATE TABLE [dbo].[Location]
+(
+	[locaId] INT NOT NULL PRIMARY KEY, 
+    [locaPic] NCHAR(10) NOT NULL, 
+	[locaName] NCHAR(10) NOT NULL, 
+    [locaRating] NCHAR(10) NOT NULL,
+	[locaContact] NCHAR(10) NULL,
+	[locaWeb] NCHAR(10) NULL
+)
+
+-- Admin Table
+CREATE TABLE [dbo].[Admin]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [UserId] INT NOT NULL, 
+    CONSTRAINT FK_Admin_UserId FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
+)

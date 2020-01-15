@@ -62,13 +62,13 @@
     width: 170px;
 }
 
-.profilepic-container {
+.mainprofilepic-container {
     position: absolute;
-    top: 70%;
+    top: 215px;
     left: 4rem;
 }
 
-.desc-container {
+.maindesc-container {
     position: absolute;
     top: 100%;
     left: 16rem;

@@ -31,13 +31,8 @@ namespace MyCircles.DAL
                     }
 
                     newUser.Password = Crypto.HashPassword(newUser.Password);
-                    newUser.ProfileImage = 
-                        GeneralHelpers.imageToByteArray(
-                            Image.FromFile(
-                                HttpContext.Current.Server.MapPath("~/Content/images/DefaultProfileIcon.png"), true
-                            )
-                        );
-                    
+                    newUser.ProfileImage = "/Content/images/DefaultProfileIcon.png";
+
                     db.Users.Add(newUser);
                     db.SaveChanges();
                 }
@@ -91,7 +86,7 @@ namespace MyCircles.DAL
             return user;
         }
 
-        public static void UpdateUserLocation(int id, double? latitude, double? longitude)
+        public static void UpdateUserLocation(int id, double? latitude, double? longitude, string city)
         {
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
@@ -101,6 +96,7 @@ namespace MyCircles.DAL
 
                 userQuery.Latitude = latitude;
                 userQuery.Longitude = longitude;
+                userQuery.City = city;
 
                 db.SaveChanges();
             }

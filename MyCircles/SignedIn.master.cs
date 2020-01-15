@@ -19,10 +19,8 @@ namespace MyCircles
 
             currentUser = (User)Session["currentUser"];
             ProfileLink.HRef = "Profile/User.aspx?username=" + currentUser.Username;
-            byte[] imagem = (byte[])(currentUser.ProfileImage);
-            string PROFILE_PIC = Convert.ToBase64String(imagem);
 
-            ProfilePicNavImage.ImageUrl = String.Format("data:image/jpg;base64,{0}", PROFILE_PIC);
+            ProfilePicNavImage.ImageUrl = "~" + currentUser.ProfileImage;
         }
     }
 }
