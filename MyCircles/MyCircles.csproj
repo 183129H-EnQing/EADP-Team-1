@@ -194,6 +194,7 @@
     <Content Include="Global.asax" />
     <Content Include="Base.Master" />
     <Content Include=".editorconfig" />
+    <Content Include="Home\PeopleNearby.aspx" />
     <Content Include="Home\Post.aspx" />
     <Content Include="ItineraryPlanner\Header.Master" />
     <Content Include="Admin\Admin.master" />
@@ -261,6 +262,13 @@
     </Compile>
     <Compile Include="Helpers\GeneralHelpers.cs" />
     <Compile Include="Helpers\RedirectValidator.cs" />
+    <Compile Include="Home\PeopleNearby.aspx.cs">
+      <DependentUpon>PeopleNearby.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\PeopleNearby.aspx.designer.cs">
+      <DependentUpon>PeopleNearby.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home\Post.aspx.cs">
       <DependentUpon>Post.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
