@@ -37,6 +37,7 @@ namespace MyCircles.Profile
             rptUserFollowing.DataBind();
 
             if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
+            if (rptUserFollowing.Items.Count > 0) followWarning.Visible = false;
 
             if (requestedUser.Id == currentUser.Id)
             {
@@ -45,6 +46,10 @@ namespace MyCircles.Profile
             else
             {
                 btEditProfile.Visible = false;
+                followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
+                postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
+                circleWarning.InnerText = requestedUser.Name + " has not followed any circles yet";
+                
                 updateFollowButton();
 
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
@@ -53,7 +58,12 @@ namespace MyCircles.Profile
 
         protected void btFollow_Click(object sender, EventArgs e)
         {
-            FollowDAO.ToggleFollow(currentUser.Id, requestedUser.Id);
+            int requestedUserId = requestedUser.Id;
+            Button button = (Button)sender;
+
+            if (button.Attributes["UserId"] != null) requestedUserId = int.Parse(button.Attributes["UserId"]);
+
+            FollowDAO.ToggleFollow(currentUser.Id, requestedUserId);
             updateFollowButton();
         }
 
@@ -69,12 +79,12 @@ namespace MyCircles.Profile
             if (existingFollow == null)
             {
                 btFollow.Text = "Follow";
-                btFollow.CssClass = "btn btn-outline-primary float-right m-5 px-5";
+                btFollow.CssClass = "btn btn-outline-primary float-right m-5 px-4";
             }
             else
             {
                 btFollow.Text = "Following";
-                btFollow.CssClass = "btn btn-primary float-right m-5 px-5";
+                btFollow.CssClass = "btn btn-primary float-right m-5 px-4";
             }
         }
     }

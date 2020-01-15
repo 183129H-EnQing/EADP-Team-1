@@ -123,6 +123,33 @@ namespace MyCircles.Profile
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userPostsContainer;
 
         /// <summary>
+        /// postWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postWarning;
+
+        /// <summary>
+        /// userCirclesContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userCirclesContainer;
+
+        /// <summary>
+        /// circleWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl circleWarning;
+
+        /// <summary>
         /// followingUserListContainer control.
         /// </summary>
         /// <remarks>
@@ -139,5 +166,14 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptUserFollowing;
+
+        /// <summary>
+        /// followWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl followWarning;
     }
 }
