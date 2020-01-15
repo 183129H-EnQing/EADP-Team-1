@@ -159,9 +159,9 @@ CREATE TABLE [dbo].[Location]
 )
 
 -- Admin Table
-CREATE TABLE [dbo].[Admin]
-(
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [UserId] INT NOT NULL, 
-    CONSTRAINT FK_Admin_UserId FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
-)
+CREATE TABLE [dbo].[Admin] (
+    [Id]     INT IDENTITY (1, 1) NOT NULL,
+    [UserId] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Admin_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
+);

