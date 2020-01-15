@@ -72,19 +72,6 @@ namespace MyCircles.DAL
                         follow => follow.FollowingId,
                         user => user.Id,
                         (follow, user) => new FollowingUsers(user, follow)
-                        //{
-                        //    uId = user.Id,
-                        //    uName = user.Name,
-                        //    uUsername = user.Username,
-                        //    uEmailAddress = user.EmailAddress,
-                        //    uHeaderImage = user.HeaderImage,
-                        //    uProfileImage = user.ProfileImage,
-                        //    uLatitude = user.Latitude,
-                        //    user.Longitude
-                        //    uBio = user.Bio,
-                        //    uCity = user.City,
-                        //    Follow = follow
-                        //}
                     )
                     .ToList();
 
