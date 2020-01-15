@@ -14,7 +14,6 @@ namespace MyCircles.DAL
             {
 
 
-
                 db.Itineraries.Add(newItinerary);
                 db.SaveChanges();
             }

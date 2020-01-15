@@ -59,6 +59,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-3">
                 <div class="row mb-3">
+                    <asp:Label ID="Label2" runat="server"></asp:Label>
                     <asp:Label ID="Label1" runat="server" Text="The next way to <br> plan your next trip" Font-Bold="True" Font-Size="30pt"></asp:Label>
                 </div>
                 <div class="row mb-3">
@@ -89,7 +90,7 @@
                              <asp:TextBox ID="tbEndDate" class="form-control" runat="server" onKeyPress="javascript:runDate" placeholder="End" required></asp:TextBox>
                         </div>
                         <div class="col-md-4">
-                             <asp:TextBox ID="tbNoPeople" class="form-control" runat="server" onclick="show" required>2 Youth</asp:TextBox>
+                             <asp:TextBox ID="tbNoPeople" class="form-control" runat="server" type="number" min="2" max="100" placeholder="No. of Youths" required></asp:TextBox>
 
                         </div>
                     </div>
@@ -135,7 +136,7 @@
             </div>
             <div class="col-md-1"></div>
         </div>
-        <div class="row justify-content">
+        <div class="row justify-content mt-5">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                  <div class="row mb-3">
