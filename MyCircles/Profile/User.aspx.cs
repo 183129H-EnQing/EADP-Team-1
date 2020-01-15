@@ -16,6 +16,8 @@ namespace MyCircles.Profile
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
+        protected List<FollowingUsers> followingList;
+        public double? latitude, longitude;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,8 +35,6 @@ namespace MyCircles.Profile
             lbUsername.Text = "@" + requestedUser.Username;
             lbBio.InnerText = requestedUser.Bio;
             lbCity.InnerText = requestedUser.City;
-            rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
-            rptUserFollowing.DataBind();
 
             if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
 
@@ -49,6 +49,8 @@ namespace MyCircles.Profile
 
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
             }
+
+            followingList = FollowDAO.GetAllFollowing(requestedUser.Id);
         }
 
         protected void btFollow_Click(object sender, EventArgs e)
@@ -76,34 +78,6 @@ namespace MyCircles.Profile
                 btFollow.Text = "Following";
                 btFollow.CssClass = "btn btn-primary float-right m-5 px-5";
             }
-        }
-
-        protected void generateFollowingUserList(List<FollowingUsers> followingUsers)
-        {
-            string html = "";
-
-            foreach (var followingUser in followingUsers)
-            {
-                html += "<div class='row followinguser-container rounded-lg bg-light-color py-4 px-6 m-3'>";
-                    html += "<div class='col-md-3 profilepic-container'>";
-                        html += "<asp:Image runat='server' CssClass='profilepic rounded-circle' Height='150px' Width='150px' ImageUrl='.." + followingUser.User.ProfileImage + "' />";
-                    html += "</div>";
-                    html += "<div class='col-md-6 desc-container'>";
-                        html += "<span class='m-0 h1'>" + followingUser.User.Name + "</span>";
-                        html += "<span class='badge badge-secondary' visible='"+ true.ToString() +"'>Follows you</span><br />";
-                        html += "<span class='m-0 text-muted'>@" + followingUser.User.Username + "</span>";
-                        html += "<span class='bio-span d-block font-italic py-2'>" + followingUser.User.Bio + "</span>";
-                        html += "<i class='fa fa-map-marker' aria-hidden='true'></i> &nbsp;";
-                        html += "<span>" + followingUser.User.City + "</span>";
-                    html += "</div>";
-                    html += "<div class='col-md-3 button-container'>";
-                        html += "<asp:Button ID='btFollow" + followingUser.User.Id + "' runat='server' Text='Following' CssClass='btn btn-primary float-right m-3 px-4' UserId='" + followingUser.User.Id + "' OnClick='btFollow_Click'></asp:Button>";
-                        html += "<asp:Button ID='btMessage" + followingUser.User.Id + "' runat='server' Text='Message' CssClass='btn btn-outline-primary float-right m-3 px-4' UserId='" + followingUser.User.Id + "' OnClick='btFollow_Click'></asp:Button>";
-                    html += "</div>";
-                html += "</div>";
-            }
-
-            followingUserListContainer.InnerHtml = html;
         }
     }
 }
