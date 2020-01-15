@@ -16,7 +16,7 @@ namespace MyCircles.Profile
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
-        protected IList<User> followingList;
+        protected List<FollowingUsers> followingList;
         public double? latitude, longitude;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -49,6 +49,8 @@ namespace MyCircles.Profile
 
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
             }
+
+            followingList = FollowDAO.GetAllFollowing(requestedUser.Id);
         }
 
         protected void btFollow_Click(object sender, EventArgs e)
@@ -69,12 +71,12 @@ namespace MyCircles.Profile
             if (existingFollow == null)
             {
                 btFollow.Text = "Follow";
-                btFollow.CssClass = "btn btn-outline-primary float-right m-5";
+                btFollow.CssClass = "btn btn-outline-primary float-right m-5 px-5";
             }
             else
             {
                 btFollow.Text = "Following";
-                btFollow.CssClass = "btn btn-primary float-right m-5";
+                btFollow.CssClass = "btn btn-primary float-right m-5 px-5";
             }
         }
     }
