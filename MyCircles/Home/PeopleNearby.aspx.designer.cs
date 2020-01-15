@@ -10,7 +10,7 @@
 namespace MyCircles.Home {
     
     
-    public partial class Post {
+    public partial class PeopleNearby {
         
         /// <summary>
         /// form1 control.
@@ -22,84 +22,48 @@ namespace MyCircles.Home {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// activity control.
+        /// btn1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox activity;
+        protected global::System.Web.UI.WebControls.Button btn1;
         
         /// <summary>
-        /// btnUpload control.
+        /// btn2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpload;
+        protected global::System.Web.UI.WebControls.Button btn2;
         
         /// <summary>
-        /// btnPost control.
+        /// btn3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPost;
+        protected global::System.Web.UI.WebControls.Button btn3;
         
         /// <summary>
-        /// lblUsername control.
+        /// btn4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::System.Web.UI.WebControls.Button btn4;
         
         /// <summary>
-        /// ImageButton2 control.
+        /// btn5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
-        
-        /// <summary>
-        /// Btn55 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn55;
-        
-        /// <summary>
-        /// Btn4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn4;
-        
-        /// <summary>
-        /// Btn44 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn44;
-        
-        /// <summary>
-        /// btn6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn6;
+        protected global::System.Web.UI.WebControls.Button btn5;
     }
 }

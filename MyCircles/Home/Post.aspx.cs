@@ -28,5 +28,10 @@ namespace MyCircles.Home
         {
 
         }
+
+        protected void btn6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PeopleNearby.aspx");
+        }
     }
 }
