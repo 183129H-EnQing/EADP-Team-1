@@ -2,16 +2,16 @@
 
 
 <asp:Content ID="Header" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
-    <div class="container-fluid">
+    <div class="container-fluid mt-2 bg-info">
         <div class="row d-flex justify-content-center mb-3">
             <div class="col-md-3 ml-1 d-flex justify-content-center">
-                <a href="Timeline.aspx" class="text-decoration-none">TIMELINE</a>
+                <a href="Timeline.aspx" class="text-decoration-none text-white">TIMELINE</a>
             </div>
             <div class="col-md-3 ml-1 d-flex justify-content-center">
-                <a href="#" class="text-decoration-none">CALENDAR</a>
+                <a href="#" class="text-decoration-none text-white ">CALENDAR</a>
             </div>
             <div class="col-md-3 d-flex justify-content-center">
-                <a href="Map.aspx" class="text-decoration-none">MAP</a>
+                <a href="Map.aspx" class="text-decoration-none text-white ">MAP</a>
             </div>
         </div>
     </div>

@@ -68,7 +68,7 @@
                 <div class="row mb-3">
                     <asp:Button ID="btnImportActivity" class="btn btn-lg" BackColor="Orange" runat="server" Text="Import Activity" ForeColor="White"  />
                 </div>
-                <br /> <br /> <br /> <br /> 
+                <br /><br /><br />
                 <div class="row mb-3">
                     <asp:Button ID="btnViewPlan" class="btn btn-lg" BackColor="Orange" runat="server" Text="View Exisiting Plans" ForeColor="White" disabled/>
                 </div>
@@ -136,10 +136,10 @@
             </div>
             <div class="col-md-1"></div>
         </div>
-        <div class="row justify-content mt-5">
+        <div class="row justify-content mt-4">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                 <div class="row mb-3">
+                    <div class="row mb-3">
                     <div class="card mr-4" style="width: 18rem;">
                         <img class="card-img-top" src="..." alt="Card image cap">
                         <div class="card-body">
@@ -158,7 +158,7 @@
                             <a href="#" class="btn btn-primary">Click to view</a>
                         </div>
                     </div>
-                      <div class="card mr-4" style="width: 18rem;">
+                        <div class="card mr-4" style="width: 18rem;">
                         <img class="card-img-top" src="..." alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title"><b>August Holiday Shopping</b></h5>

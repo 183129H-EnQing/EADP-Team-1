@@ -20,10 +20,10 @@ namespace MyCircles.ItineraryPlanner
         protected void btnSubmitPlan_Click(object sender, EventArgs e)
         {
             //add to table
-            newItinerary.userId = 9;
-            newItinerary.startDate = tbStartDate.Text;
-            newItinerary.endDate = tbEndDate.Text;
-            newItinerary.groupSize = Convert.ToInt32(tbNoPeople.Text);
+            //newItinerary.userId = 9;
+            //newItinerary.startDate = tbStartDate.Text;
+            //newItinerary.endDate = tbEndDate.Text;
+            //newItinerary.groupSize = Convert.ToInt32(tbNoPeople.Text);
             Response.Write("<script> alert('Plan Created!');</script>");
 
             Session["startDate"] = tbStartDate.Text;
