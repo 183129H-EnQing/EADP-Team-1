@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.Master" AutoEventWireup="true" CodeBehind="ViewAllEventPage.aspx.cs" Inherits="MyCircles.ViewEventDetails" %>
+<%@ Import Namespace ="MyCircles.BLL"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
     <style>
         .fliterText{
@@ -105,7 +106,11 @@
                         </div>
                        
                         <div class="row mt-3">
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                     <%--    <% for (int i = 0; i < 5; i++) { %> 
+                             <h1><%= hello %></h1>  
+                            <% } %>  --%>
+                      
+                            <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
                                 <a href="/ViewEventDetails.aspx">
                                 <div class="card card-body" runat="server" id="event1">
                                  
@@ -140,7 +145,7 @@
                                         </a>
                             </div>
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
                                 <div class="card card-body">
                                     <div class="row">
                                         <div class="col-sm-3 col-md-12">
@@ -168,7 +173,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
                                 <div class="card card-body">
                                     <div class="row">
                                         <div class="col-sm-3 col-md-12">
@@ -206,4 +211,12 @@
         </div>  
     </form>
 
+    <script>
+        const request = makeRequest("POST", "lol", (response) => {
+            console.log(response);
+        });
+
+        request.send();
+    </script>
 </asp:Content>
+

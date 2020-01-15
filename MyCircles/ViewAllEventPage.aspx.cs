@@ -9,14 +9,13 @@ namespace MyCircles
 {
     public partial class ViewEventDetails : System.Web.UI.Page
     {
+        public string hello = "Hello";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void hello()
-        {
-            Response.Redirect("ViewEventDetails.aspx");
-        }
+     
     }
 }
