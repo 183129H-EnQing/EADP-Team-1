@@ -58,7 +58,7 @@ namespace MyCircles.DAL
             return existingFollow;
         }
 
-        public static List<FollowingUsers> GetAllFollowing(int followerId)
+        public static List<FollowingUsers> GetAllFollowingUsers(int followerId)
         {
             using (var db = new MyCirclesEntityModel())
             {

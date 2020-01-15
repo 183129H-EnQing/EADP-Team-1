@@ -114,75 +114,21 @@ namespace MyCircles.Profile
         protected global::System.Web.UI.WebControls.Button btFollow;
 
         /// <summary>
-        /// FollowingProfilePic control.
+        /// followingUserListContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image FollowingProfilePic;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl followingUserListContainer;
 
         /// <summary>
-        /// lbFollowingName control.
+        /// rptUserFollowing control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFollowingName;
-
-        /// <summary>
-        /// Span1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
-
-        /// <summary>
-        /// lbFollowingUsername control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFollowingUsername;
-
-        /// <summary>
-        /// lbFollowingBio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbFollowingBio;
-
-        /// <summary>
-        /// lbFollowingCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbFollowingCity;
-
-        /// <summary>
-        /// btFollow1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btFollow1;
-
-        /// <summary>
-        /// btMessage1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btMessage1;
+        protected global::System.Web.UI.WebControls.Repeater rptUserFollowing;
     }
 }
