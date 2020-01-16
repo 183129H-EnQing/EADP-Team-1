@@ -16,7 +16,6 @@ namespace MyCircles.ItineraryPlanner
             System.Diagnostics.Debug.WriteLine("SomeText");
 
             getMonthDate();
-            
         }
 
         private void getMonthDate()
