@@ -78,3 +78,22 @@
 .bio-span {
     font-style: italic;
 }
+
+.speech-bubble-receiver {
+    position: relative;
+    background: #e6f7fa;
+    border-radius: .4em;
+    text-align: right !important;
+    padding: 17px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.speech-bubble-sender {
+    position: relative;
+    background: rgb(235, 235, 235);
+    border-radius: .4em;
+    padding: 17px;
+    font-size: 16px;
+    font-weight: 500;
+}

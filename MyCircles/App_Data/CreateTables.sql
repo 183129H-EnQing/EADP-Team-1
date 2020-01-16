@@ -12,6 +12,7 @@
     [IsLoggedIn]   BIT         DEFAULT ((0)) NOT NULL,
     [IsPrivileged] BIT         DEFAULT ((0)) NOT NULL,
     [IsDeleted]    BIT         DEFAULT ((0)) NOT NULL,
+    [IsEventHolder] BIT	       DEFAULT ((0)) NOT NULL, 
     PRIMARY KEY CLUSTERED ([Id] ASC),
     UNIQUE NONCLUSTERED ([EmailAddress] ASC),
     UNIQUE NONCLUSTERED ([Username] ASC)
@@ -148,15 +149,18 @@ CREATE TABLE [dbo].[Activity]
 )
 
 -- Location Table
-CREATE TABLE [dbo].[Location]
-(
-	[locaId] INT NOT NULL PRIMARY KEY, 
-    [locaPic] NCHAR(10) NOT NULL, 
-	[locaName] NCHAR(10) NOT NULL, 
-    [locaRating] NCHAR(10) NOT NULL,
-	[locaContact] NCHAR(10) NULL,
-	[locaWeb] NCHAR(10) NULL
-)
+CREATE TABLE [dbo].[Location] (
+    [locaId]      INT        NOT NULL,
+	[landmarkType] NCHAR (20) NOT NULL,
+    [locaPic]     VARCHAR(MAX) NOT NULL,
+    [locaName]    NCHAR (50) NOT NULL,
+	[locaDesc]  NCHAR(100) NOT NULL,
+    [locaRating]  FLOAT NOT NULL,
+    [locaContact] INT NULL,
+    [locaWeb]     NCHAR (100) NULL,
+    PRIMARY KEY CLUSTERED ([locaId] ASC)
+);
+
 
 -- Admin Table
 CREATE TABLE [dbo].[Admin] (

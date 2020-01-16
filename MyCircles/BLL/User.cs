@@ -15,7 +15,6 @@ namespace MyCircles.BLL
             Admins = new HashSet<Admin>();
             Follows = new HashSet<Follow>();
             Follows1 = new HashSet<Follow>();
-            Itineraries = new HashSet<Itinerary>();
             Mutuals = new HashSet<Mutual>();
             Mutuals1 = new HashSet<Mutual>();
             Notifications = new HashSet<Notification>();
@@ -67,9 +66,6 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Follow> Follows1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Itinerary> Itineraries { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mutual> Mutuals { get; set; }

@@ -67,6 +67,7 @@
                 </div>
                 <div class="row mb-3">
                     <asp:Button ID="btnImportActivity" class="btn btn-lg" BackColor="Orange" runat="server" Text="Import Activity" ForeColor="White"  />
+                    <a href="ViewLocation.aspx" class="btn btn-lg" >Explore Locations</a>
                 </div>
                 <br /><br /><br />
                 <div class="row mb-3">
@@ -140,45 +141,20 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                     <div class="row mb-3">
-                    <div class="card mr-4" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>August Holiday Shopping</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
-                            <p class="card-text">Jan 11 - Jan 15</p>
-                            <p class="card-text">5 Youth</p>
-                            <a href="#" class="btn btn-primary">Click to view</a>
-                        </div>
-                    </div>
-                    <div class="card mr-4" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>August Holiday Shopping</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
-                            <p class="card-text">Jan 11 - Jan 15</p>
-                            <p class="card-text">5 Youth</p>
-                            <a href="#" class="btn btn-primary">Click to view</a>
-                        </div>
-                    </div>
-                        <div class="card mr-4" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>August Holiday Shopping</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
-                            <p class="card-text">Jan 11 - Jan 15</p>
-                            <p class="card-text">5 Youth</p>
-                            <a href="#" class="btn btn-primary">Click to view</a>
-                        </div>
-                    </div>
-                    <div class="card mr-4" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>August Holiday Shopping</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
-                            <p class="card-text">Jan 11 - Jan 15</p>
-                            <p class="card-text">5 Youth</p>
-                            <a href="#" class="btn btn-primary">Click to view</a>
-                        </div>
+                        <asp:Repeater ID="rpItinerary" runat="server" ItemType="MyCircles.BLL.Itinerary">
+                            <ItemTemplate>
+                                 <div class="card mr-4" style="width: 18rem;">
+                                    <img class="card-img-top" src="..." alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>August Holiday Shopping</b></h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Created by you</h6>
+                                        <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> - <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
+                                        <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %>Youth</p>
+                                        <a href="Timeline.aspx" class="btn btn-primary">Click to view</a>
+                                    </div>
+                                </div>  
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
                 </div>
             </div>
