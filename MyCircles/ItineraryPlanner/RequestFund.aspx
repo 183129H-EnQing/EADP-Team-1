@@ -6,42 +6,42 @@
             <div class="col-md-1"></div>
             <div class="col-md-1"></div>
             <div class="col-md-8 border border-secondary">
-                <h1>Request Funds</h1> <br />
-                <div class="row">
+                <h2>Request Funds</h2> <br />
+                <div class="row mb-2">
                     <div class="col-md-3">
-                        <h3>Select Trip</h3>
+                        <h5>Select Trip</h5>
                     </div>
                     <div class="col-md-9">
                         <input />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-md-3">
-                        <h3>Date</h3>
+                        <h5>Date</h5>
                     </div>
                     <div class="col-md-9">
                         <input />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-md-3">
-                        <h3>Activity</h3>
+                        <h5>Activity</h5>
                     </div>
                     <div class="col-md-9">
                         <input />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-md-3">
-                        <h3>Amount</h3>
+                        <h5>Amount</h5>
                     </div>
                     <div class="col-md-9">
                         <input />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-md-3">
-                        <h3>Expense Breakdown</h3>
+                        <h5>Expense Breakdown</h5>
                     </div>
                     <div class="col-md-9">
                         <input />

@@ -33,7 +33,7 @@ namespace MyCircles.ItineraryPlanner
 
         private void getExistingPlan()
         {
-            string s = "select * from Itinerary";
+            
 
         }
     }

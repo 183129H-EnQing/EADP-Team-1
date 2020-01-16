@@ -18,7 +18,6 @@ namespace MyCircles
         protected void geolocationForm_Submit(object sender, EventArgs e)
         {
             var currentUser = (User)Session["currentUser"];
-            currentUser.City = "Unknown";
 
             if (!String.IsNullOrEmpty(tbLat.Text) || !String.IsNullOrEmpty(tbLong.Text))
             {
@@ -26,6 +25,8 @@ namespace MyCircles
                 currentUser.Longitude = Convert.ToDouble(tbLong.Text);
                 currentUser.City = tbCity.Text;
             }
+
+            if (currentUser.City == null) currentUser.City = "Unknown";
 
             currentUser.UpdateUserLocation();
             Session["currentUser"] = currentUser;
