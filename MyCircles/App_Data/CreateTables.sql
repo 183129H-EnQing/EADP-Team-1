@@ -12,6 +12,7 @@
     [IsLoggedIn]   BIT         DEFAULT ((0)) NOT NULL,
     [IsPrivileged] BIT         DEFAULT ((0)) NOT NULL,
     [IsDeleted]    BIT         DEFAULT ((0)) NOT NULL,
+    [IsEventHolder] BIT	       DEFAULT ((0)) NOT NULL, 
     PRIMARY KEY CLUSTERED ([Id] ASC),
     UNIQUE NONCLUSTERED ([EmailAddress] ASC),
     UNIQUE NONCLUSTERED ([Username] ASC)
