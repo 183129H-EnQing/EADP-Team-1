@@ -150,7 +150,8 @@
                                         <h6 class="card-subtitle mb-2 text-muted">Created by you</h6>
                                         <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> - <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
                                         <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %>Youth</p>
-                                        <a href="Timeline.aspx" class="btn btn-primary">Click to view</a>
+                                        
+                                        <a href="Timeline.aspx?Id=<%#DataBinder.Eval(Container.DataItem, "itineraryId") %>" class="btn btn-primary">Click to view</a>
                                     </div>
                                 </div>  
                             </ItemTemplate>

@@ -27,7 +27,7 @@ namespace MyCircles.DAL
             }
         }
 
-        public static List<Itinerary> GetSpecificItinerary(Itinerary itinerary)
+        public static List<Itinerary> GetSpecificItinerary(int itinerary)
         {
             List<Itinerary> itineraryList = new List<Itinerary>();
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
