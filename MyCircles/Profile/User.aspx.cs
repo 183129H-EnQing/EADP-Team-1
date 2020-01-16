@@ -14,6 +14,7 @@ using System.Configuration;
 namespace MyCircles.Profile
 {
     //TODO: Edit profile with messages if mutuals/don't show location on map
+    //TODO: Show whether or not user is online
 
     public partial class User : System.Web.UI.Page
     {
