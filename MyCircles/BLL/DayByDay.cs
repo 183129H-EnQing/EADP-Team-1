@@ -19,7 +19,11 @@ namespace MyCircles.BLL
 
         [Required]
         [StringLength(10)]
-        public string timeStamp { get; set; }
+        public string startTime { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string endTime { get; set; }
 
         public int activityId { get; set; }
 
