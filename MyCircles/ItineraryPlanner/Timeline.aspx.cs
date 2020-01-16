@@ -10,11 +10,13 @@ namespace MyCircles.ItineraryPlanner
     public partial class Timeline : System.Web.UI.Page
     {
         public string dayStr1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("SomeText");
 
             getMonthDate();
+            
         }
 
         private void getMonthDate()

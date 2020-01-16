@@ -35,6 +35,20 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-8 border border-primary">
+                <div class="row pt-3">
+                    <div class="col-md-2 mr-1">
+                        <h4>10.00am</h4> <br />
+                        <h4>12.00pm</h4>
+                    </div>
+                    <div class="col-md-3 mr-1">
+                        image
+                    </div>
+                    <div class="col-md-5">
+                        Appreciate the majesty of exotic and endangered animals at Singapore Zoo, home to the world's largest collection of orangutans housed
+                    </div>
+                </div>
+            </div>
             <div class="col-md-1">
                 <a href="RequestFund.aspx" class="text-decoration-none">Request Fund<i class="fas fa-headset"></i></a>
             </div>

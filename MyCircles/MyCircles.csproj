@@ -225,6 +225,7 @@
     <Content Include="ItineraryPlanner\RequestFund.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
     <Content Include="Profile\Chat.aspx" />
+    <Content Include="ItineraryPlanner\ViewLocation.aspx" />
     <Content Include="Profile\EditProfile.aspx" />
     <Content Include="Profile\FollowCircles.aspx" />
     <Content Include="Profile\User.aspx" />
@@ -236,6 +237,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="SignUpFreeEventPage.aspx" />
     <Content Include="ViewAllEventPage.aspx" />
     <Content Include="ViewEventDetails.aspx" />
     <Content Include="Web.config">
@@ -293,6 +295,7 @@
     <Compile Include="BLL\Location.cs" />
     <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
+    <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
@@ -307,6 +310,7 @@
     <Compile Include="DAL\FollowDAO.cs" />
     <Compile Include="DAL\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />
+    <Compile Include="DAL\LocationDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
     <Compile Include="DAL\UserDAO.cs" />
@@ -377,6 +381,12 @@
     </Compile>
     <Compile Include="Profile\Chat.aspx.designer.cs">
       <DependentUpon>Chat.aspx</DependentUpon>
+    <Compile Include="ItineraryPlanner\ViewLocation.aspx.cs">
+      <DependentUpon>ViewLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\ViewLocation.aspx.designer.cs">
+      <DependentUpon>ViewLocation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
@@ -427,6 +437,13 @@
     </Compile>
     <Compile Include="SignedIn.master.designer.cs">
       <DependentUpon>SignedIn.master</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpFreeEventPage.aspx.cs">
+      <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUpFreeEventPage.aspx.designer.cs">
+      <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewAllEventPage.aspx.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
@@ -564,6 +581,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\images\Shared\" />
     <Folder Include="Event\" />
   </ItemGroup>
   <PropertyGroup>

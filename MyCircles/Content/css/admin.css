@@ -28,3 +28,8 @@
 .admin-content-height {
     height: 90vh;
 }
+
+.number-thingy {
+    color: red;
+    font-size: 40px;
+}
