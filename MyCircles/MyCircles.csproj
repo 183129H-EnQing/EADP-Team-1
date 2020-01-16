@@ -115,7 +115,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Home.aspx" />
-    <Content Include="Admin\ManageEventHosts.aspx" />
     <Content Include="Admin\ViewReportedPosts.aspx" />
     <Content Include="ajax.js" />
     <Content Include="App_Data\CreateTables.sql" />
@@ -246,13 +245,6 @@
     </Compile>
     <Compile Include="Admin\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ManageEventHosts.aspx.cs">
-      <DependentUpon>ManageEventHosts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ManageEventHosts.aspx.designer.cs">
-      <DependentUpon>ManageEventHosts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ViewReportedPosts.aspx.cs">
       <DependentUpon>ViewReportedPosts.aspx</DependentUpon>

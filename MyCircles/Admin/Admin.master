@@ -13,11 +13,6 @@
                         Overview
                     </div>
                 </a>
-                <a class="admin-panel-navlink" href="ManageEventHosts.aspx">
-                    <div id="DIVManageEH" class="admin-panel-navitem admin-panel-navitem-divider">
-                        Manage Event Hosts
-                    </div>
-                </a>
                 <a class="admin-panel-navlink" href="ViewReportedPosts.aspx">
                     <div id="DIVViewRP" class="admin-panel-navitem admin-panel-navitem-divider">
                         View Reported Posts
