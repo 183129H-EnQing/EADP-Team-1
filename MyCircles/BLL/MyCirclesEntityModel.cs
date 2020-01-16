@@ -47,6 +47,10 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Day>()
+                .Property(e => e.date)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Day>()
                 .Property(e => e.timeStamp)
                 .IsFixedLength();
 
@@ -55,11 +59,7 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<DayByDay>()
-                .Property(e => e.startTime)
-                .IsFixedLength();
-
-            modelBuilder.Entity<DayByDay>()
-                .Property(e => e.endTime)
+                .Property(e => e.timeStamp)
                 .IsFixedLength();
 
             modelBuilder.Entity<Event>()
@@ -98,6 +98,16 @@ namespace MyCircles.BLL
                 .Property(e => e.groupSize)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Itinerary>()
+                .HasMany(e => e.DayByDays)
+                .WithRequired(e => e.Itinerary)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Itinerary>()
+                .HasMany(e => e.ItineraryPrefs)
+                .WithRequired(e => e.Itinerary)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Location>()
                 .Property(e => e.landmarkType)
                 .IsFixedLength();
@@ -117,6 +127,12 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaWeb)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .HasMany(e => e.DayByDays)
+                .WithRequired(e => e.Location)
+                .HasForeignKey(e => e.activityId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Type)
@@ -141,6 +157,11 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Pref>()
                 .Property(e => e.prefName)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Pref>()
+                .HasMany(e => e.ItineraryPrefs)
+                .WithRequired(e => e.Pref)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<SignUpEventDetail>()
                 .Property(e => e.name)

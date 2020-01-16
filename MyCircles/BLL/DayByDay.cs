@@ -9,11 +9,9 @@ namespace MyCircles.BLL
     [Table("DayByDay")]
     public partial class DayByDay
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int itineraryId { get; set; }
+        public int dayBydayId { get; set; }
 
-        public int dayByDayId { get; set; }
+        public int itineraryId { get; set; }
 
         [Required]
         [StringLength(10)]
@@ -21,10 +19,12 @@ namespace MyCircles.BLL
 
         [Required]
         [StringLength(10)]
-        public string startTime { get; set; }
+        public string timeStamp { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string endTime { get; set; }
+        public int activityId { get; set; }
+
+        public virtual Itinerary Itinerary { get; set; }
+
+        public virtual Location Location { get; set; }
     }
 }
