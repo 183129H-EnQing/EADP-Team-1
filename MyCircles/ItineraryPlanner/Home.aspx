@@ -67,6 +67,7 @@
                 </div>
                 <div class="row mb-3">
                     <asp:Button ID="btnImportActivity" class="btn btn-lg" BackColor="Orange" runat="server" Text="Import Activity" ForeColor="White"  />
+                    <a href="ViewLocation.aspx" class="btn btn-lg" >View Location</a>
                 </div>
                 <br /><br /><br />
                 <div class="row mb-3">

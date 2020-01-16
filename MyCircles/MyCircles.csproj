@@ -212,6 +212,7 @@
     <Content Include="ItineraryPlanner\Map.aspx" />
     <Content Include="ItineraryPlanner\RequestFund.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
+    <Content Include="ItineraryPlanner\ViewLocation.aspx" />
     <Content Include="Profile\EditProfile.aspx" />
     <Content Include="Profile\FollowCircles.aspx" />
     <Content Include="Profile\User.aspx" />
@@ -281,6 +282,7 @@
     <Compile Include="BLL\Location.cs" />
     <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
+    <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
@@ -295,6 +297,7 @@
     <Compile Include="DAL\FollowDAO.cs" />
     <Compile Include="DAL\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />
+    <Compile Include="DAL\LocationDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
     <Compile Include="DAL\UserDAO.cs" />
@@ -358,6 +361,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\ViewLocation.aspx.cs">
+      <DependentUpon>ViewLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\ViewLocation.aspx.designer.cs">
+      <DependentUpon>ViewLocation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
@@ -552,6 +562,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\images\Shared\" />
     <Folder Include="Event\" />
   </ItemGroup>
   <PropertyGroup>
