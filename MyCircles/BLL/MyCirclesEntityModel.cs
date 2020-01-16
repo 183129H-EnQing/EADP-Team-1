@@ -98,11 +98,19 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
+                .Property(e => e.landmarkType)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
                 .Property(e => e.locaPic)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaName)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaDesc)
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()

@@ -164,5 +164,14 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitPlan;
+        
+        /// <summary>
+        /// rpItinerary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpItinerary;
     }
 }

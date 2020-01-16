@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MyCircles.DAL
 {
-    public class ItineraryDAO
+    public static class ItineraryDAO
     {
         public static void AddItinerayDAO(Itinerary newItinerary)
         {
@@ -17,14 +17,24 @@ namespace MyCircles.DAL
             }
         }
 
-        public static Itinerary GetItinerary(Itinerary itinerary, User user)
+        public static List<Itinerary> GetUserItinerary(User user)
         {
-            Itinerary sItinerary = null;
+            List<Itinerary> itineraryList = new List<Itinerary>();
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
-                itinerary = db.Itineraries.Where(i => i.itineraryId == itinerary.itineraryId && i.userId == itinerary.userId).FirstOrDefault();
+                itineraryList = db.Itineraries.Where(i => i.userId == user.Id).ToList();
+                return itineraryList;
             }
-            return sItinerary;
+        }
+
+        public static List<Itinerary> GetSpecificItinerary(Itinerary itinerary)
+        {
+            List<Itinerary> itineraryList = new List<Itinerary>();
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                itineraryList = db.Itineraries.Where(i => i.itineraryId == itinerary.itineraryId).ToList();
+                return itineraryList;
+            }
         }
     }
 }
