@@ -27,6 +27,7 @@ namespace MyCircles.BLL
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Pref> Prefs { get; set; }
+        public virtual DbSet<SignUpEventDetail> SignUpEventDetails { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCircle> UserCircles { get; set; }
 
@@ -140,6 +141,22 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Pref>()
                 .Property(e => e.prefName)
                 .IsFixedLength();
+
+            modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.contactNumber)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.numberOfBookingSlot)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.selectedEventToParticipate)
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)
