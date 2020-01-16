@@ -381,6 +381,7 @@
     </Compile>
     <Compile Include="Profile\Chat.aspx.designer.cs">
       <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ItineraryPlanner\ViewLocation.aspx.cs">
       <DependentUpon>ViewLocation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
