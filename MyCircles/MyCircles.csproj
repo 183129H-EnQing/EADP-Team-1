@@ -223,6 +223,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="SignUpFreeEventPage.aspx" />
     <Content Include="ViewAllEventPage.aspx" />
     <Content Include="ViewEventDetails.aspx" />
     <Content Include="Web.config">
@@ -406,6 +407,13 @@
     </Compile>
     <Compile Include="SignedIn.master.designer.cs">
       <DependentUpon>SignedIn.master</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpFreeEventPage.aspx.cs">
+      <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUpFreeEventPage.aspx.designer.cs">
+      <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewAllEventPage.aspx.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
