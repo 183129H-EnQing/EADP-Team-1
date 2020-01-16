@@ -56,6 +56,8 @@ namespace MyCircles.BLL
 
         public bool IsGoogleUser { get; set; }
 
+        public bool IsEventHolder { get; set; }
+
         public bool IsPrivileged { get; set; }
 
         public bool IsDeleted { get; set; }
