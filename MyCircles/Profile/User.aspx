@@ -27,7 +27,6 @@
                 <asp:ScriptManager ID="FollowScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
                     <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-<%--                            <input id="btFollow" name="btFollow" class="btn btn-outline-primary float-right m-5" value="Follow" type="button" runat="server" />--%>
                             <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click"  UseSubmitBehavior="false" />
                         </ContentTemplate>
                     <Triggers>
@@ -95,7 +94,6 @@
                             <Reimers:Map ID="GMap" Width="500px" Height="400px" runat="server" />
                         </ContentTemplate>
                     </asp:UpdatePanel>--%>
-                    <Reimers:Map ID="GMap" Width="100%" Height="400px" runat="server" />
                 </div>
             </div>
         </div>
