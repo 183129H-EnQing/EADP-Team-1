@@ -286,6 +286,7 @@
     <Compile Include="BLL\ItineraryPref.cs" />
     <Compile Include="BLL\Location.cs" />
     <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
+    <Compile Include="BLL\Model_Methods\EventDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
     <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
@@ -294,11 +295,13 @@
     <Compile Include="BLL\Notification.cs" />
     <Compile Include="BLL\Post.cs" />
     <Compile Include="BLL\Pref.cs" />
+    <Compile Include="BLL\SignUpEventDetail.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\EventController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
+    <Compile Include="DAL\EventDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
     <Compile Include="DAL\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />

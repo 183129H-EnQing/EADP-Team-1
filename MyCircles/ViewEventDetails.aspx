@@ -118,8 +118,52 @@
                                         <a class="btn btn-danger" style="width:100%;">Contact Organizer</a>
                                     </div>
                                     <div class="col-6" style="padding-left:0px;">
-                                        <a class="btn btn-success" style="width:100%;">Register</a>
+                                        <!--data-toggle="modal" data-target=".bd-example-modal-lg"-->
+                                        <a href="/SignUpFreeEventPage.aspx" class="btn btn-primary"  style="width:100%;">Register</a>
+                                      
+                                        <!--sign up page modal-->
+                                        <!--
+                                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h4 class="modal-title" id="FreeSignUpEventTitle">Event</h4>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">×</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <p>Ticket Title</p>
+                                                                <p>Ticket Price Information</p>
+                                                                <p>Sales end in a day</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="ticketQuantity">Select Amount of Ticket</label>
+                                                                <select class="form-control" id="ticketQuantity">
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                        <option>4</option>
+                                                                </select>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                      </div>
+                                                  </div>
+
+                                            </div>
+                                          </div>
+                                        </div>
+                                        -->
+                                        <!--end of modal signup page-->
                                     </div>
+
                                 </div>
 
                             </div>
