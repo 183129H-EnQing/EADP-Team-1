@@ -79,17 +79,17 @@ namespace MyCircles.DAL
 
                 if (user != null)
                 {
-                    if (user.Password != null)
+                    if (!user.IsGoogleUser)
                     {
                         if (!Crypto.VerifyHashedPassword(user.Password, testUser.Password))
                         {
                             user = null;
                             throw new ArgumentException("That password is not correct");
                         } 
-                        else
-                        {
-                            throw new ArgumentException("Please sign in using your existing Google account");
-                        }
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Please sign in using your existing Google account");
                     }
                 }
                 else

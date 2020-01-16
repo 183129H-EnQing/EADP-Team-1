@@ -28,6 +28,7 @@ namespace MyCircles.Auth
                     newUser.Username = ((newUser.EmailAddress).Split('@'))[0];
                     newUser.ProfileImage = result.UserInfo.Userpic;
                     newUser.Name = result.UserInfo.FirstName;
+                    newUser.IsGoogleUser = true;
                     UserDAO.AddGoogleUser(newUser);
 
                     Session["currentUser"] = newUser;
