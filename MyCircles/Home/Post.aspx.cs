@@ -7,12 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace MyCircles.Home
 {
+     
     public partial class Post : System.Web.UI.Page
     {
         public BLL.User currentUser;
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
@@ -32,6 +35,12 @@ namespace MyCircles.Home
         protected void btn6_Click(object sender, EventArgs e)
         {
             Response.Redirect("PeopleNearby.aspx");
+        }
+
+        protected void btnPost_Click(object sender, EventArgs e)
+        {
+            mypost.Visible = true;
+            LPost.Text = activity.Text;
         }
     }
 }
