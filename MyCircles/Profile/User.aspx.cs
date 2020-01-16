@@ -6,8 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using MyCircles.BLL;
+using Reimers.Google.Map;
 using static MyCircles.DAL.UserDAO;
 using MyCircles.DAL;
+using System.Configuration;
 
 namespace MyCircles.Profile
 {
@@ -54,6 +56,22 @@ namespace MyCircles.Profile
 
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
             }
+
+            GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
+
+            if (currentUser.Latitude != null || currentUser.Longitude != null)
+            {
+                LatLng currentPos = new LatLng();
+                double currentLat = (this.currentUser.Latitude.HasValue) ? this.currentUser.Latitude.Value : 0;
+                double currentLng = (this.currentUser.Longitude.HasValue) ? this.currentUser.Longitude.Value : 0;
+
+                currentPos.Latitude = currentLat;
+                currentPos.Longitude = currentLng;
+                if (!Page.IsPostBack)  GMap.Center = currentPos;
+                var marker = new Marker(currentPos);
+
+                GMap.Overlays.Add(marker);
+            }
         }
 
         protected void btFollow_Click(object sender, EventArgs e)
@@ -67,9 +85,9 @@ namespace MyCircles.Profile
             updateFollowButton();
         }
 
-        protected void btRefresh_Click(object sender, EventArgs e)
+        protected void btMessage_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Chat.aspx");
         }
 
         protected void updateFollowButton()

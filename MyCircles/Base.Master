@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Base.master.cs" Inherits="MyCircles.Base" %>
+<%@ Register assembly="Reimers.Google.Map" namespace="Reimers.Google.Map" tagprefix="Reimers" %>
 
 <!DOCTYPE html>
 
