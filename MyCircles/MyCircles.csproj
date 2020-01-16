@@ -117,6 +117,7 @@
     <Content Include="Admin\Home.aspx" />
     <Content Include="Admin\ManageEventHosts.aspx" />
     <Content Include="Admin\ViewReportedPosts.aspx" />
+    <Content Include="ajax.js" />
     <Content Include="App_Data\CreateTables.sql" />
     <Content Include="App_Data\MyCircles.mdf" />
     <Content Include="App_Data\MyCircles_log.ldf">
@@ -222,6 +223,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="SignUpFreeEventPage.aspx" />
     <Content Include="ViewAllEventPage.aspx" />
     <Content Include="ViewEventDetails.aspx" />
     <Content Include="Web.config">
@@ -278,6 +280,7 @@
     <Compile Include="BLL\ItineraryPref.cs" />
     <Compile Include="BLL\Location.cs" />
     <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
+    <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
@@ -286,9 +289,12 @@
     <Compile Include="BLL\Pref.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
+    <Compile Include="Controller\EventController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
+    <Compile Include="DAL\FollowingUsers.cs" />
+    <Compile Include="DAL\ItineraryDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
     <Compile Include="DAL\UserDAO.cs" />
@@ -402,6 +408,13 @@
     </Compile>
     <Compile Include="SignedIn.master.designer.cs">
       <DependentUpon>SignedIn.master</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpFreeEventPage.aspx.cs">
+      <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUpFreeEventPage.aspx.designer.cs">
+      <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewAllEventPage.aspx.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>

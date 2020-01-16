@@ -114,57 +114,66 @@ namespace MyCircles.Profile
         protected global::System.Web.UI.WebControls.Button btFollow;
 
         /// <summary>
-        /// FollowingProfilePicture control.
+        /// userPostsContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image FollowingProfilePicture;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userPostsContainer;
 
         /// <summary>
-        /// Label1 control.
+        /// postWarning control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postWarning;
 
         /// <summary>
-        /// Span1 control.
+        /// userCirclesContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userCirclesContainer;
 
         /// <summary>
-        /// Label2 control.
+        /// circleWarning control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl circleWarning;
 
         /// <summary>
-        /// Span2 control.
+        /// followingUserListContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl followingUserListContainer;
 
         /// <summary>
-        /// Span3 control.
+        /// rptUserFollowing control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span3;
+        protected global::System.Web.UI.WebControls.Repeater rptUserFollowing;
+
+        /// <summary>
+        /// followWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl followWarning;
     }
 }

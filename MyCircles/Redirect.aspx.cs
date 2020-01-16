@@ -23,9 +23,11 @@ namespace MyCircles
             {
                 currentUser.Latitude = Convert.ToDouble(tbLat.Text);
                 currentUser.Longitude = Convert.ToDouble(tbLong.Text);
+                currentUser.City = tbCity.Text;
             }
 
-            currentUser.City = tbCity.Text;
+            if (currentUser.City == null) currentUser.City = "Unknown";
+
             currentUser.UpdateUserLocation();
             Session["currentUser"] = currentUser;
 
