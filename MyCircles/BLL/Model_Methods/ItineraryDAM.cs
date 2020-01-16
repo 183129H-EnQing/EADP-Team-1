@@ -18,7 +18,7 @@ namespace MyCircles.BLL
             return ItineraryDAO.GetUserItinerary(user);
         }
 
-        public List<Itinerary> RetrieveSpecificItinerary(Itinerary itinerary)
+        public List<Itinerary> RetrieveSpecificItinerary(int itinerary)
         {
             return ItineraryDAO.GetSpecificItinerary(itinerary);
         }
