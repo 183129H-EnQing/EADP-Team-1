@@ -20,7 +20,7 @@ namespace MyCircles
             currentUser = (User)Session["currentUser"];
             ProfileLink.HRef = "Profile/User.aspx?username=" + currentUser.Username;
 
-            ProfilePicNavImage.ImageUrl = "~" + currentUser.ProfileImage;
+            ProfilePicNavImage.ImageUrl = currentUser.ProfileImage;
         }
     }
 }

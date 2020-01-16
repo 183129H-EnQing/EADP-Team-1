@@ -27,12 +27,12 @@ namespace MyCircles.DAL
             }
         }
 
-        public static List<Itinerary> GetSpecificItinerary(int itinerary)
+        public static List<Itinerary> GetSpecificItinerary(int itineraryId)
         {
             List<Itinerary> itineraryList = new List<Itinerary>();
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
-                itineraryList = db.Itineraries.Where(i => i.itineraryId == itinerary.itineraryId).ToList();
+                itineraryList = db.Itineraries.Where(i => i.itineraryId == itineraryId).ToList();
                 return itineraryList;
             }
         }

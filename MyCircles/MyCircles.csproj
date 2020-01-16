@@ -48,14 +48,14 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\..\..\..\..\..\..\source\repos\Practical 10 Starter\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>packages\Portable.BouncyCastle.1.8.1.3\lib\net40\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.43.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.43.0\lib\net45\Google.Apis.dll</HintPath>
     </Reference>
     <Reference Include="GoogleApi, Version=3.9.5.0, Culture=neutral, PublicKeyToken=781851e053b06e74, processorArchitecture=MSIL">
       <HintPath>packages\GoogleApi.3.9.5\lib\net45\GoogleApi.dll</HintPath>
@@ -63,6 +63,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Nemiro.OAuth, Version=1.13.0.2828, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.1.13.0\lib\net461\Nemiro.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -73,7 +76,9 @@
     <Reference Include="Reimers.Google.Map, Version=5.3.95.699, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Reimers.Google.Map.5.3.95.699\lib\Net40\Reimers.Google.Map.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -134,6 +139,7 @@
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
     </Content>
+    <Content Include="Auth\GoogleSignIn.aspx" />
     <Content Include="Content\bootstrap\js\dist\alert.js" />
     <Content Include="Content\bootstrap\js\dist\button.js" />
     <Content Include="Content\bootstrap\js\dist\carousel.js" />
@@ -267,6 +273,13 @@
       <DependentUpon>ViewReportedPosts.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Auth\GoogleSignIn.aspx.cs">
+      <DependentUpon>GoogleSignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auth\GoogleSignIn.aspx.designer.cs">
+      <DependentUpon>GoogleSignIn.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Base.Master.cs">
       <DependentUpon>Base.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

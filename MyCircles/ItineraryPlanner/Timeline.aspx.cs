@@ -76,10 +76,10 @@ namespace MyCircles.ItineraryPlanner
                 Itinerary retrieveSpecificItinerary = new Itinerary();
                 List<Itinerary> itineraryList = new List<Itinerary>();
 
-                itineraryList = retrieveSpecificItinerary.RetrieveItinerary(Id);
+                //itineraryList = retrieveSpecificItinerary.RetrieveItinerary(Id);
 
-                rpItinerary.DataSource = itineraryList;
-                rpItinerary.DataBind();
+                //rpItinerary.DataSource = itineraryList;
+                //rpItinerary.DataBind();
 
                 return true;
             }

@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using MyCircles.BLL;
-using Reimers.Google.Map;
 using static MyCircles.DAL.UserDAO;
 using MyCircles.DAL;
 using System.Configuration;
@@ -27,6 +26,8 @@ namespace MyCircles.Profile
 
             string requestedUsername = Request.QueryString["username"];
             requestedUser = GetUserByIdentifier(requestedUsername);
+
+            
 
             if (requestedUser == null) requestedUser = currentUser;
 
