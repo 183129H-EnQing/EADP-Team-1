@@ -1,25 +1,24 @@
 ﻿CREATE TABLE [dbo].[User] (
-    [Id]           INT           IDENTITY (1, 1) NOT NULL,
-    [Username]     NCHAR (20)    NOT NULL,
-    [EmailAddress] NCHAR (30)    NOT NULL,
-    [Password]     NCHAR (256)   NULL,
-    [Name]         NCHAR (20)    NOT NULL,
-    [Bio]          TEXT          NULL,
-    [Latitude]     FLOAT (53)    NULL,
-    [Longitude]    FLOAT (53)    NULL,
-    [City]         VARCHAR (MAX) NULL,
-    [ProfileImage] VARCHAR (MAX) NULL,
-    [HeaderImage]  VARCHAR (MAX) NULL,
-    [IsLoggedIn]   BIT           DEFAULT ((0)) NOT NULL,
-    [IsGoogleUser] BIT           DEFAULT ((0)) NOT NULL,
-    [IsPrivileged] BIT           DEFAULT ((0)) NOT NULL,
-    [IsDeleted]    BIT           DEFAULT ((0)) NOT NULL,
-	[IsEventHolder] BIT	         DEFAULT ((0)) NOT NULL, 
+    [Id]            INT           IDENTITY (1, 1) NOT NULL,
+    [Username]      NCHAR (20)    NOT NULL,
+    [EmailAddress]  NCHAR (30)    NOT NULL,
+    [Password]      NCHAR (256)   NULL,
+    [Name]          NCHAR (20)    NOT NULL,
+    [Bio]           TEXT          NULL,
+    [Latitude]      FLOAT (53)    NULL,
+    [Longitude]     FLOAT (53)    NULL,
+    [City]          VARCHAR (MAX) NULL,
+    [ProfileImage]  VARCHAR (MAX) NULL,
+    [HeaderImage]   VARCHAR (MAX) NULL,
+    [IsLoggedIn]    BIT           DEFAULT ((0)) NOT NULL,
+    [IsGoogleUser]  BIT           DEFAULT ((0)) NOT NULL,
+    [IsPrivileged]  BIT           DEFAULT ((0)) NOT NULL,
+    [IsDeleted]     BIT           DEFAULT ((0)) NOT NULL,
+    [IsEventHolder] BIT           DEFAULT ((0)) NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     UNIQUE NONCLUSTERED ([Username] ASC),
     UNIQUE NONCLUSTERED ([EmailAddress] ASC)
 );
-
 
 -- Circle Table (may change later)
 CREATE TABLE [dbo].[Circle] (
@@ -28,29 +27,26 @@ CREATE TABLE [dbo].[Circle] (
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
-
 -- UserCircle Table (also may change)
 CREATE TABLE [dbo].[UserCircles] (
     [Id]       INT NOT NULL,
     [UserId]   INT NOT NULL,
     [CircleId] INT NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_UserCircles_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id]),
-    CONSTRAINT [FK_UserCircles_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [dbo].[Circle] ([Id])
+    CONSTRAINT [FK_UserCircles_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [dbo].[Circle] ([Id]),
+    CONSTRAINT [FK_UserCircles_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
-
 
 -- Post Table
 CREATE TABLE [dbo].[Post] (
     [Id]      INT         IDENTITY (1, 1) NOT NULL,
     [Content] NCHAR (120) NOT NULL,
-    [Picture] IMAGE       NULL,
+    [Image]   IMAGE       NULL,
     [Comment] NCHAR (20)  NOT NULL,
     [UserId]  INT         NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Post_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
+    CONSTRAINT [FK_POST_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
-
 
 -- Notification Table
 CREATE TABLE [dbo].[Notification] (
@@ -65,7 +61,6 @@ CREATE TABLE [dbo].[Notification] (
     CONSTRAINT [FK_Notification_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
 
-
 -- Follow Table
 CREATE TABLE [dbo].[Follow] (
     [Id]          INT      IDENTITY (1, 1) NOT NULL,
@@ -78,7 +73,6 @@ CREATE TABLE [dbo].[Follow] (
     CONSTRAINT [FK_Following_ToUser] FOREIGN KEY ([FollowingId]) REFERENCES [dbo].[User] ([Id])
 );
 
-
 -- Mutuals Table
 CREATE TABLE [dbo].[Mutual] (
     [Id]      INT IDENTITY (1, 1) NOT NULL,
@@ -88,7 +82,6 @@ CREATE TABLE [dbo].[Mutual] (
     CONSTRAINT [FK_Mutual1_ToUser] FOREIGN KEY ([User1Id]) REFERENCES [dbo].[User] ([Id]),
     CONSTRAINT [FK_Mutual2_ToUser] FOREIGN KEY ([User2Id]) REFERENCES [dbo].[User] ([Id])
 );
-
 
 -- Event Table
 CREATE TABLE [dbo].[Event] (
@@ -122,65 +115,75 @@ CREATE TABLE [dbo].[SignUpEventDetails] (
 );
 
 -- Itinerary Table
-CREATE TABLE [dbo].[Itinerary]
-(
-	[itineraryId] INT NOT NULL PRIMARY KEY, 
-    [userId] INT NOT NULL, 
-    [startDate] NCHAR(10) NOT NULL, 
-    [endDate] NCHAR(10) NOT NULL, 
-    [groupSize]   INT NOT NULL
-)
+CREATE TABLE [dbo].[Itinerary] (
+    [itineraryId] INT        IDENTITY (1, 1) NOT NULL,
+    [userId]      INT        NOT NULL,
+    [startDate]   NCHAR (10) NOT NULL,
+    [endDate]     NCHAR (10) NOT NULL,
+    [groupSize]   NCHAR (10) NOT NULL,
+    PRIMARY KEY CLUSTERED ([itineraryId] ASC)
+);
 
 -- ItineraryPref Table
-CREATE TABLE [dbo].[ItineraryPref]
-(
-	[itineraryId] INT NOT NULL , 
-    [prefId] INT NOT NULL, 
-    PRIMARY KEY ([prefId])
-)
+CREATE TABLE [dbo].[ItineraryPref] (
+    [itineraryPrefId] INT NOT NULL,
+    [itineraryId]     INT NOT NULL,
+    [prefId]          INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([itineraryPrefId] ASC),
+    CONSTRAINT [FK_ItineraryPref_ToItinerary] FOREIGN KEY ([itineraryId]) REFERENCES [dbo].[Itinerary] ([itineraryId]),
+    CONSTRAINT [FK_ItineraryPref_ToPref] FOREIGN KEY ([prefId]) REFERENCES [dbo].[Pref] ([prefId])
+);
 
 -- Pref Table
-CREATE TABLE [dbo].[Pref]
-(
-	[prefId] INT NOT NULL PRIMARY KEY, 
-    [prefName] NCHAR(10) NOT NULL
-)
+CREATE TABLE [dbo].[Pref] (
+    [prefId]   INT        NOT NULL,
+    [prefName] NCHAR (20) NOT NULL,
+    PRIMARY KEY CLUSTERED ([prefId] ASC)
+);
 
 -- DayByDay Table
-CREATE TABLE [dbo].[DayByDay]
-(
-	[itineraryId] INT NOT NULL PRIMARY KEY, 
-	[dayByDayId] INT NOT NULL, 
-    [date] NCHAR(10) NOT NULL, 
-    [startTime] NCHAR(10) NOT NULL, 
-    [endTime] NCHAR(10) NOT NULL
-)
+CREATE TABLE [dbo].[DayByDay] (
+    [dayBydayId]  INT        IDENTITY (1, 1) NOT NULL,
+    [itineraryId] INT        NOT NULL,
+    [date]        NCHAR (10) NOT NULL,
+    [startTime]   NCHAR (10) NOT NULL,
+    [endTime]     NCHAR (10) NOT NULL,
+    [activityId]  INT        NOT NULL,
+    PRIMARY KEY CLUSTERED ([dayBydayId] ASC),
+    CONSTRAINT [FK_DayByDay_ToLocation] FOREIGN KEY ([activityId]) REFERENCES [dbo].[Location] ([locaId]),
+    CONSTRAINT [FK_DayByDay_ToItinerary] FOREIGN KEY ([itineraryId]) REFERENCES [dbo].[Itinerary] ([itineraryId])
+);
 
 -- Day Table
-CREATE TABLE [dbo].[Day]
-(
-	[dayByDayId] INT NOT NULL PRIMARY KEY, 
-    [timeStamp] NCHAR(10) NOT NULL, 
-    [activityId] INT NOT NULL
-)
+CREATE TABLE [dbo].[Day] (
+    [dayByDayId] INT        IDENTITY (1, 1) NOT NULL,
+    [date]       NCHAR (10) NOT NULL,
+    [timeStamp]  NCHAR (10) NOT NULL,
+    [activityId] INT        NOT NULL,
+    PRIMARY KEY CLUSTERED ([dayByDayId] ASC)
+);
 
 -- Day Table
-CREATE TABLE [dbo].[Activity]
-(
-	[activityId] INT NOT NULL PRIMARY KEY, 
-    [locaId] INT NOT NULL
-)
+CREATE TABLE [dbo].[Activity] (
+    [activityId]   INT          IDENTITY (1, 1) NOT NULL,
+    [activityName] VARCHAR (50) NULL,
+    [startTime]    TIME (7)     NULL,
+    [endTime]      TIME (7)     NULL,
+    [date]         DATE         NULL,
+    [locaId]       INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([activityId] ASC)
+);
 
 -- Location Table
 CREATE TABLE [dbo].[Location] (
-    [locaId]      INT        NOT NULL,
-	[landmarkType] NCHAR (20) NOT NULL,
-    [locaPic]     VARCHAR(MAX) NOT NULL,
-    [locaName]    NCHAR (50) NOT NULL,
-	[locaDesc]  NCHAR(100) NOT NULL,
-    [locaRating]  FLOAT NOT NULL,
-    [locaContact] INT NULL,
-    [locaWeb]     NCHAR (100) NULL,
+    [locaId]       INT           NOT NULL,
+    [landmarkType] NCHAR (20)    NOT NULL,
+    [locaPic]      VARCHAR (MAX) NOT NULL,
+    [locaName]     NCHAR (50)    NOT NULL,
+    [locaDesc]     NCHAR (500)   NOT NULL,
+    [locaRating]   FLOAT (53)    NOT NULL,
+    [locaContact]  INT           NULL,
+    [locaWeb]      NCHAR (100)   NULL,
     PRIMARY KEY CLUSTERED ([locaId] ASC)
 );
 
