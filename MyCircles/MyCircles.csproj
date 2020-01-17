@@ -133,7 +133,7 @@
   <ItemGroup>
     <Content Include="Admin\Home.aspx" />
     <Content Include="Admin\ViewReportedPosts.aspx" />
-    <Content Include="ajax.js" />
+    <Content Include="Scripts\ajax.js" />
     <Content Include="App_Data\CreateTables.sql" />
     <Content Include="App_Data\MyCircles.mdf" />
     <Content Include="App_Data\MyCircles_log.ldf">

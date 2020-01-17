@@ -47,5 +47,69 @@ namespace MyCircles
 
             return errMsg;
         }
+
+        public static IEnumerable<T> FindControls<T>(this Control control, bool recurse) where T : Control
+        {
+            List<T> found = new List<T>();
+            Action<Control> search = null;
+            search = ctrl =>
+            {
+                foreach (Control child in ctrl.Controls)
+                {
+                    if (typeof(T).IsAssignableFrom(child.GetType()))
+                    {
+                        found.Add((T)child);
+                    }
+                    if (recurse)
+                    {
+                        search(child);
+                    }
+                }
+            };
+            search(control);
+            return found;
+        }
+
+        public static IEnumerable<Control> FindControlByAttribute(this Control control, string key, string value)
+        {
+            var current = control as System.Web.UI.HtmlControls.HtmlControl;
+            if (current != null)
+            {
+                var k = current.Attributes[key];
+                if (k != null && k == value)
+                    yield return current;
+            }
+            if (control.HasControls())
+            {
+                foreach (Control c in control.Controls)
+                {
+                    foreach (Control item in c.FindControlByAttribute(key, value))
+                    {
+                        yield return item;
+                    }
+                }
+            }
+        }
+
+        public static IEnumerable<Control> GetTextBoxValueByAttribute(this Control control, string key, string value)
+        {
+            var current = control as System.Web.UI.HtmlControls.HtmlControl;
+            if (current != null)
+            {
+                var k = current.Attributes[key];
+                if (k != null && k == value)
+                    yield return current;
+            }
+            if (control.HasControls())
+            {
+                foreach (Control c in control.Controls)
+                {
+                    foreach (Control item in c.FindControlByAttribute(key, value))
+                    {
+                        yield return item;
+                    }
+                }
+            }
+        }
     }
 }

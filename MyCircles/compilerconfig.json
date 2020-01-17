@@ -6,5 +6,9 @@
   {
     "outputFile": "Content/bootstrap/js/dist/util.es5.js",
     "inputFile": "Content/bootstrap/js/dist/util.js"
+  },
+  {
+    "outputFile": "Content/bootstrap/scss/_variables.css",
+    "inputFile": "Content/bootstrap/scss/_variables.scss"
   }
 ]
