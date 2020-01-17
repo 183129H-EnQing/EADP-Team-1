@@ -18,8 +18,6 @@ namespace MyCircles.ItineraryPlanner
         protected void Page_Load(object sender, EventArgs e)
         {
             getExistingPlan();
-
-            
         }
 
         protected void btnSubmitPlan_Click(object sender, EventArgs e)
@@ -34,6 +32,31 @@ namespace MyCircles.ItineraryPlanner
 
             newItinerary.AddItinerary();
             Response.Write("<script> alert('Plan Created!');</script>");
+
+            if (cbBeaches.Checked)
+            {
+                int id = 1;
+            }
+            if (cbOutdoors.Checked)
+            {
+                int id = 2;
+            }
+            if (cbMuseums.Checked)
+            {
+                int id = 3;
+            }
+            if (cbHistoric.Checked)
+            {
+                int id = 4;
+            }
+            if (cbShopping.Checked)
+            {
+                int id = 5;
+            }
+            if (cbWildlife.Checked)
+            {
+                int id = 6;
+            }
 
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
