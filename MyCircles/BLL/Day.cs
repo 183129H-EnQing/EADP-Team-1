@@ -10,8 +10,11 @@ namespace MyCircles.BLL
     public partial class Day
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int dayByDayId { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string date { get; set; }
 
         [Required]
         [StringLength(10)]

@@ -54,14 +54,31 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis, Version=1.43.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.43.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleApi, Version=3.9.5.0, Culture=neutral, PublicKeyToken=781851e053b06e74, processorArchitecture=MSIL">
+      <HintPath>packages\GoogleApi.3.9.5\lib\net45\GoogleApi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Nemiro.OAuth, Version=1.13.0.2828, Culture=neutral, PublicKeyToken=cb06320e362d440b, processorArchitecture=MSIL">
+      <HintPath>packages\Nemiro.OAuth.1.13.0\lib\net461\Nemiro.OAuth.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Reimers.Core, Version=5.3.95.699, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Reimers.Core.5.3.95.699\lib\Net40\Reimers.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Reimers.Google.Map, Version=5.3.95.699, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Reimers.Google.Map.5.3.95.699\lib\Net40\Reimers.Google.Map.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -115,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Home.aspx" />
-    <Content Include="Admin\ManageEventHosts.aspx" />
     <Content Include="Admin\ViewReportedPosts.aspx" />
     <Content Include="ajax.js" />
     <Content Include="App_Data\CreateTables.sql" />
@@ -123,6 +139,7 @@
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
     </Content>
+    <Content Include="Auth\GoogleSignIn.aspx" />
     <Content Include="Content\bootstrap\js\dist\alert.js" />
     <Content Include="Content\bootstrap\js\dist\button.js" />
     <Content Include="Content\bootstrap\js\dist\carousel.js" />
@@ -212,6 +229,8 @@
     <Content Include="ItineraryPlanner\Map.aspx" />
     <Content Include="ItineraryPlanner\RequestFund.aspx" />
     <Content Include="ItineraryPlanner\Timeline.aspx" />
+    <Content Include="Profile\Chat.aspx" />
+    <Content Include="ItineraryPlanner\ViewLocation.aspx" />
     <Content Include="Profile\EditProfile.aspx" />
     <Content Include="Profile\FollowCircles.aspx" />
     <Content Include="Profile\User.aspx" />
@@ -246,13 +265,6 @@
     <Compile Include="Admin\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ManageEventHosts.aspx.cs">
-      <DependentUpon>ManageEventHosts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ManageEventHosts.aspx.designer.cs">
-      <DependentUpon>ManageEventHosts.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\ViewReportedPosts.aspx.cs">
       <DependentUpon>ViewReportedPosts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -261,6 +273,13 @@
       <DependentUpon>ViewReportedPosts.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Auth\GoogleSignIn.aspx.cs">
+      <DependentUpon>GoogleSignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auth\GoogleSignIn.aspx.designer.cs">
+      <DependentUpon>GoogleSignIn.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Base.Master.cs">
       <DependentUpon>Base.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -280,21 +299,26 @@
     <Compile Include="BLL\ItineraryPref.cs" />
     <Compile Include="BLL\Location.cs" />
     <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
+    <Compile Include="BLL\Model_Methods\EventDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
+    <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
     <Compile Include="BLL\Notification.cs" />
     <Compile Include="BLL\Post.cs" />
     <Compile Include="BLL\Pref.cs" />
+    <Compile Include="BLL\SignUpEventDetail.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\EventController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
+    <Compile Include="DAL\EventDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
     <Compile Include="DAL\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />
+    <Compile Include="DAL\LocationDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
     <Compile Include="DAL\PostDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
@@ -359,6 +383,20 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Chat.aspx.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Chat.aspx.designer.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\ViewLocation.aspx.cs">
+      <DependentUpon>ViewLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\ViewLocation.aspx.designer.cs">
+      <DependentUpon>ViewLocation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
@@ -553,6 +591,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\images\Shared\" />
     <Folder Include="Event\" />
   </ItemGroup>
   <PropertyGroup>

@@ -9,11 +9,20 @@ namespace MyCircles.BLL
     [Table("Pref")]
     public partial class Pref
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Pref()
+        {
+            ItineraryPrefs = new HashSet<ItineraryPref>();
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int prefId { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(20)]
         public string prefName { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItineraryPref> ItineraryPrefs { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyCircles.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,11 +11,18 @@ namespace MyCircles.ItineraryPlanner
     public partial class Timeline : System.Web.UI.Page
     {
         public string dayStr1;
+
+        Itinerary newItinerary = new Itinerary();
+        MyCirclesEntityModel db = new MyCirclesEntityModel();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("SomeText");
 
-            getMonthDate();
+            if (!GetExisting())
+            {
+                getMonthDate();
+            }
         }
 
         private void getMonthDate()
@@ -56,6 +64,46 @@ namespace MyCircles.ItineraryPlanner
             {
                 //lbMonth.Text = strMonth;
             }
+
+            AddDateToDB(sDate, eDate);
+        }
+
+        private bool GetExisting()
+        {
+            try
+            {
+                lbPlannerName.Text = Request.QueryString["Id"];
+                int Id = Convert.ToInt32(Request.QueryString["Id"]);
+
+                Itinerary retrieveSpecificItinerary = new Itinerary();
+                List<Itinerary> itineraryList = new List<Itinerary>();
+
+                //itineraryList = retrieveSpecificItinerary.RetrieveItinerary(Id);
+
+                //rpItinerary.DataSource = itineraryList;
+                //rpItinerary.DataBind();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void AddDateToDB(string start, string end)
+        {
+            string startDate = start;
+            string endDate = end;
+
+            //rmb add startdate to db
+            List<int> datesList = new List<int>();
+            for (var i = int.Parse(startDate) + 1; i < int.Parse(endDate); i++)
+            {
+                datesList.Add(i);
+                //add middle date to db
+            }
+            //add enddate to db
         }
     }
 }

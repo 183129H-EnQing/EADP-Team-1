@@ -8,10 +8,12 @@ using System.Web.Script.Serialization;
 using MyCircles.BLL;
 using static MyCircles.DAL.UserDAO;
 using MyCircles.DAL;
+using System.Configuration;
 
 namespace MyCircles.Profile
 {
     //TODO: Edit profile with messages if mutuals/don't show location on map
+    //TODO: Show whether or not user is online
 
     public partial class User : System.Web.UI.Page
     {
@@ -24,6 +26,8 @@ namespace MyCircles.Profile
 
             string requestedUsername = Request.QueryString["username"];
             requestedUser = GetUserByIdentifier(requestedUsername);
+
+            
 
             if (requestedUser == null) requestedUser = currentUser;
 
@@ -67,9 +71,9 @@ namespace MyCircles.Profile
             updateFollowButton();
         }
 
-        protected void btRefresh_Click(object sender, EventArgs e)
+        protected void btMessage_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Chat.aspx");
         }
 
         protected void updateFollowButton()

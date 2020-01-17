@@ -67,6 +67,7 @@
                 </div>
                 <div class="row mb-3">
                     <asp:Button ID="btnImportActivity" class="btn btn-lg" BackColor="Orange" runat="server" Text="Import Activity" ForeColor="White"  />
+                    <a href="ViewLocation.aspx" class="btn btn-lg" >Explore Locations</a>
                 </div>
                 <br /><br /><br />
                 <div class="row mb-3">
@@ -107,24 +108,24 @@
                         <div class="col-md-12">
                             <div class="row mb-3 border border-primary">
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox1" runat="server" Text="&nbsp culture" />
+                                    <asp:CheckBox ID="cbBeaches" runat="server" Text="&nbsp beaches" />
                                 </div>
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox2" runat="server" Text="&nbsp outdoors" />
+                                    <asp:CheckBox ID="cbOutdoors" runat="server" Text="&nbsp outdoors" />
                                 </div>
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox3" runat="server" Text="&nbsp relaxing" />
+                                    <asp:CheckBox ID="cbMuseums" runat="server" Text="&nbsp museums" />
                                 </div>
                             </div>
                             <div class="row mb-1 border border-primary">
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox4" runat="server" Text="&nbsp museums" />
+                                    <asp:CheckBox ID="cbHistoric" runat="server" Text="&nbsp historic" />
                                 </div>
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox5" runat="server" Text="&nbsp shoppping" />
+                                    <asp:CheckBox ID="cbShopping" runat="server" Text="&nbsp shoppping" />
                                 </div>
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox6" runat="server" Text="&nbsp wildlife" />
+                                    <asp:CheckBox ID="cbWildlife" runat="server" Text="&nbsp wildlife" />
                                 </div>
                             </div>
                         </div>
@@ -140,45 +141,21 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                     <div class="row mb-3">
-                    <div class="card mr-4" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>August Holiday Shopping</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
-                            <p class="card-text">Jan 11 - Jan 15</p>
-                            <p class="card-text">5 Youth</p>
-                            <a href="#" class="btn btn-primary">Click to view</a>
-                        </div>
-                    </div>
-                    <div class="card mr-4" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>August Holiday Shopping</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
-                            <p class="card-text">Jan 11 - Jan 15</p>
-                            <p class="card-text">5 Youth</p>
-                            <a href="#" class="btn btn-primary">Click to view</a>
-                        </div>
-                    </div>
-                        <div class="card mr-4" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>August Holiday Shopping</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
-                            <p class="card-text">Jan 11 - Jan 15</p>
-                            <p class="card-text">5 Youth</p>
-                            <a href="#" class="btn btn-primary">Click to view</a>
-                        </div>
-                    </div>
-                    <div class="card mr-4" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>August Holiday Shopping</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Created by user</h6>
-                            <p class="card-text">Jan 11 - Jan 15</p>
-                            <p class="card-text">5 Youth</p>
-                            <a href="#" class="btn btn-primary">Click to view</a>
-                        </div>
+                        <asp:Repeater ID="rpItinerary" runat="server" ItemType="MyCircles.BLL.Itinerary">
+                            <ItemTemplate>
+                                 <div class="card mr-4" style="width: 18rem;">
+                                    <img class="card-img-top" src="..." alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>August Holiday Shopping</b></h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Created by you</h6>
+                                        <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> - <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
+                                        <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %>Youth</p>
+                                        
+                                        <a href="Timeline.aspx?Id=<%#DataBinder.Eval(Container.DataItem, "itineraryId") %>" class="btn btn-primary">Click to view</a>
+                                    </div>
+                                </div>  
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
                 </div>
             </div>

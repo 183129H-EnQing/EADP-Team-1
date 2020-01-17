@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="User - MyCircles" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="User.aspx.cs" Inherits="MyCircles.Profile.User" %>
+<%@ Register assembly="Reimers.Google.Map" namespace="Reimers.Google.Map" TagPrefix="Reimers" %>
 
 <asp:Content ID="ProfileHead" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
 </asp:Content>
@@ -26,8 +27,7 @@
                 <asp:ScriptManager ID="FollowScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
                     <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-<%--                            <input id="btFollow" name="btFollow" class="btn btn-outline-primary float-right m-5" value="Follow" type="button" runat="server" />--%>
-                            <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" />
+                            <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click"  UseSubmitBehavior="false" />
                         </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="btFollow" EventName="Click" />        
@@ -43,6 +43,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false">People</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="false">Map</a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -75,13 +78,22 @@
                                     </div>
                                     <div class='col-md-3 button-container'>
                                         <asp:Button runat='server' Text='Following' CssClass='btn btn-primary float-right m-3 px-4' UserId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> UseSubmitBehavior="false" />
-                                        <asp:Button runat='server' Text='Message' CssClass='btn btn-outline-primary float-right m-3 px-4' UserId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> />
+                                        <asp:Button runat='server' Text='Message' CssClass='btn btn-outline-primary float-right m-3 px-4' UserId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> OnClick="btMessage_Click"  UseSubmitBehavior="false" />
                                     </div>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>
                         <h4 id="followWarning" class="text-center" runat="server">You have not followed any person yet</h4>
                     </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
+                <div id="mapsContainer" class="container py-5 px-7" runat="server">
+<%--                    <asp:UpdatePanel ID="MapUpdatePanel" runat="server">
+                        <ContentTemplate>
+                            <Reimers:Map ID="GMap" Width="500px" Height="400px" runat="server" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>--%>
                 </div>
             </div>
         </div>

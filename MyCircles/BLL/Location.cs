@@ -9,26 +9,39 @@ namespace MyCircles.BLL
     [Table("Location")]
     public partial class Location
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Location()
+        {
+            DayByDays = new HashSet<DayByDay>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int locaId { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(20)]
+        public string landmarkType { get; set; }
+
+        [Required]
         public string locaPic { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(50)]
         public string locaName { get; set; }
 
         [Required]
-        [StringLength(10)]
-        public string locaRating { get; set; }
+        [StringLength(500)]
+        public string locaDesc { get; set; }
 
-        [StringLength(10)]
-        public string locaContact { get; set; }
+        public double locaRating { get; set; }
 
-        [StringLength(10)]
+        public int? locaContact { get; set; }
+
+        [StringLength(100)]
         public string locaWeb { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DayByDay> DayByDays { get; set; }
     }
 }

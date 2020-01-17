@@ -27,6 +27,7 @@ namespace MyCircles.BLL
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Pref> Prefs { get; set; }
+        public virtual DbSet<SignUpEventDetail> SignUpEventDetails { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCircle> UserCircles { get; set; }
 
@@ -46,6 +47,10 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Day>()
+                .Property(e => e.date)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Day>()
                 .Property(e => e.timeStamp)
                 .IsFixedLength();
 
@@ -54,11 +59,7 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<DayByDay>()
-                .Property(e => e.startTime)
-                .IsFixedLength();
-
-            modelBuilder.Entity<DayByDay>()
-                .Property(e => e.endTime)
+                .Property(e => e.timeStamp)
                 .IsFixedLength();
 
             modelBuilder.Entity<Event>()
@@ -93,25 +94,45 @@ namespace MyCircles.BLL
                 .Property(e => e.endDate)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Itinerary>()
+                .Property(e => e.groupSize)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Itinerary>()
+                .HasMany(e => e.DayByDays)
+                .WithRequired(e => e.Itinerary)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Itinerary>()
+                .HasMany(e => e.ItineraryPrefs)
+                .WithRequired(e => e.Itinerary)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.landmarkType)
+                .IsFixedLength();
+
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaPic)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaName)
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
-                .Property(e => e.locaRating)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Location>()
-                .Property(e => e.locaContact)
+                .Property(e => e.locaDesc)
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaWeb)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .HasMany(e => e.DayByDays)
+                .WithRequired(e => e.Location)
+                .HasForeignKey(e => e.activityId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Type)
@@ -136,6 +157,27 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Pref>()
                 .Property(e => e.prefName)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Pref>()
+                .HasMany(e => e.ItineraryPrefs)
+                .WithRequired(e => e.Pref)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.contactNumber)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.numberOfBookingSlot)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.selectedEventToParticipate)
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)
@@ -184,11 +226,6 @@ namespace MyCircles.BLL
                 .HasMany(e => e.Follows1)
                 .WithRequired(e => e.User1)
                 .HasForeignKey(e => e.FollowingId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Itineraries)
-                .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()

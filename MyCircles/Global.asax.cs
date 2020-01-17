@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
 using System.Web.UI;
+using Nemiro.OAuth;
 
 namespace MyCircles
 {
@@ -17,8 +18,8 @@ namespace MyCircles
 
         void Application_Start(object sender, EventArgs e)
         {
-            // Code that runs on application startup
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
             ScriptManager.ScriptResourceMapping.AddDefinition("jquery",
                 new ScriptResourceDefinition
                 {
@@ -27,6 +28,14 @@ namespace MyCircles
                     CdnPath = "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js",
                     CdnDebugPath = "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"
                 }
+            );
+
+            OAuthManager.RegisterClient
+            (
+                "google",
+                "53457353296-4bvakretn744evl3j4rtvalj27tvb5us.apps.googleusercontent.com",
+                "zqzhoSebS9eZAJn7IhQiglDI",
+                "https://www.googleapis.com/auth/userinfo.profile"
             );
         }
     }
