@@ -17,13 +17,12 @@ namespace MyCircles
 
         protected void submitButt_Click(object sender, EventArgs e)
         {
-            Event newEventSignUpEventData = new Event();
+            SignUpEventDetail newEventSignUpEventData = new SignUpEventDetail();
 
-            newEventSignUpEventData.eventName = "hello";
-            newEventSignUpEventData.eventId = 1;
-            newEventSignUpEventData.eventDescription = "lol";
-            newEventSignUpEventData.eventEndDate = "lol";
-            newEventSignUpEventData.eventStartDate = "lol";
+            newEventSignUpEventData.name = "hello";
+            newEventSignUpEventData.contactNumber = "lol";
+            newEventSignUpEventData.date = System.Convert.ToDateTime("lol");
+            newEventSignUpEventData.numberOfBookingSlot = "1";
 
             newEventSignUpEventData.Add();
             Response.Redirect("ViewAllEventPage.aspx");

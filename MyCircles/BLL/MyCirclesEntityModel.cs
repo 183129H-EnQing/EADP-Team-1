@@ -17,7 +17,7 @@ namespace MyCircles.BLL
         public virtual DbSet<Circle> Circles { get; set; }
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<DayByDay> DayByDays { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<Event> SignUpEventDetail { get; set; }
         public virtual DbSet<EventCategory> EventCategories { get; set; }
         public virtual DbSet<Follow> Follows { get; set; }
         public virtual DbSet<Itinerary> Itineraries { get; set; }

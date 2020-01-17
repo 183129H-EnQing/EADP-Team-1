@@ -12,7 +12,7 @@ namespace MyCircles.DAL
         {
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
-                db.Events.Add(userSignUpDetails);
+                db.SignUpEventDetail.Add(userSignUpDetails);
                 db.SaveChanges();
             }
         }

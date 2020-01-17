@@ -289,6 +289,7 @@
     <Compile Include="BLL\Model_Methods\EventDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
     <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
+    <Compile Include="BLL\Model_Methods\SignUpEventDetailDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
@@ -307,6 +308,7 @@
     <Compile Include="DAL\ItineraryDAO.cs" />
     <Compile Include="DAL\LocationDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
+    <Compile Include="DAL\SignUpEventDetailDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
     <Compile Include="DAL\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
