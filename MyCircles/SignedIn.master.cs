@@ -21,6 +21,9 @@ namespace MyCircles
             ProfileLink.HRef = "Profile/User.aspx?username=" + currentUser.Username;
 
             ProfilePicNavImage.ImageUrl = currentUser.ProfileImage;
+
+            if (BLL.Admin.RetrieveAdmin(currentUser) != null)
+                adminLink.Visible = true;
         }
     }
 }
