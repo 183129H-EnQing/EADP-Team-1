@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles
-{
-
-
-    public partial class SignedIn
-    {
-
+namespace MyCircles {
+    
+    
+    public partial class SignedIn {
+        
         /// <summary>
         /// SignedInHeadPlaceholder control.
         /// </summary>
@@ -22,16 +20,7 @@ namespace MyCircles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder SignedInHeadPlaceholder;
-
-        /// <summary>
-        /// ProfileLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor ProfileLink;
-
+        
         /// <summary>
         /// ProfilePicNavImage control.
         /// </summary>
@@ -40,7 +29,16 @@ namespace MyCircles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ProfilePicNavImage;
-
+        
+        /// <summary>
+        /// ProfileLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ProfileLink;
+        
         /// <summary>
         /// SignedInContentPlaceholder control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace MyCircles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder SignedInContentPlaceholder;
-
+        
         /// <summary>
         /// SignedInDeferredScriptsPlaceholder control.
         /// </summary>
