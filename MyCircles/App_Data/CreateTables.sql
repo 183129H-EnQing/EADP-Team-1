@@ -100,6 +100,27 @@ CREATE TABLE [dbo].[Event] (
     PRIMARY KEY CLUSTERED ([eventId] ASC)
 );
 
+-- EventCategory Table
+CREATE TABLE [dbo].[EventCategory] (
+    [eventCategory]       INT          IDENTITY (1, 1) NOT NULL,
+    [categoryName]        VARCHAR (50) NULL,
+    [categoryDescription] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([eventCategory] ASC)
+);
+
+-- SignUpEventDetails Table
+CREATE TABLE [dbo].[SignUpEventDetails] (
+    [Id]                         INT           NOT NULL,
+    [name]                       VARCHAR (50)  NULL,
+    [date]                       DATE          NULL,
+    [contactNumber]              VARCHAR (8)   NULL,
+    [numberOfBookingSlot]        VARCHAR (1)   NULL,
+    [selectedEventToParticipate] VARCHAR (MAX) NULL,
+    [eventId]                    INT           NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [eventID_SignUpEventDetails_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId])
+);
+
 -- Itinerary Table
 CREATE TABLE [dbo].[Itinerary]
 (
