@@ -59,8 +59,12 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<DayByDay>()
-                .Property(e => e.timeStamp)
+                .Property(e => e.startTime)
                 .IsFixedLength();
+
+            modelBuilder.Entity<DayByDay>()
+               .Property(e => e.endTime)
+               .IsFixedLength();
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventName)
