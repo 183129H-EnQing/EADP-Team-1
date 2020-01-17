@@ -124,6 +124,29 @@ CREATE TABLE [dbo].[Itinerary] (
     PRIMARY KEY CLUSTERED ([itineraryId] ASC)
 );
 
+-- Pref Table
+CREATE TABLE [dbo].[Pref] (
+    [prefId]   INT        NOT NULL IDENTITY,
+    [prefName] NCHAR (20) NOT NULL,
+    PRIMARY KEY CLUSTERED ([prefId] ASC)
+);
+
+-- Location Table
+CREATE TABLE [dbo].[Location] (
+    [locaId]       INT           NOT NULL IDENTITY,
+    [landmarkType] INT    NOT NULL,
+    [locaPic]      VARCHAR (MAX) NOT NULL,
+    [locaName]     NCHAR (50)    NOT NULL,
+    [locaDesc]     NCHAR (500)   NOT NULL,
+    [locaRating]   DECIMAL(2, 1) NOT NULL,
+    [locaContact]  INT           NULL,
+    [locaWeb]      NCHAR (100)   NULL,
+	[locaOpenHour] NCHAR(10) NOT NULL, 
+    [locaCloseHour] NCHAR(10) NULL, 
+    PRIMARY KEY CLUSTERED ([locaId] ASC), 
+    CONSTRAINT [FK_Location_ToPref] FOREIGN KEY ([landmarkType]) REFERENCES [Pref]([prefId])
+);
+
 -- ItineraryPref Table
 CREATE TABLE [dbo].[ItineraryPref] (
     [itineraryPrefId] INT NOT NULL,
@@ -132,13 +155,6 @@ CREATE TABLE [dbo].[ItineraryPref] (
     PRIMARY KEY CLUSTERED ([itineraryPrefId] ASC),
     CONSTRAINT [FK_ItineraryPref_ToItinerary] FOREIGN KEY ([itineraryId]) REFERENCES [dbo].[Itinerary] ([itineraryId]),
     CONSTRAINT [FK_ItineraryPref_ToPref] FOREIGN KEY ([prefId]) REFERENCES [dbo].[Pref] ([prefId])
-);
-
--- Pref Table
-CREATE TABLE [dbo].[Pref] (
-    [prefId]   INT        NOT NULL,
-    [prefName] NCHAR (20) NOT NULL,
-    PRIMARY KEY CLUSTERED ([prefId] ASC)
 );
 
 -- DayByDay Table
@@ -165,26 +181,13 @@ CREATE TABLE [dbo].[Day] (
 
 -- Day Table
 CREATE TABLE [dbo].[Activity] (
-    [activityId]   INT          IDENTITY (1, 1) NOT NULL,
+    [activityId]   INT IDENTITY (1, 1) NOT NULL,
     [activityName] VARCHAR (50) NULL,
     [startTime]    TIME (7)     NULL,
     [endTime]      TIME (7)     NULL,
     [date]         DATE         NULL,
     [locaId]       INT          NOT NULL,
     PRIMARY KEY CLUSTERED ([activityId] ASC)
-);
-
--- Location Table
-CREATE TABLE [dbo].[Location] (
-    [locaId]       INT           NOT NULL,
-    [landmarkType] NCHAR (20)    NOT NULL,
-    [locaPic]      VARCHAR (MAX) NOT NULL,
-    [locaName]     NCHAR (50)    NOT NULL,
-    [locaDesc]     NCHAR (500)   NOT NULL,
-    [locaRating]   FLOAT (53)    NOT NULL,
-    [locaContact]  INT           NULL,
-    [locaWeb]      NCHAR (100)   NULL,
-    PRIMARY KEY CLUSTERED ([locaId] ASC)
 );
 
 -- Admin Table

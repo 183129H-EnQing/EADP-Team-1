@@ -30,6 +30,7 @@ namespace MyCircles.BLL
         public virtual DbSet<SignUpEventDetail> SignUpEventDetails { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCircle> UserCircles { get; set; }
+        public virtual DbSet<ReportedPost> ReportedPosts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -63,8 +64,8 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<DayByDay>()
-               .Property(e => e.endTime)
-               .IsFixedLength();
+                .Property(e => e.endTime)
+                .IsFixedLength();
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventName)
@@ -113,10 +114,6 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Location>()
-                .Property(e => e.landmarkType)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Location>()
                 .Property(e => e.locaPic)
                 .IsUnicode(false);
 
@@ -130,6 +127,14 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaWeb)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaOpenHour)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaCloseHour)
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
@@ -158,6 +163,11 @@ namespace MyCircles.BLL
                 .Property(e => e.Comment)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Post>()
+                .HasMany(e => e.ReportedPosts)
+                .WithRequired(e => e.Post)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Pref>()
                 .Property(e => e.prefName)
                 .IsFixedLength();
@@ -165,6 +175,12 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Pref>()
                 .HasMany(e => e.ItineraryPrefs)
                 .WithRequired(e => e.Pref)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Pref>()
+                .HasMany(e => e.Locations)
+                .WithRequired(e => e.Pref)
+                .HasForeignKey(e => e.landmarkType)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<SignUpEventDetail>()
@@ -258,6 +274,10 @@ namespace MyCircles.BLL
                 .HasMany(e => e.UserCircles)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ReportedPost>()
+                .Property(e => e.reason)
+                .IsUnicode(false);
         }
     }
 }

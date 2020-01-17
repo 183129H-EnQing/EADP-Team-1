@@ -13,9 +13,9 @@ namespace MyCircles.BLL
         public Pref()
         {
             ItineraryPrefs = new HashSet<ItineraryPref>();
+            Locations = new HashSet<Location>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int prefId { get; set; }
 
         [Required]
@@ -24,5 +24,8 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItineraryPref> ItineraryPrefs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Location> Locations { get; set; }
     }
 }

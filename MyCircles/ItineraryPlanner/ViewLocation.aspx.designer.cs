@@ -31,31 +31,49 @@ namespace MyCircles.ItineraryPlanner {
         protected global::System.Web.UI.WebControls.Label lbPlannerName;
         
         /// <summary>
-        /// lbMonth control.
+        /// cbBeaches control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMonth;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbBeaches;
         
         /// <summary>
-        /// aStartDate control.
+        /// cbOutdoors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor aStartDate;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbOutdoors;
         
         /// <summary>
-        /// aEndDate control.
+        /// cbMuseums control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor aEndDate;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbMuseums;
+        
+        /// <summary>
+        /// cbHistoricSites control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbHistoricSites;
+        
+        /// <summary>
+        /// cbShopping control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbShopping;
         
         /// <summary>
         /// rpLocation control.

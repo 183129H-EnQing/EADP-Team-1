@@ -17,5 +17,15 @@ namespace MyCircles.DAL
                 return allLocaList;
             }
         }
+
+        public List<Location> LocaListByTag()
+        {
+            List<Location> locaListByTag = new List<Location>();
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                //locaListByTag = db.Locations.Where();
+                return locaListByTag;
+            }
+        }
     }
 }
