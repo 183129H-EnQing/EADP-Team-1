@@ -38,9 +38,9 @@
             <div class="col-md-8">
                 <asp:Repeater ID="rpLocation" runat="server" ItemType="MyCircles.BLL.Location">
                     <ItemTemplate>
-                        <div class="row border border-primary">
+                        <div class="row border border-primary mb-3">
                              <div class="row pt-3 pl-3">
-                                <div class="col-md-1 mr-5 col-sm-12">
+                                <div class="col-md-1 mr-5 col-sm-1">
                                     <h6>Opening Hours </h6>
                                     <h4><%#DataBinder.Eval(Container.DataItem, "locaOpenHour") %></h4> <br />
                                     <h4><%#DataBinder.Eval(Container.DataItem, "locaCloseHour") %></h4>

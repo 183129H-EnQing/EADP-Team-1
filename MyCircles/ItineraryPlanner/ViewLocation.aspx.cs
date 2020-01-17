@@ -14,7 +14,6 @@ namespace MyCircles.ItineraryPlanner
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             Location location = new Location();
             List<Location> locationList = new List<Location>();
 
@@ -51,6 +50,10 @@ namespace MyCircles.ItineraryPlanner
 
                 rpLocation.DataSource = locationTagList;
                 rpLocation.DataBind();
+            }
+            else
+            {
+
             }
         }
     }
