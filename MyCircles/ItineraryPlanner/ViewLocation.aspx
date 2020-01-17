@@ -13,28 +13,26 @@
                 </div>
                 <br />
                 <div class="row">
-                    <h4>Activity Type</h4> 
+                    <h4>Activity Type</h4>
                 </div>
                 <div class="row">
-
+                    <asp:CheckBox ID="chbBeaches" runat="server" Text="Beaches" AutoPostBack="true" OnCheckedChanged="chbBeaches_CheckedChanged"/>
+                    <label><input type="checkbox" id="cbBeaches" value="1" class="mr-2" runat="server" AutoPostBack="true" OnCheckedChanged="landMarkBeaches()">Beaches</label>
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbBeaches" value="other" class="mr-2" runat="server">Beaches</label>
+                    <label><input type="checkbox" id="cbOutdoors" class="mr-2" runat="server">Outdoors</label>
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbOutdoors" value="other" class="mr-2" runat="server">Outdoors</label>
+                    <label><input type="checkbox" id="cbMuseums" class="mr-2" runat="server">Museums</label>
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbMuseums" value="other" class="mr-2" runat="server">Museums</label>
+                    <label><input type="checkbox" id="cbHistoricSites" class="mr-2" runat="server">Historic Sites</label>
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbHistoricSites" value="other" class="mr-2" runat="server">Historic Sites</label>
+                    <label><input type="checkbox" id="cbShopping" class="mr-2" runat="server">Shopping</label>
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbShopping" value="other" class="mr-2" runat="server">Shopping</label>
-                </div>
-                <div class="row">
-                    <label><input type="checkbox" id="cbWildlifeArea" value="other" class="mr-2" >Wildlife Area</label>
+                    <label><input type="checkbox" id="cbWildlifeArea" class="mr-2" >Wildlife Area</label>
                 </div>
             </div>
             <div class="col-md-8">
