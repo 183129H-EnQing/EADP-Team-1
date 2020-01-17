@@ -163,7 +163,6 @@ CREATE TABLE [dbo].[Location] (
     PRIMARY KEY CLUSTERED ([locaId] ASC)
 );
 
-
 -- Admin Table
 CREATE TABLE [dbo].[Admin] (
     [Id]     INT IDENTITY (1, 1) NOT NULL,
@@ -171,3 +170,12 @@ CREATE TABLE [dbo].[Admin] (
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Admin_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
+
+-- ReportedPosts Table
+CREATE TABLE [dbo].[ReportedPosts]
+(
+    [Id] INT IDENTITY (1, 1) NOT NULL, 
+    [reason] VARCHAR(MAX) NOT NULL, 
+    [postId] INT NOT NULL, 
+    CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [Post]([Id]),
+)

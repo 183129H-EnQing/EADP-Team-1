@@ -1,5 +1,5 @@
 bin
 obj
 .vs
-.mdf
-.ldf
+./MyCircles/*/.mdf
+./MyCircles/*/.ldf
