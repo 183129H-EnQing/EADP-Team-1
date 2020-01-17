@@ -103,58 +103,58 @@ namespace MyCircles.ItineraryPlanner {
         protected global::System.Web.UI.WebControls.TextBox tbNoPeople;
         
         /// <summary>
-        /// CheckBox1 control.
+        /// cbBeaches control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+        protected global::System.Web.UI.WebControls.CheckBox cbBeaches;
         
         /// <summary>
-        /// CheckBox2 control.
+        /// cbOutdoors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
+        protected global::System.Web.UI.WebControls.CheckBox cbOutdoors;
         
         /// <summary>
-        /// CheckBox3 control.
+        /// cbMuseums control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
+        protected global::System.Web.UI.WebControls.CheckBox cbMuseums;
         
         /// <summary>
-        /// CheckBox4 control.
+        /// cbHistoric control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox4;
+        protected global::System.Web.UI.WebControls.CheckBox cbHistoric;
         
         /// <summary>
-        /// CheckBox5 control.
+        /// cbShopping control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox5;
+        protected global::System.Web.UI.WebControls.CheckBox cbShopping;
         
         /// <summary>
-        /// CheckBox6 control.
+        /// cbWildlife control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox6;
+        protected global::System.Web.UI.WebControls.CheckBox cbWildlife;
         
         /// <summary>
         /// btnSubmitPlan control.

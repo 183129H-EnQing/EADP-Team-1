@@ -54,9 +54,13 @@ namespace MyCircles.BLL
 
         public bool IsLoggedIn { get; set; }
 
+        public bool IsGoogleUser { get; set; }
+
         public bool IsPrivileged { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public bool IsEventHolder { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Admin> Admins { get; set; }

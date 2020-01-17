@@ -9,6 +9,12 @@ namespace MyCircles.BLL
     [Table("Post")]
     public partial class Post
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Post()
+        {
+            ReportedPosts = new HashSet<ReportedPost>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -25,5 +31,8 @@ namespace MyCircles.BLL
         public int UserId { get; set; }
 
         public virtual User User { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReportedPost> ReportedPosts { get; set; }
     }
 }

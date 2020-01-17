@@ -108,24 +108,24 @@
                         <div class="col-md-12">
                             <div class="row mb-3 border border-primary">
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox1" runat="server" Text="&nbsp culture" />
+                                    <asp:CheckBox ID="cbBeaches" runat="server" Text="&nbsp beaches" />
                                 </div>
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox2" runat="server" Text="&nbsp outdoors" />
+                                    <asp:CheckBox ID="cbOutdoors" runat="server" Text="&nbsp outdoors" />
                                 </div>
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox3" runat="server" Text="&nbsp relaxing" />
+                                    <asp:CheckBox ID="cbMuseums" runat="server" Text="&nbsp museums" />
                                 </div>
                             </div>
                             <div class="row mb-1 border border-primary">
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox4" runat="server" Text="&nbsp museums" />
+                                    <asp:CheckBox ID="cbHistoric" runat="server" Text="&nbsp historic" />
                                 </div>
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox5" runat="server" Text="&nbsp shoppping" />
+                                    <asp:CheckBox ID="cbShopping" runat="server" Text="&nbsp shoppping" />
                                 </div>
                                 <div class="col-md-4 border border-primary">
-                                    <asp:CheckBox ID="CheckBox6" runat="server" Text="&nbsp wildlife" />
+                                    <asp:CheckBox ID="cbWildlife" runat="server" Text="&nbsp wildlife" />
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,8 @@
                                         <h6 class="card-subtitle mb-2 text-muted">Created by you</h6>
                                         <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> - <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
                                         <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %>Youth</p>
-                                        <a href="Timeline.aspx" class="btn btn-primary">Click to view</a>
+                                        
+                                        <a href="Timeline.aspx?Id=<%#DataBinder.Eval(Container.DataItem, "itineraryId") %>" class="btn btn-primary">Click to view</a>
                                     </div>
                                 </div>  
                             </ItemTemplate>

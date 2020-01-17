@@ -39,6 +39,15 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void AddGoogleUser(User newUser)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Users.Add(newUser);
+                db.SaveChanges();
+            }
+        }
+
         public static User GetUserByIdentifier(string identifier)
         {
             User user = new User();
@@ -70,12 +79,18 @@ namespace MyCircles.DAL
 
                 if (user != null)
                 {
-                    if (!Crypto.VerifyHashedPassword(user.Password, testUser.Password))
+                    if (!user.IsGoogleUser)
                     {
-                        user = null;
-                        throw new ArgumentException("That password is not correct");
+                        if (!Crypto.VerifyHashedPassword(user.Password, testUser.Password))
+                        {
+                            user = null;
+                            throw new ArgumentException("That password is not correct");
+                        } 
                     }
-
+                    else
+                    {
+                        throw new ArgumentException("Please sign in using your existing Google account");
+                    }
                 }
                 else
                 {

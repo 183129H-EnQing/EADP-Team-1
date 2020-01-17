@@ -23,5 +23,35 @@ namespace MyCircles.ItineraryPlanner
             rpLocation.DataSource = locationList;
             rpLocation.DataBind();
         }
+
+        protected void landMarkBeaches(object sender, EventArgs e)
+        {
+            if (cbBeaches.Checked)
+            {
+                Location locationTag = new Location();
+                List<Location> locationTagList = new List<Location>();
+
+                int tagId = int.Parse(cbBeaches.Value);
+                locationTagList = locationTag.RetrieveByTag(tagId);
+
+                rpLocation.DataSource = locationTagList;
+                rpLocation.DataBind();
+            }
+        }
+
+        protected void chbBeaches_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBeaches.Checked == true)
+            {
+                Location locationTag = new Location();
+                List<Location> locationTagList = new List<Location>();
+
+                //int tagId = int.Parse(cbBeaches.Value);
+                locationTagList = locationTag.RetrieveByTag(1);
+
+                rpLocation.DataSource = locationTagList;
+                rpLocation.DataBind();
+            }
+        }
     }
 }

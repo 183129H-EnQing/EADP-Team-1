@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using MyCircles.BLL;
-using Reimers.Google.Map;
 using static MyCircles.DAL.UserDAO;
 using MyCircles.DAL;
 using System.Configuration;
@@ -14,6 +13,7 @@ using System.Configuration;
 namespace MyCircles.Profile
 {
     //TODO: Edit profile with messages if mutuals/don't show location on map
+    //TODO: Show whether or not user is online
 
     public partial class User : System.Web.UI.Page
     {
@@ -26,6 +26,8 @@ namespace MyCircles.Profile
 
             string requestedUsername = Request.QueryString["username"];
             requestedUser = GetUserByIdentifier(requestedUsername);
+
+            
 
             if (requestedUser == null) requestedUser = currentUser;
 
@@ -55,22 +57,6 @@ namespace MyCircles.Profile
                 updateFollowButton();
 
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
-            }
-
-            GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
-
-            if (currentUser.Latitude != null || currentUser.Longitude != null)
-            {
-                LatLng currentPos = new LatLng();
-                double currentLat = (this.currentUser.Latitude.HasValue) ? this.currentUser.Latitude.Value : 0;
-                double currentLng = (this.currentUser.Longitude.HasValue) ? this.currentUser.Longitude.Value : 0;
-
-                currentPos.Latitude = currentLat;
-                currentPos.Longitude = currentLng;
-                if (!Page.IsPostBack)  GMap.Center = currentPos;
-                var marker = new Marker(currentPos);
-
-                GMap.Overlays.Add(marker);
             }
         }
 
