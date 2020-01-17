@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyCircles.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -39,8 +40,20 @@ namespace MyCircles.Home
 
         protected void btnPost_Click(object sender, EventArgs e)
         {
+            var newPost = new BLL.Post();
+            newPost.Content = LPost.Text;
             mypost.Visible = true;
+            newPost.UserId = currentUser.Id;
             LPost.Text = activity.Text;
+            PostDAO.AddPost(newPost);
         }
+
+        protected void Btncircle_Click(object sender, EventArgs e)
+        {
+          
+           
+        }
+
+
     }
 }

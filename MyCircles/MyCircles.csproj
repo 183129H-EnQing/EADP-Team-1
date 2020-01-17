@@ -296,6 +296,7 @@
     <Compile Include="DAL\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
+    <Compile Include="DAL\PostDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
     <Compile Include="DAL\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
