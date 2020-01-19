@@ -27,6 +27,8 @@ namespace MyCircles.BLL
 
         public int activityId { get; set; }
 
+        public virtual Itinerary Itinerary { get; set; }
+
         public virtual Location Location { get; set; }
     }
 }

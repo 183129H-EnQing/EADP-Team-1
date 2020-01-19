@@ -16,6 +16,8 @@ namespace MyCircles.BLL
 
         public int prefId { get; set; }
 
+        public virtual Itinerary Itinerary { get; set; }
+
         public virtual Pref Pref { get; set; }
     }
 }

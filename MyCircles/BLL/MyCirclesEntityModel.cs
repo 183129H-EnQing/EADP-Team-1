@@ -127,6 +127,16 @@ namespace MyCircles.BLL
                 .Property(e => e.groupSize)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Itinerary>()
+                .HasMany(e => e.DayByDays)
+                .WithRequired(e => e.Itinerary)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Itinerary>()
+                .HasMany(e => e.ItineraryPrefs)
+                .WithRequired(e => e.Itinerary)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaPic)
                 .IsUnicode(false);
