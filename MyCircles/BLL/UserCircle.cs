@@ -8,6 +8,7 @@ namespace MyCircles.BLL
 
     public partial class UserCircle
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public int UserId { get; set; }

@@ -139,7 +139,6 @@
     </Content>
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="Scripts\ajax.js" />
-    <Content Include="App_Data\CreateTables.sql" />
     <Content Include="Auth\GoogleSignIn.aspx" />
     <Content Include="Content\bootstrap\js\dist\alert.js" />
     <Content Include="Content\bootstrap\js\dist\button.js" />
@@ -294,7 +293,7 @@
     <Compile Include="BLL\Day.cs" />
     <Compile Include="BLL\DayByDay.cs" />
     <Compile Include="BLL\Event.cs" />
-    <Compile Include="BLL\EventCategory.cs" />
+    <Compile Include="BLL\EventSchedule.cs" />
     <Compile Include="BLL\Follow.cs" />
     <Compile Include="BLL\Itinerary.cs" />
     <Compile Include="BLL\ItineraryPref.cs" />
@@ -312,6 +311,7 @@
     <Compile Include="BLL\Pref.cs" />
     <Compile Include="BLL\ReportedPost.cs" />
     <Compile Include="BLL\SignUpEventDetail.cs" />
+    <Compile Include="BLL\Table.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\EventController.cs" />

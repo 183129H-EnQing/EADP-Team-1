@@ -85,20 +85,29 @@ CREATE TABLE [dbo].[Mutual] (
 
 -- Event Table
 CREATE TABLE [dbo].[Event] (
-    [eventId]          INT        IDENTITY (1, 1) NOT NULL,
-    [eventName]        NCHAR (50) NULL,
-    [eventDescription] NCHAR (50) NULL,
-    [eventStartDate]   NCHAR (50) NULL,
-    [eventEndDate]     NCHAR (50) NULL,
+    [eventId]          INT           IDENTITY (1, 1) NOT NULL,
+    [eventName]        NCHAR (50)    NULL,
+    [eventDescription] NCHAR (50)    NULL,
+    [eventStartDate]   NCHAR (50)    NULL,
+    [eventEndDate]     NCHAR (50)    NULL,
+    [eventCategory]    NCHAR (50)    NULL,
+    [eventHolderName]  NCHAR (50)    NULL,
+    [eventImage]       VARCHAR (MAX) NULL,
     PRIMARY KEY CLUSTERED ([eventId] ASC)
 );
 
--- EventCategory Table
-CREATE TABLE [dbo].[EventCategory] (
-    [eventCategory]       INT          IDENTITY (1, 1) NOT NULL,
-    [categoryName]        VARCHAR (50) NULL,
-    [categoryDescription] VARCHAR (50) NULL,
-    PRIMARY KEY CLUSTERED ([eventCategory] ASC)
+-- EventSchedule Table
+CREATE TABLE [dbo].[EventSchedule] (
+    [eventScheduleID]  INT            IDENTITY (1, 1) NOT NULL,
+    [eventDescription] NVARCHAR (50)  NULL,
+    [startDate]        NCHAR (10)     NULL,
+    [startTime]        NCHAR (10)     NULL,
+    [endTime]          NCHAR (10)     NULL,
+    [endDate]          NCHAR (10)     NULL,
+    [eventActivity]    NVARCHAR (MAX) NULL,
+    [eventId]          INT            NULL,
+    PRIMARY KEY CLUSTERED ([eventScheduleID] ASC),
+    CONSTRAINT [eventId_EventSchedule_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId])
 );
 
 -- SignUpEventDetails Table

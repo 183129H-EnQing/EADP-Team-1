@@ -17,8 +17,8 @@ namespace MyCircles.BLL
         public virtual DbSet<Circle> Circles { get; set; }
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<DayByDay> DayByDays { get; set; }
-        public virtual DbSet<Event> SignUpEventDetail { get; set; }
-        public virtual DbSet<EventCategory> EventCategories { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<EventSchedule> EventSchedules { get; set; }
         public virtual DbSet<Follow> Follows { get; set; }
         public virtual DbSet<Itinerary> Itineraries { get; set; }
         public virtual DbSet<ItineraryPref> ItineraryPrefs { get; set; }
@@ -28,6 +28,7 @@ namespace MyCircles.BLL
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Pref> Prefs { get; set; }
         public virtual DbSet<SignUpEventDetail> SignUpEventDetails { get; set; }
+        public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCircle> UserCircles { get; set; }
         public virtual DbSet<ReportedPost> ReportedPosts { get; set; }
@@ -83,13 +84,33 @@ namespace MyCircles.BLL
                 .Property(e => e.eventEndDate)
                 .IsFixedLength();
 
-            modelBuilder.Entity<EventCategory>()
-                .Property(e => e.categoryName)
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventCategory)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventHolderName)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventImage)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<EventCategory>()
-                .Property(e => e.categoryDescription)
-                .IsUnicode(false);
+            modelBuilder.Entity<EventSchedule>()
+                .Property(e => e.startDate)
+                .IsFixedLength();
+
+            modelBuilder.Entity<EventSchedule>()
+                .Property(e => e.startTime)
+                .IsFixedLength();
+
+            modelBuilder.Entity<EventSchedule>()
+                .Property(e => e.endTime)
+                .IsFixedLength();
+
+            modelBuilder.Entity<EventSchedule>()
+                .Property(e => e.endDate)
+                .IsFixedLength();
 
             modelBuilder.Entity<Itinerary>()
                 .Property(e => e.startDate)
@@ -124,6 +145,10 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaDesc)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaRating)
+                .HasPrecision(2, 1);
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaWeb)

@@ -8,13 +8,16 @@ namespace MyCircles.DAL
 {
     public class EventDAO
     {
-        public static void AddEventSignUp(BLL.Event userSignUpDetails)
+
+        public static List<Event> GetAllEvent()
         {
+            List<Event> eventList = new List<Event>();
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
-                db.SignUpEventDetail.Add(userSignUpDetails);
-                db.SaveChanges();
+                eventList = db.Events.ToList();
+                return eventList;
             }
         }
+
     }
 }

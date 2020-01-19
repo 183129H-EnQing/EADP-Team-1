@@ -21,15 +21,15 @@ namespace MyCircles.BLL
         public int userId { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(10)]
         public string startDate { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(10)]
         public string endDate { get; set; }
 
         [Required]
-        [StringLength(3)]
+        [StringLength(10)]
         public string groupSize { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

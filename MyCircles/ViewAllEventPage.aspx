@@ -109,25 +109,35 @@
                      <%--    <% for (int i = 0; i < 5; i++) { %> 
                              <h1><%= hello %></h1>  
                             <% } %>  --%>
-                      
-                            <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-                                <a href="/ViewEventDetails.aspx">
-                                <div class="card card-body" runat="server" id="event1">
-                                 
-                               
+            <% foreach (var singleEvent in MyCircles.BLL.Event.GetEvent()) { %>
+                                  <%--<p id="hello+<%=singleEvent.eventId %>")"><%=singleEvent.eventEndDate%> </p>
+                --%>
+                              <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                                <a href="/ViewEventDetails.aspx"> 
+                                <div class="card card-body" id="Div1">
                                     <div class="row">
                                         <div class="col-sm-3 col-md-12">
+                                            <!-- event image -->
                                                <img src="Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
                                         </div>
                                         <div class="col-sm-9 col-md-12 col-lg-12">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <span class="EventTitle">NYP IT TALK</span>
+                                            <!-- event title -->
+                                                    <span class="EventTitle"><%=singleEvent.eventName%></span>
                                                 </div>
                                              </div>
                                              <div class="row">
                                                 <div class="col-12">
-                                                     <span class="eventDate">29 Nov - 01 Dec 2019</span>
+                                                     <span class="eventDate">
+                                                         <!-- singleEvent.eventEndDate == ""abit lousy-->
+                                                         <%if (singleEvent.eventEndDate == null || singleEvent.eventEndDate == "" || (singleEvent.eventEndDate == singleEvent.eventStartDate)){ %>
+                                                                 <%=singleEvent.eventStartDate%>
+                                                         <%} %>
+                                                         <%else { %>
+                                                                 <%=singleEvent.eventStartDate%> - <%=singleEvent.eventEndDate%>
+                                                         <%} %>
+                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -144,64 +154,8 @@
                                 </div>
                                         </a>
                             </div>
-
-                            <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-                                <div class="card card-body">
-                                    <div class="row">
-                                        <div class="col-sm-3 col-md-12">
-                                               <img src="Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
-                                        </div>
-                                        <div class="col-sm-9 col-md-12 col-lg-12">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <span class="EventTitle">NYP IT TALK</span>
-                                                </div>
-                                             </div>
-                                             <div class="row">
-                                                <div class="col-12">
-                                                     <span class="eventDate">29 Nov - 01 Dec 2019</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                     <span class="eventOrganiser">By Nanyang polytechnic</span>
-                                                </div>
-                                            </div> 
-
-                                        </div>
-                                    </div>                             
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-                                <div class="card card-body">
-                                    <div class="row">
-                                        <div class="col-sm-3 col-md-12">
-                                               <img src="Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
-                                        </div>
-                                       
-                                        <div class="col-sm-9 col-md-12 col-lg-12">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <span class="EventTitle">NYP IT TALK</span>
-                                                </div>
-                                             </div>
-                                             <div class="row">
-                                                <div class="col-12">
-                                                     <span class="eventDate">29 Nov - 01 Dec 2019</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                     <span class="eventOrganiser">By Nanyang polytechnic</span>
-                                                </div>
-                                            </div> 
-
-                                        </div>
-                                    </div>                             
-                                </div>
-                            </div>
-
+                            <%} %>
+                                        
                         </div>
 
                     </div>
