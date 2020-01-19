@@ -216,6 +216,10 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.date)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
                 .Property(e => e.contactNumber)
                 .IsUnicode(false);
 

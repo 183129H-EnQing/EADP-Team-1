@@ -13,13 +13,49 @@ namespace MyCircles {
     public partial class SignUpFreeEventPage {
         
         /// <summary>
-        /// TextBox1 control.
+        /// nameTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox nameTB;
+        
+        /// <summary>
+        /// dateDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dateDDL;
+        
+        /// <summary>
+        /// contactNumberTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox contactNumberTB;
+        
+        /// <summary>
+        /// NumberOfBookingSlotsDLL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList NumberOfBookingSlotsDLL;
+        
+        /// <summary>
+        /// optIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox optIn;
         
         /// <summary>
         /// submitButt control.

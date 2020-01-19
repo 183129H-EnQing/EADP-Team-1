@@ -14,8 +14,8 @@ namespace MyCircles.BLL
         [StringLength(50)]
         public string name { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? date { get; set; }
+        [StringLength(50)]
+        public string date { get; set; }
 
         [StringLength(8)]
         public string contactNumber { get; set; }

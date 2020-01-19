@@ -114,7 +114,7 @@ CREATE TABLE [dbo].[EventSchedule] (
 CREATE TABLE [dbo].[SignUpEventDetails] (
     [Id]                         INT           NOT NULL,
     [name]                       VARCHAR (50)  NULL,
-    [date]                       DATE          NULL,
+    [date]                       VARCHAR (50)  NULL,
     [contactNumber]              VARCHAR (8)   NULL,
     [numberOfBookingSlot]        VARCHAR (1)   NULL,
     [selectedEventToParticipate] VARCHAR (MAX) NULL,
