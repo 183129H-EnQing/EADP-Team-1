@@ -34,6 +34,43 @@ namespace MyCircles.ItineraryPlanner
             rpLocation.DataBind();
         }
 
+        private void selectItemTagS()
+        {
+            string tagId = "";
+
+            if (chbBeaches.Checked == true)
+            {
+                tagId += "1";
+            }
+            if (chbOutdoors.Checked == true)
+            {
+                tagId += "2";
+            }
+            if (chbMuseums.Checked == true)
+            {
+                tagId += "3";
+            }
+            if (chbHistoric.Checked == true)
+            {
+                tagId += "4";
+            }
+            if (chbShopping.Checked == true)
+            {
+                tagId += "5";
+            }
+            if (chbWildlife.Checked == true)
+            {
+                tagId += "6";
+            }
+            Location locationTag = new Location();
+            List<Location> locationTagList = new List<Location>();
+
+            //locationTagList = locationTag.RetrieveByTag(tagId);
+
+            rpLocation.DataSource = locationTagList;
+            rpLocation.DataBind();
+        }
+
         protected void chbBeaches_CheckedChanged(object sender, EventArgs e)
         {
             if (chbBeaches.Checked == true)
@@ -44,7 +81,7 @@ namespace MyCircles.ItineraryPlanner
 
         protected void chbOutdoors_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbBeaches.Checked == true)
+            if (chbOutdoors.Checked == true)
             {
                 selectItemTag(2);
             }
@@ -60,7 +97,7 @@ namespace MyCircles.ItineraryPlanner
 
         protected void chbHistoric_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbShopping.Checked == true)
+            if (chbHistoric.Checked == true)
             {
                 selectItemTag(4);
             }
