@@ -40,7 +40,7 @@ namespace MyCircles.ItineraryPlanner
 
         protected void chbBeaches_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbBeaches.Checked == true)
+            if (chbBeaches.Checked == true)
             {
                 Location locationTag = new Location();
                 List<Location> locationTagList = new List<Location>();
