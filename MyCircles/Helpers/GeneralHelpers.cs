@@ -33,15 +33,27 @@ namespace MyCircles
             page.Validators.Add(err);
         }
 
-        public static string GetFirstValidationError(ValidatorCollection validators)
+        public static string GetFirstValidationError(ValidatorCollection validators, string validatorGroup = null)
         {
             string errMsg = null;
 
-            foreach (IValidator validator in validators)
+            foreach (BaseValidator validator in validators)
             {
-                if (!validator.IsValid) {
-                    errMsg = validator.ErrorMessage;
-                    break;
+                if (String.IsNullOrEmpty(validatorGroup))
+                {
+                    if (!validator.IsValid)
+                    {
+                        errMsg = validator.ErrorMessage;
+                        break;
+                    }
+                }
+                else
+                {
+                    if (!validator.IsValid && validator.ValidationGroup == validatorGroup)
+                    {
+                        errMsg = validator.ErrorMessage;
+                        break;
+                    }
                 }
             }
 

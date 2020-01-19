@@ -78,13 +78,13 @@ namespace MyCircles.Profile
         protected global::System.Web.UI.WebControls.TextBox tbCircleInput;
 
         /// <summary>
-        /// addCirclesErrorContainer control.
+        /// signedOutErrorContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl addCirclesErrorContainer;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl signedOutErrorContainer;
 
         /// <summary>
         /// lbErrorMsg control.
@@ -112,6 +112,15 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btAddCircle;
+
+        /// <summary>
+        /// btClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btClear;
 
         /// <summary>
         /// btSubmit control.

@@ -27,8 +27,6 @@ namespace MyCircles.Profile
             string requestedUsername = Request.QueryString["username"];
             requestedUser = GetUserByIdentifier(requestedUsername);
 
-            
-
             if (requestedUser == null) requestedUser = currentUser;
 
             Title = requestedUser.Username + " - MyCircles";            
@@ -73,7 +71,7 @@ namespace MyCircles.Profile
 
         protected void btMessage_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Chat.aspx");
+            Response.Redirect("User.aspx?username=" + currentUser.Username);
         }
 
         protected void updateFollowButton()

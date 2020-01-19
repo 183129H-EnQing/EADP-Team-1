@@ -15,8 +15,6 @@ namespace MyCircles
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            RedirectValidator.isUser();
-
             currentUser = (User)Session["currentUser"];
             ProfileLink.HRef = "Profile/User.aspx?username=" + currentUser.Username;
 
@@ -24,6 +22,12 @@ namespace MyCircles
 
             if (BLL.Admin.RetrieveAdmin(currentUser) != null)
                 adminLink.Visible = true;
+        }
+
+        protected void SignOutLink_ServerClick(object sender, EventArgs e)
+        {
+            Session["currentUser"] = null;
+            Response.Redirect("/Auth/Login.aspx");
         }
     }
 }
