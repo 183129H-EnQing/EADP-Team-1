@@ -9,30 +9,29 @@
             <div class="col-md-1"></div>
             <div class="col-md-2 position-sticky">
                 <div class="row">
-                    <label><input type="checkbox" id="cbPlanItem" value="other" class="mr-2" >Show items in my plan</label>
+                    <asp:CheckBox ID="chkShowPlanItems" runat="server" Text=" &nbsp Show items in my plan" AutoPostBack="true" />
                 </div>
                 <br />
                 <div class="row">
                     <h4>Activity Type</h4>
                 </div>
                 <div class="row">
-                    <asp:CheckBox ID="chbBeaches" runat="server" Text="Beaches" AutoPostBack="true" OnCheckedChanged="chbBeaches_CheckedChanged"/>
-                    <label><input type="checkbox" id="cbBeaches" value="1" class="mr-2" runat="server" AutoPostBack="true" OnCheckedChanged="landMarkBeaches()">Beaches</label>
+                    <asp:CheckBox ID="chbBeaches" runat="server" Text=" &nbsp Beaches" AutoPostBack="true" OnCheckedChanged="chbBeaches_CheckedChanged"/>
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbOutdoors" class="mr-2" runat="server">Outdoors</label>
+                    <asp:CheckBox ID="chbOutdoors" runat="server" Text=" &nbsp Outdoors" AutoPostBack="true" OnCheckedChanged="chbOutdoors_CheckedChanged" />
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbMuseums" class="mr-2" runat="server">Museums</label>
+                    <asp:CheckBox ID="chbMuseums" runat="server" Text=" &nbsp Museums" AutoPostBack="true" OnCheckedChanged="chbMuseums_CheckedChanged" />
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbHistoricSites" class="mr-2" runat="server">Historic Sites</label>
+                    <asp:CheckBox ID="chbHistoric" runat="server" Text=" &nbsp Historic Sites" AutoPostBack="true" OnCheckedChanged="chbHistoric_CheckedChanged" />
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbShopping" class="mr-2" runat="server">Shopping</label>
+                    <asp:CheckBox ID="chbShopping" runat="server" Text=" &nbsp Shopping" AutoPostBack="true" OnCheckedChanged="chbShopping_CheckedChanged" />
                 </div>
                 <div class="row">
-                    <label><input type="checkbox" id="cbWildlifeArea" class="mr-2" >Wildlife Area</label>
+                    <asp:CheckBox ID="chbWildlife" runat="server" Text=" &nbsp Wildlife Area" AutoPostBack="true" OnCheckedChanged="chbWildlife_CheckedChanged1"/>
                 </div>
             </div>
             <div class="col-md-8">
