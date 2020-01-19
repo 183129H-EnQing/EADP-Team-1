@@ -112,6 +112,10 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<Itinerary>()
+                .Property(e => e.itineraryName)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Itinerary>()
                 .Property(e => e.startDate)
                 .IsFixedLength();
 
@@ -122,16 +126,6 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Itinerary>()
                 .Property(e => e.groupSize)
                 .IsFixedLength();
-
-            modelBuilder.Entity<Itinerary>()
-                .HasMany(e => e.DayByDays)
-                .WithRequired(e => e.Itinerary)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Itinerary>()
-                .HasMany(e => e.ItineraryPrefs)
-                .WithRequired(e => e.Itinerary)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaPic)
