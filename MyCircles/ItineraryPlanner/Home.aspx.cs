@@ -26,11 +26,12 @@ namespace MyCircles.ItineraryPlanner
 
             //add to Itinerary table
             newItinerary.userId = currentUser.Id;
+            newItinerary.itineraryName = tbName.Text;
             newItinerary.startDate = tbStartDate.Text;
             newItinerary.endDate = tbEndDate.Text;
             newItinerary.groupSize = tbNoPeople.Text;
 
-            newItinerary.AddItinerary();
+            //newItinerary.AddItinerary();
             Response.Write("<script> alert('Plan Created!');</script>");
 
             if (cbBeaches.Checked)
