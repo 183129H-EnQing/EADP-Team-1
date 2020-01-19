@@ -118,7 +118,7 @@
                                     <div class="row">
                                         <div class="col-sm-3 col-md-12">
                                             <!-- event image -->
-                                               <img src="Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
+                                               <img src="../Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
                                         </div>
                                         <div class="col-sm-9 col-md-12 col-lg-12">
                                             <div class="row">

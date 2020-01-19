@@ -243,9 +243,9 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="SignUpFreeEventPage.aspx" />
-    <Content Include="ViewAllEventPage.aspx" />
-    <Content Include="ViewEventDetails.aspx" />
+    <Content Include="Event\SignUpFreeEventPage.aspx" />
+    <Content Include="Event\ViewAllEventPage.aspx" />
+    <Content Include="Event\ViewEventDetails.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -459,25 +459,25 @@
     <Compile Include="SignedIn.master.designer.cs">
       <DependentUpon>SignedIn.master</DependentUpon>
     </Compile>
-    <Compile Include="SignUpFreeEventPage.aspx.cs">
+    <Compile Include="Event\SignUpFreeEventPage.aspx.cs">
       <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SignUpFreeEventPage.aspx.designer.cs">
+    <Compile Include="Event\SignUpFreeEventPage.aspx.designer.cs">
       <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViewAllEventPage.aspx.cs">
+    <Compile Include="Event\ViewAllEventPage.aspx.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViewAllEventPage.aspx.designer.cs">
+    <Compile Include="Event\ViewAllEventPage.aspx.designer.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViewEventDetails.aspx.cs">
+    <Compile Include="Event\ViewEventDetails.aspx.cs">
       <DependentUpon>ViewEventDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViewEventDetails.aspx.designer.cs">
+    <Compile Include="Event\ViewEventDetails.aspx.designer.cs">
       <DependentUpon>ViewEventDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -603,7 +603,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\Shared\" />
-    <Folder Include="Event\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
