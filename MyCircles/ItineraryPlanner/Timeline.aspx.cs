@@ -65,7 +65,6 @@ namespace MyCircles.ItineraryPlanner
                 //lbMonth.Text = strMonth;
             }
 
-            AddDateToDB(sDate, eDate);
         }
 
         private bool GetExisting()
@@ -91,14 +90,19 @@ namespace MyCircles.ItineraryPlanner
             }
         }
 
-        private void AddDateToDB(string start, string end)
+        private void AddDateToDB()
         {
-            string startDate = start;
-            string endDate = end;
+            string startDateMonth = (string)Session["startDate"];
+            string sDate = startDateMonth.Substring(0, 2);
+            string sMonth = startDateMonth.Substring(4, 3);      //start month .. eg Jan
+
+            string endDateMonth = (string)Session["endDate"];
+            string eDate = endDateMonth.Substring(0, 2);
+            string eMonth = endDateMonth.Substring(4, 3);      //end month .. eg Jan
 
             //rmb add startdate to db
             List<int> datesList = new List<int>();
-            for (var i = int.Parse(startDate) + 1; i < int.Parse(endDate); i++)
+            for (var i = int.Parse(sDate) + 1; i < int.Parse(eDate); i++)
             {
                 datesList.Add(i);
                 //add middle date to db

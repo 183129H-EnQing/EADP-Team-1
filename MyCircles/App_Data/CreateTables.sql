@@ -205,4 +205,4 @@ CREATE TABLE [dbo].[ReportedPosts]
     [reason] VARCHAR(MAX) NOT NULL, 
     [postId] INT NOT NULL, 
     CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [Post]([Id]),
-)
+);

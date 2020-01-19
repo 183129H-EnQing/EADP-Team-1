@@ -8,7 +8,7 @@
                 <a href="Timeline.aspx" class="text-decoration-none text-white">TIMELINE</a>
             </div>
             <div class="col-md-3 ml-1 d-flex justify-content-center">
-                <a href="#" class="text-decoration-none text-white ">CALENDAR</a>
+                <a href="Calendar.aspx" class="text-decoration-none text-white ">CALENDAR</a>
             </div>
             <div class="col-md-3 d-flex justify-content-center">
                 <a href="Map.aspx" class="text-decoration-none text-white ">MAP</a>

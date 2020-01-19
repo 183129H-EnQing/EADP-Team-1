@@ -137,6 +137,7 @@
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
     </Content>
+    <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="App_Data\CreateTables.sql" />
     <Content Include="Auth\GoogleSignIn.aspx" />
@@ -351,6 +352,13 @@
     </Compile>
     <Compile Include="Home\Post.aspx.designer.cs">
       <DependentUpon>Post.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Calendar.aspx.cs">
+      <DependentUpon>Calendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Calendar.aspx.designer.cs">
+      <DependentUpon>Calendar.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Header.Master.cs">
       <DependentUpon>Header.Master</DependentUpon>
