@@ -15,13 +15,15 @@
 
     <script>
         $( function runDate() {
-            var dateFormat = "mm/dd/yy",
+            var dateFormat = "dd M",
                 from = $( "#<%= tbStartDate.ClientID %>" )
                 .datepicker({
                     defaultDate: "+1w",
                     changeMonth: true,
                     numberOfMonths: 2,
-                    minDate: 0
+                    minDate: 0,
+                    dateFormat: "dd M",
+                    maxDate: "+3m"
                 })
                 .on( "change", function() {
                     to.datepicker( "option", "minDate", getDate( this ) );
@@ -30,10 +32,12 @@
                     defaultDate: "+1w",
                     changeMonth: true,
                     numberOfMonths: 2,
-                    minDate: 0
+                    minDate: 0,
+                    dateFormat: "dd M",
+                    maxDate: "+3m"
                 })
                 .on( "change", function() {
-                from.datepicker( "option", "maxDate", getDate( this ) );
+                    from.datepicker( "option", "maxDate", getDate( this ) );
                 });
  
             function getDate( element ) {
@@ -48,10 +52,6 @@
                 return date;
             }
         });
-
-        function show() {
-
-        }
     </script>
 
     <form id="formIPHome" runat="server">
@@ -148,7 +148,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><b>August Holiday Shopping</b></h5>
                                         <h6 class="card-subtitle mb-2 text-muted">Created by you</h6>
-                                        <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> - <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
+                                        <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> to <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
                                         <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %>Youth</p>
                                         
                                         <a href="Timeline.aspx?Id=<%#DataBinder.Eval(Container.DataItem, "itineraryId") %>" class="btn btn-primary">Click to view</a>

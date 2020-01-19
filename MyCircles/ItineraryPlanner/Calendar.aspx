@@ -23,6 +23,19 @@
         <script>
             var timetable = new Timetable();
 
+            timetable.setScope(6, 23)
+
+            timetable.addLocations(['17 Jan', '18 Jan', '19 Jan', '20 Jan']);
+
+            timetable.addEvent('Singapore Zoo', '17 Jan', new Date(2019, 1, 17, 9, 00), new Date(2019, 1, 17, 12, 30), { url: '#' });
+            timetable.addEvent('Siloso Beach', '17 Jan', new Date(2019, 1, 17, 13, 15), new Date(2019, 1, 17, 17, 30), { url: '#' });
+
+            var renderer = new Timetable.Renderer(timetable);
+            renderer.draw('.timetable');
+        </script>
+        <%--<script>
+            var timetable = new Timetable();
+
             timetable.setScope(9, 3)
 
             timetable.addLocations(['Rotterdam', 'Madrid', 'Los Angeles', 'London', 'New York', 'Jakarta', 'Tokyo']);
@@ -43,7 +56,7 @@
 
             var renderer = new Timetable.Renderer(timetable);
             renderer.draw('.timetable');
-        </script>
+        </script>--%>
     </body>
     </html>
 </asp:Content>
