@@ -21,7 +21,15 @@ namespace MyCircles.BLL
         public int userId { get; set; }
 
         [Required]
+<<<<<<< HEAD
         [StringLength(10)]
+=======
+        [StringLength(50)]
+        public string itineraryName { get; set; }
+
+        [Required]
+        [StringLength(15)]
+>>>>>>> 2dc326e85f0d217e4ce479013a4330c47922efde
         public string startDate { get; set; }
 
         [Required]

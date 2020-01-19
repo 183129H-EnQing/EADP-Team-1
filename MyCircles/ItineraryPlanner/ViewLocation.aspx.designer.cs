@@ -31,6 +31,15 @@ namespace MyCircles.ItineraryPlanner {
         protected global::System.Web.UI.WebControls.Label lbPlannerName;
         
         /// <summary>
+        /// chkShowPlanItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkShowPlanItems;
+        
+        /// <summary>
         /// chbBeaches control.
         /// </summary>
         /// <remarks>
@@ -40,49 +49,49 @@ namespace MyCircles.ItineraryPlanner {
         protected global::System.Web.UI.WebControls.CheckBox chbBeaches;
         
         /// <summary>
-        /// cbBeaches control.
+        /// chbOutdoors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbBeaches;
+        protected global::System.Web.UI.WebControls.CheckBox chbOutdoors;
         
         /// <summary>
-        /// cbOutdoors control.
+        /// chbMuseums control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbOutdoors;
+        protected global::System.Web.UI.WebControls.CheckBox chbMuseums;
         
         /// <summary>
-        /// cbMuseums control.
+        /// chbHistoric control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbMuseums;
+        protected global::System.Web.UI.WebControls.CheckBox chbHistoric;
         
         /// <summary>
-        /// cbHistoricSites control.
+        /// chbShopping control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbHistoricSites;
+        protected global::System.Web.UI.WebControls.CheckBox chbShopping;
         
         /// <summary>
-        /// cbShopping control.
+        /// chbWildlife control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbShopping;
+        protected global::System.Web.UI.WebControls.CheckBox chbWildlife;
         
         /// <summary>
         /// rpLocation control.

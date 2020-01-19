@@ -127,12 +127,12 @@ CREATE TABLE [dbo].[SignUpEventDetails] (
 CREATE TABLE [dbo].[Itinerary] (
     [itineraryId] INT        IDENTITY (1, 1) NOT NULL,
     [userId]      INT        NOT NULL,
-    [startDate]   NCHAR (10) NOT NULL,
-    [endDate]     NCHAR (10) NOT NULL,
-    [groupSize]   NCHAR (10) NOT NULL,
+	[itineraryName]      NCHAR(50)        NOT NULL,
+    [startDate]   NCHAR (15) NOT NULL,
+    [endDate]     NCHAR (15) NOT NULL,
+    [groupSize]   NCHAR (3)  NOT NULL,
     PRIMARY KEY CLUSTERED ([itineraryId] ASC)
 );
-
 -- Pref Table
 CREATE TABLE [dbo].[Pref] (
     [prefId]   INT        NOT NULL IDENTITY,
