@@ -28,7 +28,6 @@ namespace MyCircles.BLL
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Pref> Prefs { get; set; }
         public virtual DbSet<SignUpEventDetail> SignUpEventDetails { get; set; }
-        public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCircle> UserCircles { get; set; }
         public virtual DbSet<ReportedPost> ReportedPosts { get; set; }
