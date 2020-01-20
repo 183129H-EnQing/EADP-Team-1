@@ -8,15 +8,12 @@ namespace MyCircles.BLL
 
     public partial class UserCircle
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public int UserId { get; set; }
 
-        [Required]
-        [StringLength(64)]
-        public string CircleId { get; set; }
-
-        public int Points { get; set; }
+        public int CircleId { get; set; }
 
         public virtual Circle Circle { get; set; }
 
