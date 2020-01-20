@@ -44,6 +44,11 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Circle>()
+                .HasMany(e => e.Posts)
+                .WithRequired(e => e.Circle)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Circle>()
                 .HasMany(e => e.UserCirclePoints)
                 .WithRequired(e => e.Circle)
                 .WillCascadeOnDelete(false);
@@ -54,11 +59,11 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Day>()
-                .Property(e => e.startTime)
+                .Property(e => e.date)
                 .IsFixedLength();
 
             modelBuilder.Entity<Day>()
-                .Property(e => e.endTime)
+                .Property(e => e.timeStamp)
                 .IsFixedLength();
 
             modelBuilder.Entity<DayByDay>()
@@ -66,9 +71,12 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<DayByDay>()
-                .HasMany(e => e.Days)
-                .WithRequired(e => e.DayByDay)
-                .WillCascadeOnDelete(false);
+                .Property(e => e.startTime)
+                .IsFixedLength();
+
+            modelBuilder.Entity<DayByDay>()
+                .Property(e => e.endTime)
+                .IsFixedLength();
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventName)
@@ -169,9 +177,9 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
-                .HasMany(e => e.Days)
+                .HasMany(e => e.DayByDays)
                 .WithRequired(e => e.Location)
-                .HasForeignKey(e => e.locationId)
+                .HasForeignKey(e => e.activityId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Notification>()
@@ -193,6 +201,10 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Post>()
                 .Property(e => e.Comment)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Post>()
+                .Property(e => e.CircleId)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Post>()
                 .HasMany(e => e.ReportedPosts)

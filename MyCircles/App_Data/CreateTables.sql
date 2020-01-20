@@ -49,12 +49,14 @@ CREATE TABLE [dbo].[UserCirclePoints]
 
 -- Post Table
 CREATE TABLE [dbo].[Post] (
-    [Id]      INT         IDENTITY (1, 1) NOT NULL,
-    [Content] NCHAR (120) NOT NULL,
-    [Image]   IMAGE       NULL,
-    [Comment] NCHAR (20)  NOT NULL,
-    [UserId]  INT         NOT NULL,
+    [Id]       INT          IDENTITY (1, 1) NOT NULL,
+    [Content]  NCHAR (120)  NOT NULL,
+    [Image]    IMAGE        NULL,
+    [Comment]  NCHAR (20)   NOT NULL,
+    [UserId]   INT          NOT NULL,
+    [CircleId] VARCHAR (64) NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Post_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [dbo].[Circle] ([Id]),
     CONSTRAINT [FK_POST_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
 

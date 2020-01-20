@@ -30,6 +30,12 @@ namespace MyCircles.BLL
 
         public int UserId { get; set; }
 
+        [Required]
+        [StringLength(64)]
+        public string CircleId { get; set; }
+
+        public virtual Circle Circle { get; set; }
+
         public virtual User User { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

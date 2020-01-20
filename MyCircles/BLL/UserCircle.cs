@@ -16,8 +16,6 @@ namespace MyCircles.BLL
         [StringLength(64)]
         public string CircleId { get; set; }
 
-        public int Points { get; set; }
-
         public virtual Circle Circle { get; set; }
 
         public virtual User User { get; set; }
