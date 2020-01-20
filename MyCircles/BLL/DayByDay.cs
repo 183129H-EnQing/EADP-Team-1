@@ -16,5 +16,7 @@ namespace MyCircles.BLL
         [Required]
         [StringLength(10)]
         public string date { get; set; }
+
+        public int dayId { get; set; }
     }
 }

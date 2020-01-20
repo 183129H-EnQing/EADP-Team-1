@@ -16,11 +16,11 @@ namespace MyCircles.BLL
 
         [Required]
         [StringLength(10)]
-        public string date { get; set; }
+        public string startTime { get; set; }
 
         [Required]
         [StringLength(10)]
-        public string time { get; set; }
+        public string endTime { get; set; }
 
         public int locationId { get; set; }
     }
