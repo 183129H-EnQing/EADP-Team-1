@@ -13,7 +13,7 @@ namespace MyCircles.DAL
             using (var db = new MyCirclesEntityModel())
             {
                 UserCircle newUserCircle = new UserCircle();
-                Circle existingCircle = db.Circles.Where(ec => ec.Name == circleName).FirstOrDefault();
+                Circle existingCircle = db.Circles.Where(ec => ec.Id == circleName).FirstOrDefault();
 
                 if (existingCircle == null)
                 {

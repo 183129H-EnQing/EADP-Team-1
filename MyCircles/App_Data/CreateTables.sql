@@ -22,19 +22,29 @@
 
 -- Circle Table (may change later)
 CREATE TABLE [dbo].[Circle] (
-    [Id]   INT          IDENTITY (1, 1) NOT NULL,
-    [Name] VARCHAR (30) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+    [Id]   VARCHAR (64) UNIQUE,
+    PRIMARY KEY CLUSTERED ([Id])
 );
 
--- UserCircle Table (also may change)
+--UserCircle Table (also may change)
 CREATE TABLE [dbo].[UserCircles] (
-    [Id]       INT NOT NULL,
-    [UserId]   INT NOT NULL,
-    [CircleId] INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_UserCircles_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [dbo].[Circle] ([Id]),
-    CONSTRAINT [FK_UserCircles_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
+    [Id]        INT IDENTITY (1, 1) NOT NULL,
+    [UserId]    INT NOT NULL, 
+    [CircleId]  VARCHAR (64) NOT NULL, 
+    [Points]	INT NOT NULL, 
+	PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_UserCircles_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]),
+	CONSTRAINT [FK_UserCircles_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [Circle]([Id])
+);
+
+CREATE TABLE [dbo].[UserCirclePoints]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [UserId] INT NOT NULL, 
+    [CircleId] VARCHAR (64) NOT NULL, 
+    [Points] INT NOT NULL, 
+    CONSTRAINT [FK_UserCirclePoints_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]),
+	CONSTRAINT [FK_UserCirclePoints_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [Circle]([Id])
 );
 
 -- Post Table
@@ -133,6 +143,7 @@ CREATE TABLE [dbo].[Itinerary] (
     [groupSize]   NCHAR (3)  NOT NULL,
     PRIMARY KEY CLUSTERED ([itineraryId] ASC)
 );
+
 -- Pref Table
 CREATE TABLE [dbo].[Pref] (
     [prefId]   INT        NOT NULL IDENTITY,

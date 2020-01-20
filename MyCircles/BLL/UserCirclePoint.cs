@@ -6,7 +6,7 @@ namespace MyCircles.BLL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class UserCircle
+    public partial class UserCirclePoint
     {
         public int Id { get; set; }
 
@@ -15,6 +15,8 @@ namespace MyCircles.BLL
         [Required]
         [StringLength(64)]
         public string CircleId { get; set; }
+
+        public int Points { get; set; }
 
         public virtual Circle Circle { get; set; }
 
