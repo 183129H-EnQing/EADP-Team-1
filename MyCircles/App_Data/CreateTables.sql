@@ -182,21 +182,19 @@ CREATE TABLE [dbo].[DayByDay] (
     [dayBydayId]  INT        IDENTITY (1, 1) NOT NULL,
     [itineraryId] INT        NOT NULL,
     [date]        NCHAR (10) NOT NULL,
-    [startTime]   NCHAR (10) NOT NULL,
-    [endTime]     NCHAR (10) NOT NULL,
-    [activityId]  INT        NOT NULL,
     PRIMARY KEY CLUSTERED ([dayBydayId] ASC),
-    CONSTRAINT [FK_DayByDay_ToLocation] FOREIGN KEY ([activityId]) REFERENCES [dbo].[Location] ([locaId]),
     CONSTRAINT [FK_DayByDay_ToItinerary] FOREIGN KEY ([itineraryId]) REFERENCES [dbo].[Itinerary] ([itineraryId])
 );
 
 -- Day Table
 CREATE TABLE [dbo].[Day] (
-    [dayByDayId] INT        IDENTITY (1, 1) NOT NULL,
+    [dayId]		 INT        IDENTITY (1, 1) NOT NULL,
+	[dayByDayId] INT		NOT NULL,
     [date]       NCHAR (10) NOT NULL,
-    [timeStamp]  NCHAR (10) NOT NULL,
-    [activityId] INT        NOT NULL,
-    PRIMARY KEY CLUSTERED ([dayByDayId] ASC)
+    [time]  NCHAR (10) NOT NULL,
+    [locationId] INT        NOT NULL,
+    PRIMARY KEY CLUSTERED ([dayId]), 
+    CONSTRAINT [FK_Day_ToLocation] FOREIGN KEY ([locationId]) REFERENCES [Location]([locaId]) 
 );
 
 -- Day Table

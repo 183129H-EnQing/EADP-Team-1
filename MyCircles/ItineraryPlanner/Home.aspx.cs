@@ -31,37 +31,27 @@ namespace MyCircles.ItineraryPlanner
             newItinerary.endDate = tbEndDate.Text;
             newItinerary.groupSize = tbNoPeople.Text;
 
-            //newItinerary.AddItinerary();
-            Response.Write("<script> alert('Plan Created!');</script>");
+            //Calculate Middle Dates
+            DateTime startDate = Convert.ToDateTime(newItinerary.startDate);
+            startDate.ToString("dd MMM");
+            DateTime endDate = Convert.ToDateTime(newItinerary.endDate);
+            DateTime current = startDate;
+            List<string> betweenDates = new List<string>();
 
-            if (cbBeaches.Checked)
+            while (current <= endDate)
             {
-                int id = 1;
+                var currentDateStr = current.ToString("dd MMM");        //convert 12/1/2020 to 12 Jan
+                betweenDates.Add(currentDateStr);
+                current = current.AddDays(1);                           //add to current as 12/1/2020
             }
-            if (cbOutdoors.Checked)
-            {
-                int id = 2;
-            }
-            if (cbMuseums.Checked)
-            {
-                int id = 3;
-            }
-            if (cbHistoric.Checked)
-            {
-                int id = 4;
-            }
-            if (cbShopping.Checked)
-            {
-                int id = 5;
-            }
-            if (cbWildlife.Checked)
-            {
-                int id = 6;
-            }
+
+            //newItinerary.AddItinerary();
+            //Response.Write("<script> alert('Plan Created!');</script>");
 
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
-            Response.Redirect("Timeline.aspx");
+
+            //Response.Redirect("Timeline.aspx");
         }
 
         private void getExistingPlan()
