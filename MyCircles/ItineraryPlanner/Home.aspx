@@ -52,31 +52,12 @@
                 return date;
             }
         });
-
-        $('#getBetween').on('click', function () {
-            var start = $("#tbStartDate").datepicker("getDate"),
-                end = $("#tbEndDate").datepicker("getDate"),
-                currentDate = new Date(start),
-                between = []
-                ;
-
-            while (currentDate <= end) {
-                between.push(new Date(currentDate));
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-
-            $('#results').html(between.join('<br> '));
-        });
-
     </script>
-    <%--<button id="getBetween" >Get Between Dates</button>
-    <div id="results"></div>--%>
     <form id="formIPHome" runat="server">
         <div class="row justify-content mt-5">
             <div class="col-md-2"></div>
             <div class="col-md-3">
                 <div class="row mb-3">
-                    <asp:Label ID="Label2" runat="server"></asp:Label>
                     <asp:Label ID="Label1" runat="server" Text="The next way to <br> plan your next trip" Font-Bold="True" Font-Size="30pt"></asp:Label>
                 </div>
                 <div class="row mb-3">
@@ -179,6 +160,5 @@
             </div>
         </div>
         <div class="col-md-2"></div>
-        </div>
     </form>
 </asp:Content>

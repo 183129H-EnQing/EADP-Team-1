@@ -10,6 +10,8 @@ namespace MyCircles.BLL
     public partial class Day
     {
         [Key]
+        public int dayId { get; set; }
+
         public int dayByDayId { get; set; }
 
         [Required]
@@ -18,8 +20,8 @@ namespace MyCircles.BLL
 
         [Required]
         [StringLength(10)]
-        public string timeStamp { get; set; }
+        public string time { get; set; }
 
-        public int activityId { get; set; }
+        public int locationId { get; set; }
     }
 }
