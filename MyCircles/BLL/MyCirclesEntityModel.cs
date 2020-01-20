@@ -54,24 +54,21 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Day>()
-                .Property(e => e.date)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Day>()
-                .Property(e => e.timeStamp)
-                .IsFixedLength();
-
-            modelBuilder.Entity<DayByDay>()
-                .Property(e => e.date)
-                .IsFixedLength();
-
-            modelBuilder.Entity<DayByDay>()
                 .Property(e => e.startTime)
                 .IsFixedLength();
 
-            modelBuilder.Entity<DayByDay>()
+            modelBuilder.Entity<Day>()
                 .Property(e => e.endTime)
                 .IsFixedLength();
+
+            modelBuilder.Entity<DayByDay>()
+                .Property(e => e.date)
+                .IsFixedLength();
+
+            modelBuilder.Entity<DayByDay>()
+                .HasMany(e => e.Days)
+                .WithRequired(e => e.DayByDay)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventName)
@@ -172,9 +169,9 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
-                .HasMany(e => e.DayByDays)
+                .HasMany(e => e.Days)
                 .WithRequired(e => e.Location)
-                .HasForeignKey(e => e.activityId)
+                .HasForeignKey(e => e.locationId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Notification>()

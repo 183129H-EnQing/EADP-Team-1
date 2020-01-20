@@ -8,7 +8,6 @@ namespace MyCircles.BLL
 
     public partial class SignUpEventDetail
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [StringLength(50)]

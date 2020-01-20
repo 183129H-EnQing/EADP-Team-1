@@ -13,11 +13,15 @@ namespace MyCircles.BLL {    // partial - means the extend the modal
         //    EventDAO.AddEvent(this);
         //}
 
-        public static List<Event> GetEvent()
+        public static Event GetEvent(int eventId)
         {
-            return EventDAO.GetAllEvent();
+            return EventDAO.GetEvent(eventId);
         }
 
 
+        public static List<Event> GetAllEvent()
+        {
+            return EventDAO.GetAllEvent();
+        }
     }
 }

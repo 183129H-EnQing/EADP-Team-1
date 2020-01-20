@@ -109,11 +109,11 @@
                      <%--    <% for (int i = 0; i < 5; i++) { %> 
                              <h1><%= hello %></h1>  
                             <% } %>  --%>
-            <% foreach (var singleEvent in MyCircles.BLL.Event.GetEvent()) { %>
+            <% foreach (var singleEvent in MyCircles.BLL.Event.GetAllEvent()) { %>
                                   <%--<p id="hello+<%=singleEvent.eventId %>")"><%=singleEvent.eventEndDate%> </p>
                 --%>
                               <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-                                <a href="/Event/ViewEventDetails.aspx"> 
+                                <a href="/Event/ViewEventDetails.aspx?eventID=<%=singleEvent.eventId%>"> 
                                 <div class="card card-body" id="Div1">
                                     <div class="row">
                                         <div class="col-sm-3 col-md-12">

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="ViewEventDetails.aspx.cs" Inherits="MyCircles.ViewEventDetails1" %>
+<%@ Import Namespace="MyCircles.BLL" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
     <style>
         @media (min-width: 1200px) {
@@ -16,7 +17,8 @@
                     <div class="row">
                         <div class="col-12">
                              <!--insert event Title to the span-->
-                            <span>IT Talk</span>
+                           <!-- <span></span> -->
+                            <%=event1.eventName %>
                         </div>
                     </div>
 
@@ -36,7 +38,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <p>The Talk is about IT. The JAV Power.</p>
+                            <p><%=event1.eventDescription %></p>
                         </div>
                     </div>
 
@@ -55,22 +57,15 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          
+                                     <asp:Repeater ID="rpEventSchedule" runat="server" ItemType="MyCircles.BLL.EventSchedule">
+                                         <ItemTemplate>                                                                     
                                           <tr>
-                                            <td>John</td>
-                                            <td>Doe</td>
-                                            <td>john@example.com</td>
+                                            <td><%#DataBinder.Eval(Container.DataItem, "startTime") %></td>
+                                            <td><%#DataBinder.Eval(Container.DataItem, "endTime") %></td>
+                                            <td><%#DataBinder.Eval(Container.DataItem, "eventDescription") %></td>
                                           </tr>
-                                          <tr>
-                                            <td>Mary</td>
-                                            <td>Moe</td>
-                                            <td>mary@example.com</td>
-                                          </tr>
-                                          <tr>
-                                            <td>July</td>
-                                            <td>Dooley</td>
-                                            <td>july@example.com</td>
-                                          </tr>
+                                         </ItemTemplate>
+                                       </asp:Repeater>
                                         </tbody>
                                       </table>
 

@@ -13,7 +13,7 @@ namespace MyCircles
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           GetDates();
+           //GetDates();
         }
 
         protected void submitButt_Click(object sender, EventArgs e)
@@ -32,12 +32,18 @@ namespace MyCircles
         public List<EventSchedule> GetDates()
         {
             EventSchedule eventSchedule = new EventSchedule();
-            List<EventSchedule> datesList = new List<EventSchedule>();
-            datesList = eventSchedule.getAllEventActivity();
+            List<EventSchedule> scheduleList = new List<EventSchedule>();
+            //scheduleList = eventSchedule.getAllEventActivity();
 
-            dateDDL.DataSource = GetDates();
+            List<String> datesList = new List<String>();
+            foreach (EventSchedule eventScheduleBB in scheduleList)
+            {
+                System.Diagnostics.Debug.WriteLine("gh say: " + eventScheduleBB.startDate);
+                datesList.Add(eventScheduleBB.startDate);
+            }
+            dateDDL.DataSource = datesList;
             dateDDL.DataBind();
-            return datesList;
+            return scheduleList;
 
         }
     }
