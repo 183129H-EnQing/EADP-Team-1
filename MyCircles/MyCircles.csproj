@@ -322,6 +322,7 @@
     <Compile Include="DAL\EventDAO.cs" />
     <Compile Include="DAL\EventScheduleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
+    <Compile Include="DAL\Joint_Models\Days.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />
     <Compile Include="DAL\LocationDAO.cs" />
