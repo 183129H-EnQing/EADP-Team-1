@@ -16,14 +16,14 @@
                     <h4>Activity Type</h4>
                 </div>
 
-                <asp:checkboxlist Id="cblPref" runat="server">
+<%--                <asp:checkboxlist Id="cblPref" runat="server">
                     <asp:ListItem value="beaches">Beaches</asp:ListItem>
                     <asp:ListItem value="outdoors">Outdoors</asp:ListItem>
                     <asp:ListItem value="museums">Museums</asp:ListItem>
                     <asp:ListItem value="historic">Historic Sites</asp:ListItem>
                     <asp:ListItem value="shopping">Shopping</asp:ListItem>
                     <asp:ListItem value="wildlife">Wildlife Area</asp:ListItem>
-                </asp:checkboxlist>
+                </asp:checkboxlist>--%>
                 <div class="row">
                     <asp:CheckBox ID="chbBeaches" runat="server" Text=" &nbsp Beaches" AutoPostBack="true" OnCheckedChanged="chbBeaches_CheckedChanged"/>
                 </div>
@@ -49,9 +49,9 @@
                         <div class="row border border-primary mb-3">
                              <div class="row pt-3 pl-3">
                                 <div class="col-md-1 mr-5 col-sm-1">
-                                    <h6>Opening Hours </h6>
-                                    <h4><%#DataBinder.Eval(Container.DataItem, "locaOpenHour") %></h4> <br />
-                                    <h4><%#DataBinder.Eval(Container.DataItem, "locaCloseHour") %></h4>
+                                    <h6>Opening Hours </h6> <br />
+                                    <h6><%#DataBinder.Eval(Container.DataItem, "locaOpenHour") %></h6> <br />
+                                    <h6><%#DataBinder.Eval(Container.DataItem, "locaCloseHour") %></h6>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <asp:Image runat='server' Height='160px' Width='250px' ImageUrl=<%#DataBinder.Eval(Container.DataItem, "locaPic") %> />

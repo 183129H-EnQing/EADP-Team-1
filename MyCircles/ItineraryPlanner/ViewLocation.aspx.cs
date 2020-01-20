@@ -14,109 +14,111 @@ namespace MyCircles.ItineraryPlanner
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            loadAllLocations();
+        }
+
+        private void loadAllLocations()
+        {
             Location location = new Location();
             List<Location> locationList = new List<Location>();
 
-            locationList = location.RetrieveAllLocation(); 
+            locationList = location.RetrieveAllLocation();
 
             rpLocation.DataSource = locationList;
             rpLocation.DataBind();
         }
 
-        private void selectItemTag(int tagId)
+        private void selectItemTag()
         {
             Location locationTag = new Location();
             List<Location> locationTagList = new List<Location>();
 
-            locationTagList = locationTag.RetrieveByTag(tagId);
+            if (chbBeaches.Checked)
+            {
+                List<Location> beachList = locationTag.RetrieveByTag(1);
+                foreach (Location beachLoc in beachList)
+                {
+                    locationTagList.Add(beachLoc);
+                }
+            }
+            if (chbOutdoors.Checked)
+            {
+                List<Location> outdoorList = locationTag.RetrieveByTag(2);
+                foreach (Location outdoorLoc in outdoorList)
+                {
+                    locationTagList.Add(outdoorLoc);
+                }
+            }
+            if (chbMuseums.Checked)
+            {
+                List<Location> museumList = locationTag.RetrieveByTag(3);
+                foreach (Location museumLoc in museumList)
+                {
+                    locationTagList.Add(museumLoc);
+                }
+            }
+            if (chbHistoric.Checked)
+            {
+                List<Location> historicList = locationTag.RetrieveByTag(4);
+                foreach (Location historicLoc in historicList)
+                {
+                    locationTagList.Add(historicLoc);
+                }
+            }
+            if (chbShopping.Checked)
+            {
+                List<Location> shoppingList = locationTag.RetrieveByTag(5);
+                foreach (Location shoppingLoc in shoppingList)
+                {
+                    locationTagList.Add(shoppingLoc);
+                }
+            }
+            if (chbWildlife.Checked)
+            {
+                List<Location> wildlifeList = locationTag.RetrieveByTag(6);
+                foreach (Location wildLoc in wildlifeList)
+                {
+                    locationTagList.Add(wildLoc);
+                }
+            }
 
             rpLocation.DataSource = locationTagList;
             rpLocation.DataBind();
-        }
 
-        private void selectItemTagS()
-        {
-            string tagId = "";
-
-            if (chbBeaches.Checked == true)
+            if (chbBeaches.Checked == false && chbOutdoors.Checked == false && chbMuseums.Checked == false && chbHistoric.Checked == false && chbShopping.Checked == false && chbWildlife.Checked == false)
             {
-                tagId += "1";
+                loadAllLocations();
             }
-            if (chbOutdoors.Checked == true)
-            {
-                tagId += "2";
-            }
-            if (chbMuseums.Checked == true)
-            {
-                tagId += "3";
-            }
-            if (chbHistoric.Checked == true)
-            {
-                tagId += "4";
-            }
-            if (chbShopping.Checked == true)
-            {
-                tagId += "5";
-            }
-            if (chbWildlife.Checked == true)
-            {
-                tagId += "6";
-            }
-            Location locationTag = new Location();
-            List<Location> locationTagList = new List<Location>();
-
-            //locationTagList = locationTag.RetrieveByTag(tagId);
-
-            rpLocation.DataSource = locationTagList;
-            rpLocation.DataBind();
         }
 
         protected void chbBeaches_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbBeaches.Checked == true)
-            {
-                selectItemTag(1);
-            }
+            selectItemTag();
         }
 
         protected void chbOutdoors_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbOutdoors.Checked == true)
-            {
-                selectItemTag(2);
-            }
+            selectItemTag();
         }
 
         protected void chbMuseums_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbMuseums.Checked == true)
-            {
-                selectItemTag(3);
-            }
+            selectItemTag();
         }
 
         protected void chbHistoric_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbHistoric.Checked == true)
-            {
-                selectItemTag(4);
-            }
+            selectItemTag();
         }
 
         protected void chbShopping_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbShopping.Checked == true)
-            {
-                selectItemTag(5);
-            }
+            selectItemTag();
         }
 
         protected void chbWildlife_CheckedChanged1(object sender, EventArgs e)
         {
-            if (chbWildlife.Checked == true)
-            {
-                selectItemTag(6);
-            }
+            selectItemTag();
         }
     }
 }
