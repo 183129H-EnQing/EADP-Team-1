@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles.Profile
-{
-
-
-    public partial class User
-    {
-
+namespace MyCircles.Profile {
+    
+    
+    public partial class User {
+        
         /// <summary>
         /// HeaderImage control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image HeaderImage;
-
+        
         /// <summary>
         /// ProfilePicImage control.
         /// </summary>
@@ -31,7 +29,25 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ProfilePicImage;
-
+        
+        /// <summary>
+        /// lbName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbName;
+        
+        /// <summary>
+        /// followBadge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl followBadge;
+        
         /// <summary>
         /// lbUsername control.
         /// </summary>
@@ -40,7 +56,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbUsername;
-
+        
         /// <summary>
         /// lbBio control.
         /// </summary>
@@ -49,7 +65,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbBio;
-
+        
         /// <summary>
         /// lbCity control.
         /// </summary>
@@ -58,7 +74,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbCity;
-
+        
         /// <summary>
         /// btEditProfile control.
         /// </summary>
@@ -67,7 +83,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btEditProfile;
-
+        
         /// <summary>
         /// FollowScriptManager control.
         /// </summary>
@@ -76,7 +92,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager FollowScriptManager;
-
+        
         /// <summary>
         /// FollowUpdatePanel control.
         /// </summary>
@@ -85,7 +101,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel FollowUpdatePanel;
-
+        
         /// <summary>
         /// btFollow control.
         /// </summary>
@@ -94,7 +110,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btFollow;
-
+        
         /// <summary>
         /// userPostsContainer control.
         /// </summary>
@@ -103,7 +119,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userPostsContainer;
-
+        
         /// <summary>
         /// postWarning control.
         /// </summary>
@@ -112,7 +128,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl postWarning;
-
+        
         /// <summary>
         /// userCirclesContainer control.
         /// </summary>
@@ -121,7 +137,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userCirclesContainer;
-
+        
         /// <summary>
         /// circleWarning control.
         /// </summary>
@@ -130,7 +146,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl circleWarning;
-
+        
         /// <summary>
         /// followingUserListContainer control.
         /// </summary>
@@ -139,7 +155,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl followingUserListContainer;
-
+        
         /// <summary>
         /// rptUserFollowing control.
         /// </summary>
@@ -148,7 +164,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptUserFollowing;
-
+        
         /// <summary>
         /// followWarning control.
         /// </summary>
@@ -157,7 +173,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl followWarning;
-
+        
         /// <summary>
         /// mapsContainer control.
         /// </summary>

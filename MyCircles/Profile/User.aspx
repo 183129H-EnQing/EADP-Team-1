@@ -15,7 +15,7 @@
                     <asp:Image ID="ProfilePicImage" runat="server" CssClass="profilepic rounded-circle img-fluid" />
                 </div>
                 <div class="maindesc-container">
-                    <%--<asp:Label ID="lbName" cssClass="m-0 h1" runat="server"></asp:Label><span id="followBadge" class="badge badge-secondary" runat="server" visible="false">Follows you</span><br />--%>
+                    <asp:Label ID="lbName" cssClass="m-0 h1" runat="server"></asp:Label><span id="followBadge" class="badge badge-secondary" runat="server" visible="false">Follows you</span><br />
                     <asp:Label ID="lbUsername" class="m-0 text-muted" runat="server">@</asp:Label><br />
                     <span id="lbBio" class="bio-span d-block font-italic py-3" runat="server"></span>
                     <i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp;
