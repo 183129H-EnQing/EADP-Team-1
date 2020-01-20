@@ -29,6 +29,7 @@ namespace MyCircles.BLL
         public virtual DbSet<Pref> Prefs { get; set; }
         public virtual DbSet<SignUpEventDetail> SignUpEventDetails { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserCirclePoint> UserCirclePoints { get; set; }
         public virtual DbSet<UserCircle> UserCircles { get; set; }
         public virtual DbSet<ReportedPost> ReportedPosts { get; set; }
 
@@ -39,8 +40,13 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Circle>()
-                .Property(e => e.Name)
+                .Property(e => e.Id)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Circle>()
+                .HasMany(e => e.UserCirclePoints)
+                .WithRequired(e => e.Circle)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Circle>()
                 .HasMany(e => e.UserCircles)
@@ -213,6 +219,10 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<SignUpEventDetail>()
+                .Property(e => e.date)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SignUpEventDetail>()
                 .Property(e => e.contactNumber)
                 .IsUnicode(false);
 
@@ -296,9 +306,22 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
+                .HasMany(e => e.UserCirclePoints)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.UserCircles)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserCirclePoint>()
+                .Property(e => e.CircleId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<UserCircle>()
+                .Property(e => e.CircleId)
+                .IsUnicode(false);
 
             modelBuilder.Entity<ReportedPost>()
                 .Property(e => e.reason)
