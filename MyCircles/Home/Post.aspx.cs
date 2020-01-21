@@ -1,6 +1,7 @@
 ﻿using MyCircles.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -19,7 +20,10 @@ namespace MyCircles.Home
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
-            lblUsername.Text = currentUser.Name;
+            this.Title = "Home";
+            CircleDAO.AddCircle("gym");
+            rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+            rptUserPosts.DataBind();
         }
 
         protected void ImageMap1_Click(object sender, ImageMapEventArgs e)
@@ -39,12 +43,21 @@ namespace MyCircles.Home
 
         protected void btnPost_Click(object sender, EventArgs e)
         {
-            var newPost = new BLL.Post();
-            newPost.Content = LPost.Text;
-            mypost.Visible = true;
-            newPost.UserId = currentUser.Id;
-            LPost.Text = activity.Text;
-            PostDAO.AddPost(newPost);
+            try
+            {
+                var newPost = new BLL.Post();
+                newPost.Content = activity.Text;
+                newPost.UserId = currentUser.Id;
+                newPost.CircleId = "gym";
+                PostDAO.AddPost(newPost);
+
+                rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+                rptUserPosts.DataBind();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
+            }
         }
 
         protected void Btncircle_Click(object sender, EventArgs e)

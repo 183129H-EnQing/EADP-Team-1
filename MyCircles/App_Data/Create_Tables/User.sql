@@ -1,0 +1,21 @@
+﻿CREATE TABLE [dbo].[User] (
+    [Id]            INT           IDENTITY (1, 1) NOT NULL,
+    [Username]      NCHAR (20)    NOT NULL,
+    [EmailAddress]  NCHAR (30)    NOT NULL,
+    [Password]      NCHAR (256)   NULL,
+    [Name]          NCHAR (20)    NOT NULL,
+    [Bio]           TEXT          NULL,
+    [Latitude]      FLOAT (53)    NULL,
+    [Longitude]     FLOAT (53)    NULL,
+    [City]          VARCHAR (MAX) NULL,
+    [ProfileImage]  VARCHAR (MAX) NULL,
+    [HeaderImage]   VARCHAR (MAX) NULL,
+    [IsLoggedIn]    BIT           DEFAULT ((0)) NOT NULL,
+    [IsGoogleUser]  BIT           DEFAULT ((0)) NOT NULL,
+    [IsPrivileged]  BIT           DEFAULT ((0)) NOT NULL,
+    [IsDeleted]     BIT           DEFAULT ((0)) NOT NULL,
+    [IsEventHolder] BIT           DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    UNIQUE NONCLUSTERED ([Username] ASC),
+    UNIQUE NONCLUSTERED ([EmailAddress] ASC)
+);
