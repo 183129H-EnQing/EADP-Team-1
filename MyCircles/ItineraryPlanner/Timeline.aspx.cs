@@ -19,10 +19,11 @@ namespace MyCircles.ItineraryPlanner
         {
             System.Diagnostics.Debug.WriteLine("SomeText");
 
-            if (!GetExisting())
+            /*if (!GetExisting())
             {
                 getMonthDate();
-            }
+            }*/
+            GetExisting();
         }
 
         private void getMonthDate()
@@ -71,16 +72,23 @@ namespace MyCircles.ItineraryPlanner
         {
             try
             {
-                lbPlannerName.Text = Request.QueryString["Id"];
+                //lbPlannerName.Text = Request.QueryString["Id"];
                 int Id = Convert.ToInt32(Request.QueryString["Id"]);
 
                 Itinerary retrieveSpecificItinerary = new Itinerary();
                 List<Itinerary> itineraryList = new List<Itinerary>();
 
-                //itineraryList = retrieveSpecificItinerary.RetrieveItinerary(Id);
+                itineraryList = retrieveSpecificItinerary.RetrieveSpecificItinerary(Id);
 
                 //rpItinerary.DataSource = itineraryList;
                 //rpItinerary.DataBind();
+
+                DayByDay getByTag = new DayByDay();
+                List<DayByDay> daysList = new List<DayByDay>();
+                daysList = getByTag.RetrieveByItinerary(Id);
+
+                rpDates.DataSource = daysList;
+                rpDates.DataBind();
 
                 return true;
             }
@@ -89,6 +97,16 @@ namespace MyCircles.ItineraryPlanner
                 return false;
             }
         }
+
+        /*public static string EvalTrimmed(this RepeaterItem container, string expression, int maxLength)
+        { 
+            string value = DataBinder.Eval(container, expression) as string;
+            if ( value != null ) 
+               return null;
+            if (value.Length > maxlength)
+               value = value.Substring(0,maxLength) + "...";
+            return value;
+        }*/
 
         private void AddDateToDB()
         {

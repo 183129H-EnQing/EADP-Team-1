@@ -24,6 +24,11 @@
                                 <a id="aEndDate" class="nav-link" href="#" runat="server"></a>
                             </li>
                         </ul>
+                        <asp:Repeater ID="rpDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
+                            <ItemTemplate>
+                                <h5><%#DataBinder.Eval(Container.DataItem, "date") %></h5>
+                            </ItemTemplate>
+                        </asp:Repeater>
                        <%-- <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a id="aDate" class="nav-link active" href="#" runat="server"><%#DataBinder.Eval(Container.DataItem, "date") %></a>

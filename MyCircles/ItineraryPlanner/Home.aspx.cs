@@ -60,7 +60,8 @@ namespace MyCircles.ItineraryPlanner
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
 
-            //Response.Redirect("Timeline.aspx");
+            string url = "Timeline.aspx" + newItinerary.itineraryId;
+            Response.Redirect("url");
         }
 
         private void getExistingPlan()
@@ -73,9 +74,6 @@ namespace MyCircles.ItineraryPlanner
 
             rpItinerary.DataSource = itineraryList;
             rpItinerary.DataBind();
-        }
-
-
-        
+        } 
     }
 }
