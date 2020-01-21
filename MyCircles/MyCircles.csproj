@@ -133,6 +133,7 @@
   <ItemGroup>
     <Content Include="Admin\Home.aspx" />
     <Content Include="Admin\ViewReportedPosts.aspx" />
+    <Content Include="App_Data\CreateTables.sql" />
     <Content Include="App_Data\Create_Tables\Circle.sql" />
     <Content Include="App_Data\Create_Tables\Notification.sql" />
     <Content Include="App_Data\Create_Tables\Follow.sql" />

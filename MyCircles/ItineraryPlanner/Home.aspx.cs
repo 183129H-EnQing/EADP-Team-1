@@ -46,7 +46,7 @@ namespace MyCircles.ItineraryPlanner
                 current = current.AddDays(1);                           //add to current as 12/1/2020
             }
 
-            //newItinerary.AddItinerary();
+            newItinerary.AddItinerary();
             Response.Write("<script> alert('Plan Created!');</script>");
 
             int datesSize = betweenDates.Count;
@@ -54,9 +54,8 @@ namespace MyCircles.ItineraryPlanner
             {
                 newDayByDay.itineraryId = newItinerary.itineraryId;
                 newDayByDay.date = betweenDates[i];
+                newDayByDay.AddDayByDay();
             }
-
-            newDayByDay.AddDayByDay();
 
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
