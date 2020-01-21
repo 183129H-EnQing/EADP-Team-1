@@ -42,7 +42,7 @@ CREATE TABLE [dbo].[Post] (
     [Id]       INT          IDENTITY (1, 1) NOT NULL,
     [Content]  NCHAR (120)  NOT NULL,
     [Image]    IMAGE        NULL,
-    [Comment]  NCHAR (20)   NOT NULL,
+    [Comment]  NCHAR (20)   NULL,
     [UserId]   INT          NOT NULL,
     [CircleId] VARCHAR (64) NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
