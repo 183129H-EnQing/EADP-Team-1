@@ -16,7 +16,6 @@ namespace MyCircles.Home
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
