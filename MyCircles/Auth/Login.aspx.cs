@@ -61,10 +61,7 @@ namespace MyCircles
 
         protected void btGoogleSignIn_Click(object sender, EventArgs e)
         {
-            // build callback url
             string returnUrl = new Uri(Request.Url, "GoogleSignIn.aspx").AbsoluteUri;
-
-            // redirect to authorization page
             OAuthWeb.RedirectToAuthorization("google", returnUrl);
         }
 

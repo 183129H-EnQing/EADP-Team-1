@@ -99,7 +99,7 @@ namespace MyCircles.Profile
                     UserCircleDAO.AddUserCircle(currentUser.Id, circleName);
                 }
 
-                Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username);
+                Response.Redirect("/Redirect.aspx");
             }
         }
 
