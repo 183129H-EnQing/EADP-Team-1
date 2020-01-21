@@ -13,6 +13,7 @@ namespace MyCircles.BLL
         public Circle()
         {
             Posts = new HashSet<Post>();
+            UserCirclePoints = new HashSet<UserCirclePoint>();
             UserCircles = new HashSet<UserCircle>();
         }
 
@@ -21,6 +22,9 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserCirclePoint> UserCirclePoints { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCircle> UserCircles { get; set; }

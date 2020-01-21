@@ -22,7 +22,7 @@ namespace MyCircles
 
             newEventSignUpEventData.name = nameTB.Text;
             newEventSignUpEventData.contactNumber = contactNumberTB.Text;
-            newEventSignUpEventData.date = "hello";
+            //newEventSignUpEventData.date = "hello";
             newEventSignUpEventData.numberOfBookingSlot = "1";
 
             newEventSignUpEventData.Add();

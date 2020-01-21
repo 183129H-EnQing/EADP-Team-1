@@ -12,6 +12,7 @@ namespace MyCircles.ItineraryPlanner
     {
         Itinerary newItinerary = new Itinerary();
         MyCirclesEntityModel db = new MyCirclesEntityModel();
+        DayByDay newDayByDay = new DayByDay();
 
         public BLL.User currentUser;
 
@@ -46,7 +47,16 @@ namespace MyCircles.ItineraryPlanner
             }
 
             //newItinerary.AddItinerary();
-            //Response.Write("<script> alert('Plan Created!');</script>");
+            Response.Write("<script> alert('Plan Created!');</script>");
+
+            int datesSize = betweenDates.Count;
+            for(int i = 0; i < betweenDates.Count; i++)
+            {
+                newDayByDay.itineraryId = newItinerary.itineraryId;
+                newDayByDay.date = betweenDates[i];
+            }
+
+            newDayByDay.AddDayByDay();
 
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
