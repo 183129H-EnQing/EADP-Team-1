@@ -133,7 +133,6 @@
   <ItemGroup>
     <Content Include="Admin\Home.aspx" />
     <Content Include="Admin\ViewReportedPosts.aspx" />
-    <Content Include="App_Data\CreateTables.sql" />
     <Content Include="App_Data\Create_Tables\Circle.sql" />
     <Content Include="App_Data\Create_Tables\Notification.sql" />
     <Content Include="App_Data\Create_Tables\Follow.sql" />
@@ -306,6 +305,7 @@
     <Compile Include="BLL\ItineraryPref.cs" />
     <Compile Include="BLL\Location.cs" />
     <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
+    <Compile Include="BLL\Model_Methods\DayByDayDAM.cs" />
     <Compile Include="BLL\Model_Methods\EventDAM.cs" />
     <Compile Include="BLL\Model_Methods\EventScheduleDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
@@ -321,9 +321,11 @@
     <Compile Include="BLL\SignUpEventDetail.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
+    <Compile Include="BLL\UserCirclePoint.cs" />
     <Compile Include="Controller\EventController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
+    <Compile Include="DAL\DayByDayDAO.cs" />
     <Compile Include="DAL\EventDAO.cs" />
     <Compile Include="DAL\EventScheduleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />

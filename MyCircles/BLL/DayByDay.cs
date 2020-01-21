@@ -9,6 +9,12 @@ namespace MyCircles.BLL
     [Table("DayByDay")]
     public partial class DayByDay
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DayByDay()
+        {
+            Days = new HashSet<Day>();
+        }
+
         public int dayBydayId { get; set; }
 
         public int itineraryId { get; set; }
@@ -17,18 +23,9 @@ namespace MyCircles.BLL
         [StringLength(10)]
         public string date { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string startTime { get; set; }
-
-        [Required]
-        [StringLength(10)]
-        public string endTime { get; set; }
-
-        public int activityId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Day> Days { get; set; }
 
         public virtual Itinerary Itinerary { get; set; }
-
-        public virtual Location Location { get; set; }
     }
 }

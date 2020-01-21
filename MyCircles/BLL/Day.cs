@@ -9,17 +9,22 @@ namespace MyCircles.BLL
     [Table("Day")]
     public partial class Day
     {
-        [Key]
+        public int dayId { get; set; }
+
         public int dayByDayId { get; set; }
 
         [Required]
         [StringLength(10)]
-        public string date { get; set; }
+        public string startTime { get; set; }
 
         [Required]
         [StringLength(10)]
-        public string timeStamp { get; set; }
+        public string endTime { get; set; }
 
-        public int activityId { get; set; }
+        public int locationId { get; set; }
+
+        public virtual DayByDay DayByDay { get; set; }
+
+        public virtual Location Location { get; set; }
     }
 }

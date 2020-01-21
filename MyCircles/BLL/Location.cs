@@ -12,7 +12,7 @@ namespace MyCircles.BLL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Location()
         {
-            DayByDays = new HashSet<DayByDay>();
+            Days = new HashSet<Day>();
         }
 
         [Key]
@@ -46,7 +46,7 @@ namespace MyCircles.BLL
         public string locaCloseHour { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DayByDay> DayByDays { get; set; }
+        public virtual ICollection<Day> Days { get; set; }
 
         public virtual Pref Pref { get; set; }
     }

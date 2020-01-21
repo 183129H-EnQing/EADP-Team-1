@@ -8,12 +8,14 @@ namespace MyCircles.DAL
 {
     public static class ItineraryDAO
     {
-        public static void AddItinerayDAO(Itinerary newItinerary)
+        public static Itinerary AddItinerayDAO(Itinerary newItinerary)
         {
             using(var db = new MyCirclesEntityModel())
             {
-                db.Itineraries.Add(newItinerary);
+                Itinerary itinerary;
+                itinerary = db.Itineraries.Add(newItinerary);
                 db.SaveChanges();
+                return itinerary;
             }
         }
 
