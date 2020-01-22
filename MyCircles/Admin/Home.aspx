@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <div class="card-title">Number of Event Hosts</div>
                     <div class="card-text text-center">
-                        <span class="number-thingy"><b>26</b></span>
+                        <span class="number-thingy"><b><%=numOfEventHosts %></b></span>
                     </div>
                 </div>
             </div>

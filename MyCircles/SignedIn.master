@@ -18,16 +18,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="Home/Post.aspx" runat="server">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/Home/Post.aspx" runat="server">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Event/ViewAllEventPage.aspx" runat="server">Events</a>
+                        <a class="nav-link" href="/Event/ViewAllEventPage.aspx" runat="server">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ItineraryPlanner/Home.aspx" runat="server">Planner</a>
+                        <a class="nav-link" href="/ItineraryPlanner/Home.aspx" runat="server">Planner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Profile/Search" runat="server">Search</a>
+                        <a class="nav-link" href="/Profile/Search" runat="server">Search</a>
                     </li>
                 </ul>
             </div>
@@ -39,7 +39,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     <a id="ProfileLink" runat="server" ClientIDMode="static" class="dropdown-item">Profile</a>
-                    <asp:HyperLink runat="server" ID="adminLink" Visible="false" CssClass="dropdown-item" href="Admin/Home.aspx" >Admin</asp:HyperLink>
+                    <asp:HyperLink runat="server" ID="adminLink" Visible="false" CssClass="dropdown-item" href="/Admin/Home.aspx">Admin</asp:HyperLink>
                     <a id="SignOutLink" runat="server" ClientIDMode="static" class="text-danger dropdown-item" onserverclick="SignOutLink_ServerClick">Sign Out</a>
                 </div>
             </div>

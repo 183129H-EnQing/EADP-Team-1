@@ -20,5 +20,10 @@ namespace MyCircles.BLL
         {
             DAL.UserDAO.UpdateUserLocation(Id, Latitude, Longitude, City);
         }
+
+        public static List<User> GetAllUsers()
+        {
+            return DAL.UserDAO.GetAllUsers();
+        }
     }
 }
