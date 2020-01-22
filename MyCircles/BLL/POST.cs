@@ -24,7 +24,6 @@ namespace MyCircles.BLL
         [Column(TypeName = "image")]
         public byte[] Image { get; set; }
 
-        [Required]
         [StringLength(20)]
         public string Comment { get; set; }
 
