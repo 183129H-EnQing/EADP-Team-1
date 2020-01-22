@@ -27,6 +27,7 @@
                 <asp:ScriptManager ID="FollowScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
                     <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
+                            <asp:CheckBox ID="cbMakeEventHost" runat="server" Visible="false" CssClass="float-right" OnCheckedChanged="cbMakeEventHost_CheckedChanged" Text="Is Event Host?"/>
                             <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click"  UseSubmitBehavior="false" />
                         </ContentTemplate>
                     <Triggers>
@@ -70,10 +71,7 @@
                                     </div>
                                     <div class="col-md-6 desc-container">
                                         <span class='m-0 h1'><%#DataBinder.Eval(Container.DataItem, "User.Name")%></span><span class='badge badge-secondary' visible='false'>Follows you</span><br />
-                                        <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span>
-                                        </a>
-                                        <span class='bio-span d-block font-italic py-2'><%#DataBinder.Eval(Container.DataItem, "User.Bio")%></span>
-                                        <i class='fa fa-map-marker' aria-hidden='true'></i> &nbsp;
+                                        <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span></a><span class='bio-span d-block font-italic py-2'><%#DataBinder.Eval(Container.DataItem, "User.Bio")%></span><i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;
                                         <span><%#DataBinder.Eval(Container.DataItem, "User.City")%></span>
                                     </div>
                                     <div class='col-md-3 button-container'>

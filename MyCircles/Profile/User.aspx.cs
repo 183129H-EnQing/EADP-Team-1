@@ -47,6 +47,11 @@ namespace MyCircles.Profile
             }
             else
             {
+                if (BLL.Admin.RetrieveAdmin(currentUser) != null)
+                {
+                    cbMakeEventHost.Visible = true;
+                    cbMakeEventHost.Checked = requestedUser.IsEventHolder;
+                }
                 btEditProfile.Visible = false;
                 followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
                 postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
@@ -72,6 +77,12 @@ namespace MyCircles.Profile
         protected void btMessage_Click(object sender, EventArgs e)
         {
             Response.Redirect("User.aspx?username=" + currentUser.Username);
+        }
+
+        protected void cbMakeEventHost_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Updating user's event host: " + cbMakeEventHost.Checked);
+            requestedUser.UpdateIsEventHost(cbMakeEventHost.Checked);
         }
 
         protected void updateFollowButton()
