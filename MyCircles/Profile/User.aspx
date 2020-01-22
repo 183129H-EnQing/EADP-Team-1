@@ -25,13 +25,14 @@
             <div style="height:200px">
                 <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5 px-4" value="Edit Profile" type="button" runat="server" />
                 <asp:ScriptManager ID="FollowScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
-                    <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <asp:CheckBox ID="cbMakeEventHost" runat="server" Visible="false" CssClass="float-right" OnCheckedChanged="cbMakeEventHost_CheckedChanged" Text="Is Event Host?"/>
-                            <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click"  UseSubmitBehavior="false" />
-                        </ContentTemplate>
+                <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <asp:CheckBox ID="cbMakeEventHost" runat="server" Visible="false" CssClass="float-right" OnCheckedChanged="cbMakeEventHost_CheckedChanged" Text="Is Event Host?" AutoPostBack="true"/>
+                        <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />
+                    </ContentTemplate>
                     <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="btFollow" EventName="Click" />        
+                        <asp:AsyncPostBackTrigger ControlID="btFollow" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="cbMakeEventHost" EventName="CheckedChanged"/>
                     </Triggers>
                 </asp:UpdatePanel>
             </div>

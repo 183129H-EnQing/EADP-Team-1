@@ -49,8 +49,9 @@ namespace MyCircles.Profile
             {
                 if (BLL.Admin.RetrieveAdmin(currentUser) != null)
                 {
+                    System.Diagnostics.Debug.WriteLine("Checking if admin");
                     cbMakeEventHost.Visible = true;
-                    cbMakeEventHost.Checked = requestedUser.IsEventHolder;
+                    if (!Page.IsPostBack) cbMakeEventHost.Checked = requestedUser.IsEventHolder;
                 }
                 btEditProfile.Visible = false;
                 followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
@@ -81,8 +82,12 @@ namespace MyCircles.Profile
 
         protected void cbMakeEventHost_CheckedChanged(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Updating user's event host: " + cbMakeEventHost.Checked);
-            requestedUser.UpdateIsEventHost(cbMakeEventHost.Checked);
+            if (sender is CheckBox)
+            {
+                CheckBox cbSender = (CheckBox) sender;
+                System.Diagnostics.Debug.WriteLine("Updating user's event host: " + cbSender.Checked);
+                requestedUser.UpdateIsEventHost(cbSender.Checked);
+            }
         }
 
         protected void updateFollowButton()
