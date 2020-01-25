@@ -161,7 +161,7 @@ CREATE TABLE [dbo].[Location] (
 
 -- ItineraryPref Table
 CREATE TABLE [dbo].[ItineraryPref] (
-    [itineraryPrefId] INT NOT NULL,
+    [itineraryPrefId] INT NOT NULL IDENTITY(1,1),
     [itineraryId]     INT NOT NULL,
     [prefId]          INT NOT NULL,
     PRIMARY KEY CLUSTERED ([itineraryPrefId] ASC),

@@ -310,6 +310,7 @@
     <Compile Include="BLL\Model_Methods\EventDAM.cs" />
     <Compile Include="BLL\Model_Methods\EventScheduleDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
+    <Compile Include="BLL\Model_Methods\ItineraryPrefDAM.cs" />
     <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
     <Compile Include="BLL\Model_Methods\ReportedPostDAM.cs" />
     <Compile Include="BLL\Model_Methods\SignUpEventDetailDAM.cs" />
@@ -330,6 +331,7 @@
     <Compile Include="DAL\EventDAO.cs" />
     <Compile Include="DAL\EventScheduleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
+    <Compile Include="DAL\ItineraryPrefDAO.cs" />
     <Compile Include="DAL\Joint_Models\Days.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />

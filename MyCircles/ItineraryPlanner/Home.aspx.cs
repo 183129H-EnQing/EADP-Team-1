@@ -13,6 +13,7 @@ namespace MyCircles.ItineraryPlanner
         Itinerary newItinerary = new Itinerary();
         MyCirclesEntityModel db = new MyCirclesEntityModel();
         DayByDay newDayByDay = new DayByDay();
+        ItineraryPref newItineraryPref = new ItineraryPref();
 
         public BLL.User currentUser;
 
@@ -57,10 +58,13 @@ namespace MyCircles.ItineraryPlanner
                 newDayByDay.AddDayByDay();
             }
 
+            //check pref
+            PrefSelect(newItinerary.itineraryId);
+
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
 
-            string url = "Timeline.aspx" + newItinerary.itineraryId;
+            string url = "Timeline.aspx?Id=" + newItinerary.itineraryId;
             Response.Redirect("url");
         }
 
@@ -75,5 +79,71 @@ namespace MyCircles.ItineraryPlanner
             rpItinerary.DataSource = itineraryList;
             rpItinerary.DataBind();
         } 
+
+        private void PrefSelect(int Id)
+        {
+            int itineraryId = Id;
+            if (cbBeaches.Checked)
+            {
+                Session["prefB"] = cbBeaches.Text;
+
+                ItineraryPref newItineraryPref = new ItineraryPref();
+
+                //call ItineraryPref method to add to table
+                newItineraryPref.itineraryId = newItinerary.itineraryId;
+                newItineraryPref.prefId = 1;
+                newItineraryPref.AddItineraryPref();
+            }
+            if (cbOutdoors.Checked)
+            {
+                Session["prefO"] = cbOutdoors.Text;
+
+                ItineraryPref newItineraryPref = new ItineraryPref();
+
+                newItineraryPref.itineraryId = newItinerary.itineraryId;
+                newItineraryPref.prefId = 2;
+                newItineraryPref.AddItineraryPref();
+            }
+            if (cbMuseums.Checked)
+            {
+                Session["prefM"] = cbMuseums.Text;
+
+                ItineraryPref newItineraryPref = new ItineraryPref();
+
+                newItineraryPref.itineraryId = newItinerary.itineraryId;
+                newItineraryPref.prefId = 3;
+                newItineraryPref.AddItineraryPref();
+            }
+            if (cbHistoric.Checked)
+            {
+                Session["prefH"] = cbHistoric.Text;
+
+                ItineraryPref newItineraryPref = new ItineraryPref();
+
+                newItineraryPref.itineraryId = newItinerary.itineraryId;
+                newItineraryPref.prefId = 4;
+                newItineraryPref.AddItineraryPref();
+            }
+            if (cbShopping.Checked)
+            {
+                Session["prefS"] = cbShopping.Text;
+
+                ItineraryPref newItineraryPref = new ItineraryPref();
+
+                newItineraryPref.itineraryId = newItinerary.itineraryId;
+                newItineraryPref.prefId = 5;
+                newItineraryPref.AddItineraryPref();
+            }
+            if (cbWildlife.Checked)
+            {
+                Session["prefW"] = cbWildlife.Text;
+
+                ItineraryPref newItineraryPref = new ItineraryPref();
+
+                newItineraryPref.itineraryId = newItinerary.itineraryId;
+                newItineraryPref.prefId = 6;
+                newItineraryPref.AddItineraryPref();
+            }
+        }
     }
 }
