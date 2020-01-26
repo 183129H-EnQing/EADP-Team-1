@@ -85,14 +85,16 @@
                         <h4 id="followWarning" class="text-center" runat="server">You have not followed any person yet</h4>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-                <div id="mapsContainer" class="container py-5 px-7" runat="server">
-<%--                    <asp:UpdatePanel ID="MapUpdatePanel" runat="server">
-                        <ContentTemplate>
-                            <Reimers:Map ID="GMap" Width="500px" Height="400px" runat="server" />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>--%>
+                <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-mao-tab">
+                    <div id="mapContainer" class="container py-5 px-7" runat="server">
+                        <div id="mapsContainer" class="container" runat="server">
+                            <asp:updatepanel id="mapupdatepanel" runat="server">
+                                <contenttemplate>
+                                    <reimers:map id="GMap" width="100%" height="400px" runat="server" />
+                                </contenttemplate>
+                            </asp:updatepanel>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

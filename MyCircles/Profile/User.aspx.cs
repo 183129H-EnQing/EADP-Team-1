@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
+using Reimers.Google.Map;
 using MyCircles.BLL;
 using static MyCircles.DAL.UserDAO;
 using MyCircles.DAL;
@@ -61,6 +62,22 @@ namespace MyCircles.Profile
                 updateFollowButton();
 
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
+            }
+
+            GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
+
+            if (currentUser.Latitude != null || currentUser.Longitude != null)
+            {
+                LatLng currentPos = new LatLng();
+                double currentLat = (this.currentUser.Latitude.HasValue) ? this.currentUser.Latitude.Value : 0;
+                double currentLng = (this.currentUser.Longitude.HasValue) ? this.currentUser.Longitude.Value : 0;
+
+                currentPos.Latitude = currentLat;
+                currentPos.Longitude = currentLng;
+                GMap.Center = currentPos;
+                var marker = new Marker(currentPos);
+
+                GMap.Overlays.Add(marker);
             }
         }
 
