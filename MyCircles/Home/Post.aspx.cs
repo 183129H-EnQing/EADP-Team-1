@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -49,6 +50,7 @@ namespace MyCircles.Home
                 newPost.Content = activity.Text;
                 newPost.UserId = currentUser.Id;
                 newPost.CircleId = "gym";
+                //newPost.Image = fileupld.PostedFile;
                 PostDAO.AddPost(newPost);
 
                 rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
@@ -65,7 +67,23 @@ namespace MyCircles.Home
           
            
         }
+        protected void UploadFile(object sender, EventArgs e)
+        {
+            string folderPath = Server.MapPath("~/Files/");
 
+            //Check whether Directory (Folder) exists.
+            if (!Directory.Exists(folderPath))
+            {
+                //If Directory (Folder) does not exists Create it.
+                Directory.CreateDirectory(folderPath);
+            }
+
+            //Save the File to the Directory (Folder).
+            //upldFile.SaveAs(folderPath + Path.GetFileName(upldFile.FileName));
+
+            //Display the Picture in Image control.
+           // Image1.ImageUrl = "~/Files/" + Path.GetFileName(upldFile.FileName);
+        }
 
     }
 }
