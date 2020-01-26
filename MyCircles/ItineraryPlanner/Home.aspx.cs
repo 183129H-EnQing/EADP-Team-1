@@ -82,7 +82,7 @@ namespace MyCircles.ItineraryPlanner
 
         private void PrefSelect(int Id)
         {
-            int itineraryId = Id;
+            //int itineraryId = Id;
             if (cbBeaches.Checked)
             {
                 Session["prefB"] = cbBeaches.Text;
