@@ -38,7 +38,7 @@
             </div>
             <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="true">Posts</a>
+                    <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-circles-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circles" aria-selected="false">Circles</a>
@@ -47,11 +47,11 @@
                     <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false">People</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="false">Map</a>
+                    <a class="nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="true">Map</a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
+                <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
                     <div id="userPostsContainer" class="container py-5 px-7" runat="server">
                         <h4 id="postWarning" class="text-center" runat="server">You have not made any posts yet</h4>
                     </div>
@@ -85,12 +85,12 @@
                         <h4 id="followWarning" class="text-center" runat="server">You have not followed any person yet</h4>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-mao-tab">
+                <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-mao-tab">
                     <div id="mapContainer" class="container py-5 px-7" runat="server">
                         <div id="mapsContainer" class="container" runat="server">
                             <asp:updatepanel id="mapupdatepanel" runat="server">
                                 <contenttemplate>
-                                    <reimers:map id="GMap" width="100%" height="400px" runat="server" />
+                                    <reimers:map id="GMap" width="100%" height="400px" runat="server" Zoom="18" />
                                 </contenttemplate>
                             </asp:updatepanel>
                         </div>

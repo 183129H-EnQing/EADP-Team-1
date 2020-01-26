@@ -40,7 +40,7 @@
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     <a id="ProfileLink" runat="server" ClientIDMode="static" class="dropdown-item">Profile</a>
                     <asp:HyperLink runat="server" ID="adminLink" Visible="false" CssClass="dropdown-item" href="/Admin/Home.aspx">Admin</asp:HyperLink>
-                    <a id="SignOutLink" runat="server" ClientIDMode="static" class="text-danger dropdown-item" onserverclick="SignOutLink_ServerClick">Sign Out</a>
+                    <a id="SignOutLink" runat="server" ClientIDMode="static" class="text-danger dropdown-item" href="/Redirect.aspx?action=signout">Sign Out</a>
                 </div>
             </div>
         </div>

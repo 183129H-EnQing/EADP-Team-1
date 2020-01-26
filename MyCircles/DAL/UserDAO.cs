@@ -117,6 +117,20 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void ToggleLoginStatus(int id, bool isLoggedIn)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                User user = db.Users
+                    .Where(u => u.Id == id)
+                    .FirstOrDefault();
+
+                user.IsLoggedIn = isLoggedIn;
+
+                db.SaveChanges();
+            }
+        }
+
         public static List<User> GetAllUsers()
         {
             List<User> users = new List<User>();

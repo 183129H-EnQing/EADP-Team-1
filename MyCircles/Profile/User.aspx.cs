@@ -25,10 +25,11 @@ namespace MyCircles.Profile
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
-            string requestedUsername = Request.QueryString["username"];
-            requestedUser = GetUserByIdentifier(requestedUsername);
-
+            requestedUser = GetUserByIdentifier(Request.QueryString["username"]);
             if (requestedUser == null) requestedUser = currentUser;
+
+            rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
+            rptUserFollowing.DataBind();
 
             Title = requestedUser.Username + " - MyCircles";            
             ProfilePicImage.ImageUrl = requestedUser.ProfileImage;
@@ -36,8 +37,8 @@ namespace MyCircles.Profile
             lbUsername.Text = "@" + requestedUser.Username;
             lbBio.InnerText = requestedUser.Bio;
             lbCity.InnerText = requestedUser.City;
-            rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
-            rptUserFollowing.DataBind();
+            GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
+            List<BLL.User> allUsers = GetAllUsers();
 
             if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
             if (rptUserFollowing.Items.Count > 0) followWarning.Visible = false;
@@ -50,10 +51,10 @@ namespace MyCircles.Profile
             {
                 if (BLL.Admin.RetrieveAdmin(currentUser) != null)
                 {
-                    System.Diagnostics.Debug.WriteLine("Checking if admin");
                     cbMakeEventHost.Visible = true;
                     if (!Page.IsPostBack) cbMakeEventHost.Checked = requestedUser.IsEventHolder;
                 }
+
                 btEditProfile.Visible = false;
                 followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
                 postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
@@ -64,20 +65,63 @@ namespace MyCircles.Profile
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
             }
 
-            GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
-
-            if (currentUser.Latitude != null || currentUser.Longitude != null)
+            foreach (BLL.User user in allUsers)
             {
-                LatLng currentPos = new LatLng();
-                double currentLat = (this.currentUser.Latitude.HasValue) ? this.currentUser.Latitude.Value : 0;
-                double currentLng = (this.currentUser.Longitude.HasValue) ? this.currentUser.Longitude.Value : 0;
+                if (user.Latitude != null || user.Longitude != null)
+                {
+                    LatLng pos = new LatLng();
+                    pos.Latitude = (user.Latitude.HasValue) ? user.Latitude.Value : 0;
+                    pos.Longitude = (user.Longitude.HasValue) ? user.Longitude.Value : 0;
 
-                currentPos.Latitude = currentLat;
-                currentPos.Longitude = currentLng;
-                GMap.Center = currentPos;
-                var marker = new Marker(currentPos);
+                    Marker userMarker = new Marker(pos);
+                    Marker overlayMarker = new Marker(pos);
+                    userMarker.ZIndex = -1;
+                    overlayMarker.ZIndex = 1;
 
-                GMap.Overlays.Add(marker);
+                    Icon userIcon = new Icon();
+                    userIcon.ScaledSize = new Size(24, 24);
+                    userIcon.Anchor = new Point(12, 28);
+                    userMarker.Icon = userIcon;
+
+                    Icon overlayIcon = new Icon();
+                    overlayIcon.ScaledSize = new Size(32, 32);
+                    overlayMarker.Icon = overlayIcon;
+
+                    if (Uri.IsWellFormedUriString(user.ProfileImage, UriKind.Absolute))
+                    {
+                        userIcon.ImageUri = new Uri(user.ProfileImage);
+                    }
+                    else
+                    {
+                        userIcon.ImageUri = new Uri(string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, user.ProfileImage));
+                    }
+
+                    if (user.Id == requestedUser.Id)
+                    {
+                        overlayIcon.ImageUri = new Uri(string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, "/Content/images/UserOutlineDefault.png"));
+                        GMap.Center = pos;
+                    }
+                    else
+                    {
+                        if (user.IsLoggedIn)
+                        {
+                            overlayIcon.ImageUri = new Uri(string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, "/Content/images/UserOutlineOnline.png"));
+                        }
+                        else
+                        {
+                            overlayIcon.ImageUri = new Uri(string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, "/Content/images/UserOutlineOffline.png"));
+                        }
+
+                        userMarker.Clickable = true;
+                    }
+
+                    userMarker.Options.Name = user.Username;
+                    overlayMarker.Options.Name = user.Username;
+
+                    GMap.Overlays.Add(userMarker);
+                    GMap.Overlays.Add(overlayMarker);
+                    GMap.OverlayClick += new EventHandler<OverlayEventArgs>(MarkerClick);
+                }
             }
         }
 
@@ -121,6 +165,12 @@ namespace MyCircles.Profile
                 btFollow.Text = "Following";
                 btFollow.CssClass = "btn btn-primary float-right m-5 px-4";
             }
+        }
+
+        void MarkerClick(object sender, OverlayEventArgs e)
+        {
+            e.MapCommand = "window.location.replace('/Profile/User.aspx?username=" + e.Overlay.Options.Name + "');";
+            //Server.Transfer("Profile/User.aspx?username=" + e.Overlay.Options.Name);
         }
     }
 }

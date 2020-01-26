@@ -144,6 +144,9 @@
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\UserOutlineDefault.png" />
+    <Content Include="Content\images\UserOutlineOffline.png" />
+    <Content Include="Content\images\UserOutlineOnline.png" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />

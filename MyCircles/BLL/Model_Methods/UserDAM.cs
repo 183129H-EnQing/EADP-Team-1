@@ -21,6 +21,11 @@ namespace MyCircles.BLL
             DAL.UserDAO.UpdateUserLocation(Id, Latitude, Longitude, City);
         }
 
+        public void ToggleLoginStatus(bool isLoggedIn)
+        {
+            DAL.UserDAO.ToggleLoginStatus(Id, isLoggedIn);
+        }
+
         public void UpdateIsEventHost(bool isEventHost)
         {
             DAL.UserDAO.UpdateIsEventHost(Id, isEventHost);
