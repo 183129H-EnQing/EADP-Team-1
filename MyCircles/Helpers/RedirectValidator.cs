@@ -21,14 +21,14 @@ namespace MyCircles
             {
                 HttpContext.Current.Response.Redirect("/Auth/Login.aspx");
             }
-            else 
+            else
             {
                 using (var db = new MyCirclesEntityModel())
                 {
                     UserCircle existingUserCircle = db.UserCircles.Where(uc => uc.UserId == currentUser.Id).FirstOrDefault();
                     if (existingUserCircle == null && !isAddingUserCircles) HttpContext.Current.Response.Redirect("/Profile/FollowCircles.aspx");
                 }
-            } 
+            }
         }
     }
 }

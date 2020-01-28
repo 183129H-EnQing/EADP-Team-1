@@ -317,6 +317,7 @@
     <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
     <Compile Include="BLL\Model_Methods\ReportedPostDAM.cs" />
     <Compile Include="BLL\Model_Methods\SignUpEventDetailDAM.cs" />
+    <Compile Include="BLL\Model_Methods\UserCircleDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />

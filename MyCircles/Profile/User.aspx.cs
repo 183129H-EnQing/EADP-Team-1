@@ -24,7 +24,6 @@ namespace MyCircles.Profile
         {
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
-
             requestedUser = GetUserByIdentifier(Request.QueryString["username"]);
             if (requestedUser == null) requestedUser = currentUser;
 
@@ -75,8 +74,8 @@ namespace MyCircles.Profile
 
                     Marker userMarker = new Marker(pos);
                     Marker overlayMarker = new Marker(pos);
-                    userMarker.ZIndex = -1;
-                    overlayMarker.ZIndex = 1;
+                    userMarker.ZIndex = user.Id;
+                    overlayMarker.ZIndex = user.Id;
 
                     Icon userIcon = new Icon();
                     userIcon.ScaledSize = new Size(24, 24);
@@ -98,8 +97,15 @@ namespace MyCircles.Profile
 
                     if (user.Id == requestedUser.Id)
                     {
-                        overlayIcon.ImageUri = new Uri(string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, "/Content/images/UserOutlineDefault.png"));
                         GMap.Center = pos;
+                    }
+
+
+                    if (user.Id == currentUser.Id)
+                    {
+                        overlayIcon.ImageUri = new Uri(string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, "/Content/images/UserOutlineDefault.png"));
+                        userMarker.ZIndex = 98;
+                        overlayMarker.ZIndex = 99;
                     }
                     else
                     {
@@ -111,8 +117,6 @@ namespace MyCircles.Profile
                         {
                             overlayIcon.ImageUri = new Uri(string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, "/Content/images/UserOutlineOffline.png"));
                         }
-
-                        userMarker.Clickable = true;
                     }
 
                     userMarker.Options.Name = user.Username;

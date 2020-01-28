@@ -36,6 +36,10 @@
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
+
+
+
+
             <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts</a>
