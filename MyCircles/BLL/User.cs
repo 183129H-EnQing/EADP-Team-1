@@ -19,24 +19,25 @@ namespace MyCircles.BLL
             Mutuals1 = new HashSet<Mutual>();
             Notifications = new HashSet<Notification>();
             Posts = new HashSet<Post>();
+            ReportedPosts = new HashSet<ReportedPost>();
             UserCircles = new HashSet<UserCircle>();
         }
 
         public int Id { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(32)]
         public string Username { get; set; }
 
         [Required]
-        [StringLength(30)]
+        [StringLength(32)]
         public string EmailAddress { get; set; }
 
         [StringLength(256)]
         public string Password { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(18)]
         public string Name { get; set; }
 
         [Column(TypeName = "text")]
@@ -82,6 +83,9 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReportedPost> ReportedPosts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCircle> UserCircles { get; set; }

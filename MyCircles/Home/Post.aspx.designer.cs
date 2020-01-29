@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles.Home
-{
-
-
-    public partial class Post
-    {
-
+namespace MyCircles.Home {
+    
+    
+    public partial class Post {
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// activity control.
         /// </summary>
@@ -31,7 +29,16 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox activity;
-
+        
+        /// <summary>
+        /// fileupld control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile fileupld;
+        
         /// <summary>
         /// btnUpload control.
         /// </summary>
@@ -40,7 +47,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpload;
-
+        
         /// <summary>
         /// btnPost control.
         /// </summary>
@@ -49,7 +56,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPost;
-
+        
         /// <summary>
         /// Btncircle control.
         /// </summary>
@@ -58,7 +65,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btncircle;
-
+        
         /// <summary>
         /// Btnc control.
         /// </summary>
@@ -67,7 +74,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btnc;
-
+        
         /// <summary>
         /// Button3 control.
         /// </summary>
@@ -76,7 +83,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button3;
-
+        
         /// <summary>
         /// rptUserPosts control.
         /// </summary>
@@ -85,7 +92,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptUserPosts;
-
+        
         /// <summary>
         /// Btn55 control.
         /// </summary>
@@ -94,7 +101,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn55;
-
+        
         /// <summary>
         /// Btn4 control.
         /// </summary>
@@ -103,7 +110,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn4;
-
+        
         /// <summary>
         /// Btn44 control.
         /// </summary>
@@ -112,7 +119,7 @@ namespace MyCircles.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn44;
-
+        
         /// <summary>
         /// btn6 control.
         /// </summary>

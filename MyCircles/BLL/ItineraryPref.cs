@@ -9,7 +9,6 @@ namespace MyCircles.BLL
     [Table("ItineraryPref")]
     public partial class ItineraryPref
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int itineraryPrefId { get; set; }
 
         public int itineraryId { get; set; }
