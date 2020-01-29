@@ -162,6 +162,10 @@ namespace MyCircles.Profile
             updateFollowButton();
         }
 
+        //TODO: Check whether requested user is current user and show the add circle stuff accordingly
+        //TODO: Do autocomplete for circles
+        //TODO: Route to this page if no circles
+        //TODO: Clean up the interface
         protected void btAddCircle_Click(object sender, EventArgs e)
         {
             signedOutErrorContainer.Visible = false;
@@ -277,8 +281,7 @@ namespace MyCircles.Profile
 
         void MarkerClick(object sender, OverlayEventArgs e)
         {
-            e.MapCommand = "window.location.replace('/Profile/User.aspx?username=" + e.Overlay.Options.Name + "');";
-            //Server.Transfer("Profile/User.aspx?username=" + e.Overlay.Options.Name);
+            e.MapCommand = "window.location.replace('/Profile/User.aspx?username=" + e.Overlay.Options.Name + "')";
         }
     }
 }
