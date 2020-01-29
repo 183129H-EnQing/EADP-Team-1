@@ -12,5 +12,10 @@ namespace MyCircles.BLL
         {
             return ReportedPostDAO.GetAllReportedPosts();
         }
+
+        public static List<DAL.Joint_Models.UserReportedPost> GetAllUserReportedPosts()
+        {
+            return ReportedPostDAO.GetAllUserReportedPosts();
+        }
     }
 }
