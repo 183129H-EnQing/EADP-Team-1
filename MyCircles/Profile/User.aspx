@@ -6,6 +6,7 @@
 
 <asp:Content ID="ProfileContent" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form runat="server">
+        <asp:ScriptManager ID="UserScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <div class="rounded container-lg content-container bg-white p-0 shadow-sm">
             <div class="user-container">
                 <a href="/Profile/Ex1UpdatePanel.aspx" runat="server">
@@ -24,7 +25,6 @@
             </div>
             <div style="height:200px">
                 <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5 px-4" value="Edit Profile" type="button" runat="server" />
-                <asp:ScriptManager ID="FollowScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
                 <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:CheckBox ID="cbMakeEventHost" runat="server" Visible="false" CssClass="float-right" OnCheckedChanged="cbMakeEventHost_CheckedChanged" Text="Event Host" AutoPostBack="true"/>
@@ -42,13 +42,13 @@
                     <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-circles-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circles" aria-selected="false">Circles</a>
+                    <a class="nav-link" id="pills-circles-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circles" aria-selected="false" data-url="?action=circles">Circles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false">People</a>
+                    <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false" data-url="?action=people">People</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="true">Map</a>
+                    <a class="nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="true" data-url="?action=map">Map</a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -73,7 +73,7 @@
                                                 <asp:Repeater ID="rptUpdateCircles" runat="server" ItemType="MyCircles.BLL.UserCircle" OnItemCommand="rptUpdateCircles_ItemCommand">
                                                     <ItemTemplate>
                                                         <div id="circleInputGroup" class="mb-3 input-group" runat="server" InputGroup="tbCircleInput">
-                                                            <asp:TextBox runat="server" CssClass="input-height-lg form-control interestfollow-input tb" placeholder="Interest To Follow" Text=<%#DataBinder.Eval(Container.DataItem, "CircleId")%> Enabled="false" ValidationGroup="addCircleGroup"></asp:TextBox>
+                                                            <asp:TextBox runat="server" CssClass="input-height-lg form-control interestfollow-input" placeholder="Interest To Follow" Text=<%#DataBinder.Eval(Container.DataItem, "CircleId")%> Enabled="false" ValidationGroup="addCircleGroup"></asp:TextBox>
                                                             <span class="input-group-append">
                                                                 <span class="input-group-text"><%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>
                                                                 <asp:Button ID="btRemove" runat="server" CssClass="input-height-lg btn btn-danger rounded-left" Text="Remove" CausesValidation="False" CommandName="Remove" />
@@ -82,7 +82,7 @@
                                                     </ItemTemplate>
                                                 </asp:Repeater>
                                             <div id="circleInputGroup" class="mb-3 input-group" runat="server" InputGroup="tbCircleInput">
-                                                <asp:TextBox id="tbCircleInput" runat="server" CssClass="input-height-lg form-control interestfollow-input" placeholder="Interest To Follow" EnableViewState="false" ValidationGroup="addCircleGroup"></asp:TextBox>
+                                                <asp:TextBox id="tbCircleInput" runat="server" CssClass="input-height-lg rounded form-control interestfollow-input flexdatalist" placeholder="Interest name" EnableViewState="false" ValidationGroup="addCircleGroup" data-min-length="1" list="existingCircles" name="circleInput"></asp:TextBox>
                                             </div>
                                             <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
                                                 <div class="signedOutErrorBlock">
@@ -153,6 +153,9 @@
                 </div>
             </div>
         </div>
+
+        <datalist id="existingCircles" runat="server" ClientIDMode="Static">
+        </datalist>
     </form>
 </asp:Content>
 

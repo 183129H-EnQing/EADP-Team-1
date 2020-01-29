@@ -19,6 +19,7 @@ namespace MyCircles.Profile
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
+        public List<BLL.Circle> existingCircleList;
         public List<UserCircle> inputCirclesList
         {
             get
@@ -45,6 +46,7 @@ namespace MyCircles.Profile
 
             if (!Page.IsPostBack)
             {
+                bindExisitingCircles();
                 inputCirclesList = UserCircleDAO.GetAllUserCircles(currentUser.Id);
                 rptUpdateCircles.DataSource = inputCirclesList;
                 rptUpdateCircles.DataBind();
@@ -165,7 +167,7 @@ namespace MyCircles.Profile
         //TODO: Check whether requested user is current user and show the add circle stuff accordingly
         //TODO: Do autocomplete for circles
         //TODO: Route to this page if no circles
-        //TODO: Clean up the interface
+        //TODO: Clean up the interface (show graph for circles maybe???)
         protected void btAddCircle_Click(object sender, EventArgs e)
         {
             signedOutErrorContainer.Visible = false;
@@ -260,6 +262,14 @@ namespace MyCircles.Profile
             {
                 CheckBox cbSender = (CheckBox) sender;
                 requestedUser.UpdateIsEventHost(cbSender.Checked);
+            }
+        }
+
+        private void bindExisitingCircles()
+        {
+            foreach (BLL.Circle circle in CircleDAO.GetAllCircles())
+            {
+                existingCircles.InnerHtml += "<option value='" + circle.Id + "'>" + circle.Id + "</option>";
             }
         }
 

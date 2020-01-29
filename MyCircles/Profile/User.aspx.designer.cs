@@ -15,6 +15,15 @@ namespace MyCircles.Profile
     {
 
         /// <summary>
+        /// UserScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager UserScriptManager;
+
+        /// <summary>
         /// HeaderImage control.
         /// </summary>
         /// <remarks>
@@ -85,15 +94,6 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btEditProfile;
-
-        /// <summary>
-        /// FollowScriptManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager FollowScriptManager;
 
         /// <summary>
         /// FollowUpdatePanel control.
@@ -319,5 +319,14 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Reimers.Google.Map.Map GMap;
+
+        /// <summary>
+        /// existingCircles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl existingCircles;
     }
 }
