@@ -6,6 +6,7 @@
 
 <asp:Content ID="ProfileContent" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form runat="server">
+        <asp:ScriptManager ID="UserScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <div class="rounded container-lg content-container bg-white p-0 shadow-sm">
             <div class="user-container">
                 <a href="/Profile/Ex1UpdatePanel.aspx" runat="server">
@@ -24,10 +25,9 @@
             </div>
             <div style="height:200px">
                 <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5 px-4" value="Edit Profile" type="button" runat="server" />
-                <asp:ScriptManager ID="FollowScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
                 <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:CheckBox ID="cbMakeEventHost" runat="server" Visible="false" CssClass="float-right" OnCheckedChanged="cbMakeEventHost_CheckedChanged" Text="Is Event Host?" AutoPostBack="true"/>
+                        <asp:CheckBox ID="cbMakeEventHost" runat="server" Visible="false" CssClass="float-right" OnCheckedChanged="cbMakeEventHost_CheckedChanged" Text="Event Host" AutoPostBack="true"/>
                         <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />
                     </ContentTemplate>
                     <Triggers>
@@ -37,21 +37,18 @@
                 </asp:UpdatePanel>
             </div>
 
-
-
-
             <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-circles-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circles" aria-selected="false">Circles</a>
+                    <a class="nav-link" id="pills-circles-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circles" aria-selected="false" data-url="?action=circles">Circles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false">People</a>
+                    <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false" data-url="?action=people">People</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="true">Map</a>
+                    <a class="nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="true" data-url="?action=map">Map</a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -62,7 +59,53 @@
                 </div>
                 <div class="tab-pane fade" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
                     <div id="userCirclesContainer" class="container py-5 px-7" runat="server">
-                        <h4 id="circleWarning" class="text-center" runat="server">You have not joined any circles yet</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 border-right">
+                                <span class="h1 text-primary">Follow Circles</span>
+                                <hr />
+                                <span class="lead">Before we continue, you need to follow some circles so that we can provide you with content that's relevant to your interests.</span> <br /><br /> <span class="h5">Just enter any of your interests to join a circle!</span>
+                            </div>
+                            <div class="col-md-6 col-sm-12 border-left">
+                                <div id="circleInputForm" runat="server">
+                                    <div id="circleInputGroupBlock" class="mb-5" runat="server">
+                                        <asp:UpdatePanel ID="UpdateCircleUpdatePanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                                            <ContentTemplate>
+                                                <asp:Repeater ID="rptUpdateCircles" runat="server" ItemType="MyCircles.BLL.UserCircle" OnItemCommand="rptUpdateCircles_ItemCommand">
+                                                    <ItemTemplate>
+                                                        <div id="circleInputGroup" class="mb-3 input-group" runat="server" InputGroup="tbCircleInput">
+                                                            <asp:TextBox runat="server" CssClass="input-height-lg form-control interestfollow-input" placeholder="Interest To Follow" Text=<%#DataBinder.Eval(Container.DataItem, "CircleId")%> Enabled="false" ValidationGroup="addCircleGroup"></asp:TextBox>
+                                                            <span class="input-group-append">
+                                                                <span class="input-group-text"><%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>
+                                                                <asp:Button ID="btRemove" runat="server" CssClass="input-height-lg btn btn-danger rounded-left" Text="Remove" CausesValidation="False" CommandName="Remove" />
+                                                            </span>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            <div id="circleInputGroup" class="mb-3 input-group" runat="server" InputGroup="tbCircleInput">
+                                                <asp:TextBox id="tbCircleInput" runat="server" CssClass="input-height-lg rounded form-control interestfollow-input flexdatalist" placeholder="Interest name" EnableViewState="false" ValidationGroup="addCircleGroup" data-min-length="1" list="existingCircles" name="circleInput"></asp:TextBox>
+                                            </div>
+                                            <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
+                                                <div class="signedOutErrorBlock">
+                                                    <i class="fas fa-exclamation-triangle"></i> &nbsp;
+                                                    <asp:Label ID="lbErrorMsg" runat="server">
+                                                        <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addCircleGroup" />
+                                                    </asp:Label>
+                                                </div>
+                                            </div>
+                                            <asp:Button ID="btAddCircle" runat="server" CssClass="btn btn-outline-primary" Text="+ Add" OnClick="btAddCircle_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addCircleGroup" />
+                                            <asp:Button ID="btClear" runat="server" CssClass="btn btn-outline-danger" Text="Clear" OnClick="btClear_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addUserCirclesGroup" />
+                                            <asp:Button ID="btSubmit" Text="Continue" CssClass="btn btn-primary float-right px-4" runat="server" OnClick="btSubmit_Click" CausesValidation="false" AutoPostback="true" />
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btAddCircle" EventName="Click" />
+                                            <asp:AsyncPostBackTrigger ControlID="btSubmit" EventName="Click" />
+                                            <asp:AsyncPostBackTrigger ControlID="rptUpdateCircles" EventName="ItemCommand" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">
@@ -110,6 +153,9 @@
                 </div>
             </div>
         </div>
+
+        <datalist id="existingCircles" runat="server" ClientIDMode="Static">
+        </datalist>
     </form>
 </asp:Content>
 

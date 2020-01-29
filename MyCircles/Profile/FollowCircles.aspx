@@ -29,7 +29,7 @@
                                             <asp:TextBox runat="server" CssClass="input-height-lg form-control interestfollow-input tb" placeholder="Interest To Follow" Text=<%#DataBinder.Eval(Container.DataItem, "CircleId")%> Enabled="false" EnableViewState="false" ValidationGroup="addCircleGroup"></asp:TextBox>
                                             <span class="input-group-append">
                                                 <span class="input-group-text"><%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>
-                                                <asp:Button ID=btRemove runat="server" CssClass="input-height-lg btn btn-danger rounded-left" Text="Remove" CausesValidation="False" ClientIDMode="Static" OnClick="btRemove_Click" AutoPostback="true" UseSubmitBehavior="false" />
+                                                <asp:Button ID="btRemove" runat="server" CssClass="input-height-lg btn btn-danger rounded-left" Text="Remove" CausesValidation="False" ClientIDMode="Static" OnClick="btRemove_Click" AutoPostback="true" UseSubmitBehavior="false" />
                                             </span>
                                         </div>
                                     </ItemTemplate>

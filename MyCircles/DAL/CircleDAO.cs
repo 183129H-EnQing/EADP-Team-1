@@ -28,5 +28,14 @@ namespace MyCircles.DAL
 
             return newCircle;
         }
+
+        public static List<Circle> GetAllCircles()
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                List<Circle> existingCircleList = db.Circles.ToList();
+                return existingCircleList;
+            }
+        }
     }
 }
