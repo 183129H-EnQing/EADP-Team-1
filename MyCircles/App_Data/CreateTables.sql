@@ -212,10 +212,11 @@ CREATE TABLE [dbo].[Admin] (
 );
 
 -- ReportedPosts Table
-CREATE TABLE [dbo].[ReportedPosts]
-(
-    [Id]     INT IDENTITY (1, 1)  NOT NULL, 
-    [reason] VARCHAR (MAX)        NOT NULL, 
-    [postId] INT                  NOT NULL, 
-    CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [Post]([Id]),
+CREATE TABLE [dbo].[ReportedPosts] (
+    [Id]     INT           IDENTITY (1, 1) NOT NULL,
+    [reason] VARCHAR (MAX) NOT NULL,
+    [postId] INT           NOT NULL,
+    [reporterUserId] INT NOT NULL, 
+    CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [dbo].[Post] ([Id]), 
+    CONSTRAINT [FK_ReporterUserId_ToUserTable] FOREIGN KEY ([reporterUserId]) REFERENCES [dbo].[User]([Id])
 );

@@ -18,11 +18,10 @@ namespace MyCircles.BLL
         public int Id { get; set; }
 
         [Required]
-        [StringLength(120)]
+        [StringLength(128)]
         public string Content { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
         [StringLength(20)]
         public string Comment { get; set; }

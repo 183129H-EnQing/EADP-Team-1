@@ -23,6 +23,7 @@ namespace MyCircles.BLL
         [StringLength(10)]
         public string date { get; set; }
 
+        public int dayId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Day> Days { get; set; }

@@ -14,11 +14,11 @@ namespace MyCircles.BLL
         public int dayByDayId { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(16)]
         public string startTime { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(16)]
         public string endTime { get; set; }
 
         public int locationId { get; set; }
