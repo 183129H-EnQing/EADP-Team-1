@@ -23,6 +23,11 @@ namespace MyCircles
                     Response.Redirect("/Auth/Login.aspx");
                     break;
 
+                case "redirect":
+                    string destinationPath = Request.QueryString["destination"];
+                    Response.Redirect(destinationPath + ".aspx");
+                    break;
+
                 default:
                     break;
             }

@@ -52,5 +52,14 @@ namespace MyCircles.DAL
                 return existingUserCircles;
             }
         }
+
+        public static void RemoveUserCircles(int userId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.UserCircles.RemoveRange(db.UserCircles.Where(uc => uc.UserId == userId));
+                db.SaveChanges();
+            }
+        }
     }
 }
