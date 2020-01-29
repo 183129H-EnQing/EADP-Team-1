@@ -13,6 +13,19 @@ namespace MyCircles
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();
+
+            switch (Request.QueryString["action"])
+            {
+                case "signout":
+                    User currentUser = (User)Session["currentUser"];
+                    currentUser.ToggleLoginStatus(false);
+                    Session["currentUser"] = null;
+                    Response.Redirect("/Auth/Login.aspx");
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         protected void geolocationForm_Submit(object sender, EventArgs e)

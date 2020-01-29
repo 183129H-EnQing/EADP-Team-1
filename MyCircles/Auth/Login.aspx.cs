@@ -34,7 +34,7 @@ namespace MyCircles
                 User user = new User();
 
                 user = UserDAO.VerifyCredentials(identifier, password);
-
+                user.ToggleLoginStatus(true);
                 Session["currentUser"] = user;
                 Response.Redirect("/Redirect.aspx");
             }

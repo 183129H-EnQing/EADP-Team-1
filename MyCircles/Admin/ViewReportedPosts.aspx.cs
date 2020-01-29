@@ -11,7 +11,8 @@ namespace MyCircles.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            gvReportedPosts.DataSource = BLL.ReportedPost.GetAllUserReportedPosts();
+            gvReportedPosts.DataBind();
         }
     }
 }

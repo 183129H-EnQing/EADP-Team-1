@@ -21,6 +21,13 @@ namespace MyCircles.BLL
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int postId { get; set; }
 
+        [Key]
+        [Column(Order = 3)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int reporterUserId { get; set; }
+
         public virtual Post Post { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

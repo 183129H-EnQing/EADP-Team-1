@@ -68,34 +68,34 @@ namespace MyCircles.ItineraryPlanner
 
         }
 
-        private bool GetExisting()
+        private void GetExisting()
         {
-            try
-            {
-                //lbPlannerName.Text = Request.QueryString["Id"];
-                int Id = Convert.ToInt32(Request.QueryString["Id"]);
+            //lbPlannerName.Text = Request.QueryString["Id"];
+            int Id = Convert.ToInt32(Request.QueryString["Id"]);
 
-                Itinerary retrieveSpecificItinerary = new Itinerary();
-                List<Itinerary> itineraryList = new List<Itinerary>();
+            Itinerary retrieveSpecificItinerary = new Itinerary();
+            List<Itinerary> itineraryList = new List<Itinerary>();
 
-                itineraryList = retrieveSpecificItinerary.RetrieveSpecificItinerary(Id);
+            itineraryList = retrieveSpecificItinerary.RetrieveSpecificItinerary(Id);
 
-                //rpItinerary.DataSource = itineraryList;
-                //rpItinerary.DataBind();
+            //rpItinerary.DataSource = itineraryList;
+            //rpItinerary.DataBind();
 
-                DayByDay getByTag = new DayByDay();
-                List<DayByDay> daysList = new List<DayByDay>();
-                daysList = getByTag.RetrieveByItinerary(Id);
+            //create dates in .aspx from db
+            DayByDay getByTag = new DayByDay();
+            List<DayByDay> daysList = new List<DayByDay>();
+            daysList = getByTag.RetrieveByItinerary(Id);
 
-                rpDates.DataSource = daysList;
-                rpDates.DataBind();
+            rpDates.DataSource = daysList;
+            rpDates.DataBind();
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            //set dates with locations
+            //GetPlanDetails();
+        }
+
+        private void GetPlanDetails()
+        {
+            lbMonth.Text = Session["prefB"].ToString();
         }
 
         /*public static string EvalTrimmed(this RepeaterItem container, string expression, int maxLength)

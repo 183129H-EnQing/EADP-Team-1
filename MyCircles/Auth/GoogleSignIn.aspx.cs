@@ -31,11 +31,12 @@ namespace MyCircles.Auth
                     newUser.IsGoogleUser = true;
                     UserDAO.AddGoogleUser(newUser);
 
+                    newUser.ToggleLoginStatus(true);
                     Session["currentUser"] = newUser;
-                    Response.Redirect("/Redirect.aspx");
                 }
                 else
                 {
+                    existingUser.ToggleLoginStatus(true);
                     Session["currentUser"] = existingUser;
                 }
 

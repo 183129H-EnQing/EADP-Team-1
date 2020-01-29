@@ -12,15 +12,16 @@ namespace MyCircles.Profile
     public partial class FollowCircles : System.Web.UI.Page
     {
         public BLL.User currentUser;
-        public List<string> inputCirclesList
+        public List<UserCircle> inputCirclesList
         {
             get
             {
-                if (this.ViewState["inputCirclesList"] == null)
+                List<UserCircle> inputCirclesList = (List<UserCircle>)this.ViewState["inputCirclesList"];
+                if (inputCirclesList == null)
                 {
-                    this.ViewState["inputCirclesList"] = new List<string>();
+                    this.ViewState["inputCirclesList"] = new List<UserCircle>();
                 }
-                return (List<string>)(this.ViewState["inputCirclesList"]);
+                return (List<UserCircle>)(this.ViewState["inputCirclesList"]);
             }
             set
             {
@@ -33,17 +34,14 @@ namespace MyCircles.Profile
             RedirectValidator.isUser(isAddingUserCircles: true);
             currentUser = (BLL.User)Session["currentUser"];
 
-            using (var db = new MyCirclesEntityModel())
-            {
-                UserCircle existingUserCircle = db.UserCircles.Where(uc => uc.UserId == currentUser.Id).FirstOrDefault();
-                if (existingUserCircle != null) Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username);
-            }
-
             if (!Page.IsPostBack)
             {
+                inputCirclesList = UserCircleDAO.GetAllUserCircles(currentUser.Id);
                 rptAddCircles.DataSource = inputCirclesList;
                 rptAddCircles.DataBind();
             }
+
+            var testList = inputCirclesList;
         }
 
         protected void btAddCircle_Click(object sender, EventArgs e)
@@ -56,7 +54,7 @@ namespace MyCircles.Profile
                 GeneralHelpers.AddValidationError(Page, "addCircleGroup", "Required fields are not filled up");
             }
 
-            if (inputCirclesList.Contains(circleName))
+            if (inputCirclesList.Where(uc => uc.CircleId == circleName).Count() > 0)
             {
                 GeneralHelpers.AddValidationError(Page, "addCircleGroup", "There are duplicate circles present");
             }
@@ -68,7 +66,10 @@ namespace MyCircles.Profile
             }
             else
             {
-                inputCirclesList.Add(circleName);
+                UserCircle newUserCircle = new UserCircle();
+                newUserCircle.CircleId = circleName;
+                newUserCircle.UserId = currentUser.Id;
+                inputCirclesList.Add(newUserCircle);
             }
 
             tbCircleInput.Text = "";
@@ -94,9 +95,9 @@ namespace MyCircles.Profile
             }
             else
             {
-                foreach (string circleName in inputCirclesList)
+                foreach (UserCircle userCircle in inputCirclesList)
                 {
-                    UserCircleDAO.AddUserCircle(currentUser.Id, circleName);
+                    UserCircleDAO.AddUserCircle(userCircle);
                 }
 
                 Response.Redirect("/Redirect.aspx");
@@ -120,7 +121,6 @@ namespace MyCircles.Profile
             if (btn != null)
             {
                 btn.ID += e.Item.ItemIndex;
-                btn.Text = "hi";
 
                 ((ScriptManager)this.circleInputGroupBlock.FindControl("AddCircleScriptManager")).RegisterAsyncPostBackControl(btSubmit);
                 ((ScriptManager)this.circleInputGroupBlock.FindControl("AddCircleScriptManager")).RegisterAsyncPostBackControl(btn);

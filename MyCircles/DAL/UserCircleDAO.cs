@@ -27,5 +27,30 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public static void AddUserCircle(UserCircle newUserCircle)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                Circle existingCircle = db.Circles.Where(ec => ec.Id == newUserCircle.CircleId).FirstOrDefault();
+
+                if (existingCircle == null)
+                {
+                    existingCircle = CircleDAO.AddCircle(newUserCircle.CircleId);
+                }
+
+                db.UserCircles.Add(newUserCircle);
+                db.SaveChanges();
+            }
+        }
+
+        public static List<UserCircle> GetAllUserCircles(int userId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                List<UserCircle> existingUserCircles = db.UserCircles.Where(uc => uc.UserId == userId).ToList();
+                return existingUserCircles;
+            }
+        }
     }
 }

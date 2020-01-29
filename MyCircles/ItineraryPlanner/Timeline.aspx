@@ -26,7 +26,7 @@
                         </ul>
                         <asp:Repeater ID="rpDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
                             <ItemTemplate>
-                                <h5><%#DataBinder.Eval(Container.DataItem, "date") %></h5>
+                                <h5 class="mb-3"><%#DataBinder.Eval(Container.DataItem, "date") %></h5>
                             </ItemTemplate>
                         </asp:Repeater>
                        <%-- <ul class="nav flex-column">
@@ -62,7 +62,7 @@
 <%--            </ItemTemplate>
         </asp:Repeater>--%>
     </form>
-    <script>
+    <%--<script>
         var dayStr1 = '<%= dayStr1 %>';
         var singleDate = dayStr1.split(",");
         singleDate.reverse();
@@ -74,5 +74,5 @@
             d1.insertAdjacentHTML('afterend', '<a id="amDate" class="nav-link" href="#" runat="server">' + singleDate[i] + '</a>');
         }
 
-    </script>
+    </script>--%>
 </asp:Content>

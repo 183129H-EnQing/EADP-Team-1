@@ -144,6 +144,9 @@
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\UserOutlineDefault.png" />
+    <Content Include="Content\images\UserOutlineOffline.png" />
+    <Content Include="Content\images\UserOutlineOnline.png" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
@@ -310,9 +313,11 @@
     <Compile Include="BLL\Model_Methods\EventDAM.cs" />
     <Compile Include="BLL\Model_Methods\EventScheduleDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
+    <Compile Include="BLL\Model_Methods\ItineraryPrefDAM.cs" />
     <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
     <Compile Include="BLL\Model_Methods\ReportedPostDAM.cs" />
     <Compile Include="BLL\Model_Methods\SignUpEventDetailDAM.cs" />
+    <Compile Include="BLL\Model_Methods\UserCircleDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserDAM.cs" />
     <Compile Include="BLL\Mutual.cs" />
     <Compile Include="BLL\MyCirclesEntityModel.cs" />
@@ -330,10 +335,12 @@
     <Compile Include="DAL\EventDAO.cs" />
     <Compile Include="DAL\EventScheduleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
+    <Compile Include="DAL\ItineraryPrefDAO.cs" />
     <Compile Include="DAL\Joint_Models\Days.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />
     <Compile Include="DAL\Joint_Models\UserPost.cs" />
+    <Compile Include="DAL\Joint_Models\UserReportedPost.cs" />
     <Compile Include="DAL\LocationDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
     <Compile Include="DAL\ReportedPostDAO.cs" />

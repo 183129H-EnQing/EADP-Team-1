@@ -2,16 +2,6 @@
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-
-    <script>
-    $(function () {
-      $('[data-toggle="popover"]').popover()
-    })
-    </script>
-    
     <form id="form1" runat="server">
     <div class="container-fluid">
         <div class="row">
@@ -21,7 +11,7 @@
                         None.
                     </div>
                     <ul class="list-group list-group-flush">
-                                     
+
                     </ul>
                 </div>
             </div>
@@ -35,8 +25,8 @@
                         </div>
                         <div class="form-group justify-content-between d-flex">
                             <input id="fileupld" runat="server" type="file" class="btn" />
-                                <asp:button id="btnUpload" type="file" text="Upload Image" class="btn"  runat="server"  accept="image/png,image/jpeg,image/jpg,image/gif" OnClick="UploadFile"></asp:button> 
-                                <asp:Button ID="btnPost" runat="server" Text="Post" class="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
+                            <asp:button id="btnUpload" type="file" text="Upload Image" class="btn"  runat="server"  accept="image/png,image/jpeg,image/jpg,image/gif" OnClick="UploadFile"></asp:button>
+                            <asp:Button ID="btnPost" runat="server" Text="Post" class="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
                         </div>
                     <%--</form>--%>
                 </div>
@@ -49,12 +39,12 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">#Guitar<asp:Button ID="Btncircle" runat="server" Text="Add"  usesubmitbehavior="false" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px" OnClick="Btncircle_Click" ></asp:button></li>
                         <li class="list-group-item">#Starwars&nbsp<asp:Button ID="Btnc" runat="server" Text="Add" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px"></asp:button></li>
-                        <li class="list-group-item">#VisualStudio&nbsp<asp:Button ID="Button3" runat="server" Text="Add" class="btn btn-primary" style="border-radius:10px"></asp:button></li>                
+                        <li class="list-group-item">#VisualStudio&nbsp<asp:Button ID="Button3" runat="server" Text="Add" class="btn btn-primary" style="border-radius:10px"></asp:button></li>
                     </ul>
                 </div>
             </div>
         </div>
-           
+
         <div class="row mt-3">
             <div class="col-3"></div>
             <div class="col-6">
@@ -62,7 +52,7 @@
                     <div class="col">
                         <asp:Repeater ID="rptUserPosts" runat="server" ItemType="MyCircles.DAL.UserPost">
                             <ItemTemplate>
-                                <div class="card"  id="mypost"   runat="server">                                                                    
+                                <div class="card"  id="mypost"   runat="server">
                                     <div class=" card-header d-flex bd-highlight bg-muted mb-2  ">
 			                            <div class="mr-auto p-1 bd-highlight">
                                             <h5><asp:Label runat="server"><%#DataBinder.Eval(Container.DataItem, "User.Username")%></asp:Label></h5>
@@ -72,7 +62,7 @@
                                         </div>
                                         <div>
                                             <h5><%#DataBinder.Eval(Container.DataItem, "User.City")%></h5>
-                                        </div> 
+                                        </div>
                                         <div>
                                             <asp:ImageButton src="../Content/images/3dot.jpg" runat="server" OnClick="ImageButton2_Click" data-toggle="modal" width="20px" Height="15px"
 					                        data-target="#reportModal" />
@@ -112,13 +102,13 @@
 						                    </div>
 				                        </div>
                                     </div>
-                                    <div class="card-body">	
+                                    <div class="card-body">
 			                            <div class="responsive">
 				                            <div class="gallery text-center">
 					                            <a target="_blank" href="../Content/images/81017379.jpg">
 						                            <img src="../Content/images/81017379.jpg" alt="Image unavailable"
 							                            style="max-height: 300px; width: auto; border-radius:8px;">
-					                            </a>             
+					                            </a>
 				                            </div>
                                             <span class="h5">
                                             <asp:Label runat="server" Text="Label"><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label></span>

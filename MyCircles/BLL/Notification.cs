@@ -12,7 +12,7 @@ namespace MyCircles.BLL
         public int Id { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(16)]
         public string Type { get; set; }
 
         [StringLength(20)]

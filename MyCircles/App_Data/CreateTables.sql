@@ -1,12 +1,12 @@
 ﻿CREATE TABLE [dbo].[User] (
     [Id]            INT           IDENTITY (1, 1) NOT NULL,
-    [Username]      NCHAR (20)    NOT NULL,
-    [EmailAddress]  NCHAR (30)    NOT NULL,
-    [Password]      NCHAR (256)   NULL,
-    [Name]          NCHAR (20)    NOT NULL,
+    [Username]      VARCHAR (32)  NOT NULL,
+    [EmailAddress]  VARCHAR (32)  NOT NULL,
+    [Password]      VARCHAR (256) NULL,
+    [Name]          VARCHAR (18)  NOT NULL,
     [Bio]           TEXT          NULL,
-    [Latitude]      FLOAT (53)    NULL,
-    [Longitude]     FLOAT (53)    NULL,
+    [Latitude]      FLOAT (48)    NULL,
+    [Longitude]     FLOAT (48)    NULL,
     [City]          VARCHAR (MAX) NULL,
     [ProfileImage]  VARCHAR (MAX) NULL,
     [HeaderImage]   VARCHAR (MAX) NULL,
@@ -22,8 +22,9 @@
 
 -- Circle Table (may change later)
 CREATE TABLE [dbo].[Circle] (
-    [Id]   VARCHAR (64) UNIQUE,
-    PRIMARY KEY CLUSTERED ([Id])
+    [Id] VARCHAR (64) UNIQUE,
+    PRIMARY KEY CLUSTERED ([Id]),
+	UNIQUE NONCLUSTERED ([Id] ASC)
 );
 
 --UserCircle Table (also may change)
@@ -39,26 +40,26 @@ CREATE TABLE [dbo].[UserCircles] (
 
 -- Post Table
 CREATE TABLE [dbo].[Post] (
-    [Id]       INT          IDENTITY (1, 1) NOT NULL,
-    [Content]  NCHAR (120)  NOT NULL,
-    [Image]    IMAGE        NULL,
-    [Comment]  NCHAR (20)   NULL,
-    [UserId]   INT          NOT NULL,
-    [CircleId] VARCHAR (64) NOT NULL,
+    [Id]       INT           IDENTITY (1, 1) NOT NULL,
+    [Content]  VARCHAR (128) NOT NULL,
+    [Image]    VARCHAR (MAX) NULL,
+    [Comment]  VARCHAR (20)  NULL,
+    [UserId]   INT           NOT NULL,
+    [CircleId] VARCHAR (64)  NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Post_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [dbo].[Circle] ([Id]),
-    CONSTRAINT [FK_POST_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
+    CONSTRAINT [FK_Post_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
 
 -- Notification Table
 CREATE TABLE [dbo].[Notification] (
     [Id]        INT        IDENTITY (1, 1) NOT NULL,
-    [Type]      NCHAR (10) NOT NULL,
-    [Title]     NCHAR (20) NULL,
-    [Content]   TEXT       NOT NULL,
-    [IsRead]    BIT        NOT NULL,
-    [CreatedAt] DATETIME   NOT NULL,
-    [UserId]    INT        NOT NULL,
+    [Type]      VARCHAR (16) NOT NULL,
+    [Title]     VARCHAR (20) NULL,
+    [Content]   TEXT         NOT NULL,
+    [IsRead]    BIT          NOT NULL,
+    [CreatedAt] DATETIME     NOT NULL,
+    [UserId]    INT          NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Notification_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
@@ -87,26 +88,26 @@ CREATE TABLE [dbo].[Mutual] (
 
 -- Event Table
 CREATE TABLE [dbo].[Event] (
-    [eventId]          INT           IDENTITY (1, 1) NOT NULL,
-    [eventName]        NCHAR (50)    NULL,
-    [eventDescription] NCHAR (50)    NULL,
-    [eventStartDate]   NCHAR (50)    NULL,
-    [eventEndDate]     NCHAR (50)    NULL,
-    [eventCategory]    NCHAR (50)    NULL,
-    [eventHolderName]  NCHAR (50)    NULL,
-    [eventImage]       VARCHAR (MAX) NULL,
+    [eventId]          INT             IDENTITY (1, 1) NOT NULL,
+    [eventName]        VARCHAR (50)    NULL,
+    [eventDescription] VARCHAR (50)    NULL,
+    [eventStartDate]   VARCHAR (50)    NULL,
+    [eventEndDate]     VARCHAR (50)    NULL,
+    [eventCategory]    VARCHAR (50)    NULL,
+    [eventHolderName]  VARCHAR (50)    NULL,
+    [eventImage]       VARCHAR (MAX)   NULL,
     PRIMARY KEY CLUSTERED ([eventId] ASC)
 );
 
 -- EventSchedule Table
 CREATE TABLE [dbo].[EventSchedule] (
     [eventScheduleID]  INT            IDENTITY (1, 1) NOT NULL,
-    [eventDescription] NVARCHAR (50)  NULL,
-    [startDate]        NCHAR (10)     NULL,
-    [startTime]        NCHAR (10)     NULL,
-    [endTime]          NCHAR (10)     NULL,
-    [endDate]          NCHAR (10)     NULL,
-    [eventActivity]    NVARCHAR (MAX) NULL,
+    [eventDescription] VARCHAR (50)   NULL,
+    [startDate]        VARCHAR (10)   NULL,
+    [startTime]        VARCHAR (10)   NULL,
+    [endTime]          VARCHAR (10)   NULL,
+    [endDate]          VARCHAR (10)   NULL,
+    [eventActivity]    VARCHAR (MAX)  NULL,
     [eventId]          INT            NULL,
     PRIMARY KEY CLUSTERED ([eventScheduleID] ASC),
     CONSTRAINT [eventId_EventSchedule_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId])
@@ -127,41 +128,41 @@ CREATE TABLE [dbo].[SignUpEventDetails] (
 
 -- Itinerary Table
 CREATE TABLE [dbo].[Itinerary] (
-    [itineraryId] INT        IDENTITY (1, 1) NOT NULL,
-    [userId]      INT        NOT NULL,
-	[itineraryName]      NCHAR(50)        NOT NULL,
-    [startDate]   NCHAR (15) NOT NULL,
-    [endDate]     NCHAR (15) NOT NULL,
-    [groupSize]   NCHAR (3)  NOT NULL,
+    [itineraryId]    INT          IDENTITY (1, 1) NOT NULL,
+    [userId]         INT          NOT NULL,
+	[itineraryName]  VARCHAR(50)  NOT NULL,
+    [startDate]      VARCHAR (15) NOT NULL,
+    [endDate]        VARCHAR (15) NOT NULL,
+    [groupSize]      VARCHAR (3)  NOT NULL,
     PRIMARY KEY CLUSTERED ([itineraryId] ASC)
 );
 
 -- Pref Table
 CREATE TABLE [dbo].[Pref] (
-    [prefId]   INT        NOT NULL IDENTITY,
-    [prefName] NCHAR (20) NOT NULL,
+    [prefId]   INT          NOT NULL IDENTITY,
+    [prefName] VARCHAR (20) NOT NULL,
     PRIMARY KEY CLUSTERED ([prefId] ASC)
 );
 
 -- Location Table
 CREATE TABLE [dbo].[Location] (
     [locaId]       INT           NOT NULL IDENTITY,
-    [landmarkType] INT    NOT NULL,
+    [landmarkType] INT           NOT NULL,
     [locaPic]      VARCHAR (MAX) NOT NULL,
-    [locaName]     NCHAR (50)    NOT NULL,
-    [locaDesc]     NCHAR (500)   NOT NULL,
+    [locaName]     VARCHAR (50)  NOT NULL,
+    [locaDesc]     VARCHAR (MAX) NOT NULL,
     [locaRating]   DECIMAL(2, 1) NOT NULL,
     [locaContact]  INT           NULL,
-    [locaWeb]      NCHAR (100)   NULL,
-	[locaOpenHour] NCHAR(10) NOT NULL, 
-    [locaCloseHour] NCHAR(10) NULL, 
+    [locaWeb]      VARCHAR (100) NULL,
+	[locaOpenHour] VARCHAR(10)   NOT NULL, 
+    [locaCloseHour] NCHAR(10)    NULL, 
     PRIMARY KEY CLUSTERED ([locaId] ASC), 
     CONSTRAINT [FK_Location_ToPref] FOREIGN KEY ([landmarkType]) REFERENCES [Pref]([prefId])
 );
 
 -- ItineraryPref Table
 CREATE TABLE [dbo].[ItineraryPref] (
-    [itineraryPrefId] INT NOT NULL,
+    [itineraryPrefId] INT NOT NULL IDENTITY(1,1),
     [itineraryId]     INT NOT NULL,
     [prefId]          INT NOT NULL,
     PRIMARY KEY CLUSTERED ([itineraryPrefId] ASC),
@@ -171,21 +172,21 @@ CREATE TABLE [dbo].[ItineraryPref] (
 
 -- DayByDay Table
 CREATE TABLE [dbo].[DayByDay] (
-    [dayBydayId]  INT		IDENTITY(1,1) NOT NULL ,
-    [itineraryId] INT        NOT NULL,
-	[date]        NCHAR (10) NOT NULL,
-	[dayId] INT NOT NULL,
+    [dayBydayId]  INT		   IDENTITY(1,1) NOT NULL ,
+    [itineraryId] INT          NOT NULL,
+	[date]        VARCHAR (10) NOT NULL,
+	[dayId]       INT          NOT NULL,
     PRIMARY KEY CLUSTERED ([dayBydayId] ASC),
     CONSTRAINT [FK_DayByDay_ToItinerary] FOREIGN KEY ([itineraryId]) REFERENCES [dbo].[Itinerary] ([itineraryId])
 );
 
 -- Day Table
 CREATE TABLE [dbo].[Day] (
-    [dayId]      INT        IDENTITY (1, 1) NOT NULL,
-    [dayByDayId] INT        NOT NULL,
-    [startTime]       NCHAR (10) NOT NULL,
-	[endTime]       NCHAR (10) NOT NULL,
-    [locationId] INT        NOT NULL,
+    [dayId]      INT          IDENTITY (1, 1) NOT NULL,
+    [dayByDayId] INT          NOT NULL,
+    [startTime]  VARCHAR (16) NOT NULL,
+	[endTime]    VARCHAR (16) NOT NULL,
+    [locationId] INT          NOT NULL,
     PRIMARY KEY CLUSTERED ([dayId] ASC),
     CONSTRAINT [FK_Day_ToLocation] FOREIGN KEY ([locationId]) REFERENCES [dbo].[Location] ([locaId]), 
     CONSTRAINT [FK_Day_ToDayByDay] FOREIGN KEY ([dayByDayId]) REFERENCES [DayByDay]([dayBydayId])
@@ -194,27 +195,28 @@ CREATE TABLE [dbo].[Day] (
 -- Day Table
 CREATE TABLE [dbo].[Activity] (
     [activityId]   INT IDENTITY (1, 1) NOT NULL,
-    [activityName] VARCHAR (50) NULL,
-    [startTime]    TIME (7)     NULL,
-    [endTime]      TIME (7)     NULL,
-    [date]         DATE         NULL,
-    [locaId]       INT          NOT NULL,
+    [activityName] VARCHAR (50)        NULL,
+    [startTime]    TIME (7)			   NULL,
+    [endTime]      TIME (7)			   NULL,
+    [date]         DATE				   NULL,
+    [locaId]       INT				   NOT NULL,
     PRIMARY KEY CLUSTERED ([activityId] ASC)
 );
 
 -- Admin Table
 CREATE TABLE [dbo].[Admin] (
     [Id]     INT IDENTITY (1, 1) NOT NULL,
-    [UserId] INT NOT NULL,
+    [UserId] INT                 NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Admin_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
 
 -- ReportedPosts Table
-CREATE TABLE [dbo].[ReportedPosts]
-(
-    [Id] INT IDENTITY (1, 1) NOT NULL, 
-    [reason] VARCHAR(MAX) NOT NULL, 
-    [postId] INT NOT NULL, 
-    CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [Post]([Id]),
+CREATE TABLE [dbo].[ReportedPosts] (
+    [Id]     INT           IDENTITY (1, 1) NOT NULL,
+    [reason] VARCHAR (MAX) NOT NULL,
+    [postId] INT           NOT NULL,
+    [reporterUserId] INT NOT NULL, 
+    CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [dbo].[Post] ([Id]), 
+    CONSTRAINT [FK_ReporterUserId_ToUserTable] FOREIGN KEY ([reporterUserId]) REFERENCES [dbo].[User]([Id])
 );

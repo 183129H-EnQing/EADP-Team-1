@@ -15,15 +15,6 @@
                 <div class="row">
                     <h4>Activity Type</h4>
                 </div>
-
-<%--                <asp:checkboxlist Id="cblPref" runat="server">
-                    <asp:ListItem value="beaches">Beaches</asp:ListItem>
-                    <asp:ListItem value="outdoors">Outdoors</asp:ListItem>
-                    <asp:ListItem value="museums">Museums</asp:ListItem>
-                    <asp:ListItem value="historic">Historic Sites</asp:ListItem>
-                    <asp:ListItem value="shopping">Shopping</asp:ListItem>
-                    <asp:ListItem value="wildlife">Wildlife Area</asp:ListItem>
-                </asp:checkboxlist>--%>
                 <div class="row">
                     <asp:CheckBox ID="chbBeaches" runat="server" Text=" &nbsp Beaches" AutoPostBack="true" OnCheckedChanged="chbBeaches_CheckedChanged"/>
                 </div>
