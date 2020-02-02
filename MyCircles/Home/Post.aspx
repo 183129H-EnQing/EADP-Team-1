@@ -106,12 +106,12 @@
 			                            <div class="responsive">
 				                            <div class="gallery text-center">
 					                            <a target="_blank" href="../Content/images/81017379.jpg">
-						                            <img src="../Content/images/81017379.jpg" alt="Image unavailable"
+						                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
 							                            style="max-height: 300px; width: auto; border-radius:8px;">
 					                            </a>
 				                            </div>
                                             <span class="h5">
-                                            <asp:Label runat="server" Text="Label"><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label></span>
+                                            <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label></span>
 			                            </div>
                                     </div>
                                     <div class="card-footer">

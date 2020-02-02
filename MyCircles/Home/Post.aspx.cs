@@ -48,6 +48,7 @@ namespace MyCircles.Home
             {
                 var newPost = new BLL.Post();
                 newPost.Content = activity.Text;
+                newPost.Image = fileupld.ID;
                 newPost.UserId = currentUser.Id;
                 newPost.CircleId = "gym";
                 //newPost.Image = fileupld.PostedFile;
