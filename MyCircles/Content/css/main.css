@@ -101,3 +101,7 @@
 .input-height-lg {
     height: 50px;
 }
+
+.wrap-content {
+    width: max-content;
+}

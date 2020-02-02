@@ -18,18 +18,14 @@ namespace MyCircles.BLL
     [Serializable]
     public class UserCircleMetadata
     {
-        [field: NonSerialized]
         public int Id { get; set; }
 
-        [field: NonSerialized]
         public int UserId { get; set; }
 
         [Required]
         [StringLength(64)]
-        [field: NonSerialized]
         public string CircleId { get; set; }
 
-        [field: NonSerialized]
         public int Points { get; set; }
 
         [field: NonSerialized]

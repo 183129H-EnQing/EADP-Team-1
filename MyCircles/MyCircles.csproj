@@ -243,7 +243,6 @@
     <Content Include="Profile\Chat.aspx" />
     <Content Include="ItineraryPlanner\ViewLocation.aspx" />
     <Content Include="Profile\EditProfile.aspx" />
-    <Content Include="Profile\FollowCircles.aspx" />
     <Content Include="Profile\User.aspx" />
     <Content Include="Redirect.aspx" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -438,13 +437,6 @@
     </Compile>
     <Compile Include="Profile\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Profile\FollowCircles.aspx.cs">
-      <DependentUpon>FollowCircles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Profile\FollowCircles.aspx.designer.cs">
-      <DependentUpon>FollowCircles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\User.aspx.cs">
       <DependentUpon>User.aspx</DependentUpon>

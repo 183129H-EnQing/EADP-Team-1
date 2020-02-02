@@ -10,12 +10,15 @@ using MyCircles.BLL;
 using static MyCircles.DAL.UserDAO;
 using MyCircles.DAL;
 using System.Configuration;
+using System.Web.Services;
 
 namespace MyCircles.Profile
 {
     //TODO: Edit profile with messages if mutuals/don't show location on map
     //TODO: Show whether or not user is online
-
+    //TODO: Check whether requested user is current user and show the add circle stuff accordingly
+    //TODO: Fix the autocomplete bug
+    //TODO: Clean up the interface (show graph for circles maybe???)
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
@@ -37,23 +40,22 @@ namespace MyCircles.Profile
             }
         }
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            RedirectValidator.isUser();
+            if (String.IsNullOrEmpty(Request.QueryString["addingCircles"])) 
+            {
+                RedirectValidator.isUser(isAddingUserCircles: false);
+            }
+            else 
+            {
+                addCirclesCloseButton.Visible = false;
+                RedirectValidator.isUser(isAddingUserCircles: true);
+            }
+
             currentUser = (BLL.User)Session["currentUser"];
             requestedUser = GetUserByIdentifier(Request.QueryString["username"]);
             if (requestedUser == null) requestedUser = currentUser;
-
-            if (!Page.IsPostBack)
-            {
-                bindExisitingCircles();
-                inputCirclesList = UserCircleDAO.GetAllUserCircles(currentUser.Id);
-                rptUpdateCircles.DataSource = inputCirclesList;
-                rptUpdateCircles.DataBind();
-            }
-
-            rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
-            rptUserFollowing.DataBind();
 
             Title = requestedUser.Username + " - MyCircles";            
             ProfilePicImage.ImageUrl = requestedUser.ProfileImage;
@@ -61,32 +63,172 @@ namespace MyCircles.Profile
             lbUsername.Text = "@" + requestedUser.Username;
             lbBio.InnerText = requestedUser.Bio;
             lbCity.InnerText = requestedUser.City;
-            GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
-            List<BLL.User> allUsers = GetAllUsers();
 
-            if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
-            if (rptUserFollowing.Items.Count > 0) followWarning.Visible = false;
+            if (!Page.IsPostBack)
+            {
+                inputCirclesList = UserCircleDAO.GetAllUserCircles(currentUser.Id);
+                rptUpdateCircles.DataSource = inputCirclesList;
+                rptUpdateCircles.DataBind();
 
-            if (requestedUser.Id == currentUser.Id)
-            {
-                btFollow.Visible = false;
-            }
-            else
-            {
+                rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
+                rptUserFollowing.DataBind();
+
+                bindExisitingCircles();
+                updateCirclesModal();
+                initializeNearbyUserMap();
+
                 if (BLL.Admin.RetrieveAdmin(currentUser) != null)
                 {
                     cbMakeEventHost.Visible = true;
-                    if (!Page.IsPostBack) cbMakeEventHost.Checked = requestedUser.IsEventHolder;
+                    cbMakeEventHost.Checked = requestedUser.IsEventHolder;
                 }
 
-                btEditProfile.Visible = false;
-                followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
-                postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
-                
-                updateFollowButton();
 
-                if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
+                if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
+                if (rptUserFollowing.Items.Count > 0) followWarning.Visible = false;
+
+                if (requestedUser.Id == currentUser.Id)
+                {
+                    btFollow.Visible = false;
+                }
+                else
+                {
+                    btEditProfile.Visible = false;
+                    followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
+                    postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
+
+                    updateFollowButton();
+
+                    if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
+                }
             }
+        }
+
+        protected void btFollow_Click(object sender, EventArgs e)
+        {
+            int requestedUserId = requestedUser.Id;
+            Button button = (Button)sender;
+
+            if (button.Attributes["UserId"] != null) requestedUserId = int.Parse(button.Attributes["UserId"]);
+
+            FollowDAO.ToggleFollow(currentUser.Id, requestedUserId);
+            updateFollowButton();
+        }
+
+        protected void btAddCircle_Click(object sender, EventArgs e)
+        {
+            signedOutErrorContainer.Visible = false;
+            var circleName = ((tbCircleInput.Text).Trim()).Replace(" ", "").ToLower();
+
+            if (String.IsNullOrEmpty(tbCircleInput.Text))
+            {
+                GeneralHelpers.AddValidationError(Page, "addCircleGroup", "Required fields are not filled up");
+            }
+
+            if (inputCirclesList.Where(uc => uc.CircleId == circleName).Count() > 0)
+            {
+                GeneralHelpers.AddValidationError(Page, "addCircleGroup", "There are duplicate circles present");
+            }
+
+            if (!Page.IsValid)
+            {
+                signedOutErrorContainer.Visible = true;
+                lbErrorMsg.Text = GeneralHelpers.GetFirstValidationError(Page.Validators);
+            }
+            else
+            {
+                UserCircle newUserCircle = new UserCircle();
+                newUserCircle.CircleId = circleName;
+                newUserCircle.UserId = currentUser.Id;
+                inputCirclesList.Add(newUserCircle);
+            }
+
+
+            tbCircleInput.Text = "";
+            tbCircleInput.Focus();
+            rptUpdateCircles.DataSource = inputCirclesList;
+            rptUpdateCircles.DataBind();
+            updateCirclesModal();
+        }
+
+        protected void btClear_Click(object sender, EventArgs e)
+        {
+            inputCirclesList.Clear();
+            rptUpdateCircles.DataSource = inputCirclesList;
+            rptUpdateCircles.DataBind();
+            updateCirclesModal();
+        }
+
+        protected void btRemove_Click(int circleIndex)
+        {
+            inputCirclesList.RemoveAt(circleIndex);
+            rptUpdateCircles.DataSource = inputCirclesList;
+            rptUpdateCircles.DataBind();
+            updateCirclesModal();
+        }
+
+        protected void rptUpdateCircles_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove")
+            {
+                btRemove_Click(e.Item.ItemIndex);
+            }
+        }
+
+        protected void btSubmit_Click(object sender, EventArgs e)
+        {
+            signedOutErrorContainer.Visible = false;
+            Page.Validate();
+
+            if (!inputCirclesList.Any())
+            {
+                GeneralHelpers.AddValidationError(Page, "addUserCirclesGroup", "No circles have been added");
+            }
+
+            if (!Page.IsValid)
+            {
+                signedOutErrorContainer.Visible = true;
+                lbErrorMsg.Text = GeneralHelpers.GetFirstValidationError(Page.Validators, "addUserCirclesGroup");
+            }
+            else
+            {
+                UserCircleDAO.RemoveUserCircles(requestedUser.Id);
+
+                foreach (UserCircle userCircle in inputCirclesList)
+                {
+                    UserCircleDAO.AddUserCircle(userCircle);
+                }
+
+                Response.Redirect("/Redirect.aspx");
+            }
+        }
+
+        protected void btMessage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("User.aspx?username=" + currentUser.Username);
+        }
+
+        protected void cbMakeEventHost_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender is CheckBox)
+            {
+                CheckBox cbSender = (CheckBox) sender;
+                requestedUser.UpdateIsEventHost(cbSender.Checked);
+            }
+        }
+
+        private void bindExisitingCircles()
+        {
+            foreach (BLL.Circle circle in CircleDAO.GetAllCircles())
+            {
+                existingCircles.InnerHtml += "<option value='" + circle.Id + "'>" + circle.Id + "</option>";
+            }
+        }
+
+        protected void initializeNearbyUserMap() 
+        {
+            GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
+            List<BLL.User> allUsers = GetAllUsers();
 
             foreach (BLL.User user in allUsers)
             {
@@ -153,126 +295,6 @@ namespace MyCircles.Profile
             }
         }
 
-        protected void btFollow_Click(object sender, EventArgs e)
-        {
-            int requestedUserId = requestedUser.Id;
-            Button button = (Button)sender;
-
-            if (button.Attributes["UserId"] != null) requestedUserId = int.Parse(button.Attributes["UserId"]);
-
-            FollowDAO.ToggleFollow(currentUser.Id, requestedUserId);
-            updateFollowButton();
-        }
-
-        //TODO: Check whether requested user is current user and show the add circle stuff accordingly
-        //TODO: Do autocomplete for circles
-        //TODO: Route to this page if no circles
-        //TODO: Clean up the interface (show graph for circles maybe???)
-        protected void btAddCircle_Click(object sender, EventArgs e)
-        {
-            signedOutErrorContainer.Visible = false;
-            var circleName = ((tbCircleInput.Text).Trim()).ToLower();
-
-            if (String.IsNullOrEmpty(tbCircleInput.Text))
-            {
-                GeneralHelpers.AddValidationError(Page, "addCircleGroup", "Required fields are not filled up");
-            }
-
-            if (inputCirclesList.Where(uc => uc.CircleId == circleName).Count() > 0)
-            {
-                GeneralHelpers.AddValidationError(Page, "addCircleGroup", "There are duplicate circles present");
-            }
-
-            if (!Page.IsValid)
-            {
-                signedOutErrorContainer.Visible = true;
-                lbErrorMsg.Text = GeneralHelpers.GetFirstValidationError(Page.Validators);
-            }
-            else
-            {
-                UserCircle newUserCircle = new UserCircle();
-                newUserCircle.CircleId = circleName;
-                newUserCircle.UserId = currentUser.Id;
-                inputCirclesList.Add(newUserCircle);
-            }
-
-            tbCircleInput.Text = "";
-            tbCircleInput.Focus();
-            rptUpdateCircles.DataSource = inputCirclesList;
-            rptUpdateCircles.DataBind();
-        }
-
-        protected void btSubmit_Click(object sender, EventArgs e)
-        {
-            signedOutErrorContainer.Visible = false;
-            Page.Validate();
-
-            if (!inputCirclesList.Any())
-            {
-                GeneralHelpers.AddValidationError(Page, "addUserCirclesGroup", "No circles have been added");
-            }
-
-            if (!Page.IsValid)
-            {
-                signedOutErrorContainer.Visible = true;
-                lbErrorMsg.Text = GeneralHelpers.GetFirstValidationError(Page.Validators, "addUserCirclesGroup");
-            }
-            else
-            {
-                UserCircleDAO.RemoveUserCircles(requestedUser.Id);
-                foreach (UserCircle userCircle in inputCirclesList)
-                {
-                    UserCircleDAO.AddUserCircle(userCircle);
-                }
-
-                Response.Redirect("/Redirect.aspx");
-            }
-        }
-
-        protected void btClear_Click(object sender, EventArgs e)
-        {
-            inputCirclesList.Clear();
-            rptUpdateCircles.DataSource = inputCirclesList;
-            rptUpdateCircles.DataBind();
-        }
-
-        protected void btRemove_Click(int circleIndex)
-        {
-            inputCirclesList.RemoveAt(circleIndex);
-            rptUpdateCircles.DataSource = inputCirclesList;
-            rptUpdateCircles.DataBind();
-        }
-
-        protected void rptUpdateCircles_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            if (e.CommandName == "Remove")
-            {
-                btRemove_Click(e.Item.ItemIndex);
-            }
-        }
-
-        protected void btMessage_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("User.aspx?username=" + currentUser.Username);
-        }
-
-        protected void cbMakeEventHost_CheckedChanged(object sender, EventArgs e)
-        {
-            if (sender is CheckBox)
-            {
-                CheckBox cbSender = (CheckBox) sender;
-                requestedUser.UpdateIsEventHost(cbSender.Checked);
-            }
-        }
-
-        private void bindExisitingCircles()
-        {
-            foreach (BLL.Circle circle in CircleDAO.GetAllCircles())
-            {
-                existingCircles.InnerHtml += "<option value='" + circle.Id + "'>" + circle.Id + "</option>";
-            }
-        }
-
         protected void updateFollowButton()
         {
             Follow existingFollow = FollowDAO.SearchFollow(currentUser.Id, requestedUser.Id);
@@ -289,9 +311,28 @@ namespace MyCircles.Profile
             }
         }
 
+        protected void updateCirclesModal()
+        {
+            if (rptUpdateCircles.Items.Count.Equals(0))
+            {
+                addCirclesIntroBlurb.Visible = true;
+            }
+            else
+            {
+                addCirclesIntroBlurb.Visible = false;
+            }
+        }
+
         void MarkerClick(object sender, OverlayEventArgs e)
         {
             e.MapCommand = "window.location.replace('/Profile/User.aspx?username=" + e.Overlay.Options.Name + "')";
         }
+
+        //[WebMethod]
+        //public static object GetData()
+        //{
+
+        //    return new { result = ... };
+        //}
     }
 }

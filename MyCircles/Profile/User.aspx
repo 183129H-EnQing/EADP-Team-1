@@ -7,7 +7,7 @@
 <asp:Content ID="ProfileContent" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form runat="server">
         <asp:ScriptManager ID="UserScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
-        <div class="rounded container-lg content-container bg-white p-0 shadow-sm">
+        <div class="rounded container-lg content-container bg-white p-0 shadow-sm mb-6">
             <div class="user-container">
                 <a href="/Profile/Ex1UpdatePanel.aspx" runat="server">
                     <asp:Image ID="HeaderImage" runat="server" Width="100%" Height="300px" BorderWidth="0" CssClass="rounded" BackColor="#0cb0ca" />
@@ -59,53 +59,6 @@
                 </div>
                 <div class="tab-pane fade" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
                     <div id="userCirclesContainer" class="container py-5 px-7" runat="server">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12 border-right">
-                                <span class="h1 text-primary">Follow Circles</span>
-                                <hr />
-                                <span class="lead">Before we continue, you need to follow some circles so that we can provide you with content that's relevant to your interests.</span> <br /><br /> <span class="h5">Just enter any of your interests to join a circle!</span>
-                            </div>
-                            <div class="col-md-6 col-sm-12 border-left">
-                                <div id="circleInputForm" runat="server">
-                                    <div id="circleInputGroupBlock" class="mb-5" runat="server">
-                                        <asp:UpdatePanel ID="UpdateCircleUpdatePanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
-                                            <ContentTemplate>
-                                                <asp:Repeater ID="rptUpdateCircles" runat="server" ItemType="MyCircles.BLL.UserCircle" OnItemCommand="rptUpdateCircles_ItemCommand">
-                                                    <ItemTemplate>
-                                                        <div id="circleInputGroup" class="mb-3 input-group" runat="server" InputGroup="tbCircleInput">
-                                                            <asp:TextBox runat="server" CssClass="input-height-lg form-control interestfollow-input" placeholder="Interest To Follow" Text=<%#DataBinder.Eval(Container.DataItem, "CircleId")%> Enabled="false" ValidationGroup="addCircleGroup"></asp:TextBox>
-                                                            <span class="input-group-append">
-                                                                <span class="input-group-text"><%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>
-                                                                <asp:Button ID="btRemove" runat="server" CssClass="input-height-lg btn btn-danger rounded-left" Text="Remove" CausesValidation="False" CommandName="Remove" />
-                                                            </span>
-                                                        </div>
-                                                    </ItemTemplate>
-                                                </asp:Repeater>
-                                            <div id="circleInputGroup" class="mb-3 input-group" runat="server" InputGroup="tbCircleInput">
-                                                <asp:TextBox id="tbCircleInput" runat="server" CssClass="input-height-lg rounded form-control interestfollow-input flexdatalist" placeholder="Interest name" EnableViewState="false" ValidationGroup="addCircleGroup" data-min-length="1" list="existingCircles" name="circleInput"></asp:TextBox>
-                                            </div>
-                                            <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
-                                                <div class="signedOutErrorBlock">
-                                                    <i class="fas fa-exclamation-triangle"></i> &nbsp;
-                                                    <asp:Label ID="lbErrorMsg" runat="server">
-                                                        <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addCircleGroup" />
-                                                    </asp:Label>
-                                                </div>
-                                            </div>
-                                            <asp:Button ID="btAddCircle" runat="server" CssClass="btn btn-outline-primary" Text="+ Add" OnClick="btAddCircle_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addCircleGroup" />
-                                            <asp:Button ID="btClear" runat="server" CssClass="btn btn-outline-danger" Text="Clear" OnClick="btClear_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addUserCirclesGroup" />
-                                            <asp:Button ID="btSubmit" Text="Continue" CssClass="btn btn-primary float-right px-4" runat="server" OnClick="btSubmit_Click" CausesValidation="false" AutoPostback="true" />
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="btAddCircle" EventName="Click" />
-                                            <asp:AsyncPostBackTrigger ControlID="btSubmit" EventName="Click" />
-                                            <asp:AsyncPostBackTrigger ControlID="rptUpdateCircles" EventName="ItemCommand" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">
@@ -135,21 +88,79 @@
                 <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-mao-tab">
                     <div id="mapContainer" class="container py-5 px-7" runat="server">
                         <div id="mapsContainer" class="container" runat="server">
-                            <asp:updatepanel id="mapupdatepanel" runat="server">
-                                <contenttemplate>
-                                    <reimers:map id="GMap" width="100%" height="400px" runat="server" Zoom="18" />
-                                </contenttemplate>
-                            </asp:updatepanel>
+                            <reimers:map id="GMap" width="100%" height="400px" runat="server" Zoom="18" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade shadow-none" id="editprofile-modal" tabindex="-1" role="dialog" aria-labelledby="editProfileModel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg shadow-none">
-                <div class="modal-content shadow-none">
-                    ...
+        <div class="modal fade shadow-none" id="editprofile-modal" tabindex="-1" role="dialog" aria-labelledby="editProfileModel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <asp:UpdatePanel ID="UpdateCircleUpdatePanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
+                            <div class="modal-header">
+                                <h5 class="text-primary modal-title">Add Circles</h5>
+                                <button id="addCirclesCloseButton" runat="server" type="button" class="close" data-dismiss="modal" aria-label="Close" visible="true">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div runat="server" class="col-md-6 col-sm-12 border-right pl-0">
+                                            <div id="addCirclesIntroBlurb" runat="server" visible="false">
+                                                <span class="text-secondary">Follow some circles so that we can provide you with content that's relevant to your interests and compete with other people in your circle using our innovative points system.</span><br />
+                                                <br />
+                                                <span class="h6">Just enter any of your interests to join a circle!</span>
+                                            </div>
+                                            <div>
+                                                <asp:Repeater ID="rptUpdateCircles" runat="server" ItemType="MyCircles.BLL.UserCircle" OnItemCommand="rptUpdateCircles_ItemCommand">
+                                                    <ItemTemplate>
+                                                        <div class="mb-2 d-inline-flex">
+                                                            <div class="border border-primary p-2 rounded d-inline mr-1">
+                                                                <span class="text-primary"><%#DataBinder.Eval(Container.DataItem, "CircleId")%>&nbsp;&nbsp;|&nbsp;&nbsp;<%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>&nbsp;
+                                                            <asp:Button ID="btRemove" runat="server" CssClass="text-danger bg-transparent border-0" Text="&times;" CausesValidation="False" CommandName="Remove" />
+                                                            </div>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 border-left pr-0">
+                                            <div id="circleInputForm" runat="server">
+                                                <div id="circleInputGroupBlock" class="mb-5" runat="server">
+                                                    <div id="circleInputGroup" class="mb-3 input-group" runat="server" inputgroup="tbCircleInput">
+                                                        <asp:TextBox ID="tbCircleInput" runat="server" CssClass="input-height-lg rounded form-control interestfollow-input flexdatalist" placeholder="Interest name" EnableViewState="false" ValidationGroup="addCircleGroup" data-min-length="1" list="existingCircles" name="circleInput" ClientIDMode="Static"></asp:TextBox>
+                                                    </div>
+                                                    <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
+                                                        <div class="signedOutErrorBlock">
+                                                            <i class="fas fa-exclamation-triangle"></i>&nbsp;
+                                                    <asp:Label ID="lbErrorMsg" runat="server">
+                                                        <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addCircleGroup" />
+                                                    </asp:Label>
+                                                        </div>
+                                                    </div>
+                                                    <asp:Button ID="btAddCircle" runat="server" CssClass="btn btn-outline-primary float-right" Text="+ Add" OnClick="btAddCircle_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addCircleGroup" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <asp:Button ID="btClear" runat="server" CssClass="btn btn-outline-danger" Text="Clear" OnClick="btClear_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addUserCirclesGroup" />
+                                <asp:Button ID="btSubmit" runat="server" CssClass="btn btn-primary" Text="Save changes" OnClick="btSubmit_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addUserCirclesGroup" />
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="btAddCircle" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="rptUpdateCircles" EventName="ItemCommand" />
+                            <asp:AsyncPostBackTrigger ControlID="btClear" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="btSubmit" EventName="Click" />
+                        </Triggers>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>
@@ -160,5 +171,12 @@
 </asp:Content>
 
 <asp:Content ID="ProfileDeferredScripts" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
+    <script>
+        url = new URL(window.location.href);
+
+        if (url.searchParams.get('addingCircles')) {
+            $('#editprofile-modal').modal('show');
+        }
+    </script>
 </asp:Content>
 

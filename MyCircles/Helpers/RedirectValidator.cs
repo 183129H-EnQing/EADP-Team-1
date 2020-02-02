@@ -1,4 +1,5 @@
 ﻿using MyCircles.BLL;
+using MyCircles.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,9 @@ namespace MyCircles
             }
             else
             {
-                using (var db = new MyCirclesEntityModel())
-                {
-                    UserCircle existingUserCircle = db.UserCircles.Where(uc => uc.UserId == currentUser.Id).FirstOrDefault();
-                    if (existingUserCircle == null && !isAddingUserCircles) HttpContext.Current.Response.Redirect("/Profile/FollowCircles.aspx");
-                }
+                List<UserCircle> existingUserCircle = UserCircleDAO.GetAllUserCircles(currentUser.Id);
+                if (existingUserCircle.Count.Equals(0) && !isAddingUserCircles) HttpContext.Current.Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username.Trim() + "&addingCircles=true");
+                else if (!existingUserCircle.Count.Equals(0) && isAddingUserCircles) HttpContext.Current.Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username.Trim());
             }
         }
     }
