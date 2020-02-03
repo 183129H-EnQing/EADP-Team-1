@@ -20,8 +20,6 @@ namespace MyCircles.Profile
     //TODO: Create example data (user, circle, user circle w/ points)
     //TODO: Gain points for referring users to app
     //TODO: Show all the mutual circles
-    //TODO: Show distance from current user
-    //TODO: Fix the following users repeater
     //TODO: Add points and show points source
     //TODO: Fix the autocomplete bug
     //TODO: Clean up the interface (show graph for circles maybe???)
@@ -266,6 +264,11 @@ namespace MyCircles.Profile
             {
                 FollowDAO.ToggleFollow(currentUser.Id, Int32.Parse(e.CommandArgument.ToString()));
                 Response.Redirect(Request.RawUrl);
+            }
+            else if (e.CommandName == "Message")
+            {
+                var chatroom = ChatRoomDAO.GetChatRoom(currentUser.Id, Int32.Parse(e.CommandArgument.ToString()));
+                Response.Redirect("/Profile/Chat.aspx?chatroom=" + chatroom.Id);
             }
         }
 

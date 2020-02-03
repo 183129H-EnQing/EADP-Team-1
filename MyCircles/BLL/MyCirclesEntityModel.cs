@@ -14,6 +14,7 @@ namespace MyCircles.BLL
 
         public virtual DbSet<Activity> Activities { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<ChatRoom> ChatRooms { get; set; }
         public virtual DbSet<Circle> Circles { get; set; }
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<DayByDay> DayByDays { get; set; }
@@ -287,6 +288,18 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
+                .HasMany(e => e.ChatRooms)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.User1Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ChatRooms1)
+                .WithRequired(e => e.User1)
+                .HasForeignKey(e => e.User2Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.Follows)
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.FollowerId)
@@ -318,12 +331,6 @@ namespace MyCircles.BLL
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Posts)
                 .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.ReportedPosts)
-                .WithRequired(e => e.User)
-                .HasForeignKey(e => e.reporterUserId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()

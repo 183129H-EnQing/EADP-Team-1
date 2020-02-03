@@ -13,13 +13,14 @@ namespace MyCircles.BLL
         public User()
         {
             Admins = new HashSet<Admin>();
+            ChatRooms = new HashSet<ChatRoom>();
+            ChatRooms1 = new HashSet<ChatRoom>();
             Follows = new HashSet<Follow>();
             Follows1 = new HashSet<Follow>();
             Mutuals = new HashSet<Mutual>();
             Mutuals1 = new HashSet<Mutual>();
             Notifications = new HashSet<Notification>();
             Posts = new HashSet<Post>();
-            ReportedPosts = new HashSet<ReportedPost>();
             UserCircles = new HashSet<UserCircle>();
         }
 
@@ -67,6 +68,12 @@ namespace MyCircles.BLL
         public virtual ICollection<Admin> Admins { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChatRoom> ChatRooms { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChatRoom> ChatRooms1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Follow> Follows { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -83,9 +90,6 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportedPost> ReportedPosts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCircle> UserCircles { get; set; }
