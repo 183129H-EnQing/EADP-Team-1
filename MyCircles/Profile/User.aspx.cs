@@ -11,12 +11,14 @@ using static MyCircles.DAL.UserDAO;
 using MyCircles.DAL;
 using System.Configuration;
 using System.Web.Services;
+using System.Device.Location;
 
 namespace MyCircles.Profile
 {
     //TODO: Messages with dragging points onto the map
     //TODO: Show whether or not user is online
     //TODO: Create example data (user, circle, user circle w/ points)
+    //TODO: Gain points for referring users to app
     //TODO: Show all the mutual circles
     //TODO: Show distance from current user
     //TODO: Fix the following users repeater
@@ -108,6 +110,10 @@ namespace MyCircles.Profile
             }
             else
             {
+                var sCoord = new GeoCoordinate(Double.Parse(currentUser.Latitude.ToString()), Double.Parse(currentUser.Longitude.ToString()));
+                var eCoord = new GeoCoordinate(Double.Parse(requestedUser.Latitude.ToString()), Double.Parse(requestedUser.Longitude.ToString()));
+
+                lbDistance.InnerText = (sCoord.GetDistanceTo(eCoord) / 1000).ToString("0.0") + " km away";
                 btEditProfile.Visible = false;
                 followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
                 postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
@@ -115,6 +121,7 @@ namespace MyCircles.Profile
                 updateFollowButton();
 
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
+
             }
 
             if (BLL.Admin.RetrieveAdmin(currentUser) != null)
@@ -241,6 +248,27 @@ namespace MyCircles.Profile
             }
         }
 
+        protected void rptCircleFollowerLinks_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            var currentIndex = e.Item.ItemIndex;
+            Repeater rptCircleFollowerDetails = e.Item.FindControl("rptCircleFollowerDetails") as Repeater;
+
+            if (currentIndex >= 0)
+            {
+                rptCircleFollowerDetails.DataSource = circleFollowerDetailList[currentIndex];
+                rptCircleFollowerDetails.DataBind();
+            }
+        }
+
+        protected void rptUserFollowing_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Unfollow")
+            {
+                FollowDAO.ToggleFollow(currentUser.Id, Int32.Parse(e.CommandArgument.ToString()));
+                Response.Redirect(Request.RawUrl);
+            }
+        }
+
         protected void btMessage_Click(object sender, EventArgs e)
         {
             Response.Redirect("User.aspx?username=" + currentUser.Username);
@@ -357,18 +385,6 @@ namespace MyCircles.Profile
             else
             {
                 addCirclesIntroBlurb.Visible = false;
-            }
-        }
-
-        protected void rptCircleFollowerLinks_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            var currentIndex = e.Item.ItemIndex;
-            Repeater rptCircleFollowerDetails = e.Item.FindControl("rptCircleFollowerDetails") as Repeater;
-
-            if (currentIndex >= 0)
-            {
-                rptCircleFollowerDetails.DataSource = circleFollowerDetailList[currentIndex];
-                rptCircleFollowerDetails.DataBind();
             }
         }
 
