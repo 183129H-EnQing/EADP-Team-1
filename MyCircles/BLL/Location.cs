@@ -28,20 +28,11 @@ namespace MyCircles.BLL
         public string locaName { get; set; }
 
         [Required]
-        [StringLength(1000)]
         public string locaDesc { get; set; }
 
         public decimal locaRating { get; set; }
 
-        [StringLength(50)]
-        public string locaAddress { get; set; }
-
-        [StringLength(20)]
-        public string locaPostalCode { get; set; }
-
-        [Required]
-        [StringLength(15)]
-        public string locaContact { get; set; }
+        public int? locaContact { get; set; }
 
         [StringLength(100)]
         public string locaWeb { get; set; }
@@ -57,11 +48,5 @@ namespace MyCircles.BLL
         public virtual ICollection<Day> Days { get; set; }
 
         public virtual Pref Pref { get; set; }
-
-        [StringLength(6)]
-        public string locaRecom { get; set; }
-
-        [StringLength(30)]
-        public string locaGeolocation { get; set; }
     }
 }

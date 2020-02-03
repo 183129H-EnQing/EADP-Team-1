@@ -14,6 +14,7 @@ namespace MyCircles.BLL
 
         public virtual DbSet<Activity> Activities { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<ChatRoom> ChatRooms { get; set; }
         public virtual DbSet<Circle> Circles { get; set; }
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<DayByDay> DayByDays { get; set; }
@@ -23,6 +24,7 @@ namespace MyCircles.BLL
         public virtual DbSet<Itinerary> Itineraries { get; set; }
         public virtual DbSet<ItineraryPref> ItineraryPrefs { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Mutual> Mutuals { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
@@ -37,6 +39,11 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Activity>()
                 .Property(e => e.activityName)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<ChatRoom>()
+                .HasMany(e => e.Messages)
+                .WithRequired(e => e.ChatRoom)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Circle>()
                 .Property(e => e.Id)
@@ -181,6 +188,10 @@ namespace MyCircles.BLL
                 .HasForeignKey(e => e.locationId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Message>()
+                .Property(e => e.Image)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Type)
                 .IsUnicode(false);
@@ -284,6 +295,18 @@ namespace MyCircles.BLL
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Admins)
                 .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ChatRooms)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.User1Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ChatRooms1)
+                .WithRequired(e => e.User1)
+                .HasForeignKey(e => e.User2Id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()

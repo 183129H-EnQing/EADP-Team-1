@@ -223,3 +223,26 @@ CREATE TABLE [dbo].[ReportedPosts] (
     CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [dbo].[Post] ([Id]), 
     CONSTRAINT [FK_ReporterUserId_ToUserTable] FOREIGN KEY ([reporterUserId]) REFERENCES [dbo].[User]([Id])
 );
+
+CREATE TABLE [dbo].[ChatRoom] (
+    [Id]        INT          IDENTITY (1, 1) NOT NULL,
+    [CreatedAt] DATETIME     NOT NULL,
+    [User1Id]   INT          NOT NULL,
+    [User2Id]   INT          NOT NULL,
+	[HasUnseenMessages] BIT  NOT NULL DEFAULT ((0)),
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ChatUser1_ToUser] FOREIGN KEY ([User1Id]) REFERENCES [dbo].[User] ([Id]),
+    CONSTRAINT [FK_ChatUser2_ToUser] FOREIGN KEY ([User2Id]) REFERENCES [dbo].[User] ([Id])
+);
+
+CREATE TABLE [dbo].[Message] (
+    [Id]             INT           IDENTITY (1, 1) NOT NULL,
+    [CreatedAt]      DATETIME      NOT NULL,
+    [ChatRoomId]     INT           NOT NULL,
+    [HasGeolocation] BIT           DEFAULT ((0)) NOT NULL,
+    [Latitude]       FLOAT (53)    NULL,
+    [Longitude]      FLOAT (53)    NULL,
+    [Image]          VARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Message_ToChatRoom] FOREIGN KEY ([ChatRoomId]) REFERENCES [dbo].[ChatRoom] ([Id])
+);

@@ -145,7 +145,7 @@
                                                 <asp:Button runat="server" cssClass="btn btn-primary px-4 w-100" Text="Following" CommandName="Unfollow" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> Enabled="<%# requestedUser.Id == currentUser.Id %>" />
                                             </div>
                                             <div class="col-md-6">
-                                                <button class="btn btn-outline-primary px-4 w-100">Message</button>
+                                                <asp:Button runat="server" cssClass="btn btn-outline-secondary px-4 w-100" Text="Message" CommandName="Message" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> />
                                             </div>
                                         </div>
                                     </div>
