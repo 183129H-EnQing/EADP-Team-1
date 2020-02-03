@@ -239,6 +239,7 @@ CREATE TABLE [dbo].[Message] (
     [Id]             INT           IDENTITY (1, 1) NOT NULL,
     [CreatedAt]      DATETIME      NOT NULL,
     [ChatRoomId]     INT           NOT NULL,
+	[Content]		 VARCHAR (MAX) NULL,
     [HasGeolocation] BIT           DEFAULT ((0)) NOT NULL,
     [Latitude]       FLOAT (53)    NULL,
     [Longitude]      FLOAT (53)    NULL,
