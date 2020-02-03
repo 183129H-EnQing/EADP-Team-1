@@ -33,3 +33,12 @@
     color: red;
     font-size: 40px;
 }
+
+.admin-table {
+    border-collapse:collapse;
+    border: 1px solid black;
+}
+
+.admin-table td, .admin-table th {
+    padding: 10px;
+}
