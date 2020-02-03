@@ -22,5 +22,10 @@ namespace MyCircles.BLL
         {
             return PostDAO.GetPostById(postId);
         }
+
+        public static void DeletePost(int postId)
+        {
+            PostDAO.DeletePost(postId);
+        }
     }
 }

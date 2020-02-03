@@ -4,24 +4,25 @@
         View Reported Posts
     </h2>
     <form id="form1" runat="server">
-        
         <asp:ScriptManager ID="UserScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="admin-table" OnSelectedIndexChanged="gvReportedPosts_SelectedIndexChanged">
+                <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="admin-table" OnRowCommand="gvReportedPosts_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="reporterUsername" HeaderText="Reporter User" />
                         <asp:BoundField DataField="reason" HeaderText="Reason" />
-                        <asp:CommandField CausesValidation="False" SelectText="View Post" ShowSelectButton="True" />
+                        <asp:ButtonField CommandName="ViewPost" Text="View Post" />
+                        <asp:ButtonField CommandName="DeletePost" Text="Delete" />
                     </Columns>
                 </asp:GridView>
 
-                <div class="modal" id="viewPostModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal" id="viewPostModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">View Post</h5>
-                                <button type="button" class="close" aria-label="Close">
+                                <button type="button" class="close" aria-label="Close" onclick="closeViewPostModal()">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -33,7 +34,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" onclick="closeViewPostModal()">Close</button>
-                                <asp:Button ID="ModalDeleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete Post" CausesValidation="False" UseSubmitBehavior="false" OnClick="ModalDeleteBtn_Click"/>
+                                <asp:Button ID="ModalDeleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete Post" OnClick="ModalDeleteBtn_Click" CausesValidation="false" UseSubmitBehavior="False" ValidateRequestMode="Disabled"/>
                             </div>
                         </div>
                     </div>
