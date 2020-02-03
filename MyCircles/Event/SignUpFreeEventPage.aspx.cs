@@ -26,9 +26,11 @@ namespace MyCircles
             newEventSignUpEventData.contactNumber = contactNumberTB.Text;
             //newEventSignUpEventData.date = "hello";
             newEventSignUpEventData.numberOfBookingSlot = "1";
+            foreach (Control control in rpEventSchedule.Controls)
+                System.Diagnostics.Debug.WriteLine("hello qing" + control.UniqueID);
 
-            newEventSignUpEventData.Add();
-            Response.Redirect("ViewAllEventPage.aspx");
+            //newEventSignUpEventData.Add();
+            //Response.Redirect("ViewAllEventPage.aspx");
         }
 
         public List<EventSchedule> GetDates()

@@ -11,6 +11,7 @@ namespace MyCircles.Admin
     {
         public int numOfReportedPosts;
         public int numOfEventHosts;
+        public int numOfEvents;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,6 +26,8 @@ namespace MyCircles.Admin
                     numOfEventHosts += 1;
                 }
             }
+
+            numOfEvents = BLL.Event.GetAllEvent().Count;
         }
     }
 }

@@ -58,6 +58,7 @@
                 document.querySelector("div#" + selector).classList.add("admin-panel-navitem-active");
             }
         }
-	    window.addEventListener("load", admin_onload, false);
+        window.addEventListener("load", admin_onload, false);
     </script>
+    <asp:ContentPlaceHolder ID="JSPlaceHolder" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>

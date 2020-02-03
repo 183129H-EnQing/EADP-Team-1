@@ -325,6 +325,7 @@
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryPrefDAM.cs" />
     <Compile Include="BLL\Model_Methods\LocationDAM.cs" />
+    <Compile Include="BLL\Model_Methods\PostDAM.cs" />
     <Compile Include="BLL\Model_Methods\ReportedPostDAM.cs" />
     <Compile Include="BLL\Model_Methods\SignUpEventDetailDAM.cs" />
     <Compile Include="BLL\Model_Methods\UserCircleDAM.cs" />
