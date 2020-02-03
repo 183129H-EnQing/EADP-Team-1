@@ -47,12 +47,12 @@
                                 <div class="col-md-4 col-sm-12">
                                     <asp:Image runat='server' Height='160px' Width='250px' ImageUrl=<%#DataBinder.Eval(Container.DataItem, "locaPic") %> />
                                 </div>
-                                <div class="col-md-5 col-sm-12">
+                                <div class="col-md-5 col-sm-12 nopadding">
                                     <div class="row">
-                                        <div class="col-md-7">
-                                            <h4><%#DataBinder.Eval(Container.DataItem, "locaName") %></h4>
+                                        <div class="col-md-8">
+                                            <h4 style="height: 28px; overflow: hidden; text-overflow: ellipsis;"><%#DataBinder.Eval(Container.DataItem, "locaName") %></h4>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <h6><%#DataBinder.Eval(Container.DataItem, "locaRating") %> stars</h6>
                                         </div>
                                     </div>

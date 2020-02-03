@@ -146,20 +146,23 @@ CREATE TABLE [dbo].[Pref] (
 
 -- Location Table
 CREATE TABLE [dbo].[Location] (
-    [locaId]       INT           NOT NULL IDENTITY,
-    [landmarkType] INT           NOT NULL,
-    [locaPic]      VARCHAR (MAX) NOT NULL,
-    [locaName]     VARCHAR (50)  NOT NULL,
-    [locaDesc]     VARCHAR (MAX) NOT NULL,
-    [locaRating]   DECIMAL(2, 1) NOT NULL,
-    [locaContact]  INT           NULL,
-    [locaWeb]      VARCHAR (100) NULL,
-	[locaOpenHour] VARCHAR(10)   NOT NULL, 
-    [locaCloseHour] NCHAR(10)    NULL, 
-    PRIMARY KEY CLUSTERED ([locaId] ASC), 
-    CONSTRAINT [FK_Location_ToPref] FOREIGN KEY ([landmarkType]) REFERENCES [Pref]([prefId])
+    [locaId]          INT            IDENTITY (1, 1) NOT NULL,
+    [landmarkType]    INT            NOT NULL,
+    [locaPic]         VARCHAR (MAX)  NOT NULL,
+    [locaName]        NCHAR (50)     NOT NULL,
+    [locaDesc]        NCHAR (1000)    NOT NULL,
+    [locaRating]      DECIMAL (2, 1) NOT NULL,
+	[locaAddress]		NCHAR (50)	NULL,
+	[locaPostalCode]	NCHAR(20)		NULL,
+    [locaContact]     NCHAR(15)            NULL,
+    [locaWeb]         NCHAR (100)    NULL,
+    [locaOpenHour]    NCHAR (10)     NOT NULL,
+    [locaCloseHour]   NCHAR (10)     NULL,
+    [locaRecom]       NCHAR (6)      NOT NULL,
+    [locaGeolocation] NCHAR (30)     NOT NULL,
+    PRIMARY KEY CLUSTERED ([locaId] ASC),
+    CONSTRAINT [FK_Location_ToPref] FOREIGN KEY ([landmarkType]) REFERENCES [dbo].[Pref] ([prefId])
 );
-
 -- ItineraryPref Table
 CREATE TABLE [dbo].[ItineraryPref] (
     [itineraryPrefId] INT NOT NULL IDENTITY(1,1),
