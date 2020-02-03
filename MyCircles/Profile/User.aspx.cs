@@ -77,7 +77,7 @@ namespace MyCircles.Profile
                 updateCirclesModal();
                 initializeNearbyUserMap();
 
-                if (BLL.Admin.RetrieveAdmin(currentUser) != null)
+                if (currentUser.Id != requestedUser.Id && BLL.Admin.RetrieveAdmin(currentUser) != null)
                 {
                     cbMakeEventHost.Visible = true;
                     cbMakeEventHost.Checked = requestedUser.IsEventHolder;
