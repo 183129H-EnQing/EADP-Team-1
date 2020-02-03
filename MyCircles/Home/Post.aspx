@@ -24,7 +24,7 @@
                             <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="800" required></asp:TextBox>
                         </div>
                         <div class="form-group justify-content-between d-flex">
-                            <input id="fileupld" runat="server" type="file" class="btn" />
+                            <asp:FileUpload ID="FileUpload1" runat="server" />
                             <asp:button id="btnUpload" type="file" text="Upload Image" class="btn"  runat="server"  accept="image/png,image/jpeg,image/jpg,image/gif" OnClick="UploadFile"></asp:button>
                             <asp:Button ID="btnPost" runat="server" Text="Post" class="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
                         </div>
