@@ -140,6 +140,7 @@
     <Content Include="App_Data\Create_Tables\Mutual.sql" />
     <Content Include="App_Data\Create_Tables\UserCircle.sql" />
     <Content Include="App_Data\Create_Tables\User.sql" />
+    <Content Include="App_Data\DropTables.sql" />
     <Content Include="App_Data\MyCircles.mdf" />
     <Content Include="App_Data\MyCircles_log.ldf">
       <DependentUpon>MyCircles.mdf</DependentUpon>
