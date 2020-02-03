@@ -24,6 +24,7 @@ namespace MyCircles.BLL
         public virtual DbSet<Itinerary> Itineraries { get; set; }
         public virtual DbSet<ItineraryPref> ItineraryPrefs { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Mutual> Mutuals { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
@@ -38,6 +39,11 @@ namespace MyCircles.BLL
             modelBuilder.Entity<Activity>()
                 .Property(e => e.activityName)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<ChatRoom>()
+                .HasMany(e => e.Messages)
+                .WithRequired(e => e.ChatRoom)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Circle>()
                 .Property(e => e.Id)
@@ -181,6 +187,10 @@ namespace MyCircles.BLL
                 .WithRequired(e => e.Location)
                 .HasForeignKey(e => e.locationId)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Message>()
+                .Property(e => e.Image)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Type)
@@ -331,6 +341,12 @@ namespace MyCircles.BLL
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Posts)
                 .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ReportedPosts)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.reporterUserId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()

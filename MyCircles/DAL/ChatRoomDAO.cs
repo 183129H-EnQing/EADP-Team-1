@@ -24,6 +24,7 @@ namespace MyCircles.DAL
                     existingChatRoom = new ChatRoom();
                     existingChatRoom.User1Id = user1Id;
                     existingChatRoom.User2Id = user2Id;
+                    existingChatRoom.CreatedAt = DateTime.Now;
                     db.ChatRooms.Add(existingChatRoom);
                 }
 

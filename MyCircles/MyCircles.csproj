@@ -320,6 +320,7 @@
     <Compile Include="BLL\Itinerary.cs" />
     <Compile Include="BLL\ItineraryPref.cs" />
     <Compile Include="BLL\Location.cs" />
+    <Compile Include="BLL\Message.cs" />
     <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
     <Compile Include="BLL\Model_Methods\DayByDayDAM.cs" />
     <Compile Include="BLL\Model_Methods\EventDAM.cs" />

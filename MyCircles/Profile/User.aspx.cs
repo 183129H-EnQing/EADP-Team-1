@@ -22,6 +22,8 @@ namespace MyCircles.Profile
     //TODO: Show all the mutual circles
     //TODO: Add points and show points source
     //TODO: Fix the autocomplete bug
+    //TODO: Add edit user profile
+    //TODO: Add support for Web API
     //TODO: Clean up the interface (show graph for circles maybe???)
     public partial class User : System.Web.UI.Page
     {
