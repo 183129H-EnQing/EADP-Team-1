@@ -44,33 +44,18 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                            <%for (int i = 0; i < 3; i++) { %>              
-                                          <tr>
-                                            <td id="hello+<%=i %>">09:00 - 13:00</td>
-                                            <td>Introduction to information technology and different sectors in IT</td>
-                                            <td> 
-                                                  <label class="checkbox-inline">
-                                                   <asp:CheckBox id="optIn" runat="server" ClientIDMode="Static"></asp:CheckBox>
-                                                  </label>
-                                            </td>
-                                          </tr>
-                                            <%} %>
-                                          <tr>
-                                            <td>13:00 - 14:00</td>
-                                            <td>Break</td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>14:00 - 18:00
-                                               
-                                            </td>
-                                            <td>Career In Information Technology</td>
-                                            <td>
-                                                  <label class="checkbox-inline">
-                                                    <input type="checkbox" value="">
-                                                  </label>
-                                            </td>
-                                          </tr>
+                                           <asp:Repeater ID="rpEventSchedule" runat="server" ItemType="MyCircles.BLL.EventSchedule">
+                                             <ItemTemplate>                 
+                                                <%# Container.ItemIndex + 1 %>
+                                              <tr>
+                                                <td><%#DataBinder.Eval(Container.DataItem, "startTime") %> - <%#DataBinder.Eval(Container.DataItem, "endTime") %></td>
+                                                <td><%#DataBinder.Eval(Container.DataItem, "eventDescription") %></td>
+                                                  <!--add tb to the thing-->
+                                                <td>
+                                                    <asp:CheckBox ID="optInCB" runat="server" /></td>
+                                              </tr>
+                                             </ItemTemplate>
+                                           </asp:Repeater>
                                         </tbody>
                                       </table>
                             <asp:Button ID="submitButt"  runat="server" Text="Submit" CssClass="form-check-label btn btn-success btn-block mt-2" OnClick="submitButt_Click"/>

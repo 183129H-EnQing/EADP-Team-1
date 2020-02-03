@@ -13,7 +13,9 @@ namespace MyCircles
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           //GetDates();
+            //GetDates();
+            int requestedEventID = int.Parse(Request.QueryString["eventID"]);
+            getEventScheduleData(requestedEventID);
         }
 
         protected void submitButt_Click(object sender, EventArgs e)
@@ -45,6 +47,19 @@ namespace MyCircles
             dateDDL.DataBind();
             return scheduleList;
 
+        }
+
+        // get all the event scheduleData function << planning to reuse the code if can
+        private void getEventScheduleData(int eventId)
+        {
+            EventSchedule retrieveEventSchedule = new EventSchedule();
+            List<EventSchedule> scheduleList = new List<EventSchedule>();
+
+            scheduleList = retrieveEventSchedule.getAllEventActivity(eventId);
+
+            System.Diagnostics.Debug.WriteLine("gh say: " + scheduleList);
+            rpEventSchedule.DataSource = scheduleList;
+            rpEventSchedule.DataBind();
         }
     }
 }

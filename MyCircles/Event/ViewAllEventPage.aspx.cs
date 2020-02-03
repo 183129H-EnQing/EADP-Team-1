@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace MyCircles
 {
-    public partial class ViewEventDetails : System.Web.UI.Page
+    public partial class ViewAllEventPage : System.Web.UI.Page
     {
         public string hello = "Hello";
 

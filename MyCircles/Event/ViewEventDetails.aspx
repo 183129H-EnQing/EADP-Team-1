@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="ViewEventDetails.aspx.cs" Inherits="MyCircles.ViewEventDetails1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="ViewEventDetails.aspx.cs" Inherits="MyCircles.ViewEventDetails" %>
 <%@ Import Namespace="MyCircles.BLL" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
     <style>
@@ -18,7 +18,7 @@
                         <div class="col-12">
                              <!--insert event Title to the span-->
                            <!-- <span></span> -->
-                            <%=event1.eventName %>
+                            <%=singleEventDetails.eventName %>
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <p><%=event1.eventDescription %></p>
+                            <p><%=singleEventDetails.eventDescription %></p>
                         </div>
                     </div>
 
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="col-6" style="padding-left:0px;">
                                         <!--data-toggle="modal" data-target=".bd-example-modal-lg"-->
-                                        <a href="/Event/SignUpFreeEventPage.aspx" class="btn btn-primary"  style="width:100%;">Register</a>
+                                        <a href="/Event/SignUpFreeEventPage.aspx?eventID=<%=singleEventDetails.eventId %>" class="btn btn-primary"  style="width:100%;">Register</a>
                                       
                                         <!--sign up page modal-->
                                         <!--

@@ -10,7 +10,7 @@
 namespace MyCircles {
     
     
-    public partial class ViewEventDetails {
+    public partial class ViewAllEventPage {
         
         /// <summary>
         /// central control.

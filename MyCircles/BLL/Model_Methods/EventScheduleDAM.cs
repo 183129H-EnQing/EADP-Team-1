@@ -9,9 +9,9 @@ namespace MyCircles.BLL {
     public partial class EventSchedule
     {
         // get all eventActivity/event from the event schedule
-        public static List<EventSchedule> getAllEventActivity(int event1)
+        public List<EventSchedule> getAllEventActivity(int eventId)
         {
-            return EventScheduleDAO.getAllEventActivity(event1);
+            return EventScheduleDAO.getAllEventActivity(eventId);
         }
     }
 }
