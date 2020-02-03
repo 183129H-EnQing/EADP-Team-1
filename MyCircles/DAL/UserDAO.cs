@@ -154,5 +154,18 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public static void UpdateIsDisabled(int id, bool isDisabled)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                User user = db.Users
+                        .Where(u => u.Id == id)
+                        .FirstOrDefault();
+
+                user.IsDeleted = isDisabled;
+                db.SaveChanges();
+            }
+        }
     }
 }
