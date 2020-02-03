@@ -16,12 +16,12 @@
                     </Columns>
                 </asp:GridView>
 
-                <div class="modal fade" id="viewPostModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal" id="viewPostModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">View Post</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -32,8 +32,8 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                                <asp:Button ID="ModalDeleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete Post" CausesValidation="False" OnClientClick="return false" OnClick="ModalDeleteBtn_Click"/>
+                                <button type="button" class="btn btn-success" onclick="closeViewPostModal()">Close</button>
+                                <asp:Button ID="ModalDeleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete Post" CausesValidation="False" UseSubmitBehavior="false" OnClick="ModalDeleteBtn_Click"/>
                             </div>
                         </div>
                     </div>
@@ -41,6 +41,7 @@
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="gvReportedPosts" EventName="SelectedIndexChanged"/>
+                <asp:AsyncPostBackTrigger ControlID="ModalDeleteBtn" EventName="Click"/>
             </Triggers>
         </asp:UpdatePanel>
     </form>
@@ -50,6 +51,10 @@
     <script>
         function openViewPostModal() {
             $("#viewPostModal").modal('show');
+        }
+
+        function closeViewPostModal() {
+            $('#viewPostModal').modal('hide')
         }
     </script>
 </asp:Content>

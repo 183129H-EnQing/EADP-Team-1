@@ -23,7 +23,7 @@ namespace MyCircles.Admin
             UserReportedPost reportedPost = BLL.ReportedPost.GetAllUserReportedPosts()[id];
             Post post = Post.GetPostById(reportedPost.postId);
 
-            System.Diagnostics.Debug.WriteLine("hi, i am selecting a post, " + post.Id);
+            System.Diagnostics.Debug.WriteLine("gv SelectedIndexChanged" + post.Id);
 
             ModalPostImage.ImageUrl = post.Image;
             ModalPostText.Text = post.Content;
@@ -32,6 +32,11 @@ namespace MyCircles.Admin
 
         protected void ModalDeleteBtn_Click(object sender, EventArgs e)
         {
+            int id = gvReportedPosts.SelectedIndex;
+            UserReportedPost reportedPost = BLL.ReportedPost.GetAllUserReportedPosts()[id];
+            Post post = Post.GetPostById(reportedPost.postId);
+
+            System.Diagnostics.Debug.WriteLine("modalDeleteBtnClick" + post.Id);
             // delete reportedpost data
             // delete post data
         }
