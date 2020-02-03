@@ -4,6 +4,7 @@ namespace MyCircles.DAL.Joint_Models
 {
     public class UserReportedPost
     {
+        public int id { get; set; }
         public int postId { get; set; }
         public int reporterUserId { get; set; }
         public string reporterUsername { get; set; }
@@ -11,6 +12,7 @@ namespace MyCircles.DAL.Joint_Models
 
         public UserReportedPost(ReportedPost reportedPost, User reporterUser)
         {
+            this.id = reportedPost.Id;
             this.postId = reportedPost.postId;
             this.reporterUserId = reportedPost.reporterUserId;
             this.reporterUsername = reporterUser.Username;

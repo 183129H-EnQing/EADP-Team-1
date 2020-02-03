@@ -38,6 +38,15 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void DeletePost(int postId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Posts.RemoveRange(db.Posts.Where(p => p.Id == postId));
+                db.SaveChanges();
+            }
+        }
+
         public static Post GetPostById(int postId)
         {
             using (var db = new MyCirclesEntityModel())

@@ -13,32 +13,62 @@ namespace MyCircles.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            gvReportedPosts.DataSource = BLL.ReportedPost.GetAllUserReportedPosts();
-            gvReportedPosts.DataBind();
-        }
-
-        protected void gvReportedPosts_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = gvReportedPosts.SelectedIndex;
-            UserReportedPost reportedPost = BLL.ReportedPost.GetAllUserReportedPosts()[id];
-            Post post = Post.GetPostById(reportedPost.postId);
-
-            System.Diagnostics.Debug.WriteLine("gv SelectedIndexChanged" + post.Id);
-
-            ModalPostImage.ImageUrl = post.Image;
-            ModalPostText.Text = post.Content;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openViewPostModal();", true);
+            refreshGridView();
         }
 
         protected void ModalDeleteBtn_Click(object sender, EventArgs e)
         {
-            int id = gvReportedPosts.SelectedIndex;
-            UserReportedPost reportedPost = BLL.ReportedPost.GetAllUserReportedPosts()[id];
-            Post post = Post.GetPostById(reportedPost.postId);
+            int idx = gvReportedPosts.SelectedIndex;
+            deleteOp(idx);
+        }
 
-            System.Diagnostics.Debug.WriteLine("modalDeleteBtnClick" + post.Id);
+        protected void gvReportedPosts_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int idx = int.Parse(e.CommandArgument.ToString());
+            switch (e.CommandName)
+            {
+                case "ViewPost":
+                    System.Diagnostics.Debug.WriteLine("gvReportedPosts_RowCommand, ViewPost:" + e.CommandArgument);
+                    UserReportedPost userReportedPost = ReportedPost.GetAllUserReportedPosts()[idx];
+                    Post post = Post.GetPostById(userReportedPost.postId);
+
+                    System.Diagnostics.Debug.WriteLine("gv SelectedIndexChanged," + post.Id);
+
+                    ModalPostImage.ImageUrl = post.Image;
+                    ModalPostText.Text = post.Content;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openViewPostModal();", true);
+                    break;
+                case "DeletePost":
+                    System.Diagnostics.Debug.WriteLine("gvReportedPosts_RowCommand, DeletePost:" + e.CommandArgument);
+                    deleteOp(idx);
+                    break;
+            }
+        }
+
+        public void deleteOp(int index)
+        {
+            UserReportedPost userReportedPost = ReportedPost.GetAllUserReportedPosts()[index];
+            Post post = Post.GetPostById(userReportedPost.postId);
+
+            System.Diagnostics.Debug.WriteLine("deleteOp, postId:" + post.Id);
+
             // delete reportedpost data
+            ReportedPost rp = ReportedPost.GetReportedPostById(userReportedPost.id);
+            System.Diagnostics.Debug.WriteLine("deleteOp, reportedPost:" + rp.reason);
+            ReportedPost.DeleteReportedPost(userReportedPost.id);
+
             // delete post data
+            Post.DeletePost(post.Id);
+
+            // TODO - Investigate why cannot use remove, but removeRange can work for inside the DAO
+
+            refreshGridView();
+        }
+
+        public void refreshGridView()
+        {
+            gvReportedPosts.DataSource = ReportedPost.GetAllUserReportedPosts();
+            gvReportedPosts.DataBind();
         }
     }
 }

@@ -9,6 +9,14 @@ namespace MyCircles.DAL
 {
     public class ReportedPostDAO
     {
+        public static ReportedPost GetReportedPostById(int reportedPostId)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                return db.ReportedPosts.Where(p => p.Id == reportedPostId).FirstOrDefault();
+            }
+        }
+
         public static List<ReportedPost> GetAllReportedPosts()
         {
             List<ReportedPost> reportedPosts = new List<ReportedPost>();
@@ -36,6 +44,15 @@ namespace MyCircles.DAL
                     .ToList();
 
                 return followingUsers;
+            }
+        }
+
+        public static void DeleteReportedPost(int reportedPostId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.ReportedPosts.RemoveRange(db.ReportedPosts.Where(p => p.Id == reportedPostId));
+                db.SaveChanges();
             }
         }
     }
