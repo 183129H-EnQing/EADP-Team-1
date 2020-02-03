@@ -14,9 +14,13 @@ using System.Web.Services;
 
 namespace MyCircles.Profile
 {
-    //TODO: Edit profile with messages if mutuals/don't show location on map
+    //TODO: Messages with dragging points onto the map
     //TODO: Show whether or not user is online
-    //TODO: Check whether requested user is current user and show the add circle stuff accordingly
+    //TODO: Create example data (user, circle, user circle w/ points)
+    //TODO: Show all the mutual circles
+    //TODO: Show distance from current user
+    //TODO: Fix the following users repeater
+    //TODO: Add points and show points source
     //TODO: Fix the autocomplete bug
     //TODO: Clean up the interface (show graph for circles maybe???)
     public partial class User : System.Web.UI.Page
@@ -84,6 +88,12 @@ namespace MyCircles.Profile
             }
 
             GMap.OverlayClick += new EventHandler<OverlayEventArgs>(MarkerClick);
+
+            if (currentUser.Id != requestedUser.Id && BLL.Admin.RetrieveAdmin(currentUser) != null)
+            {
+                cbMakeEventHost.Visible = true;
+                cbMakeEventHost.Checked = requestedUser.IsEventHolder;
+            }
 
             Title = requestedUser.Username + " - MyCircles";            
             ProfilePicImage.ImageUrl = requestedUser.ProfileImage;

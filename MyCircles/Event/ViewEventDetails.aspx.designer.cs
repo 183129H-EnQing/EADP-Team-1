@@ -10,7 +10,7 @@
 namespace MyCircles {
     
     
-    public partial class ViewEventDetails1 {
+    public partial class ViewEventDetails {
         
         /// <summary>
         /// rpEventSchedule control.

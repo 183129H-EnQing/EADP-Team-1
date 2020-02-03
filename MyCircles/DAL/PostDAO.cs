@@ -37,5 +37,15 @@ namespace MyCircles.DAL
                 return postList;
             }
         }
+
+        public static Post GetPostById(int postId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                var post = db.Posts.Where(p => p.Id == postId).FirstOrDefault();
+
+                return post;
+            }
+        }
     }
 }

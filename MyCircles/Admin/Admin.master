@@ -7,15 +7,20 @@
 <asp:Content ID="Body" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <div class="container bg-white mt-3">
         <div class="row h-100">
-            <div class="col-2 admin-panel-navbar p-0 text-center">
-                <a class="admin-panel-navlink" href="Home.aspx">
-                    <div id="DIVOverview" class="admin-panel-navitem">
+            <div id="adminNavbar" class="col-2 admin-panel-navbar p-0 text-center">
+                <a class="admin-panel-navlink" href="Overview.aspx">
+                    <div id="divOverview" class="admin-panel-navitem">
                         Overview
                     </div>
                 </a>
                 <a class="admin-panel-navlink" href="ViewReportedPosts.aspx">
-                    <div id="DIVViewRP" class="admin-panel-navitem admin-panel-navitem-divider">
+                    <div id="divViewReportedPosts" class="admin-panel-navitem admin-panel-navitem-divider">
                         View Reported Posts
+                    </div>
+                </a>
+                <a class="admin-panel-navlink" href="ManageUsers.aspx">
+                    <div id="divManageUsers" class="admin-panel-navitem admin-panel-navitem-divider">
+                        Manage Users
                     </div>
                 </a>
             </div>
@@ -34,18 +39,26 @@
             var name = filename.split(".")[0];
 
             var selector = null;
-            if (name === "Home") {
-                selector = "DIVOverview";
-            } else if (name === "ManageEventHosts") {
-                selector = "DIVManageEH";
-            } else if (name === "ViewReportedPosts") {
-                selector = "DIVViewRP";
+
+            var adminNavbar = document.getElementById("adminNavbar");
+            for (var i = 0; i < adminNavbar.childNodes.length; i++) {
+                var aChild = adminNavbar.childNodes[i];
+                if (aChild.nodeName == "A") {
+                    var aSplitURL = aChild.href.split("/");
+                    var aFileName = aSplitURL[aSplitURL.length - 1].split(".")[0]; // eg: Overview.aspx, View.aspx, get before .
+
+                    if (aFileName == name) {
+                        selector = "div" + aFileName;
+                        break;
+                    }
+                }
             }
 
             if (selector != null) {
                 document.querySelector("div#" + selector).classList.add("admin-panel-navitem-active");
             }
         }
-	    window.addEventListener("load", admin_onload, false);
+        window.addEventListener("load", admin_onload, false);
     </script>
+    <asp:ContentPlaceHolder ID="JSPlaceHolder" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>

@@ -42,16 +42,30 @@ namespace MyCircles.Home
             Response.Redirect("PeopleNearby.aspx");
         }
 
+        protected void UploadThisFile(FileUpload upload)
+        {
+            if (upload.HasFile)
+            {
+                string theFileName = Path.Combine(Server.MapPath("~/Content/images"), upload.FileName);
+                if (File.Exists(theFileName))
+                {
+                    File.Delete(theFileName);
+                }
+                upload.SaveAs(theFileName);
+            }
+        }
+
         protected void btnPost_Click(object sender, EventArgs e)
         {
             try
             {
                 var newPost = new BLL.Post();
                 newPost.Content = activity.Text;
-                newPost.Image = fileupld.ID;
+                newPost.Image = FileUpload1.ID;
                 newPost.UserId = currentUser.Id;
                 newPost.CircleId = "gym";
                 //newPost.Image = fileupld.PostedFile;
+                UploadThisFile(FileUpload1);
                 PostDAO.AddPost(newPost);
 
                 rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
