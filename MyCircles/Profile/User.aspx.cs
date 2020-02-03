@@ -25,6 +25,7 @@ namespace MyCircles.Profile
     //TODO: Add edit user profile
     //TODO: Add support for Web API
     //TODO: Clean up the interface (show graph for circles maybe???)
+    //TODO: Show following, followers, and strangers who dm'd you in user page
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;

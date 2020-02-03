@@ -23,6 +23,8 @@ namespace MyCircles.BLL
 
         public int User2Id { get; set; }
 
+        public bool HasUnseenMessages { get; set; }
+
         public virtual User User { get; set; }
 
         public virtual User User1 { get; set; }
