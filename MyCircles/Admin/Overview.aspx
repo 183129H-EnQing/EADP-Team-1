@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MyCircles.Admin.Home" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeBehind="Overview.aspx.cs" Inherits="MyCircles.Admin.Overview" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <h2 class="text-center">
