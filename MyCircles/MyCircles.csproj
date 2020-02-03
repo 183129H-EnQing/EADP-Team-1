@@ -337,6 +337,7 @@
     <Compile Include="DAL\EventScheduleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
     <Compile Include="DAL\ItineraryPrefDAO.cs" />
+    <Compile Include="DAL\Joint_Models\CircleFollowerDetails.cs" />
     <Compile Include="DAL\Joint_Models\Days.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />

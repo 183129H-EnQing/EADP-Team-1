@@ -61,5 +61,28 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public static List<CircleFollowerDetails> GetCircleFollowerDetails(string circleId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var circleFollowerDetails =
+                    db.UserCircles
+                        .Where(uc => uc.CircleId == circleId)
+                        .OrderByDescending(uc => uc.Points)
+                        .ToList()
+                        .Join(
+                            db.Users,
+                            uc => uc.UserId,
+                            user => user.Id,
+                            (uc, user) => new CircleFollowerDetails(user, uc)
+                        )
+                        .ToList();
+
+                return circleFollowerDetails;
+            }
+        }
     }
 }

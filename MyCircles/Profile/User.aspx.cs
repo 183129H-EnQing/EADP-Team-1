@@ -22,32 +22,32 @@ namespace MyCircles.Profile
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
-        public List<BLL.Circle> existingCircleList;
-        public List<UserCircle> inputCirclesList
+        public List<List<CircleFollowerDetails>> circleFollowerDetailList = new List<List<CircleFollowerDetails>>();
+        public List<UserCircle> requestedUserCircleList
         {
             get
             {
-                List<UserCircle> inputCirclesList = (List<UserCircle>)this.ViewState["inputCirclesList"];
-                if (inputCirclesList == null)
+                List<UserCircle> requestedUserCircleList = (List<UserCircle>)this.ViewState["requestedUserCircleList"];
+                if (requestedUserCircleList == null)
                 {
-                    this.ViewState["inputCirclesList"] = new List<UserCircle>();
+                    this.ViewState["requestedUserCircleList"] = new List<UserCircle>();
                 }
-                return (List<UserCircle>)(this.ViewState["inputCirclesList"]);
+                return (List<UserCircle>)(this.ViewState["requestedUserCircleList"]);
             }
             set
             {
-                ViewState["inputCirclesList"] = value;
+                ViewState["requestedUserCircleList"] = value;
             }
         }
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Request.QueryString["addingCircles"])) 
+            if (String.IsNullOrEmpty(Request.QueryString["addingCircles"]))
             {
                 RedirectValidator.isUser(isAddingUserCircles: false);
             }
-            else 
+            else
             {
                 addCirclesCloseButton.Visible = false;
                 RedirectValidator.isUser(isAddingUserCircles: true);
@@ -57,18 +57,23 @@ namespace MyCircles.Profile
             requestedUser = GetUserByIdentifier(Request.QueryString["username"]);
             if (requestedUser == null) requestedUser = currentUser;
 
-            Title = requestedUser.Username + " - MyCircles";            
-            ProfilePicImage.ImageUrl = requestedUser.ProfileImage;
-            lbName.Text = requestedUser.Name;
-            lbUsername.Text = "@" + requestedUser.Username;
-            lbBio.InnerText = requestedUser.Bio;
-            lbCity.InnerText = requestedUser.City;
-
             if (!Page.IsPostBack)
             {
-                inputCirclesList = UserCircleDAO.GetAllUserCircles(currentUser.Id);
-                rptUpdateCircles.DataSource = inputCirclesList;
+                requestedUserCircleList = UserCircleDAO.GetAllUserCircles(requestedUser.Id);
+                foreach (UserCircle userCircle in requestedUserCircleList)
+                {
+                    var userDetailsForCircle = UserCircleDAO.GetCircleFollowerDetails(userCircle.CircleId);
+                    circleFollowerDetailList.Add(userDetailsForCircle);
+                }
+
+                rptUpdateCircles.DataSource = requestedUserCircleList;
                 rptUpdateCircles.DataBind();
+
+                rptUserCircles.DataSource = requestedUserCircleList;
+                rptUserCircles.DataBind();
+
+                rptCircleFollowerLinks.DataSource = requestedUserCircleList;
+                rptCircleFollowerLinks.DataBind();
 
                 rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
                 rptUserFollowing.DataBind();
@@ -76,31 +81,54 @@ namespace MyCircles.Profile
                 bindExisitingCircles();
                 updateCirclesModal();
                 initializeNearbyUserMap();
+            }
 
-                if (BLL.Admin.RetrieveAdmin(currentUser) != null)
-                {
-                    cbMakeEventHost.Visible = true;
-                    cbMakeEventHost.Checked = requestedUser.IsEventHolder;
-                }
+            GMap.OverlayClick += new EventHandler<OverlayEventArgs>(MarkerClick);
 
+            Title = requestedUser.Username + " - MyCircles";            
+            ProfilePicImage.ImageUrl = requestedUser.ProfileImage;
+            lbName.Text = requestedUser.Name;
+            lbUsername.Text = "@" + requestedUser.Username;
+            lbBio.InnerText = requestedUser.Bio;
+            lbCity.InnerText = requestedUser.City;
 
-                if (String.IsNullOrEmpty(requestedUser.Bio)) lbBio.Visible = false;
-                if (rptUserFollowing.Items.Count > 0) followWarning.Visible = false;
+            if (requestedUser.Id == currentUser.Id)
+            {
+                btFollow.Visible = false;
+            }
+            else
+            {
+                btEditProfile.Visible = false;
+                followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
+                postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
 
-                if (requestedUser.Id == currentUser.Id)
-                {
-                    btFollow.Visible = false;
-                }
-                else
-                {
-                    btEditProfile.Visible = false;
-                    followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
-                    postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
+                updateFollowButton();
 
-                    updateFollowButton();
+                if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
+            }
 
-                    if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
-                }
+            if (BLL.Admin.RetrieveAdmin(currentUser) != null)
+            {
+                cbMakeEventHost.Visible = true;
+                cbMakeEventHost.Checked = requestedUser.IsEventHolder;
+            }
+
+            if (String.IsNullOrEmpty(requestedUser.Bio)) 
+            {
+                lbBio.Visible = false;
+            } 
+            else
+            {
+                lbBio.Visible = true;
+            }
+
+            if (rptUserFollowing.Items.Count > 0) 
+            {
+                followWarning.Visible = false;
+            }
+            else
+            {
+                followWarning.Visible = true;
             }
         }
 
@@ -125,7 +153,7 @@ namespace MyCircles.Profile
                 GeneralHelpers.AddValidationError(Page, "addCircleGroup", "Required fields are not filled up");
             }
 
-            if (inputCirclesList.Where(uc => uc.CircleId == circleName).Count() > 0)
+            if (requestedUserCircleList.Where(uc => uc.CircleId == circleName).Count() > 0)
             {
                 GeneralHelpers.AddValidationError(Page, "addCircleGroup", "There are duplicate circles present");
             }
@@ -140,29 +168,29 @@ namespace MyCircles.Profile
                 UserCircle newUserCircle = new UserCircle();
                 newUserCircle.CircleId = circleName;
                 newUserCircle.UserId = currentUser.Id;
-                inputCirclesList.Add(newUserCircle);
+                requestedUserCircleList.Add(newUserCircle);
             }
 
 
             tbCircleInput.Text = "";
             tbCircleInput.Focus();
-            rptUpdateCircles.DataSource = inputCirclesList;
+            rptUpdateCircles.DataSource = requestedUserCircleList;
             rptUpdateCircles.DataBind();
             updateCirclesModal();
         }
 
         protected void btClear_Click(object sender, EventArgs e)
         {
-            inputCirclesList.Clear();
-            rptUpdateCircles.DataSource = inputCirclesList;
+            requestedUserCircleList.Clear();
+            rptUpdateCircles.DataSource = requestedUserCircleList;
             rptUpdateCircles.DataBind();
             updateCirclesModal();
         }
 
         protected void btRemove_Click(int circleIndex)
         {
-            inputCirclesList.RemoveAt(circleIndex);
-            rptUpdateCircles.DataSource = inputCirclesList;
+            requestedUserCircleList.RemoveAt(circleIndex);
+            rptUpdateCircles.DataSource = requestedUserCircleList;
             rptUpdateCircles.DataBind();
             updateCirclesModal();
         }
@@ -180,7 +208,7 @@ namespace MyCircles.Profile
             signedOutErrorContainer.Visible = false;
             Page.Validate();
 
-            if (!inputCirclesList.Any())
+            if (!requestedUserCircleList.Any())
             {
                 GeneralHelpers.AddValidationError(Page, "addUserCirclesGroup", "No circles have been added");
             }
@@ -194,7 +222,7 @@ namespace MyCircles.Profile
             {
                 UserCircleDAO.RemoveUserCircles(requestedUser.Id);
 
-                foreach (UserCircle userCircle in inputCirclesList)
+                foreach (UserCircle userCircle in requestedUserCircleList)
                 {
                     UserCircleDAO.AddUserCircle(userCircle);
                 }
@@ -290,7 +318,6 @@ namespace MyCircles.Profile
 
                     GMap.Overlays.Add(userMarker);
                     GMap.Overlays.Add(overlayMarker);
-                    GMap.OverlayClick += new EventHandler<OverlayEventArgs>(MarkerClick);
                 }
             }
         }
@@ -320,6 +347,18 @@ namespace MyCircles.Profile
             else
             {
                 addCirclesIntroBlurb.Visible = false;
+            }
+        }
+
+        protected void rptCircleFollowerLinks_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            var currentIndex = e.Item.ItemIndex;
+            Repeater rptCircleFollowerDetails = e.Item.FindControl("rptCircleFollowerDetails") as Repeater;
+
+            if (currentIndex >= 0)
+            {
+                rptCircleFollowerDetails.DataSource = circleFollowerDetailList[currentIndex];
+                rptCircleFollowerDetails.DataBind();
             }
         }
 

@@ -24,13 +24,13 @@ namespace MyCircles.Profile
         protected global::System.Web.UI.ScriptManager UserScriptManager;
 
         /// <summary>
-        /// HeaderImage control.
+        /// GMap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image HeaderImage;
+        protected global::Reimers.Google.Map.Map GMap;
 
         /// <summary>
         /// ProfilePicImage control.
@@ -150,6 +150,24 @@ namespace MyCircles.Profile
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userCirclesContainer;
 
         /// <summary>
+        /// rptUserCircles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptUserCircles;
+
+        /// <summary>
+        /// rptCircleFollowerLinks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCircleFollowerLinks;
+
+        /// <summary>
         /// followingUserListContainer control.
         /// </summary>
         /// <remarks>
@@ -175,33 +193,6 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl followWarning;
-
-        /// <summary>
-        /// mapContainer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mapContainer;
-
-        /// <summary>
-        /// mapsContainer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mapsContainer;
-
-        /// <summary>
-        /// GMap control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Reimers.Google.Map.Map GMap;
 
         /// <summary>
         /// UpdateCircleUpdatePanel control.
