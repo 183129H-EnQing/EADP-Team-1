@@ -1,6 +1,32 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/SignedIn.Master" AutoEventWireup="true" CodeBehind="Post.aspx.cs" Inherits="MyCircles.Home.Post" %>
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
+     <script src="/scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+
+    <link href="content/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="/content/css/main.css" rel="stylesheet" />
+    <link href="/content/css/jquery.flexdatalist.css" rel="stylesheet" />
+
+    <script src="/scripts/main.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.flexdatalist.js" type="text/javascript"></script>
+    <script src="/scripts/ajax.js" type="text/javascript"></script>
+
+<script>
+	$('#datepicker').datepicker({
+		format: 'dd/mm/yyyy',
+		value: new Date().toLocaleDateString('en-GB'),
+		uiLibrary: 'bootstrap4',
+	});
+
+     $('#summernote').summernote({
+        placeholder: 'welcome to our blog',
+        tabsize: 2,
+        height: 200
+      });
+</script>
 
     <form id="form1" runat="server">
     <div class="container-fluid">
@@ -24,7 +50,7 @@
                             <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="800" required></asp:TextBox>
                         </div>
                         <div class="form-group justify-content-between d-flex">
-                            <asp:FileUpload ID="FileUpload1" runat="server" />
+                            <asp:FileUpload ID="FileUpload1"  runat="server" />
                             <asp:button id="btnUpload" type="file" text="Upload Image" class="btn"  runat="server"  accept="image/png,image/jpeg,image/jpg,image/gif" OnClick="UploadFile"></asp:button>
                             <asp:Button ID="btnPost" runat="server" Text="Post" class="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
                         </div>
@@ -58,13 +84,14 @@
                                             <h5><asp:Label runat="server"><%#DataBinder.Eval(Container.DataItem, "User.Username")%></asp:Label></h5>
 			                            </div>
                                         <div>
-                                            <h5>3.45</h5>
+                                            <h5><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%></h5>
                                         </div>
+                                        &nbsp
                                         <div>
                                             <h5><%#DataBinder.Eval(Container.DataItem, "User.City")%></h5>
                                         </div>
                                         <div>
-                                            <asp:ImageButton src="../Content/images/3dot.jpg" runat="server" OnClick="ImageButton2_Click" data-toggle="modal" width="20px" Height="15px"
+                                            <asp:ImageButton src="../Content/images/3dot.jpg" runat="server" OnClick="ImageButton2_Click"  usesubmitbehavior="false" data-toggle="modal" width="20px" Height="15px"
 					                        data-target="#reportModal" />
                                         </div>
                                         <div class="modal fade" id="reportModal">
@@ -105,8 +132,8 @@
                                     <div class="card-body">
 			                            <div class="responsive">
 				                            <div class="gallery text-center">
-					                            <a target="_blank" href="../Content/images/81017379.jpg">
-						                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
+					                            <a target="_blank" href="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>">
+						                            <img src="Content/images/<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
 							                            style="max-height: 300px; width: auto; border-radius:8px;">
 					                            </a>
 				                            </div>

@@ -1,7 +1,10 @@
 ﻿using MyCircles.DAL;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -57,11 +60,13 @@ namespace MyCircles.Home
 
         protected void btnPost_Click(object sender, EventArgs e)
         {
-            try
+          
+                try
             {
                 var newPost = new BLL.Post();
                 newPost.Content = activity.Text;
-                newPost.Image = FileUpload1.ID;
+                newPost.DateTime = DateTime.Now;
+                newPost.Image = FileUpload1.ToString();
                 newPost.UserId = currentUser.Id;
                 newPost.CircleId = "gym";
                 //newPost.Image = fileupld.PostedFile;
