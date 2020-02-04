@@ -16,6 +16,7 @@ namespace MyCircles.ItineraryPlanner
 
         Itinerary newItinerary = new Itinerary();
         MyCirclesEntityModel db = new MyCirclesEntityModel();
+        List<DayByDay> daybydayList = new List<DayByDay>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -85,8 +86,11 @@ namespace MyCircles.ItineraryPlanner
 
             //create dates in .aspx from db
             DayByDay getByTag = new DayByDay();
-            List<DayByDay> daybydayList = new List<DayByDay>();
+
             daybydayList = getByTag.RetrieveByItinerary(Id);
+
+            rpDates.DataSource = daybydayList;
+            rpDates.DataBind();
 
             rpParentDates.DataSource = daybydayList;
             rpParentDates.DataBind();
@@ -132,6 +136,13 @@ namespace MyCircles.ItineraryPlanner
             daysList = DayDAO.GetAllDayLocation(daybydayId);
 
             rep.DataSource = daysList;
+        }
+
+        protected void rpDates_DataBinding(object sender, EventArgs e)
+        {
+            Repeater rep = (Repeater)(sender);
+
+            rep.DataSource = daybydayList;
         }
     }
 }

@@ -30,9 +30,15 @@
         });
     </script>
     <form id="form1" runat="server">
-        <div class="row mt-5">
+        <div class="row mt-5 sticky-top bg-warning mb-5">
             <div class="col-md-1"></div>
-            <div class="col-md-1"></div>
+            <div class="col-md-1 sticky-top">
+                <asp:Repeater ID="rpDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
+                    <ItemTemplate>
+                        <h5><a href="#header<%#DataBinder.Eval(Container.DataItem, "dayByDayId") %>" style="text-decoration:none;"><%#DataBinder.Eval(Container.DataItem, "date") %></a></h5>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
             <div class="col-md-8">
                 <div class="row d-flex justify-content-center">
                     <%-- need insert title of Plan if possible--%>
@@ -60,11 +66,10 @@
                                 <a id="aEndDate" class="nav-link" href="#" runat="server"></a>
                             </li>
                         </--%>
-                        <h5><%#DataBinder.Eval(Container.DataItem, "date") %></h5>
                     </div>
                     <div class="col-md-8">
                         <div class="col-md-2">
-                            <div id="btn" style="color: white; background-color: grey; border-radius: 10px;">&nbsp &nbsp <%#DataBinder.Eval(Container.DataItem, "date") %></div>
+                            <div id="header<%#DataBinder.Eval(Container.DataItem, "dayByDayId") %>" style="color: white; background-color: grey; border-radius: 10px;">&nbsp &nbsp <%#DataBinder.Eval(Container.DataItem, "date") %></div>
                             <br />
                         </div>
                         <asp:Repeater ID="rpChildDayLocation" runat="server" ItemType="MyCircles.DAL.Joint_Models.DayLocation" OnDataBinding="rpChildDayLocation_DataBinding">
