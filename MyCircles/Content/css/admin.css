@@ -3,9 +3,8 @@
 }
 
 .admin-panel-navbar {
-    border-right: 2px solid black;
+    text-align:center;
 }
-
 .admin-panel-navitem {
     padding: 15px;
 }
@@ -32,4 +31,13 @@
 .number-thingy {
     color: red;
     font-size: 40px;
+}
+
+.admin-table {
+    border-collapse:collapse;
+    border: 1px solid black;
+}
+
+.admin-table td, .admin-table th {
+    padding: 10px;
 }

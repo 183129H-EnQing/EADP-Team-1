@@ -1,0 +1,17 @@
+﻿using MyCircles.DAL;
+using MyCircles.DAL.Joint_Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace MyCircles.BLL
+{
+    public partial class Day
+    {
+        public static List<DayLocation> GetDayAllDayLocationByItinerary(int Id)
+        {
+            return DayDAO.GetAllDayLocationByItinerary(Id);
+        }
+    }
+}

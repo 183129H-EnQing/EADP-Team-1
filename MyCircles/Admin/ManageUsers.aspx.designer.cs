@@ -7,65 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles.Profile
-{
-
-
-    public partial class Chat
-    {
-
+namespace MyCircles.Admin {
+    
+    
+    public partial class ManageUsers {
+        
         /// <summary>
-        /// MessagesScriptManager control.
+        /// ManageUsersScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager MessagesScriptManager;
-
+        protected global::System.Web.UI.ScriptManager ManageUsersScriptManager;
+        
         /// <summary>
-        /// UpdateCircleUpdatePanel control.
+        /// ManageUsersUpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateCircleUpdatePanel;
-
+        protected global::System.Web.UI.UpdatePanel ManageUsersUpdatePanel;
+        
         /// <summary>
-        /// rptMessages control.
+        /// tbSearchInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptMessages;
-
+        protected global::System.Web.UI.WebControls.TextBox tbSearchInput;
+        
         /// <summary>
-        /// tbMessage control.
+        /// btnSearchSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMessage;
-
+        protected global::System.Web.UI.WebControls.Button btnSearchSubmit;
+        
         /// <summary>
-        /// btSendMessage control.
+        /// gvUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btSendMessage;
-
-        /// <summary>
-        /// UpdateMessagesTimer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.Timer UpdateMessagesTimer;
+        protected global::System.Web.UI.WebControls.GridView gvUsers;
     }
 }

@@ -147,20 +147,23 @@ CREATE TABLE [dbo].[Pref] (
 
 -- Location Table
 CREATE TABLE [dbo].[Location] (
-    [locaId]       INT           NOT NULL IDENTITY,
-    [landmarkType] INT           NOT NULL,
-    [locaPic]      VARCHAR (MAX) NOT NULL,
-    [locaName]     VARCHAR (50)  NOT NULL,
-    [locaDesc]     VARCHAR (MAX) NOT NULL,
-    [locaRating]   DECIMAL(2, 1) NOT NULL,
-    [locaContact]  INT           NULL,
-    [locaWeb]      VARCHAR (100) NULL,
-	[locaOpenHour] VARCHAR(10)   NOT NULL, 
-    [locaCloseHour] NCHAR(10)    NULL, 
-    PRIMARY KEY CLUSTERED ([locaId] ASC), 
-    CONSTRAINT [FK_Location_ToPref] FOREIGN KEY ([landmarkType]) REFERENCES [Pref]([prefId])
+    [locaId]          INT            IDENTITY (1, 1) NOT NULL,
+    [landmarkType]    INT            NOT NULL,
+    [locaPic]         VARCHAR (MAX)  NOT NULL,
+    [locaName]        NCHAR (50)     NOT NULL,
+    [locaDesc]        NCHAR (1000)    NOT NULL,
+    [locaRating]      DECIMAL (2, 1) NOT NULL,
+	[locaAddress]		NCHAR (50)	NULL,
+	[locaPostalCode]	NCHAR(20)		NULL,
+    [locaContact]     NCHAR(15)            NULL,
+    [locaWeb]         NCHAR (100)    NULL,
+    [locaOpenHour]    NCHAR (10)     NOT NULL,
+    [locaCloseHour]   NCHAR (10)     NULL,
+    [locaRecom]       NCHAR (6)      NOT NULL,
+    [locaGeolocation] NCHAR (30)     NOT NULL,
+    PRIMARY KEY CLUSTERED ([locaId] ASC),
+    CONSTRAINT [FK_Location_ToPref] FOREIGN KEY ([landmarkType]) REFERENCES [dbo].[Pref] ([prefId])
 );
-
 -- ItineraryPref Table
 CREATE TABLE [dbo].[ItineraryPref] (
     [itineraryPrefId] INT NOT NULL IDENTITY(1,1),
@@ -214,10 +217,35 @@ CREATE TABLE [dbo].[Admin] (
 
 -- ReportedPosts Table
 CREATE TABLE [dbo].[ReportedPosts] (
-    [Id]     INT           IDENTITY (1, 1) NOT NULL,
-    [reason] VARCHAR (MAX) NOT NULL,
-    [postId] INT           NOT NULL,
-    [reporterUserId] INT NOT NULL, 
-    CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [dbo].[Post] ([Id]), 
-    CONSTRAINT [FK_ReporterUserId_ToUserTable] FOREIGN KEY ([reporterUserId]) REFERENCES [dbo].[User]([Id])
+    [Id]             INT           IDENTITY (1, 1) NOT NULL,
+    [reason]         VARCHAR (MAX) NOT NULL,
+    [postId]         INT           NOT NULL,
+    [reporterUserId] INT           NOT NULL,
+    [dateCreated]    DATE          NOT NULL,
+    CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [dbo].[Post] ([Id]),
+    CONSTRAINT [FK_ReporterUserId_ToUserTable] FOREIGN KEY ([reporterUserId]) REFERENCES [dbo].[User] ([Id])
+);
+
+CREATE TABLE [dbo].[ChatRoom] (
+    [Id]        INT          IDENTITY (1, 1) NOT NULL,
+    [CreatedAt] DATETIME     NOT NULL,
+    [User1Id]   INT          NOT NULL,
+    [User2Id]   INT          NOT NULL,
+	[HasUnseenMessages] BIT  NOT NULL DEFAULT ((0)),
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ChatUser1_ToUser] FOREIGN KEY ([User1Id]) REFERENCES [dbo].[User] ([Id]),
+    CONSTRAINT [FK_ChatUser2_ToUser] FOREIGN KEY ([User2Id]) REFERENCES [dbo].[User] ([Id])
+);
+
+CREATE TABLE [dbo].[Message] (
+    [Id]             INT           IDENTITY (1, 1) NOT NULL,
+    [CreatedAt]      DATETIME      NOT NULL,
+    [ChatRoomId]     INT           NOT NULL,
+	[Content]		 VARCHAR (MAX) NULL,
+    [HasGeolocation] BIT           DEFAULT ((0)) NOT NULL,
+    [Latitude]       FLOAT (53)    NULL,
+    [Longitude]      FLOAT (53)    NULL,
+    [Image]          VARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Message_ToChatRoom] FOREIGN KEY ([ChatRoomId]) REFERENCES [dbo].[ChatRoom] ([Id])
 );

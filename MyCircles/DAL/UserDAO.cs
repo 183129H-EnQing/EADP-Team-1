@@ -62,6 +62,20 @@ namespace MyCircles.DAL
             return user;
         }
 
+        public static User GetUserById(int userId)
+        {
+            User user = null;
+
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                user = db.Users
+                        .Where(u => u.Id == userId)
+                        .FirstOrDefault();
+            }
+
+            return user;
+        }
+
         public static User VerifyCredentials(string identfier, string password)
         {
             User testUser = new User();
@@ -151,6 +165,19 @@ namespace MyCircles.DAL
 
                 user.IsEventHolder = isEventHost;
 
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateIsDisabled(int id, bool isDisabled)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                User user = db.Users
+                        .Where(u => u.Id == id)
+                        .FirstOrDefault();
+
+                user.IsDeleted = isDisabled;
                 db.SaveChanges();
             }
         }

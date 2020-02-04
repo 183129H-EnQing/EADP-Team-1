@@ -102,6 +102,20 @@
     height: 50px;
 }
 
-.wrap-content {
-    width: max-content;
+.display-False {
+    display: none !important;
+}
+
+.thick-border {
+    border-width: thick;
+}
+
+.card-columns {
+    @include media-breakpoint-only(xs) {
+        column-count: 1;
+    }
+
+    @include media-breakpoint-only(sm) {
+        column-count: 1;
+    }
 }

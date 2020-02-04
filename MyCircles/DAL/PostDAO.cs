@@ -37,5 +37,24 @@ namespace MyCircles.DAL
                 return postList;
             }
         }
+
+        public static void DeletePost(int postId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Posts.RemoveRange(db.Posts.Where(p => p.Id == postId));
+                db.SaveChanges();
+            }
+        }
+
+        public static Post GetPostById(int postId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                var post = db.Posts.Where(p => p.Id == postId).FirstOrDefault();
+
+                return post;
+            }
+        }
     }
 }

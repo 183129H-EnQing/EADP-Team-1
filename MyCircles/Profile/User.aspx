@@ -9,9 +9,7 @@
         <asp:ScriptManager ID="UserScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <div class="rounded container-lg content-container bg-white p-0 shadow-sm mb-6">
             <div class="user-container">
-                <a href="/Profile/Ex1UpdatePanel.aspx" runat="server">
-                    <asp:Image ID="HeaderImage" runat="server" Width="100%" Height="300px" BorderWidth="0" CssClass="rounded" BackColor="#0cb0ca" />
-                </a>
+                <reimers:map id="GMap" width="100%" height="300px" runat="server" Zoom="18" />
                 <div class="mainprofilepic-container">
                     <asp:Image ID="ProfilePicImage" runat="server" CssClass="profilepic rounded-circle img-fluid" />
                 </div>
@@ -20,7 +18,7 @@
                     <asp:Label ID="lbUsername" class="m-0 text-muted" runat="server">@</asp:Label><br />
                     <span id="lbBio" class="bio-span d-block font-italic py-3" runat="server"></span>
                     <i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp;
-                    <span id="lbCity" runat="server" ClientIdMode="Static"></span>
+                    <span id="lbCity" runat="server" ClientIdMode="Static"></span> • <span id="lbDistance" runat="server" ClientIdMode="Static"></span>
                 </div>
             </div>
             <div style="height:200px">
@@ -39,16 +37,13 @@
 
             <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
                 <li class="nav-item">
+                    <a class="nav-link active" id="pills-circles-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circles" aria-selected="true" data-url="?action=circles">Circles</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="pills-posts-tab" data-toggle="pill" href="#pills-posts" role="tab" aria-controls="pills-posts" aria-selected="false">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-circles-tab" data-toggle="pill" href="#pills-circles" role="tab" aria-controls="pills-circles" aria-selected="false" data-url="?action=circles">Circles</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false" data-url="?action=people">People</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="true" data-url="?action=map">Map</a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -57,39 +52,108 @@
                         <h4 id="postWarning" class="text-center" runat="server">You have not made any posts yet</h4>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
-                    <div id="userCirclesContainer" class="container py-5 px-7" runat="server">
+                <div class="tab-pane fade show active" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
+                    <div id="userCirclesContainer" class="row container py-5 px-7" runat="server">
+                        <div class="col-md-3 border-right">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <asp:Repeater ID="rptUserCircles" runat="server" ItemType="MyCircles.BLL.UserCircle">
+                                    <ItemTemplate>
+                                        <a class="nav-link" id=v-pills-<%#DataBinder.Eval(Container.DataItem, "CircleId")%>-tab data-toggle="pill" href=#v-pills-<%#DataBinder.Eval(Container.DataItem, "CircleId")%> role="tab" aria-controls=v-pills-<%#DataBinder.Eval(Container.DataItem, "CircleId")%>><%#DataBinder.Eval(Container.DataItem, "CircleId")%></a>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                            <button type="button" class="btn btn-outline-info mt-3" data-toggle="modal" data-target="#editprofile-modal">
+                                <i class="fas fa-edit"></i>&nbsp; Edit Circles
+                            </button>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <asp:Repeater ID="rptCircleFollowerLinks" runat="server" ItemType="MyCircles.BLL.UserCircle" OnItemDataBound="rptCircleFollowerLinks_ItemDataBound">
+                                    <HeaderTemplate>
+                                        <div class="tab-pane fade show active" id=v-pills-header role="tabpanel" aria-labelledby=v-pills-header-tab>
+                                            <h4>
+                                                Leaderboards
+                                            </h4>
+
+                                            <span>
+                                                Engage with your circles by creating or sharing posts or even taking part in events to earn points. Compete with other users to earn the highest points!
+                                            </span>
+                                        </div>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <div class="tab-pane fade show" id=v-pills-<%#DataBinder.Eval(Container.DataItem, "CircleId")%> role="tabpanel" aria-labelledby=v-pills-<%#DataBinder.Eval(Container.DataItem, "CircleId")%>-tab>
+                                            <asp:Repeater ID="rptCircleFollowerDetails" runat="server" ItemType="MyCircles.DAL.CircleFollowerDetails">
+                                                <HeaderTemplate>
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Position</th>
+                                                                <th scope="col">User</th>
+                                                                <th scope="col">Points</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <tr>
+                                                        <th scope="row"><%# Container.ItemIndex + 1 %></th>
+                                                        <td>
+                                                            <a href="User.aspx?username=<%#DataBinder.Eval(Container.DataItem, "User.Username")%>" class="text-decoration-none">
+                                                                <asp:Image runat='server' CssClass='rounded-circle' Height='25px' Width='25px' ImageUrl=<%#DataBinder.Eval(Container.DataItem, "User.ProfileImage")%> />
+                                                                <%#DataBinder.Eval(Container.DataItem, "User.Username")%>
+                                                            </a>
+                                                        </td>
+                                                        <td><%#DataBinder.Eval(Container.DataItem, "UserCircle.Points")%></td>
+                                                    </tr>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                        </tbody>
+                                                    </table>
+                                                </FooterTemplate>
+                                            </asp:Repeater>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-people" role="tabpanel" aria-labelledby="pills-people-tab">
                     <div id="followingUserListContainer" class="container py-5 px-7" runat="server">
-                        <asp:Repeater ID="rptUserFollowing" runat="server" ItemType="MyCircles.DAL.FollowingUsers">
+                        <div class="card-columns" style="column-count: 2;">
+                        <asp:Repeater ID="rptUserFollowing" runat="server" ItemType="MyCircles.DAL.FollowingUsers" OnItemCommand="rptUserFollowing_ItemCommand">
                             <ItemTemplate>
-                                <div class="row followinguser-container rounded-lg bg-light-color py-4 px-6 m-3">
-                                    <div class="col-md-3 profilepic-container">
-                                        <a href="User.aspx?username=<%#DataBinder.Eval(Container.DataItem, "User.Username")%>" class="text-decoration-none">
-                                        <asp:Image runat='server' CssClass='profilepic rounded-circle' Height='150px' Width='150px' ImageUrl=<%#DataBinder.Eval(Container.DataItem, "User.ProfileImage")%> />
+                                <div class="card border-light-color thick-border shadow-sm">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3 profilepic-container">
+                                                <a href="User.aspx?username=<%#DataBinder.Eval(Container.DataItem, "User.Username")%>" class="text-decoration-none">
+                                                <asp:Image runat='server' CssClass='profilepic rounded-circle' Height='100px' Width='100px' ImageUrl='<%#DataBinder.Eval(Container.DataItem, "User.ProfileImage")%>' />
+                                            </div>
+                                            <div class="col-md-9 desc-container">
+                                                <span class='m-0 h3'><%#DataBinder.Eval(Container.DataItem, "User.Name")%></span><br />
+                                                <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span></a>
+                                                <span class='d-block font-italic py-1 display-<%# DataBinder.Eval(Container.DataItem, "User.Bio") != null %>'><%# DataBinder.Eval(Container.DataItem, "User.Bio") %></span><br />
+                                                <i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;
+                                                <span><%#DataBinder.Eval(Container.DataItem, "User.City")%></span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 desc-container">
-                                        <span class='m-0 h1'><%#DataBinder.Eval(Container.DataItem, "User.Name")%></span><span class='badge badge-secondary' visible='false'>Follows you</span><br />
-                                        <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span></a><span class='bio-span d-block font-italic py-2'><%#DataBinder.Eval(Container.DataItem, "User.Bio")%></span><i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;
-                                        <span><%#DataBinder.Eval(Container.DataItem, "User.City")%></span>
-                                    </div>
-                                    <div class='col-md-3 button-container'>
-                                        <asp:Button runat='server' Text='Following' CssClass='btn btn-primary float-right m-3 px-4' UserId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> UseSubmitBehavior="false" />
-                                        <asp:Button runat='server' Text='Message' CssClass='btn btn-outline-primary float-right m-3 px-4' UserId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> OnClick="btMessage_Click"  UseSubmitBehavior="false" />
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <asp:Button runat="server" cssClass="btn btn-primary px-4 w-100" Text="Following" CommandName="Unfollow" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> Enabled="<%# requestedUser.Id == currentUser.Id %>" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <asp:Button runat="server" cssClass="btn btn-outline-secondary px-4 w-100" Text="Message" CommandName="Message" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>
-                        <h4 id="followWarning" class="text-center" runat="server">You have not followed any person yet</h4>
-                    </div>
-                </div>
-                <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-mao-tab">
-                    <div id="mapContainer" class="container py-5 px-7" runat="server">
-                        <div id="mapsContainer" class="container" runat="server">
-                            <reimers:map id="GMap" width="100%" height="400px" runat="server" Zoom="18" />
                         </div>
+                        <h4 id="followWarning" class="text-center" runat="server">You have not followed any person yet</h4>
                     </div>
                 </div>
             </div>
@@ -101,7 +165,7 @@
                     <asp:UpdatePanel ID="UpdateCircleUpdatePanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
                             <div class="modal-header">
-                                <h5 class="text-primary modal-title">Add Circles</h5>
+                                <h5 class="text-primary modal-title">Edit Circles</h5>
                                 <button id="addCirclesCloseButton" runat="server" type="button" class="close" data-dismiss="modal" aria-label="Close" visible="true">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -137,9 +201,9 @@
                                                     <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
                                                         <div class="signedOutErrorBlock">
                                                             <i class="fas fa-exclamation-triangle"></i>&nbsp;
-                                                    <asp:Label ID="lbErrorMsg" runat="server">
-                                                        <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addCircleGroup" />
-                                                    </asp:Label>
+                                                            <asp:Label ID="lbErrorMsg" runat="server">
+                                                                <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addCircleGroup" />
+                                                            </asp:Label>
                                                         </div>
                                                     </div>
                                                     <asp:Button ID="btAddCircle" runat="server" CssClass="btn btn-outline-primary float-right" Text="+ Add" OnClick="btAddCircle_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addCircleGroup" />

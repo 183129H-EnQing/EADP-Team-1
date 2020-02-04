@@ -1,4 +1,6 @@
 ﻿using MyCircles.BLL;
+using MyCircles.DAL;
+using MyCircles.DAL.Joint_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,11 +85,18 @@ namespace MyCircles.ItineraryPlanner
 
             //create dates in .aspx from db
             DayByDay getByTag = new DayByDay();
-            List<DayByDay> daysList = new List<DayByDay>();
-            daysList = getByTag.RetrieveByItinerary(Id);
+            List<DayByDay> daybydayList = new List<DayByDay>();
+            daybydayList = getByTag.RetrieveByItinerary(Id);
 
-            rpDates.DataSource = daysList;
+            rpDates.DataSource = daybydayList;
             rpDates.DataBind();
+
+            //retrieve location from Days table
+            List<DayLocation> daysList = new List<DayLocation>();
+            daysList = DayDAO.GetAllDayLocationByItinerary(Id);
+
+            rpDayLocation.DataSource = daysList;
+            rpDayLocation.DataBind();
 
             //set dates with locations
             //GetPlanDetails();

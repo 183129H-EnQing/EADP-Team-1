@@ -12,6 +12,7 @@ namespace MyCircles.BLL
         public int dayId { get; set; }
 
         public int dayByDayId { get; set; }
+        public int itineraryId { get; set; }
 
         [Required]
         [StringLength(16)]

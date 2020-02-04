@@ -31,9 +31,19 @@ namespace MyCircles.BLL
             DAL.UserDAO.UpdateIsEventHost(Id, isEventHost);
         }
 
+        public void UpdateIsDisabled(bool isDisabled)
+        {
+            DAL.UserDAO.UpdateIsDisabled(Id, isDisabled);
+        }
+
         public static List<User> GetAllUsers()
         {
             return DAL.UserDAO.GetAllUsers();
+        }
+
+        public static User GetUserById(int userId)
+        {
+            return DAL.UserDAO.GetUserById(userId);
         }
     }
 }
