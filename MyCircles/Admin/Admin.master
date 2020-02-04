@@ -5,27 +5,53 @@
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
-    <div class="container bg-white mt-3">
-        <div class="row">
-            <div id="adminNavbar" class="col-2 admin-panel-navbar p-0 text-center">
-                <a class="admin-panel-navlink" href="Overview.aspx">
-                    <div id="divOverview" class="admin-panel-navitem">
-                        Overview
-                    </div>
-                </a>
-                <a class="admin-panel-navlink" href="ViewReportedPosts.aspx">
-                    <div id="divViewReportedPosts" class="admin-panel-navitem admin-panel-navitem-divider">
-                        View Reported Posts
-                    </div>
-                </a>
-                <a class="admin-panel-navlink" href="ManageUsers.aspx">
-                    <div id="divManageUsers" class="admin-panel-navitem admin-panel-navitem-divider">
-                        Manage Users
-                    </div>
-                </a>
+    <div class="container">
+        <div class="row mt-3 d-md-none">
+            <div class="col-12 admin-panel-navbar">
+                <div class="d-flex justify-content-end"><button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAdminNavbar">Admin Navbar</button></div>
+                <div id="collapseAdminNavbar" class="card card-body collapse">
+                    <a class="admin-panel-navlink" href="Overview.aspx">
+                        <div class="admin-panel-navitem">
+                            Overview
+                        </div>
+                    </a>
+                    <a class="admin-panel-navlink" href="ViewReportedPosts.aspx">
+                        <div class="admin-panel-navitem admin-panel-navitem-divider">
+                            View Reported Posts
+                        </div>
+                    </a>
+                    <a class="admin-panel-navlink" href="ManageUsers.aspx">
+                        <div class="admin-panel-navitem admin-panel-navitem-divider">
+                            Manage Users
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div id="adminBody" class="col-10">
-                <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-2 col-md-3 d-none d-md-block p-0 admin-panel-navbar">
+                <div class="card card-body">
+                    <a class="admin-panel-navlink" href="Overview.aspx">
+                        <div class="admin-panel-navitem">
+                            Overview
+                        </div>
+                    </a>
+                    <a class="admin-panel-navlink" href="ViewReportedPosts.aspx">
+                        <div class="admin-panel-navitem admin-panel-navitem-divider">
+                            View Reported Posts
+                        </div>
+                    </a>
+                    <a class="admin-panel-navlink" href="ManageUsers.aspx">
+                        <div class="admin-panel-navitem admin-panel-navitem-divider">
+                            Manage Users
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div id="adminBody" class="col-lg-10 col-md-9 col-12 pt-0">
+                <div class="card card-body">
+                    <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+                </div>
             </div>
         </div>
     </div>
@@ -38,24 +64,42 @@
             var filename = splitURL[splitURL.length - 1];
             var name = filename.split(".")[0];
 
-            var selector = null;
+            var adminNavbars = document.querySelectorAll(".admin-panel-navbar");
+            console.log(adminNavbars);
+            for (var navbarIdx = 0; navbarIdx < adminNavbars.length; navbarIdx++) {
+                var adminNavbar = adminNavbars[navbarIdx];
 
-            var adminNavbar = document.getElementById("adminNavbar");
-            for (var i = 0; i < adminNavbar.childNodes.length; i++) {
-                var aChild = adminNavbar.childNodes[i];
-                if (aChild.nodeName == "A") {
-                    var aSplitURL = aChild.href.split("/");
-                    var aFileName = aSplitURL[aSplitURL.length - 1].split(".")[0]; // eg: Overview.aspx, View.aspx, get before .
+                console.log("adminNavbar:");
+                console.log(adminNavbar);
+                
+                for (var i = 0; i < adminNavbar.childNodes.length; i++) {
+                    var cardBody = adminNavbar.childNodes[i];
 
-                    if (aFileName == name) {
-                        selector = "div" + aFileName;
-                        break;
+                    if (cardBody.nodeName == "DIV") {
+                        console.log("cardBody:");
+                        console.log(cardBody);
+
+                        for (var aIdx = 0; aIdx < cardBody.childNodes.length; aIdx++) {
+                            var aChild = cardBody.childNodes[aIdx];
+                            if (aChild.nodeName == "A") {
+                                console.log(aChild);
+                                var aSplitURL = aChild.href.split("/");
+                                var aFileName = aSplitURL[aSplitURL.length - 1].split(".")[0]; // eg: Overview.aspx, View.aspx, get before .
+
+                                var navItem = aChild.childNodes[1];
+                        
+                                console.log("aFileName:" + aFileName);
+                                console.log(navItem);
+                                if (aFileName == name) {
+                                    //selector = "div" + aFileName;
+                                    navItem.classList.add("admin-panel-navitem-active");
+                                    break;
+                                }
+                            }
+                        }
+                        
                     }
                 }
-            }
-
-            if (selector != null) {
-                document.querySelector("div#" + selector).classList.add("admin-panel-navitem-active");
             }
         }
         window.addEventListener("load", admin_onload, false);
