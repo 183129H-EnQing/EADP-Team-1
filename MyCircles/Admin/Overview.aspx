@@ -45,6 +45,10 @@
                         <div class="card border-black">
                             <div class="card-body text-center">
                                 <div class="card-text">Users registered for events</div>
+                                <div class="card-text">
+                                    <%--<span class="number-thingy"></span>--%>
+                                    Static number: 6
+                                </div>
                             </div>
                         </div>
                     </div>

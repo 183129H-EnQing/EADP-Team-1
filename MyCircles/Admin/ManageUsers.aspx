@@ -26,7 +26,7 @@
                                 <asp:BoundField DataField="EmailAddress" HeaderText="Email Address" />
                                 
                                 <asp:ButtonField CommandName="ChgUserStatus" Text="Disable User" HeaderText="Account Status" />
-                                <asp:ButtonField CommandName="UserProfile" Text="See User Profile" />
+                                <asp:ButtonField CommandName="UserProfile" Text="View Profile" />
                             </Columns>
                         </asp:GridView>
                     </div>

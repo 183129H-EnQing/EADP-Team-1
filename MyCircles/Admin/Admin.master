@@ -24,7 +24,7 @@
                     </div>
                 </a>
             </div>
-            <div id="adminBody" class="col-9">
+            <div id="adminBody" class="col-10">
                 <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server"></asp:ContentPlaceHolder>
             </div>
         </div>
