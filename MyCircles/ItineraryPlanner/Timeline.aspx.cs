@@ -27,8 +27,8 @@ namespace MyCircles.ItineraryPlanner
             }*/
             GetExisting();
         }
-
-        private void getMonthDate()
+        #region getMonthDate
+        /*private void getMonthDate()
         {
             string startDateMonth= (string)Session["startDate"];
             string sDate = startDateMonth.Substring(3, 2);          
@@ -67,8 +67,8 @@ namespace MyCircles.ItineraryPlanner
             {
                 //lbMonth.Text = strMonth;
             }
-
-        }
+        } */
+        #endregion 
 
         private void GetExisting()
         {
@@ -88,15 +88,8 @@ namespace MyCircles.ItineraryPlanner
             List<DayByDay> daybydayList = new List<DayByDay>();
             daybydayList = getByTag.RetrieveByItinerary(Id);
 
-            rpDates.DataSource = daybydayList;
-            rpDates.DataBind();
-
-            //retrieve location from Days table
-            List<DayLocation> daysList = new List<DayLocation>();
-            daysList = DayDAO.GetAllDayLocationByItinerary(Id);
-
-            rpDayLocation.DataSource = daysList;
-            rpDayLocation.DataBind();
+            rpParentDates.DataSource = daybydayList;
+            rpParentDates.DataBind();
 
             //set dates with locations
             //GetPlanDetails();
@@ -104,18 +97,8 @@ namespace MyCircles.ItineraryPlanner
 
         private void GetPlanDetails()
         {
-            lbMonth.Text = Session["prefB"].ToString();
+            //lbMonth.Text = Session["prefB"].ToString();
         }
-
-        /*public static string EvalTrimmed(this RepeaterItem container, string expression, int maxLength)
-        { 
-            string value = DataBinder.Eval(container, expression) as string;
-            if ( value != null ) 
-               return null;
-            if (value.Length > maxlength)
-               value = value.Substring(0,maxLength) + "...";
-            return value;
-        }*/
 
         private void AddDateToDB()
         {
@@ -135,6 +118,20 @@ namespace MyCircles.ItineraryPlanner
                 //add middle date to db
             }
             //add enddate to db
+        }
+
+        protected void rpChildDayLocation_DataBinding(object sender, EventArgs e)
+        {
+            Repeater rep = (Repeater)(sender);
+
+            int daybydayId = (int)(Eval("dayBydayId"));
+
+            //retrieve location from Days table
+            List<DayLocation> daysList = new List<DayLocation>();
+
+            daysList = DayDAO.GetAllDayLocation(daybydayId);
+
+            rep.DataSource = daysList;
         }
     }
 }
