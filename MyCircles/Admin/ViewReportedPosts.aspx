@@ -10,8 +10,9 @@
             <ContentTemplate>
                 <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="admin-table" OnRowCommand="gvReportedPosts_RowCommand">
                     <Columns>
-                        <asp:BoundField DataField="reporterUsername" HeaderText="Reporter User" />
+                        <asp:BoundField DataField="reporterUsername" HeaderText="Reporter's Username" />
                         <asp:BoundField DataField="reason" HeaderText="Reason" />
+                        <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:ButtonField CommandName="ViewPost" Text="View Post" />
                         <asp:ButtonField CommandName="DeletePost" Text="Delete" />
                     </Columns>
@@ -28,8 +29,15 @@
                             </div>
 
                             <div class="modal-body">
-                                <asp:Image ID="ModalPostImage" runat="server" />
-                                <asp:Label ID="ModalPostText" runat="server" Text="Testing"></asp:Label>
+                                <div class="font-weight-bold">
+                                    Created by <asp:Label ID="lblModalPostCreatorName" runat="server" Text="CreatorName"></asp:Label>
+                                </div>
+                                <div class="text-center">
+                                    <asp:Image ID="imgModalPost" runat="server" AlternateText="PostImage" CssClass="mb-2" />
+                                </div>
+                                <div>
+                                    <asp:Label ID="lblModalContent" runat="server" Text="Content"></asp:Label>
+                                </div>
                             </div>
 
                             <div class="modal-footer">

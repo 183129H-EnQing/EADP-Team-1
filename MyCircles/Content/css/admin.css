@@ -3,9 +3,8 @@
 }
 
 .admin-panel-navbar {
-    border-right: 2px solid black;
+    text-align:center;
 }
-
 .admin-panel-navitem {
     padding: 15px;
 }

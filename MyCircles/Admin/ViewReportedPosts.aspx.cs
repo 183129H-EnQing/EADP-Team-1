@@ -31,11 +31,13 @@ namespace MyCircles.Admin
                     System.Diagnostics.Debug.WriteLine("gvReportedPosts_RowCommand, ViewPost:" + e.CommandArgument);
                     UserReportedPost userReportedPost = ReportedPost.GetAllUserReportedPosts()[idx];
                     Post post = Post.GetPostById(userReportedPost.postId);
+                    User postCreator = BLL.User.GetUserById(post.UserId);
 
                     System.Diagnostics.Debug.WriteLine("gv SelectedIndexChanged," + post.Id);
 
-                    ModalPostImage.ImageUrl = post.Image;
-                    ModalPostText.Text = post.Content;
+                    lblModalPostCreatorName.Text = postCreator.Username;
+                    imgModalPost.ImageUrl = post.Image;
+                    lblModalContent.Text = post.Content;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openViewPostModal();", true);
                     break;
                 case "DeletePost":
@@ -47,6 +49,7 @@ namespace MyCircles.Admin
 
         public void deleteOp(int index)
         {
+            System.Diagnostics.Debug.WriteLine("deleteOp, index:" + index);
             UserReportedPost userReportedPost = ReportedPost.GetAllUserReportedPosts()[index];
             Post post = Post.GetPostById(userReportedPost.postId);
 
@@ -58,7 +61,7 @@ namespace MyCircles.Admin
             ReportedPost.DeleteReportedPost(userReportedPost.id);
 
             // delete post data
-            Post.DeletePost(post.Id);
+            //Post.DeletePost(post.Id);
 
             // TODO - Investigate why cannot use remove, but removeRange can work for inside the DAO
 
