@@ -4,9 +4,9 @@
         View Reported Posts
     </h2>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="UserScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+        <asp:ScriptManager ID="ViewReportedPostsScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
 
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <asp:UpdatePanel ID="ViewReportedPostsUpdatePanel" runat="server">
             <ContentTemplate>
                 <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="admin-table" OnRowCommand="gvReportedPosts_RowCommand">
                     <Columns>
