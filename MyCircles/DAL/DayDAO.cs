@@ -9,7 +9,7 @@ namespace MyCircles.DAL
 {
     public static class DayDAO
     {
-        public static List<DayLocation> GetAllDayLocationByItinerary()
+        public static List<DayLocation> GetAllDayLocationByItinerary(int Id)
         {
             //insert parameter for dayID for selective dates??
             using (var db = new MyCirclesEntityModel())
@@ -17,6 +17,9 @@ namespace MyCircles.DAL
                 db.Configuration.LazyLoadingEnabled = false;
 
                 var dayLocation = db.Days
+                    .Where(
+                        day => day.itineraryId == Id
+                    )
                     .ToList()
                     .Join(
                         db.Locations,

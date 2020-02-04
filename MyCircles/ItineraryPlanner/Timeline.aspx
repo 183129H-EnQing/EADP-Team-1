@@ -59,7 +59,7 @@
                 </asp:Repeater>
             </div>
             <div class="col-md-8 border border-primary">
-                <asp:Repeater ID="rpLocation" runat="server" ItemType="MyCircles.BLL.Location">
+                <asp:Repeater ID="rpDayLocation" runat="server" ItemType="MyCircles.DAL.Joint_Models.DayLocation">
                     <ItemTemplate>
                         <div class="row border border-primary mb-3">
                             <div id="btn" style="color: white; background-color: grey; border-radius: 25px;">30 Jan, Thu</div>

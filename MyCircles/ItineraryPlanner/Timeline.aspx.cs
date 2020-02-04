@@ -1,5 +1,6 @@
 ﻿using MyCircles.BLL;
 using MyCircles.DAL;
+using MyCircles.DAL.Joint_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,11 +92,11 @@ namespace MyCircles.ItineraryPlanner
             rpDates.DataBind();
 
             //retrieve location from Days table
-            Day getDaysById = new Day();
-            List<Day> daysList = new List<Day>();
-            //daysList = DayDAO.GetAllDayLocationByItinerary(Id);
+            List<DayLocation> daysList = new List<DayLocation>();
+            daysList = DayDAO.GetAllDayLocationByItinerary(Id);
 
-
+            rpDayLocation.DataSource = daysList;
+            rpDayLocation.DataBind();
 
             //set dates with locations
             //GetPlanDetails();

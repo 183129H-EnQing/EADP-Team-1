@@ -9,9 +9,9 @@ namespace MyCircles.BLL
 {
     public partial class Day
     {
-        public static List<DayLocation> GetDayAllDayLocationByItinerary()
+        public static List<DayLocation> GetDayAllDayLocationByItinerary(int Id)
         {
-            return DayDAO.GetAllDayLocationByItinerary();
+            return DayDAO.GetAllDayLocationByItinerary(Id);
         }
     }
 }
