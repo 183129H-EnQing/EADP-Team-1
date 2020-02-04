@@ -9,9 +9,10 @@ namespace MyCircles.ItineraryPlanner
 {
     public partial class Calendar : System.Web.UI.Page
     {
+        public string hello;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            hello = "17 Jan";
         }
     }
 }
