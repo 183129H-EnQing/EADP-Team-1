@@ -50,6 +50,11 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Circle>()
+                .HasMany(e => e.Posts)
+                .WithRequired(e => e.Circle)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Circle>()
                 .HasMany(e => e.UserCircles)
                 .WithRequired(e => e.Circle)
                 .WillCascadeOnDelete(false);
@@ -100,23 +105,27 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
+                .Property(e => e.eventDescription)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.startDate)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.startTime)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.endTime)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.endDate)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
-                .Property(e => e.usersOptIn)
+                .Property(e => e.eventActivity)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Itinerary>()
