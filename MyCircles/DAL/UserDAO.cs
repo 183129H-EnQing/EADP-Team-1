@@ -62,6 +62,20 @@ namespace MyCircles.DAL
             return user;
         }
 
+        public static User GetUserById(int userId)
+        {
+            User user = null;
+
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                user = db.Users
+                        .Where(u => u.Id == userId)
+                        .FirstOrDefault();
+            }
+
+            return user;
+        }
+
         public static User VerifyCredentials(string identfier, string password)
         {
             User testUser = new User();

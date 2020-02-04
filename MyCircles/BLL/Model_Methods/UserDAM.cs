@@ -40,5 +40,10 @@ namespace MyCircles.BLL
         {
             return DAL.UserDAO.GetAllUsers();
         }
+
+        public static User GetUserById(int userId)
+        {
+            return DAL.UserDAO.GetUserById(userId);
+        }
     }
 }
