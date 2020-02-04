@@ -88,15 +88,15 @@ namespace MyCircles.Profile
                 bindExisitingCircles();
                 updateCirclesModal();
                 initializeNearbyUserMap();
+
+                if (currentUser.Id != requestedUser.Id && BLL.Admin.RetrieveAdmin(currentUser) != null)
+                {
+                    cbMakeEventHost.Visible = true;
+                    cbMakeEventHost.Checked = requestedUser.IsEventHolder;
+                }
             }
 
             GMap.OverlayClick += new EventHandler<OverlayEventArgs>(MarkerClick);
-
-            if (currentUser.Id != requestedUser.Id && BLL.Admin.RetrieveAdmin(currentUser) != null)
-            {
-                cbMakeEventHost.Visible = true;
-                cbMakeEventHost.Checked = requestedUser.IsEventHolder;
-            }
 
             Title = requestedUser.Username + " - MyCircles";            
             ProfilePicImage.ImageUrl = requestedUser.ProfileImage;
@@ -123,12 +123,6 @@ namespace MyCircles.Profile
 
                 if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
 
-            }
-
-            if (BLL.Admin.RetrieveAdmin(currentUser) != null)
-            {
-                cbMakeEventHost.Visible = true;
-                cbMakeEventHost.Checked = requestedUser.IsEventHolder;
             }
 
             if (String.IsNullOrEmpty(requestedUser.Bio)) 
