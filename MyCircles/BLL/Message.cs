@@ -15,6 +15,8 @@ namespace MyCircles.BLL
 
         public int ChatRoomId { get; set; }
 
+        public string Content { get; set; }
+
         public bool HasGeolocation { get; set; }
 
         public double? Latitude { get; set; }
