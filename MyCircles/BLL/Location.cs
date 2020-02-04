@@ -32,7 +32,8 @@ namespace MyCircles.BLL
 
         public decimal locaRating { get; set; }
 
-        public int? locaContact { get; set; }
+        [StringLength(15)]
+        public string locaContact { get; set; }
 
         [StringLength(100)]
         public string locaWeb { get; set; }

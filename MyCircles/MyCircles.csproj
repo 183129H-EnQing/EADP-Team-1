@@ -327,6 +327,7 @@
     <Compile Include="BLL\Message.cs" />
     <Compile Include="BLL\Model_Methods\AdminDAM.cs" />
     <Compile Include="BLL\Model_Methods\DayByDayDAM.cs" />
+    <Compile Include="BLL\Model_Methods\DayDAM.cs" />
     <Compile Include="BLL\Model_Methods\EventDAM.cs" />
     <Compile Include="BLL\Model_Methods\EventScheduleDAM.cs" />
     <Compile Include="BLL\Model_Methods\ItineraryDAM.cs" />
@@ -351,12 +352,13 @@
     <Compile Include="DAL\ChatRoomDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
     <Compile Include="DAL\DayByDayDAO.cs" />
+    <Compile Include="DAL\DayDAO.cs" />
     <Compile Include="DAL\EventDAO.cs" />
     <Compile Include="DAL\EventScheduleDAO.cs" />
     <Compile Include="DAL\FollowDAO.cs" />
     <Compile Include="DAL\ItineraryPrefDAO.cs" />
     <Compile Include="DAL\Joint_Models\CircleFollowerDetails.cs" />
-    <Compile Include="DAL\Joint_Models\Days.cs" />
+    <Compile Include="DAL\Joint_Models\DayLocation.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />
     <Compile Include="DAL\Joint_Models\UserPost.cs" />
