@@ -46,6 +46,7 @@ CREATE TABLE [dbo].[Post] (
     [Comment]  VARCHAR (20)  NULL,
     [UserId]   INT           NOT NULL,
     [CircleId] VARCHAR (64)  NOT NULL,
+	[DateTime] DATETIME      NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Post_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [dbo].[Circle] ([Id]),
     CONSTRAINT [FK_Post_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
