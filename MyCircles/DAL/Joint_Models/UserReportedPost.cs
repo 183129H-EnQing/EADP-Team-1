@@ -9,6 +9,7 @@ namespace MyCircles.DAL.Joint_Models
         public int reporterUserId { get; set; }
         public string reporterUsername { get; set; }
         public string reason { get; set; }
+        public System.DateTime dateCreated { get; set; }
 
         public int landmarkType { get; set; }
         public string locaPic { get; set; }
@@ -24,6 +25,7 @@ namespace MyCircles.DAL.Joint_Models
             this.reporterUserId = reportedPost.reporterUserId;
             this.reporterUsername = reporterUser.Username;
             this.reason = reportedPost.reason;
+            this.dateCreated = reportedPost.dateCreated;
         }
     }
 }

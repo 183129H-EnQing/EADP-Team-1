@@ -160,26 +160,46 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaName)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaDesc)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaRating)
                 .HasPrecision(2, 1);
 
             modelBuilder.Entity<Location>()
+                .Property(e => e.locaAddress)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaPostalCode)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaContact)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
                 .Property(e => e.locaWeb)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaOpenHour)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaCloseHour)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaRecom)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Location>()
+                .Property(e => e.locaGeolocation)
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
@@ -187,6 +207,10 @@ namespace MyCircles.BLL
                 .WithRequired(e => e.Location)
                 .HasForeignKey(e => e.locationId)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Message>()
+                .Property(e => e.Content)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Message>()
                 .Property(e => e.Image)

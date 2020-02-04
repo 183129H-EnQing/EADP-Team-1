@@ -28,9 +28,16 @@ namespace MyCircles.BLL
         public string locaName { get; set; }
 
         [Required]
+        [StringLength(1000)]
         public string locaDesc { get; set; }
 
         public decimal locaRating { get; set; }
+
+        [StringLength(50)]
+        public string locaAddress { get; set; }
+
+        [StringLength(20)]
+        public string locaPostalCode { get; set; }
 
         [StringLength(15)]
         public string locaContact { get; set; }
@@ -44,6 +51,14 @@ namespace MyCircles.BLL
 
         [StringLength(10)]
         public string locaCloseHour { get; set; }
+
+        [Required]
+        [StringLength(6)]
+        public string locaRecom { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public string locaGeolocation { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Day> Days { get; set; }

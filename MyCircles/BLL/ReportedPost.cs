@@ -26,6 +26,10 @@ namespace MyCircles.BLL
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int reporterUserId { get; set; }
 
+        [Key]
+        [Column(Order = 4, TypeName = "date")]
+        public DateTime dateCreated { get; set; }
+
         public virtual Post Post { get; set; }
 
         public virtual User User { get; set; }
