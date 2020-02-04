@@ -133,7 +133,7 @@
                                             <div class="col-md-9 desc-container">
                                                 <span class='m-0 h3'><%#DataBinder.Eval(Container.DataItem, "User.Name")%></span><br />
                                                 <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span></a>
-                                                <span class='bio-span d-block font-italic py-2 display-<%# DataBinder.Eval(Container.DataItem, "User.Bio") != null %>'></span><br />
+                                                <span class='d-block font-italic py-1 display-<%# DataBinder.Eval(Container.DataItem, "User.Bio") != null %>'><%# DataBinder.Eval(Container.DataItem, "User.Bio") %></span><br />
                                                 <i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;
                                                 <span><%#DataBinder.Eval(Container.DataItem, "User.City")%></span>
                                             </div>
@@ -155,7 +155,7 @@
                         </div>
                         <h4 id="followWarning" class="text-center" runat="server">You have not followed any person yet</h4>
                     </div>
-                </div>>
+                </div>
             </div>
         </div>
 
@@ -201,9 +201,9 @@
                                                     <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
                                                         <div class="signedOutErrorBlock">
                                                             <i class="fas fa-exclamation-triangle"></i>&nbsp;
-                                                    <asp:Label ID="lbErrorMsg" runat="server">
-                                                        <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addCircleGroup" />
-                                                    </asp:Label>
+                                                            <asp:Label ID="lbErrorMsg" runat="server">
+                                                                <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addCircleGroup" />
+                                                            </asp:Label>
                                                         </div>
                                                     </div>
                                                     <asp:Button ID="btAddCircle" runat="server" CssClass="btn btn-outline-primary float-right" Text="+ Add" OnClick="btAddCircle_Click" CausesValidation="true" AutoPostback="true" ValidationGroup="addCircleGroup" />

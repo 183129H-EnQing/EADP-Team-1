@@ -12,7 +12,7 @@ namespace MyCircles.DAL
         {
             using (var db = new MyCirclesEntityModel())
             {
-                return db.Messages.Where(m => m.ChatRoomId == chatRoomId).ToList();
+                return db.Messages.Where(m => m.ChatRoomId == chatRoomId).OrderBy(m => m.CreatedAt).ToList();
             }
         }
 
@@ -23,6 +23,7 @@ namespace MyCircles.DAL
                 Message newMessage = new Message();
                 newMessage.ChatRoomId = chatRoomId;
                 newMessage.Content = content;
+                newMessage.CreatedAt = DateTime.Now;
 
                 if (!String.IsNullOrEmpty(lat) && !String.IsNullOrEmpty(lng))
                 {

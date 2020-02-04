@@ -148,6 +148,10 @@
       <DependentUpon>MyCircles.mdf</DependentUpon>
     </Content>
     <Content Include="Content\css\jquery.flexdatalist.css" />
+    <Content Include="Content\images\profile-picture-1.jpeg" />
+    <Content Include="Content\images\profile-picture-2.jpg" />
+    <Content Include="Content\images\profile-picture-3.jpg" />
+    <Content Include="Content\images\profile-picture-4.jpg" />
     <Content Include="Content\images\UserOutlineDefault.png" />
     <Content Include="Content\images\UserOutlineOffline.png" />
     <Content Include="Content\images\UserOutlineOnline.png" />
