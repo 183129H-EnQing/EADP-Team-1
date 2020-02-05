@@ -18,6 +18,11 @@ namespace MyCircles.Home
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
+            var nearby = new BLL.User();
+            
+
+
+
             GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
 
             if (currentUser.Latitude != null || currentUser.Longitude != null)

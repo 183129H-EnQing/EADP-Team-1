@@ -119,6 +119,14 @@ namespace MyCircles.Home
 
 
         }
-       
+
+        protected void rptUserPosts_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            //Label tempLabel = (Label)e.Item.FindControl("lab_PostId");
+            //string thepostid = tempLabel.Text;
+            //GridView tempgv = (GridView)e.Item.FindControl("GridView1");
+            //tempgv.DataSource = "";
+            //tempgv.DataBind();
+        }
     }
 }

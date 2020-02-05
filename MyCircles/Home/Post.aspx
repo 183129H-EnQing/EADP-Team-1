@@ -25,8 +25,7 @@
                             <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="800" required></asp:TextBox>
                         </div>
                         <div class="form-group justify-content-between d-flex">
-                            <asp:FileUpload ID="FileUpload1"  runat="server" />
-                           
+                            <asp:FileUpload ID="FileUpload1"  runat="server" />                         
                             <asp:Button ID="btnPost" runat="server" Text="Post" class="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
                         </div>
                     <%--</form>--%>
@@ -51,7 +50,7 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col">
-                        <asp:Repeater ID="rptUserPosts" runat="server" ItemType="MyCircles.DAL.UserPost">
+                        <asp:Repeater ID="rptUserPosts" runat="server" ItemType="MyCircles.DAL.UserPost" OnItemDataBound="rptUserPosts_ItemDataBound">
                             <ItemTemplate>
                                 <div class="card"  id="mypost"   runat="server">
                                     <div class=" card-header d-flex bd-highlight bg-muted mb-2  ">
@@ -84,17 +83,17 @@
 											                    value="Innappropriate" checked>
 										                    <span class="checkmark"></span>
 									                    </label>
-									                    &nbsp;&nbsp;<label class="form-check">Unfollow
+									                    &nbsp;&nbsp;&nbsp;<label class="form-check">Unfollow
 										                    <input class="form-check-input" type="radio" name="report" id="Unfollow"
 											                    value="Unfollow">
 										                    <span class="checkmark"></span>
 									                    </label>
-									                    &nbsp;&nbsp;<label class="form-check">Copy Link
+									                    &nbsp;&nbsp;&nbsp;<label class="form-check">Copy Link
 										                    <input class="form-check-input" type="radio" name="report" id="Copy Link"
 											                    value="Copy Link">
 										                    <span class="checkmark"></span>
 									                    </label>
-								                    &nbsp;&nbsp;</div>
+								                    &nbsp;&nbsp;&nbsp;</div>
 								                    <!-- Modal footer -->
 								                    <div class="modal-footer">
 									                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -111,7 +110,7 @@
 						                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
 							                            style="max-height: 300px; width: auto; border-radius:8px;">
 					                            </a>
-				                            &nbsp;&nbsp;</div>
+				                            &nbsp;&nbsp;&nbsp;</div>
                                             <span class="h5">
                                             <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label></span>
 			                            </div>
@@ -122,6 +121,7 @@
                                              <asp:TextBox ID="hello"  class="form-control" runat="server" placeholder="Comment here" ></asp:TextBox>
                                                   <asp:Label ID="Label2" runat="server" Text=""></asp:Label>&nbsp<asp:Label ID="Label1" runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Comment")%></asp:Label>
                                             </div>
+                                            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
 				                            <div class="text-right">
                                                 <asp:Button ID="Comment" runat="server" class="btn btn-primary text-light"  usesubmitbehavior="false" OnClick="Comment_Click"  Text="Comment" />
 			                                </div>
@@ -139,13 +139,12 @@
             <div class="col-3 pl-0">
                 <div class="card" style="width: 18rem;">
                     <div class="card-header">
-                        <h3 class="text-info">Connect To More</h3>
-                    </div>
+                        <h3 class="text-info">Connect To More   </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Jamal <br /> 1.2km <asp:Button ID="Btn55" runat="server" Text="Follow"  class="btn btn-primary" data-toggle="popover" data-content=" Following" style="border-radius:12px" ></asp:button></li>
                         <li class="list-group-item">Suresh <br /> 500m <asp:Button ID="Btn4" runat="server" Text="Follow" class="btn btn-primary" style="border-radius:12px"></asp:button></li>
                         <li class="list-group-item">Sarah <br /> 250m  <asp:Button ID="Btn44" runat="server" Text="Follow" class="btn btn-primary" style="border-radius:12px"></asp:button></li>
-                        <li class="list-group-item"><asp:Button ID="btn6" runat="server" Text="More..." class="btn btn-secondary" style="border-radius:12px" OnClick="btn6_Click"></asp:button></li>
+                        <li class="list-group-item"><asp:Button ID="btn6" runat="server" Text="More..." class="btn btn-secondary" style="border-radius:12px"  usesubmitbehavior="false" OnClick="btn6_Click"></asp:button></li>
                     </ul>
                 </div>
             </div>
