@@ -30,18 +30,18 @@
                         <a class="nav-link" href="/Profile/Search" runat="server">Search</a>
                     </li>
                 </ul>
-            </div>
 
-            <div class="dropdown">
-                <a id="profileDropdown" class="mr-0 ml-3 navbar-brand dropdown-toggle" href="#"
-                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <asp:Image ID="ProfilePicNavImage" runat="server" CssClass="nav-profilepic rounded-circle p-1" />
-                </a>
-                <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                    <a id="ProfileLink" runat="server" ClientIDMode="static" class="dropdown-item">Profile</a>
-                    <a id="CreateEventLink" runat="server" ClientIDMode="static" class="dropdown-item" href="/Events/CreateEventPage.aspx">Create Event</a>
-                    <asp:HyperLink runat="server" ID="adminLink" Visible="false" CssClass="dropdown-item" href="/Admin/Overview.aspx">Admin</asp:HyperLink>
-                    <a id="SignOutLink" runat="server" ClientIDMode="static" class="text-danger dropdown-item" href="/Redirect.aspx?action=signout">Sign Out</a>
+                <div class="dropdown">
+                    <a id="profileDropdown" class="navbar-brand dropdown-toggle" href="#"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <asp:Image ID="ProfilePicNavImage" runat="server" CssClass="nav-profilepic rounded-circle p-1" />
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="profileDropdown">
+                        <a id="ProfileLink" runat="server" ClientIDMode="static" class="dropdown-item">Profile</a>
+                        <a id="CreateEventLink" runat="server" ClientIDMode="static" class="dropdown-item" href="/Events/CreateEventPage.aspx">Create Event</a>
+                        <asp:HyperLink runat="server" ID="adminLink" Visible="false" CssClass="dropdown-item" href="/Admin/Overview.aspx">Admin</asp:HyperLink>
+                        <a id="SignOutLink" runat="server" ClientIDMode="static" class="text-danger dropdown-item" href="/Redirect.aspx?action=signout">Sign Out</a>
+                    </div>
                 </div>
             </div>
         </div>

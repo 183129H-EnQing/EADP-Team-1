@@ -27,10 +27,10 @@
                                 
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:Button runat="server" CommandName="ChgUserStatus" ID="ChgUserStatus" Text="Disable User"/>
+                                        <asp:Button runat="server" CommandName="ChgUserStatus" ID="ChgUserStatus" Text="Disable User" CssClass="btn btn-success" UseSubmitBehavior="false"/>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ButtonField CommandName="UserProfile" Text="View Profile" />
+                                <asp:ButtonField CommandName="UserProfile" Text="View Profile" ButtonType="Button" ControlStyle-CssClass="btn btn-danger"/>
                             </Columns>
                         </asp:GridView>
                     </div>
