@@ -119,11 +119,6 @@ namespace MyCircles.Home
 
 
         }
-        protected void UploadFile(object sender, EventArgs e)
-        {
-            string folderPath = Server.MapPath("~/Files/");
-
-
-        }
+       
     }
 }
