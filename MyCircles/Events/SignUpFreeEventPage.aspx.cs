@@ -11,13 +11,15 @@ namespace MyCircles.Events
 {
     public partial class SignUpFreeEventPage : System.Web.UI.Page
     {
-
+        public int currentEventID;
         public BLL.User currentUser;
         protected void Page_Load(object sender, EventArgs e)
         {
         
             int requestedEventID = int.Parse(Request.QueryString["eventID"]);
+            System.Diagnostics.Debug.WriteLine(requestedEventID);
             getEventScheduleData(requestedEventID);
+            currentEventID = requestedEventID;
             // i dk why must put like that then the check box can become true or false one... 
             // online say what sequence of event....
             if (!IsPostBack)
@@ -40,6 +42,7 @@ namespace MyCircles.Events
             currentUser = (BLL.User)Session["currentUser"];
             System.Diagnostics.Debug.WriteLine("hello" + currentUser.Id.ToString());
             newEventSignUpEventData.numberOfBookingSlot = "1";
+            newEventSignUpEventData.eventId = currentEventID;
             foreach (Control control in rpEventSchedule.Controls)
             {
                 //System.Diagnostics.Debug.WriteLine("hello qing" + control.UniqueID);
@@ -57,9 +60,6 @@ namespace MyCircles.Events
             
             }
                
-    
-
-
             newEventSignUpEventData.Add();
          //   eventSchedule.AddOptIn();
             //Response.Redirect("ViewAllEventPage.aspx");
@@ -69,7 +69,7 @@ namespace MyCircles.Events
         {
             EventSchedule eventSchedule = new EventSchedule();
             List<EventSchedule> scheduleList = new List<EventSchedule>();
-            //scheduleList = eventSchedule.getAllEventActivity();
+            //scheduleList1 = eventSchedule.getAllEventActivity();
 
             List<String> datesList = new List<String>();
             foreach (EventSchedule eventScheduleBB in scheduleList)
