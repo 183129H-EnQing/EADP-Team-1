@@ -13,11 +13,11 @@ using System.Web.UI.WebControls;
 
 namespace MyCircles.Home
 {
-     
+
     public partial class Post : System.Web.UI.Page
     {
         public BLL.User currentUser;
-       
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,7 +32,7 @@ namespace MyCircles.Home
 
         protected void ImageMap1_Click(object sender, ImageMapEventArgs e)
         {
-            
+
         }
 
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
@@ -68,7 +68,8 @@ namespace MyCircles.Home
 
         protected void Btncircle_Click(object sender, EventArgs e)
         {
-          
-           
+
+
         }
+    }
 }
