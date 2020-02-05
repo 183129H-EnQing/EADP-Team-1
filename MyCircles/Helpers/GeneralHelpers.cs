@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MyCircles.BLL;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -58,6 +60,21 @@ namespace MyCircles
             }
 
             return errMsg;
+        }
+
+        public static string UploadFile(FileUpload upload)
+        {
+            if (upload.HasFile)
+            {
+                User currentUser = (User) HttpContext.Current.Session["currentUser"];
+                string filename = currentUser.Id + '-' + DateTime.Now.ToString("yyyyMMdd_hhmmss") + '-' + upload.FileName;
+                string filepath = HttpContext.Current.Server.MapPath(Path.Combine("/Content/images/shared/" + filename));
+                upload.SaveAs(filepath);
+
+                return "/Content/images/shared/" + filename;
+            }
+
+            return null;
         }
 
         public static IEnumerable<T> FindControls<T>(this Control control, bool recurse) where T : Control

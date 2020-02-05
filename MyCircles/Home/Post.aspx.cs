@@ -48,7 +48,9 @@ namespace MyCircles.Home
         protected void btnPost_Click(object sender, EventArgs e)
         {
 
+
                 try
+
             {
 
                 var newPost = new BLL.Post();
@@ -56,7 +58,7 @@ namespace MyCircles.Home
                 newPost.DateTime = DateTime.Now;
                 newPost.UserId = currentUser.Id;
                 newPost.CircleId = "gym";
-                newPost.Image = UploadThisFile(FileUpload1);
+                newPost.Image = GeneralHelpers.UploadFile(FileUpload1);
                 PostDAO.AddPost(newPost);
 
                 rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
@@ -96,6 +98,7 @@ namespace MyCircles.Home
 
         }
 
+
         protected string UploadThisFile(FileUpload upload)
         {
             if (upload.HasFile)
@@ -120,19 +123,6 @@ namespace MyCircles.Home
         {
             string folderPath = Server.MapPath("~/Files/");
 
-            //Check whether Directory (Folder) exists.
-            if (!Directory.Exists(folderPath))
-            {
-                //If Directory (Folder) does not exists Create it.
-                Directory.CreateDirectory(folderPath);
-            }
-
-            //Save the File to the Directory (Folder).
-            //upldFile.SaveAs(folderPath + Path.GetFileName(upldFile.FileName));
-
-            //Display the Picture in Image control.
-           // Image1.ImageUrl = "~/Files/" + Path.GetFileName(upldFile.FileName);
-        }
-
+      
     }
 }
