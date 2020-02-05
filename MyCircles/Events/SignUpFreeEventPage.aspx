@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="SignUpFreeEventPage.aspx.cs" Inherits="MyCircles.SignUpFreeEventPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="SignUpFreeEventPage.aspx.cs" Inherits="MyCircles.Events.SignUpFreeEventPage" %>
 <%@ Import Namespace ="MyCircles.BLL"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
 </asp:Content>
@@ -46,10 +46,14 @@
                                         <tbody>
                                            <asp:Repeater ID="rpEventSchedule" runat="server" ItemType="MyCircles.BLL.EventSchedule">
                                              <ItemTemplate>                 
-                                                <%# Container.ItemIndex + 1 %>
+                                               <asp:Label ID="secretEventSheduleId" style=""><%#DataBinder.Eval(Container.DataItem, "eventScheduleId") %></asp:Label>
                                               <tr>
                                                 <td><%#DataBinder.Eval(Container.DataItem, "startTime") %> - <%#DataBinder.Eval(Container.DataItem, "endTime") %></td>
-                                                <td><%#DataBinder.Eval(Container.DataItem, "eventDescription") %></td>
+                                                <td>
+                                                    <asp:Label ID="eventDescription" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "eventDescription") %>'>
+                                                   
+                                                    </asp:Label>                                             
+                                                </td>
                                                   <!--add tb to the thing-->
                                                 <td>
                                                     <asp:CheckBox ID="optInCB" runat="server" /></td>
@@ -58,7 +62,7 @@
                                            </asp:Repeater>
                                         </tbody>
                                       </table>
-                            <asp:Button ID="submitButt"  runat="server" Text="Submit" CssClass="form-check-label btn btn-success btn-block mt-2" OnClick="submitButt_Click"/>
+                            <asp:Button ID="submitButt"  runat="server" Text="Submit" ClientIDMode="Static" CssClass="form-check-label btn btn-success btn-block mt-2" OnClick="submitButt_Click"/>
                     </form>
                 </div>
         </div>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="ViewEventDetails.aspx.cs" Inherits="MyCircles.ViewEventDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="ViewEventDetails.aspx.cs" Inherits="MyCircles.Events.ViewEventDetails" %>
 <%@ Import Namespace="MyCircles.BLL" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
     <style>
