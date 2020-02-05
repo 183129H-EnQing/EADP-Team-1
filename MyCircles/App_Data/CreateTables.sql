@@ -116,7 +116,7 @@ CREATE TABLE [dbo].[EventSchedule] (
 
 -- SignUpEventDetails Table
 CREATE TABLE [dbo].[SignUpEventDetails] (
-    [Id]                         INT           NOT NULL,
+    [Id]                         INT           NOT NULL IDENTITY,
     [name]                       VARCHAR (50)  NULL,
     [date]                       VARCHAR (50)  NULL,
     [contactNumber]              VARCHAR (8)   NULL,
