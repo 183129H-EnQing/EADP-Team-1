@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-            <asp:Label ID="lbDate" runat="server" ></asp:Label>
+            <asp:Label ID="lbDate" runat="server" ></asp:Label> <br />
             <asp:Label ID="lbLocation" runat="server" ></asp:Label>
                 <div class="row d-flex justify-content-center">
                     <%--<div class="hero-unit">
@@ -50,19 +50,44 @@
                         //var myday = @hello;
                         //alert("FIRE" + myday);
                         //timetable.addLocations([myday]);
-                        var hi = document.getElementById('<%=lbDate.ClientID%>').innerText;
-                        console.log(hi)
-                        var dates = hi.split(",")
-                        for (i = 0; i < dates.length; i++) {
-                            timetable.addLocations([dates[i]]);
-                        }
+                        var hi = document.getElementById('<%=lbLocation.ClientID%>').innerText;
+                        //[ "Singapore Zoo ", "05 Feb", "1000", "1600" ]
+                        console.log("hi: "+ hi)
+                        var places = hi.split("|")
+                        console.log(places);
                         
 
-                        timetable.addEvent('Singapore Zoo', '5 Feb', new Date(2020, 2, 5, 9, 1000), new Date(2020, 2, 5, 9, 1330), { url: '#' });
-                        timetable.addEvent('Buddha Tooth Relic Temple', '5 Feb', new Date(2020, 2, 5, 14, 00), new Date(2020, 2, 5, 15, 00), { url: '#' });
+                        for (var i = 0; i < places.length; i++) {
+                            console.log("3");
 
-                var renderer = new Timetable.Renderer(timetable);
-                        renderer.draw('.timetable');
+                            if (places.length > 1) {
+                                console.log("4");
+                                console.log(places[i])
+                                var dates = places[i].split(",");
+
+                                timetable.addLocations([dates[1]]);
+                                //timetable.addLocations(["05 Feb"]);
+
+                                var date = dates[1].substring(0, 2);
+
+                                var startT1 = dates[2].substring(0, 2);
+                                var startT2 = dates[2].substring(2);
+
+                                var endT1 = dates[3].substring(0, 2);
+                                var endT2 = dates[3].substring(2);
+
+                                timetable.addEvent(dates[0], dates[1], new Date(2020, 2, date, startT1, startT2), new Date(2020, 2, date, endT1, endT2), { url: '#' });
+                                //timetable.addEvent('Buddha Tooth Relic Temple', '05 Feb', new Date(2020, 2, 5, 14, 00), new Date(2020, 2, 5, 15, 00), { url: '#' });
+
+                                var renderer = new Timetable.Renderer(timetable);
+                                renderer.draw('.timetable');
+                            }
+                        }
+                        
+                        //timetable.addEvent('Buddha Tooth Relic Temple', '05 Feb', new Date(2020, 2, 5, 14, 00), new Date(2020, 2, 5, 15, 00), { url: '#' });
+
+                        //var renderer = new Timetable.Renderer(timetable);
+                        //renderer.draw('.timetable');
                     </script>
                 </div>
             </div>

@@ -65,7 +65,7 @@ namespace MyCircles.ItineraryPlanner
             Session["endDate"] = tbEndDate.Text;
 
             string url = "Timeline.aspx?Id=" + newItinerary.itineraryId;
-            Response.Redirect("url");
+            Response.Redirect(url);
         }
 
         private void getExistingPlan()

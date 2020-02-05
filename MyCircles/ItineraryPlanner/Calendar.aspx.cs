@@ -12,11 +12,10 @@ namespace MyCircles.ItineraryPlanner
 {
     public partial class Calendar : System.Web.UI.Page
     {
-        public string hello = "5 Feb, 6 Feb";
-        public string location = "hello";
+        public string location = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            lbDate.Text = hello;
+            GetExistingCalendar();
         }
 
         private void GetExistingCalendar()
@@ -33,7 +32,18 @@ namespace MyCircles.ItineraryPlanner
                 locationList.Add(i.locaOpenHour.ToString());
                 locationList.Add(i.locaCloseHour.ToString());
             }*/
-            location = daysList.ToString();
+
+            foreach (var i in daysList)
+            {
+                location += i.locaName + ",";
+                location += i.date + ",";
+                location += i.startTime + ",";
+                location += i.endTime;
+                location += "|";
+            }
+
+
+            lbLocation.Text = location;
         }
     }
 }
