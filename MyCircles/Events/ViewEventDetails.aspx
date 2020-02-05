@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="col-6" style="padding-left:0px;">
                                         <!--data-toggle="modal" data-target=".bd-example-modal-lg"-->
-                                        <a href="/Event/SignUpFreeEventPage.aspx?eventID=<%=singleEventDetails.eventId %>" class="btn btn-primary"  style="width:100%;">Register</a>
+                                        <a href="/Events/SignUpFreeEventPage.aspx?eventID=<%=singleEventDetails.eventId %>" class="btn btn-primary"  style="width:100%;">Register</a>
                                       
                                         <!--sign up page modal-->
                                         <!--

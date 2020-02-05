@@ -21,7 +21,7 @@
                         <a class="nav-link" href="/Home/Post.aspx" runat="server">Home <% if (Request.Url.AbsoluteUri.Contains("Home")) { %> <span class="sr-only">(current)</span>  <% } %></a>
                     </li>
                     <li class="nav-item <% if (Request.Url.AbsoluteUri.Contains("Event")) { %> active  <% } %>">
-                        <a class="nav-link" href="/Event/ViewAllEventPage.aspx" runat="server">Events <% if (Request.Url.AbsoluteUri.Contains("Event")) { %> <span class="sr-only">(current)</span>  <% } %></a>
+                        <a class="nav-link" href="/Events/ViewAllEventPage.aspx" runat="server">Events <% if (Request.Url.AbsoluteUri.Contains("Event")) { %> <span class="sr-only">(current)</span>  <% } %></a>
                     </li>
                     <li class="nav-item <% if (Request.Url.AbsoluteUri.Contains("Planner")) { %> active  <% } %>">
                         <a class="nav-link" href="/ItineraryPlanner/Home.aspx" runat="server">Planner <% if (Request.Url.AbsoluteUri.Contains("Planner")) { %> <span class="sr-only">(current)</span>  <% } %></a>
