@@ -160,7 +160,7 @@ CREATE TABLE [dbo].[Location] (
     [locaOpenHour]    NCHAR (10)     NOT NULL,
     [locaCloseHour]   NCHAR (10)     NULL,
     [locaRecom]       NCHAR (6)      NOT NULL,
-    [locaGeolocation] NCHAR (30)     NOT NULL,
+    [locaGeolocation] NCHAR (30)     NULL,
     PRIMARY KEY CLUSTERED ([locaId] ASC),
     CONSTRAINT [FK_Location_ToPref] FOREIGN KEY ([landmarkType]) REFERENCES [dbo].[Pref] ([prefId])
 );
