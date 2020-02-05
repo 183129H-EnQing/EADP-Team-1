@@ -63,25 +63,71 @@ namespace MyCircles.Home
           
                 try
             {
-                var newPost = new BLL.Post();
-                newPost.Content = activity.Text;
-                newPost.DateTime = DateTime.Now;
-                newPost.Image = FileUpload1.ToString();
-                newPost.UserId = currentUser.Id;
-                newPost.CircleId = "gym";
-                //newPost.Image = fileupld.PostedFile;
-                UploadThisFile(FileUpload1);
-                PostDAO.AddPost(newPost);
 
-                rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
-                rptUserPosts.DataBind();
+                if (FileUpload1.HasFile)
+                {
+                    string strname = FileUpload1.FileName.ToString();
+                    FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Content/images/") + strname);
+                    Response.Redirect(Request.Url.AbsoluteUri);
+                    var newPost = new BLL.Post();
+                    newPost.Content = activity.Text;
+                    newPost.DateTime = DateTime.Now;
+                    newPost.Image = strname;
+                    newPost.UserId = currentUser.Id;
+                    newPost.CircleId = "gym";
+
+                    PostDAO.AddPost(newPost);
+
+                    rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+                    rptUserPosts.DataBind();
+                }
+                else
+                {
+                    var newPost = new BLL.Post();
+                    newPost.Content = activity.Text;
+                    newPost.DateTime = DateTime.Now;
+                    newPost.Image = FileUpload1.ToString();
+                    newPost.UserId = currentUser.Id;
+                    newPost.CircleId = "gym";
+                    PostDAO.AddPost(newPost);
+
+                    rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+                    rptUserPosts.DataBind();
+                }
+              
             }
             catch (DbEntityValidationException ex)
             {
                 var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
             }
         }
+        protected void Comment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (RepeaterItem item in rptUserPosts.Items)
 
+                {
+
+
+                    TextBox comment = (TextBox)item.FindControl("hello");
+                    var newPost = new BLL.Post();
+                    newPost.Comment = comment.Text;
+                    newPost.UserId = currentUser.Id;
+                    newPost.CircleId = "gym";
+                    PostDAO.AddPost(newPost);
+
+                    rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+                    rptUserPosts.DataBind();
+
+                }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
+            }
+           
+        }
         protected void Btncircle_Click(object sender, EventArgs e)
         {
           

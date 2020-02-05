@@ -10,6 +10,7 @@
     <link href="/content/css/main.css" rel="stylesheet" />
     <link href="/content/css/jquery.flexdatalist.css" rel="stylesheet" />
 
+  
     <script src="/scripts/main.js" type="text/javascript"></script>
     <script src="/scripts/jquery.flexdatalist.js" type="text/javascript"></script>
     <script src="/scripts/ajax.js" type="text/javascript"></script>
@@ -109,17 +110,17 @@
 											                    value="Innappropriate" checked>
 										                    <span class="checkmark"></span>
 									                    </label>
-									                    <label class="form-check">Unfollow
+									                    &nbsp;&nbsp;<label class="form-check">Unfollow
 										                    <input class="form-check-input" type="radio" name="report" id="Unfollow"
 											                    value="Unfollow">
 										                    <span class="checkmark"></span>
 									                    </label>
-									                    <label class="form-check"> Copy Link
+									                    &nbsp;&nbsp;<label class="form-check">Copy Link
 										                    <input class="form-check-input" type="radio" name="report" id="Copy Link"
 											                    value="Copy Link">
 										                    <span class="checkmark"></span>
 									                    </label>
-								                    </div>
+								                    &nbsp;&nbsp;</div>
 								                    <!-- Modal footer -->
 								                    <div class="modal-footer">
 									                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -136,16 +137,19 @@
 						                            <img src="Content/images/<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
 							                            style="max-height: 300px; width: auto; border-radius:8px;">
 					                            </a>
-				                            </div>
+				                            &nbsp;&nbsp;</div>
                                             <span class="h5">
                                             <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label></span>
 			                            </div>
                                     </div>
                                     <div class="card-footer">
                                         <div class="d-flex justify-content-between">
-				                            <strong>Comments:</strong>
+                                             <div class="form-group col-md-6">                                             
+                                             <asp:TextBox ID="hello"  class="form-control" runat="server" placeholder="Comment here" ></asp:TextBox>
+                                                  <asp:Label ID="Label2" runat="server" Text=""></asp:Label>&nbsp<asp:Label ID="Label1" runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Comment")%></asp:Label>
+                                            </div>
 				                            <div class="text-right">
-					                            <a class="btn btn-primary text-light"> Create Comment</a>
+                                                <asp:Button ID="Comment" runat="server" class="btn btn-primary text-light"  usesubmitbehavior="false" OnClick="Comment_Click"  Text="Comment" />
 			                                </div>
 		                                </div>
                                     </div>
