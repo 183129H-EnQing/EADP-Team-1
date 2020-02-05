@@ -51,9 +51,10 @@
                         //alert("FIRE" + myday);
                         //timetable.addLocations([myday]);
                         var hi = document.getElementById('<%=lbLocation.ClientID%>').innerText;
-                        //[ "Singapore Zoo ", "05 Feb", "1000", "1600" ]
+                        //[ "Singapore Zoo ,05 Feb,1000,1600", "Buddha Tooth Relic Temple and Museum ,05 Feb,1630,1700", "" ]
                         console.log("hi: "+ hi)
-                        var places = hi.split("|")
+                        var places = hi.split("|")  //split into individial places with details
+                        //[ "Singapore Zoo ", "05 Feb", "1000", "1600" ]
                         console.log(places);
                         
 

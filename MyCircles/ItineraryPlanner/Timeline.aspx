@@ -3,6 +3,23 @@
 <asp:Content ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        /*.test:after {
+            content: '\2807';
+            font-size: 1.5em;
+            color: #2e2e2e
+        }*/
+        #hoverdiv {
+            display: none;
+        }
+        #i:hover + #hoverdiv {
+            display: block;
+        }
+
+        #hoverdiv:focus {
+            display: block;
+        }
+    </style>
     <script>
         $(document).ready(function () {
             // Add smooth scrolling to all links
@@ -88,7 +105,9 @@
                                         <div class="col-md-5 col-sm-12 nopadding">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                    <h4 style="height: 28px; overflow: hidden; text-overflow: ellipsis;"><%#DataBinder.Eval(Container.DataItem, "locaName") %></h4>
+                                                    <h4 style="                                                            height: 28px;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;"><%#DataBinder.Eval(Container.DataItem, "locaName") %></h4>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <h6><%#DataBinder.Eval(Container.DataItem, "locaRating") %> stars</h6>
@@ -99,7 +118,21 @@
                                             </div>
                                         </div>
                                         <div class="col-md-1 col-sm-12 d-flex flex-row-reverse">
-                                            <h6><%#DataBinder.Eval(Container.DataItem, "landmarkType") %></h6>
+                                            <%--<div class="test"></div>--%>
+                                                <i class='fa fa-ellipsis-v'></i>
+                                                
+                                            <div id="hoverdiv" class="border border-black" style="position: absolute; left: -150px; width: 200px; background-color: white;">
+                                                <div class="row ml-3 mt-2 mb-2">
+                                                    Edit in Calendar
+                                                </div>
+                                                <div class="row ml-3 mb-2">
+                                                    Delete event
+                                                </div>
+                                                <div class="row ml-3 mb-2">
+                                                    Add notes
+                                                </div>
+                                            </div>
+                                            <%--<h6><%#DataBinder.Eval(Container.DataItem, "landmarkType") %></h6>--%>
                                         </div>
                                     </div>
                                 </div>
