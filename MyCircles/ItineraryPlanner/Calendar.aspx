@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Calendar.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Calendar" Title="Calendar"%>
+﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Calendar.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Calendar" Title="Calendar" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <!doctype html>
@@ -12,27 +12,55 @@
     </head>
 
     <body>
-        <div class="hero-unit">
-            <h1>Timetable.js demo</h1>
-            <p>Vanilla javascript plugin for building nice responsive timetables. More info on <a href="https://github.com/Grible/timetable.js" target="_blank">Github</a>.</p>
+        <div class="row mt-5 sticky-top bg-warning mb-5">
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-8">
+                <div class="row d-flex justify-content-center">
+                    <%-- need insert title of Plan if possible--%>
+                    <h2>
+                        <asp:Label ID="lbPlannerName" runat="server" Text="January Outing"></asp:Label></h2>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <a href="RequestFund.aspx" class="text-decoration-none">Request Fund<i class="fas fa-headset"></i></a>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row d-flex justify-content-center">
+                    <%--<div class="hero-unit">
+                        <h1>Timetable.js demo</h1>
+                        <p>Vanilla javascript plugin for building nice responsive timetables. More info on <a href="https://github.com/Grible/timetable.js" target="_blank">Github</a>.</p>
+                    </div>--%>
+
+                    <div class="timetable"></div>
+
+                    <script src="/Content/timetable.js-master/dist/scripts/timetable.js"></script>
+                    <script>
+                        var timetable = new Timetable();
+
+                        timetable.setScope(8, 20)
+
+                        //timetable.addLocations(['17 Jan', '18 Jan', '19 Jan', '20 Jan']);
+                        //var myday = @hello;
+                        //alert("FIRE" + myday);
+                        //timetable.addLocations([myday]);
+                        timetable.addLocations(["17 Jan"]);
+
+                        timetable.addEvent('Singapore Zoo', '17 Jan', new Date(2019, 1, 17, 9, 00), new Date(2019, 1, 17, 12, 30), { url: '#' });
+                        timetable.addEvent('Siloso Beach', '17 Jan', new Date(2019, 1, 17, 13, 15), new Date(2019, 1, 17, 17, 30), { url: '#' });
+
+                        var renderer = new Timetable.Renderer(timetable);
+                        renderer.draw('.timetable');
+                    </script>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
         </div>
 
-        <div class="timetable"></div>
-
-        <script src="/Content/timetable.js-master/dist/scripts/timetable.js"></script>
-        <script>
-            var timetable = new Timetable();
-
-            timetable.setScope(6, 23)
-
-            timetable.addLocations(['17 Jan', '18 Jan', '19 Jan', '20 Jan']);
-
-            timetable.addEvent('Singapore Zoo', '17 Jan', new Date(2019, 1, 17, 9, 00), new Date(2019, 1, 17, 12, 30), { url: '#' });
-            timetable.addEvent('Siloso Beach', '17 Jan', new Date(2019, 1, 17, 13, 15), new Date(2019, 1, 17, 17, 30), { url: '#' });
-
-            var renderer = new Timetable.Renderer(timetable);
-            renderer.draw('.timetable');
-        </script>
         <%--<script>
             var timetable = new Timetable();
 

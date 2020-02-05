@@ -13,11 +13,11 @@ using System.Web.UI.WebControls;
 
 namespace MyCircles.Home
 {
-     
+
     public partial class Post : System.Web.UI.Page
     {
         public BLL.User currentUser;
-       
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,7 +32,7 @@ namespace MyCircles.Home
 
         protected void ImageMap1_Click(object sender, ImageMapEventArgs e)
         {
-            
+
         }
 
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
@@ -45,56 +45,23 @@ namespace MyCircles.Home
             Response.Redirect("PeopleNearby.aspx");
         }
 
-        protected void UploadThisFile(FileUpload upload)
-        {
-            if (upload.HasFile)
-            {
-                string theFileName = Path.Combine(Server.MapPath("~/Content/images"), upload.FileName);
-                if (File.Exists(theFileName))
-                {
-                    File.Delete(theFileName);
-                }
-                upload.SaveAs(theFileName);
-            }
-        }
-
         protected void btnPost_Click(object sender, EventArgs e)
         {
-          
+
                 try
             {
 
-                if (FileUpload1.HasFile)
-                {
-                    string strname = FileUpload1.FileName.ToString();
-                    FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Content/images/") + strname);
-                    Response.Redirect(Request.Url.AbsoluteUri);
-                    var newPost = new BLL.Post();
-                    newPost.Content = activity.Text;
-                    newPost.DateTime = DateTime.Now;
-                    newPost.Image = strname;
-                    newPost.UserId = currentUser.Id;
-                    newPost.CircleId = "gym";
+                var newPost = new BLL.Post();
+                newPost.Content = activity.Text;
+                newPost.DateTime = DateTime.Now;
+                newPost.UserId = currentUser.Id;
+                newPost.CircleId = "gym";
+                newPost.Image = UploadThisFile(FileUpload1);
+                PostDAO.AddPost(newPost);
 
-                    PostDAO.AddPost(newPost);
+                rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+                rptUserPosts.DataBind();
 
-                    rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
-                    rptUserPosts.DataBind();
-                }
-                else
-                {
-                    var newPost = new BLL.Post();
-                    newPost.Content = activity.Text;
-                    newPost.DateTime = DateTime.Now;
-                    newPost.Image = FileUpload1.ToString();
-                    newPost.UserId = currentUser.Id;
-                    newPost.CircleId = "gym";
-                    PostDAO.AddPost(newPost);
-
-                    rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
-                    rptUserPosts.DataBind();
-                }
-              
             }
             catch (DbEntityValidationException ex)
             {
@@ -126,12 +93,28 @@ namespace MyCircles.Home
             {
                 var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
             }
-           
+
         }
+
+        protected string UploadThisFile(FileUpload upload)
+        {
+            if (upload.HasFile)
+            {
+                string filename = currentUser.Id + '-' + DateTime.Now.ToString("yyyyMMdd_hhmmss") + '-' + upload.FileName;
+                string filepath = Server.MapPath(Path.Combine("/Content/images/shared/" + filename));
+                upload.SaveAs(filepath);
+
+                return "/Content/images/shared/" + filename;
+            }
+
+            return null;
+        }
+
+
         protected void Btncircle_Click(object sender, EventArgs e)
         {
-          
-           
+
+
         }
         protected void UploadFile(object sender, EventArgs e)
         {

@@ -22,42 +22,6 @@ namespace MyCircles.ItineraryPlanner {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lbPlannerName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPlannerName;
-        
-        /// <summary>
-        /// lbMonth control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMonth;
-        
-        /// <summary>
-        /// aStartDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor aStartDate;
-        
-        /// <summary>
-        /// aEndDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor aEndDate;
-        
-        /// <summary>
         /// rpDates control.
         /// </summary>
         /// <remarks>
@@ -67,12 +31,21 @@ namespace MyCircles.ItineraryPlanner {
         protected global::System.Web.UI.WebControls.Repeater rpDates;
         
         /// <summary>
-        /// rpDayLocation control.
+        /// lbPlannerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpDayLocation;
+        protected global::System.Web.UI.WebControls.Label lbPlannerName;
+        
+        /// <summary>
+        /// rpParentDates control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpParentDates;
     }
 }

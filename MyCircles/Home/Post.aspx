@@ -1,33 +1,7 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/SignedIn.Master" AutoEventWireup="true" CodeBehind="Post.aspx.cs" Inherits="MyCircles.Home.Post" %>
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
-     <script src="/scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
-
-    <link href="content/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link href="/content/css/main.css" rel="stylesheet" />
-    <link href="/content/css/jquery.flexdatalist.css" rel="stylesheet" />
-
   
-    <script src="/scripts/main.js" type="text/javascript"></script>
-    <script src="/scripts/jquery.flexdatalist.js" type="text/javascript"></script>
-    <script src="/scripts/ajax.js" type="text/javascript"></script>
-
-<script>
-	$('#datepicker').datepicker({
-		format: 'dd/mm/yyyy',
-		value: new Date().toLocaleDateString('en-GB'),
-		uiLibrary: 'bootstrap4',
-	});
-
-     $('#summernote').summernote({
-        placeholder: 'welcome to our blog',
-        tabsize: 2,
-        height: 200
-      });
-</script>
 
     <form id="form1" runat="server">
     <div class="container-fluid">
@@ -134,7 +108,7 @@
 			                            <div class="responsive">
 				                            <div class="gallery text-center">
 					                            <a target="_blank" href="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>">
-						                            <img src="Content/images/<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
+						                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
 							                            style="max-height: 300px; width: auto; border-radius:8px;">
 					                            </a>
 				                            &nbsp;&nbsp;</div>
@@ -144,7 +118,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="d-flex justify-content-between">
-                                             <div class="form-group col-md-6">                                             
+                                             <div class="form-group col-md-6">
                                              <asp:TextBox ID="hello"  class="form-control" runat="server" placeholder="Comment here" ></asp:TextBox>
                                                   <asp:Label ID="Label2" runat="server" Text=""></asp:Label>&nbsp<asp:Label ID="Label1" runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Comment")%></asp:Label>
                                             </div>
