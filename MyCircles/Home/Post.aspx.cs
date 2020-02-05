@@ -71,10 +71,11 @@ namespace MyCircles.Home
         {
             if (upload.HasFile)
             {
-                string filename = currentUser.Id + '-' + DateTime.Now.ToString().Replace(" ", "") + upload.FileName;
-                upload.SaveAs(Server.MapPath("~/Content/images/shared" + filename));
+                string filename = currentUser.Id + '-' + DateTime.Now.ToString("yyyyMMdd_hhmmss") + '-' + upload.FileName;
+                string filepath = Server.MapPath(Path.Combine("/Content/images/shared/" + filename));
+                upload.SaveAs(filepath);
 
-                return "/Content/images/shared" + filename;
+                return "/Content/images/shared/" + filename;
             }
 
             return null;

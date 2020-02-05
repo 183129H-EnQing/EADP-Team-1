@@ -133,7 +133,7 @@
 			                            <div class="responsive">
 				                            <div class="gallery text-center">
 					                            <a target="_blank" href="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>">
-						                            <img src="Content/images/<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
+						                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
 							                            style="max-height: 300px; width: auto; border-radius:8px;">
 					                            </a>
 				                            </div>
