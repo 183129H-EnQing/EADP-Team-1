@@ -25,7 +25,11 @@
                                 <asp:BoundField DataField="Name" HeaderText="Display Name" />
                                 <asp:BoundField DataField="EmailAddress" HeaderText="Email Address" />
                                 
-                                <asp:ButtonField CommandName="ChgUserStatus" Text="Disable User" HeaderText="Account Status" />
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:Button runat="server" CommandName="ChgUserStatus" ID="ChgUserStatus" Text="Disable User"/>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:ButtonField CommandName="UserProfile" Text="View Profile" />
                             </Columns>
                         </asp:GridView>
