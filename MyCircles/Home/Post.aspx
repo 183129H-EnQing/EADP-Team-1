@@ -1,22 +1,19 @@
 ﻿<%@ Page Language="C#"  MasterPageFile="~/SignedIn.Master" AutoEventWireup="true" CodeBehind="Post.aspx.cs" Inherits="MyCircles.Home.Post" %>
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
+    <script>
+	    $('#datepicker').datepicker({
+		    format: 'dd/mm/yyyy',
+		    value: new Date().toLocaleDateString('en-GB'),
+		    uiLibrary: 'bootstrap4',
+	    });
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-<script>
-	$('#datepicker').datepicker({
-		format: 'dd/mm/yyyy',
-		value: new Date().toLocaleDateString('en-GB'),
-		uiLibrary: 'bootstrap4',
-	});
-
-     $('#summernote').summernote({
-        placeholder: 'welcome to our blog',
-        tabsize: 2,
-        height: 200
-      });
-</script>
+         $('#summernote').summernote({
+            placeholder: 'welcome to our blog',
+            tabsize: 2,
+            height: 200
+          });
+    </script>
 
     <form id="form1" runat="server">
     <div class="container-fluid">
