@@ -78,9 +78,9 @@
                                     <div class="row pt-3 pl-3">
                                         <div class="col-md-1 mr-5 col-sm-1">
                                             <br />
-                                            <h6><%#DataBinder.Eval(Container.DataItem, "locaOpenHour") %></h6>
+                                            <h6><%#DataBinder.Eval(Container.DataItem, "startTime") %></h6>
                                             <br />
-                                            <h6><%#DataBinder.Eval(Container.DataItem, "locaCloseHour") %></h6>
+                                            <h6><%#DataBinder.Eval(Container.DataItem, "endTime") %></h6>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <asp:Image runat='server' Height='160px' Width='250px' ImageUrl='<%#DataBinder.Eval(Container.DataItem, "locaPic") %>' />

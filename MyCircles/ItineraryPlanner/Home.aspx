@@ -92,7 +92,6 @@
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox ID="tbNoPeople" class="form-control" runat="server" type="number" min="2" max="100" placeholder="No. of Youths" required></asp:TextBox>
-
                         </div>
                     </div>
                     <div class="row mb-4 panel panel-primary">
@@ -149,7 +148,7 @@
                                     <h5 class="card-title"><b><%#DataBinder.Eval(Container.DataItem, "itineraryName") %> </b></h5>
                                     <h6 class="card-subtitle mb-2 text-muted">Created by you</h6>
                                     <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> to <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
-                                    <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %>Youth</p>
+                                    <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %> Youth</p>
 
                                     <a href="Timeline.aspx?Id=<%#DataBinder.Eval(Container.DataItem, "itineraryId") %>" class="btn btn-primary">Click to view</a>
                                 </div>

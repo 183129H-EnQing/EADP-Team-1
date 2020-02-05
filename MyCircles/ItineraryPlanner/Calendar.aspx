@@ -30,6 +30,7 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
+            <asp:Label ID="lbDate" runat="server" ></asp:Label>
                 <div class="row d-flex justify-content-center">
                     <%--<div class="hero-unit">
                         <h1>Timetable.js demo</h1>
@@ -42,18 +43,24 @@
                     <script>
                         var timetable = new Timetable();
 
-                        timetable.setScope(8, 20)
+                        timetable.setScope(8, 20);
 
                         //timetable.addLocations(['17 Jan', '18 Jan', '19 Jan', '20 Jan']);
                         //var myday = @hello;
                         //alert("FIRE" + myday);
                         //timetable.addLocations([myday]);
-                        timetable.addLocations(["17 Jan"]);
+                        var hi = document.getElementById('<%=lbDate.ClientID%>').innerText;
+                        console.log(hi)
+                        var dates = hi.split(",")
+                        for (i = 0; i < dates.length; i++) {
+                            timetable.addLocations([dates[i]]);
+                        }
+                        
 
-                        timetable.addEvent('Singapore Zoo', '17 Jan', new Date(2019, 1, 17, 9, 00), new Date(2019, 1, 17, 12, 30), { url: '#' });
-                        timetable.addEvent('Siloso Beach', '17 Jan', new Date(2019, 1, 17, 13, 15), new Date(2019, 1, 17, 17, 30), { url: '#' });
+                        timetable.addEvent('Singapore Zoo', '5 Feb', new Date(2020, 2, 5, 9, 1000), new Date(2020, 2, 5, 9, 1330), { url: '#' });
+                        timetable.addEvent('Buddha Tooth Relic Temple', '5 Feb', new Date(2020, 2, 5, 14, 00), new Date(2020, 2, 5, 15, 00), { url: '#' });
 
-                        var renderer = new Timetable.Renderer(timetable);
+                var renderer = new Timetable.Renderer(timetable);
                         renderer.draw('.timetable');
                     </script>
                 </div>
@@ -82,7 +89,7 @@
             });
             timetable.addEvent('Cocktails', 'Rotterdam', new Date(2015, 7, 18, 00, 00), new Date(2015, 7, 18, 02, 00), { class: 'vip-only' });
 
-            var renderer = new Timetable.Renderer(timetable);
+                    var renderer = new Timetable.Renderer(timetable);
             renderer.draw('.timetable');
         </script>--%>
     </body>

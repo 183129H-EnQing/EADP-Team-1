@@ -156,6 +156,7 @@
     <Content Include="Content\images\UserOutlineOffline.png" />
     <Content Include="Content\images\UserOutlineOnline.png" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
+    <Content Include="ItineraryPlanner\LocationDetail.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
     <Content Include="Content\bootstrap\js\dist\alert.js" />
@@ -417,6 +418,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\LocationDetail.aspx.cs">
+      <DependentUpon>LocationDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\LocationDetail.aspx.designer.cs">
+      <DependentUpon>LocationDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Map.aspx.cs">
       <DependentUpon>Map.aspx</DependentUpon>
