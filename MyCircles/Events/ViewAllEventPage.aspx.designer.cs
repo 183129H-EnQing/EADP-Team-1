@@ -7,63 +7,90 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles {
+namespace MyCircles.Events {
     
     
-    public partial class SignUpFreeEventPage {
+    public partial class ViewAllEventPage {
         
         /// <summary>
-        /// nameTB control.
+        /// central control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nameTB;
+        protected global::System.Web.UI.WebControls.CheckBox central;
         
         /// <summary>
-        /// dateDDL control.
+        /// South control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dateDDL;
+        protected global::System.Web.UI.WebControls.CheckBox South;
         
         /// <summary>
-        /// contactNumberTB control.
+        /// West control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox contactNumberTB;
+        protected global::System.Web.UI.WebControls.CheckBox West;
         
         /// <summary>
-        /// NumberOfBookingSlotsDLL control.
+        /// East control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList NumberOfBookingSlotsDLL;
+        protected global::System.Web.UI.WebControls.CheckBox East;
         
         /// <summary>
-        /// rpEventSchedule control.
+        /// North control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpEventSchedule;
+        protected global::System.Web.UI.WebControls.CheckBox North;
         
         /// <summary>
-        /// submitButt control.
+        /// Entertainment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitButt;
+        protected global::System.Web.UI.WebControls.CheckBox Entertainment;
+        
+        /// <summary>
+        /// CheckBox2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
+        
+        /// <summary>
+        /// CheckBox3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
+        
+        /// <summary>
+        /// CheckBox4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox4;
     }
 }

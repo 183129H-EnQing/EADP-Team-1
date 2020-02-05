@@ -10,6 +10,8 @@ namespace MyCircles.BLL
     public partial class Day
     {
         public int dayId { get; set; }
+        [StringLength(10)]
+        public string date { get; set; }
 
         public int dayByDayId { get; set; }
         public int itineraryId { get; set; }

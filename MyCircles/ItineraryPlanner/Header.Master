@@ -5,13 +5,13 @@
     <div class="container-fluid mt-2 bg-info">
         <div class="row d-flex justify-content-center mb-3">
             <div class="col-md-3 ml-1 d-flex justify-content-center">
-                <a href="Timeline.aspx" class="text-decoration-none text-white">TIMELINE</a>
+                <a id="timelinehref" href="Timeline.aspx" runat="server" class="text-decoration-none text-white">TIMELINE</a>
             </div>
             <div class="col-md-3 ml-1 d-flex justify-content-center">
-                <a href="Calendar.aspx" class="text-decoration-none text-white ">CALENDAR</a>
+                <a id="calendarhref" href="Calendar.aspx" runat="server" class="text-decoration-none text-white ">CALENDAR</a>
             </div>
             <div class="col-md-3 d-flex justify-content-center">
-                <a href="Map.aspx" class="text-decoration-none text-white ">MAP</a>
+                <a id="maphref" href="Map.aspx" runat="server" class="text-decoration-none text-white ">MAP</a>
             </div>
         </div>
     </div>

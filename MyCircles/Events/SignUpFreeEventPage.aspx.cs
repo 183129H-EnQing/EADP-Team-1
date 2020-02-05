@@ -3,33 +3,65 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using MyCircles.BLL;
 
-namespace MyCircles
+namespace MyCircles.Events
 {
     public partial class SignUpFreeEventPage : System.Web.UI.Page
     {
-
+        public int currentEventID;
+        public BLL.User currentUser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //GetDates();
+        
             int requestedEventID = int.Parse(Request.QueryString["eventID"]);
+            System.Diagnostics.Debug.WriteLine(requestedEventID);
             getEventScheduleData(requestedEventID);
+            currentEventID = requestedEventID;
+            // i dk why must put like that then the check box can become true or false one... 
+            // online say what sequence of event....
+            if (!IsPostBack)
+            {
+                GetDates();
+                rpEventSchedule.DataBind();
+               
+            }
         }
 
         protected void submitButt_Click(object sender, EventArgs e)
         {
             SignUpEventDetail newEventSignUpEventData = new SignUpEventDetail();
+            EventSchedule eventSchedule = new EventSchedule(); 
 
             newEventSignUpEventData.name = nameTB.Text;
             newEventSignUpEventData.contactNumber = contactNumberTB.Text;
             //newEventSignUpEventData.date = "hello";
-            newEventSignUpEventData.numberOfBookingSlot = "1";
-            foreach (Control control in rpEventSchedule.Controls)
-                System.Diagnostics.Debug.WriteLine("hello qing" + control.UniqueID);
 
-            //newEventSignUpEventData.Add();
+            currentUser = (BLL.User)Session["currentUser"];
+            System.Diagnostics.Debug.WriteLine("hello" + currentUser.Id.ToString());
+            newEventSignUpEventData.numberOfBookingSlot = "1";
+            newEventSignUpEventData.eventId = currentEventID;
+            foreach (Control control in rpEventSchedule.Controls)
+            {
+                //System.Diagnostics.Debug.WriteLine("hello qing" + control.UniqueID);
+                var OptIncheckBox = (CheckBox)control.FindControl("optInCB");
+                var eventDescriptionLabel = (Label)control.FindControl("eventDescription");
+
+                System.Diagnostics.Debug.WriteLine(OptIncheckBox.Checked);
+
+                if (OptIncheckBox.Checked)
+                {
+
+                }
+              
+                System.Diagnostics.Debug.WriteLine("hello qing" + eventDescriptionLabel.Text);
+            
+            }
+               
+            newEventSignUpEventData.Add();
+         //   eventSchedule.AddOptIn();
             //Response.Redirect("ViewAllEventPage.aspx");
         }
 
@@ -37,16 +69,17 @@ namespace MyCircles
         {
             EventSchedule eventSchedule = new EventSchedule();
             List<EventSchedule> scheduleList = new List<EventSchedule>();
-            //scheduleList = eventSchedule.getAllEventActivity();
+            //scheduleList1 = eventSchedule.getAllEventActivity();
 
             List<String> datesList = new List<String>();
             foreach (EventSchedule eventScheduleBB in scheduleList)
             {
-                System.Diagnostics.Debug.WriteLine("gh say: " + eventScheduleBB.startDate);
+               //System.Diagnostics.Debug.WriteLine("gh say: " + eventScheduleBB.startDate);
                 datesList.Add(eventScheduleBB.startDate);
             }
             dateDDL.DataSource = datesList;
             dateDDL.DataBind();
+
             return scheduleList;
 
         }
@@ -61,7 +94,7 @@ namespace MyCircles
 
             System.Diagnostics.Debug.WriteLine("gh say: " + scheduleList);
             rpEventSchedule.DataSource = scheduleList;
-            rpEventSchedule.DataBind();
+        
         }
     }
 }

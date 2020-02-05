@@ -65,31 +65,20 @@
             var name = filename.split(".")[0];
 
             var adminNavbars = document.querySelectorAll(".admin-panel-navbar");
-            console.log(adminNavbars);
             for (var navbarIdx = 0; navbarIdx < adminNavbars.length; navbarIdx++) {
                 var adminNavbar = adminNavbars[navbarIdx];
-
-                console.log("adminNavbar:");
-                console.log(adminNavbar);
                 
                 for (var i = 0; i < adminNavbar.childNodes.length; i++) {
                     var cardBody = adminNavbar.childNodes[i];
 
                     if (cardBody.nodeName == "DIV") {
-                        console.log("cardBody:");
-                        console.log(cardBody);
-
                         for (var aIdx = 0; aIdx < cardBody.childNodes.length; aIdx++) {
                             var aChild = cardBody.childNodes[aIdx];
                             if (aChild.nodeName == "A") {
-                                console.log(aChild);
                                 var aSplitURL = aChild.href.split("/");
                                 var aFileName = aSplitURL[aSplitURL.length - 1].split(".")[0]; // eg: Overview.aspx, View.aspx, get before .
 
                                 var navItem = aChild.childNodes[1];
-                        
-                                console.log("aFileName:" + aFileName);
-                                console.log(navItem);
                                 if (aFileName == name) {
                                     //selector = "div" + aFileName;
                                     navItem.classList.add("admin-panel-navitem-active");

@@ -11,6 +11,12 @@ namespace MyCircles.ItineraryPlanner
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int Id = Convert.ToInt32(Request.QueryString["Id"]);
+
+            timelinehref.HRef = "Timeline.aspx?Id=" + Id.ToString();
+            calendarhref.HRef = "Calendar.aspx?Id=" + Id.ToString();
+            maphref.HRef = "Map.aspx?Id=" + Id.ToString();
+
 
         }
     }

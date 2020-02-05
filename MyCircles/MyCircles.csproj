@@ -155,7 +155,9 @@
     <Content Include="Content\images\UserOutlineDefault.png" />
     <Content Include="Content\images\UserOutlineOffline.png" />
     <Content Include="Content\images\UserOutlineOnline.png" />
+    <Content Include="Events\CreateEventPage.aspx" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
+    <Content Include="ItineraryPlanner\LocationDetail.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
     <Content Include="Content\bootstrap\js\dist\alert.js" />
@@ -260,9 +262,9 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="Event\SignUpFreeEventPage.aspx" />
-    <Content Include="Event\ViewAllEventPage.aspx" />
-    <Content Include="Event\ViewEventDetails.aspx" />
+    <Content Include="Events\SignUpFreeEventPage.aspx" />
+    <Content Include="Events\ViewAllEventPage.aspx" />
+    <Content Include="Events\ViewEventDetails.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -371,6 +373,13 @@
     <Compile Include="DAL\PostDAO.cs" />
     <Compile Include="DAL\UserCircleDAO.cs" />
     <Compile Include="DAL\UserDAO.cs" />
+    <Compile Include="Events\CreateEventPage.aspx.cs">
+      <DependentUpon>CreateEventPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events\CreateEventPage.aspx.designer.cs">
+      <DependentUpon>CreateEventPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -417,6 +426,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\LocationDetail.aspx.cs">
+      <DependentUpon>LocationDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\LocationDetail.aspx.designer.cs">
+      <DependentUpon>LocationDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Map.aspx.cs">
       <DependentUpon>Map.aspx</DependentUpon>
@@ -496,25 +512,25 @@
     <Compile Include="SignedIn.master.designer.cs">
       <DependentUpon>SignedIn.master</DependentUpon>
     </Compile>
-    <Compile Include="Event\SignUpFreeEventPage.aspx.cs">
+    <Compile Include="Events\SignUpFreeEventPage.aspx.cs">
       <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Event\SignUpFreeEventPage.aspx.designer.cs">
+    <Compile Include="Events\SignUpFreeEventPage.aspx.designer.cs">
       <DependentUpon>SignUpFreeEventPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Event\ViewAllEventPage.aspx.cs">
+    <Compile Include="Events\ViewAllEventPage.aspx.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Event\ViewAllEventPage.aspx.designer.cs">
+    <Compile Include="Events\ViewAllEventPage.aspx.designer.cs">
       <DependentUpon>ViewAllEventPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Event\ViewEventDetails.aspx.cs">
+    <Compile Include="Events\ViewEventDetails.aspx.cs">
       <DependentUpon>ViewEventDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Event\ViewEventDetails.aspx.designer.cs">
+    <Compile Include="Events\ViewEventDetails.aspx.designer.cs">
       <DependentUpon>ViewEventDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

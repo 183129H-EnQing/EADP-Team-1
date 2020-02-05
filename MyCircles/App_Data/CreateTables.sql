@@ -124,7 +124,7 @@ CREATE TABLE [dbo].[EventSchedule] (
 
 -- SignUpEventDetails Table
 CREATE TABLE [dbo].[SignUpEventDetails] (
-    [Id]                         INT           NOT NULL,
+    [Id]                         INT           NOT NULL IDENTITY,
     [name]                       VARCHAR (50)  NULL,
     [date]                       VARCHAR (50)  NULL,
     [contactNumber]              VARCHAR (8)   NULL,
@@ -168,7 +168,7 @@ CREATE TABLE [dbo].[Location] (
     [locaOpenHour]    NCHAR (10)     NOT NULL,
     [locaCloseHour]   NCHAR (10)     NULL,
     [locaRecom]       NCHAR (6)      NOT NULL,
-    [locaGeolocation] NCHAR (30)     NOT NULL,
+    [locaGeolocation] NCHAR (30)     NULL,
     PRIMARY KEY CLUSTERED ([locaId] ASC),
     CONSTRAINT [FK_Location_ToPref] FOREIGN KEY ([landmarkType]) REFERENCES [dbo].[Pref] ([prefId])
 );
@@ -185,6 +185,7 @@ CREATE TABLE [dbo].[ItineraryPref] (
 -- DayByDay Table
 CREATE TABLE [dbo].[DayByDay] (
     [dayBydayId]  INT		   IDENTITY(1,1) NOT NULL ,
+
     [itineraryId] INT          NOT NULL,
 	[date]        VARCHAR (10) NOT NULL,
 	[dayId]       INT          NOT NULL,
@@ -194,17 +195,20 @@ CREATE TABLE [dbo].[DayByDay] (
 
 -- Day Table
 CREATE TABLE [dbo].[Day] (
-    [dayId]      INT          IDENTITY (1, 1) NOT NULL,
-    [dayByDayId] INT          NOT NULL,
-    [startTime]  VARCHAR (16) NOT NULL,
-	[endTime]    VARCHAR (16) NOT NULL,
-    [locationId] INT          NOT NULL,
-    PRIMARY KEY CLUSTERED ([dayId] ASC),
-    CONSTRAINT [FK_Day_ToLocation] FOREIGN KEY ([locationId]) REFERENCES [dbo].[Location] ([locaId]), 
-    CONSTRAINT [FK_Day_ToDayByDay] FOREIGN KEY ([dayByDayId]) REFERENCES [DayByDay]([dayBydayId])
+    [dayId]       INT          IDENTITY (1, 1) NOT NULL,
+	[date]		VARCHAR(10)      NULL,
+    [dayByDayId]  INT          NOT NULL,
+    [itineraryId] INT          NOT NULL,
+    [startTime]   VARCHAR (16) NOT NULL,
+    [endTime]     VARCHAR (16) NOT NULL,
+    [locationId]  INT          NOT NULL,
+    CONSTRAINT [PK_dbo.Day] PRIMARY KEY CLUSTERED ([dayId] ASC),
+    CONSTRAINT [FK_dbo.Day_dbo.Location_locationId] FOREIGN KEY ([locationId]) REFERENCES [dbo].[Location] ([locaId]),
+    CONSTRAINT [FK_dbo.Day_dbo.DayByDay_dayByDayId] FOREIGN KEY ([dayByDayId]) REFERENCES [dbo].[DayByDay] ([dayBydayId])
 );
 
--- Day Table
+
+-- Activity Table
 CREATE TABLE [dbo].[Activity] (
     [activityId]   INT IDENTITY (1, 1) NOT NULL,
     [activityName] VARCHAR (50)        NULL,
