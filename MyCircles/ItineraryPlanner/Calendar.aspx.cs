@@ -22,9 +22,16 @@ namespace MyCircles.ItineraryPlanner
         {
             int Id = Convert.ToInt32(Request.QueryString["Id"]);
 
-            DayByDay getByTag = new DayByDay();
-            List<DayByDay> daybydayList = new List<DayByDay>();
-            daybydayList = getByTag.RetrieveByItinerary(Id);
+            List<DayLocation> daysList = new List<DayLocation>();
+            daysList = DayDAO.GetAllDayLocationByItinerary(Id);
+
+            /*List<string> locationList = new List<string>();     //list for passing to asp label
+            foreach (var i in daysList)
+            {
+                locationList.Add(i.locaName.ToString());
+                locationList.Add(i.locaOpenHour.ToString());
+                locationList.Add(i.locaCloseHour.ToString());
+            }*/
         }
     }
 }

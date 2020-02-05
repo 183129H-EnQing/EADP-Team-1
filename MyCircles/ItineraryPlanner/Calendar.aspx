@@ -31,6 +31,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
             <asp:Label ID="lbDate" runat="server" ></asp:Label>
+            <asp:Label ID="lbLocation" runat="server" ></asp:Label>
                 <div class="row d-flex justify-content-center">
                     <%--<div class="hero-unit">
                         <h1>Timetable.js demo</h1>

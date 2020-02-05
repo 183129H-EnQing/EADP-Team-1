@@ -32,5 +32,29 @@ namespace MyCircles.DAL
                 return dayLocation;
             }
         }
+
+        public static List<DayLocation> GetAllDayLocationByItinerary(int Id)
+        {
+            //insert parameter for dayID for selective dates??
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var dayLocation = db.Days
+                    .Where(
+                        day => day.itineraryId == Id
+                    )
+                    .ToList()
+                    .Join(
+                        db.Locations,
+                        daysLocationId => daysLocationId.locationId,
+                        locationId => locationId.locaId,
+                        (daysLocationId, locationId) => new DayLocation(daysLocationId, locationId)
+                    )
+                    .ToList();
+
+                return dayLocation;
+            }
+        }
     }
 }
