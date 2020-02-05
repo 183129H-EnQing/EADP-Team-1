@@ -105,27 +105,23 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
-                .Property(e => e.eventDescription)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.startDate)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.startTime)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.endTime)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.endDate)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<EventSchedule>()
-                .Property(e => e.eventActivity)
+                .Property(e => e.usersOptIn)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Itinerary>()
@@ -218,11 +214,11 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Type)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Title)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Content)
@@ -286,19 +282,19 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<User>()
                 .Property(e => e.EmailAddress)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Name)
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Bio)

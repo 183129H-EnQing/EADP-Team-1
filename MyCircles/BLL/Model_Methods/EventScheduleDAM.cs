@@ -13,5 +13,7 @@ namespace MyCircles.BLL {
         {
             return EventScheduleDAO.getAllEventActivity(eventId);
         }
+
+      
     }
 }

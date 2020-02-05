@@ -81,8 +81,8 @@ namespace MyCircles.Admin
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound:" + e.Row.Cells[0].Text);
-                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound:" + e.Row.RowIndex);
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound, cell[0].Text:" + e.Row.Cells[0].Text);
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound, RowIndex:" + e.Row.RowIndex);
                 User user = this.userList[e.Row.RowIndex];
 
                 string displayChgUserStatus = "User";
@@ -90,10 +90,20 @@ namespace MyCircles.Admin
                     displayChgUserStatus = "Re-enable " + displayChgUserStatus;
                 else // if enabled
                     displayChgUserStatus = "Disable " + displayChgUserStatus;
-                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound:" + user.IsDeleted);
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound, user.isDeleted:" + user.IsDeleted);
 
                 //Control 
                 //(e.Row.Cells[3].Controls[0] as Button).Text = displayChgUserStatus;
+                try
+                {
+                    Button someCtrl = e.Row.FindControl("ChgUserStatus") as Button;
+                    someCtrl.Text = displayChgUserStatus;
+                    System.Diagnostics.Debug.WriteLine("are you running?");
+                    System.Diagnostics.Debug.WriteLine(someCtrl == null);
+                } catch (Exception exp)
+                {
+                    System.Diagnostics.Debug.WriteLine("failed to find control");
+                }
             }
         }
     }

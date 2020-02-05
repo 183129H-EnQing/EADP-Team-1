@@ -21,5 +21,25 @@ namespace MyCircles.DAL
             }
 
         }
+
+        // means add user opt in event that is listed in the event schedule
+        public static void AddUserOptIn()
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                //   db.EventSchedules.Add(userSignUpDetails);
+              //  db.EventSchedules.Where(eventSchedule => eventSchedule.eventId == eventId
+             //   && eventSchedule.startTime == startTime
+
+             //   );
+
+                foreach (EventSchedule userOptIn in db.EventSchedules)
+                {
+                 //   userOptIn.
+                }
+                db.SaveChanges();
+            }
+        }
+
     }
 }

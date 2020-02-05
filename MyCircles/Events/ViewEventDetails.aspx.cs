@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyCircles.BLL;
-namespace MyCircles
+namespace MyCircles.Events
 {
     public partial class ViewEventDetails : System.Web.UI.Page
     {

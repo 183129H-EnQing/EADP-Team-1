@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.Master" AutoEventWireup="true" CodeBehind="ViewAllEventPage.aspx.cs" Inherits="MyCircles.ViewAllEventPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.Master" AutoEventWireup="true" CodeBehind="ViewAllEventPage.aspx.cs" Inherits="MyCircles.Events.ViewAllEventPage" %>
 <%@ Import Namespace ="MyCircles.BLL"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
     <style>
@@ -113,7 +113,7 @@
                                   <%--<p id="hello+<%=singleEvent.eventId %>")"><%=singleEvent.eventEndDate%> </p>
                 --%>
                               <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
-                                <a href="/Event/ViewEventDetails.aspx?eventID=<%=singleEvent.eventId%>"> 
+                                <a href="/Events/ViewEventDetails.aspx?eventID=<%=singleEvent.eventId%>"> 
                                 <div class="card card-body" id="Div1">
                                     <div class="row">
                                         <div class="col-sm-3 col-md-12">

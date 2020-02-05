@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles {
+namespace MyCircles.Events {
     
     
     public partial class ViewEventDetails {

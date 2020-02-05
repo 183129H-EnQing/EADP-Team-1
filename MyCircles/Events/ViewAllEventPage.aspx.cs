@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MyCircles
+namespace MyCircles.Events
 {
     public partial class ViewAllEventPage : System.Web.UI.Page
     {
