@@ -26,6 +26,10 @@ namespace MyCircles.BLL
 
         public int? eventId { get; set; }
 
+        public int? userId { get; set; }
+
         public virtual Event Event { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

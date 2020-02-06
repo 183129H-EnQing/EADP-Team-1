@@ -12,6 +12,7 @@ namespace MyCircles.BLL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Event()
         {
+            EventSchedules = new HashSet<EventSchedule>();
             SignUpEventDetails = new HashSet<SignUpEventDetail>();
         }
 
@@ -41,6 +42,8 @@ namespace MyCircles.BLL
         [StringLength(50)]
         public string eventHolderName { get; set; }
 
+        public int? eventHolderId { get; set; }
+
         public string eventImage { get; set; }
 
         [StringLength(10)]
@@ -59,6 +62,11 @@ namespace MyCircles.BLL
         public string maxTimeAPersonCanRegister { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EventSchedule> EventSchedules { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SignUpEventDetail> SignUpEventDetails { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

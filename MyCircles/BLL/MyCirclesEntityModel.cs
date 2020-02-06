@@ -388,6 +388,11 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
+                .HasMany(e => e.Events)
+                .WithOptional(e => e.User)
+                .HasForeignKey(e => e.eventHolderId);
+
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.Follows)
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.FollowerId)
