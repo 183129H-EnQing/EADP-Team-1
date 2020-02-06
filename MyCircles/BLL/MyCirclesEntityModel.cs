@@ -117,6 +117,26 @@ namespace MyCircles.BLL
                 .Property(e => e.eventImage)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventMaxSlot)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventEntryFeesStatus)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventStatus_)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.singleOrRecurring)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.maxTimeAPersonCanRegister)
+                .IsUnicode(false);
+
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.eventDescription)
                 .IsUnicode(false);

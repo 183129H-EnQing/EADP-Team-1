@@ -25,7 +25,5 @@ namespace MyCircles.BLL
         public string selectedEventToParticipate { get; set; }
 
         public int? eventId { get; set; }
-
-        public virtual Event Event { get; set; }
     }
 }

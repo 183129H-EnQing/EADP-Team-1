@@ -31,7 +31,5 @@ namespace MyCircles.BLL
         public int? eventId { get; set; }
 
         public string usersOptIn { get; set; }
-
-        public virtual Event Event { get; set; }
     }
 }
