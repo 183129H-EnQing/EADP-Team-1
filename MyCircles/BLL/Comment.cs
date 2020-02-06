@@ -9,7 +9,7 @@ namespace MyCircles.BLL
     [Table("Comment")]
     public partial class Comment
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public int? PostId { get; set; }
 

@@ -30,10 +30,10 @@ namespace MyCircles.BLL
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Pref> Prefs { get; set; }
+        public virtual DbSet<ReportedPost> ReportedPosts { get; set; }
         public virtual DbSet<SignUpEventDetail> SignUpEventDetails { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCircle> UserCircles { get; set; }
-        public virtual DbSet<ReportedPost> ReportedPosts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -277,6 +277,10 @@ namespace MyCircles.BLL
                 .HasForeignKey(e => e.landmarkType)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<ReportedPost>()
+                .Property(e => e.reason)
+                .IsUnicode(false);
+
             modelBuilder.Entity<SignUpEventDetail>()
                 .Property(e => e.name)
                 .IsUnicode(false);
@@ -398,10 +402,6 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<UserCircle>()
                 .Property(e => e.CircleId)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ReportedPost>()
-                .Property(e => e.reason)
                 .IsUnicode(false);
         }
     }

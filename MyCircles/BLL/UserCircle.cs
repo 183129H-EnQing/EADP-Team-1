@@ -6,6 +6,8 @@ namespace MyCircles.BLL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+
+    [Serializable]
     public partial class UserCircle
     {
         public int Id { get; set; }

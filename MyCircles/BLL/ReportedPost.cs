@@ -8,26 +8,16 @@ namespace MyCircles.BLL
 
     public partial class ReportedPost
     {
-        [Key]
-        [Column(Order = 0)]
         public int Id { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
+        [Required]
         public string reason { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int postId { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int reporterUserId { get; set; }
 
-        [Key]
-        [Column(Order = 4, TypeName = "date")]
+        [Column(TypeName = "date")]
         public DateTime dateCreated { get; set; }
 
         public virtual Post Post { get; set; }
