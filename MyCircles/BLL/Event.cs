@@ -9,6 +9,12 @@ namespace MyCircles.BLL
     [Table("Event")]
     public partial class Event
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Event()
+        {
+            SignUpEventDetails = new HashSet<SignUpEventDetail>();
+        }
+
         public int eventId { get; set; }
 
         [StringLength(50)]
@@ -51,5 +57,8 @@ namespace MyCircles.BLL
 
         [StringLength(10)]
         public string maxTimeAPersonCanRegister { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SignUpEventDetail> SignUpEventDetails { get; set; }
     }
 }

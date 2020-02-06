@@ -229,24 +229,14 @@ CREATE TABLE [dbo].[EventSchedule] (
 -- SignUpEventDetails Table
 
 CREATE TABLE [dbo].[SignUpEventDetails] (
-
-    [Id]                         INT           NOT NULL IDENTITY,
-
     [name]                       VARCHAR (50)  NULL,
-
     [date]                       VARCHAR (50)  NULL,
-
     [contactNumber]              VARCHAR (8)   NULL,
-
-    [numberOfBookingSlot]        VARCHAR (1)   NULL,
-
+    [numberOfBookingSlot]        VARCHAR (10)   NULL,
     [selectedEventToParticipate] VARCHAR (MAX) NULL,
-
     [eventId]                    INT           NULL,
-
     PRIMARY KEY CLUSTERED ([Id] ASC),
-
-    CONSTRAINT [eventID_SignUpEventDetails_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId])
+	CONSTRAINT [eventID_SignUpEventDetails_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId])
 
 );
 
