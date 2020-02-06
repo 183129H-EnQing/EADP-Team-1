@@ -98,6 +98,14 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Event>()
+                .Property(e => e.eventStartTime)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventEndTime)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
                 .Property(e => e.eventStartDate)
                 .IsUnicode(false);
 
@@ -115,6 +123,26 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventImage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventMaxSlot)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventEntryFeesStatus)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventStatus)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.singleOrRecurring)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.maxTimeAPersonCanRegister)
                 .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()

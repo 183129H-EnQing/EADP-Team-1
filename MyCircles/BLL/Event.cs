@@ -9,13 +9,6 @@ namespace MyCircles.BLL
     [Table("Event")]
     public partial class Event
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Event()
-        {
-            EventSchedules = new HashSet<EventSchedule>();
-            SignUpEventDetails = new HashSet<SignUpEventDetail>();
-        }
-
         public int eventId { get; set; }
 
         [StringLength(50)]
@@ -23,6 +16,12 @@ namespace MyCircles.BLL
 
         [StringLength(50)]
         public string eventDescription { get; set; }
+
+        [StringLength(50)]
+        public string eventStartTime { get; set; }
+
+        [StringLength(50)]
+        public string eventEndTime { get; set; }
 
         [StringLength(50)]
         public string eventStartDate { get; set; }
@@ -38,10 +37,19 @@ namespace MyCircles.BLL
 
         public string eventImage { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EventSchedule> EventSchedules { get; set; }
+        [StringLength(10)]
+        public string eventMaxSlot { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SignUpEventDetail> SignUpEventDetails { get; set; }
+        [StringLength(20)]
+        public string eventEntryFeesStatus { get; set; }
+
+        [StringLength(20)]
+        public string eventStatus { get; set; }
+
+        [StringLength(20)]
+        public string singleOrRecurring { get; set; }
+
+        [StringLength(10)]
+        public string maxTimeAPersonCanRegister { get; set; }
     }
 }
