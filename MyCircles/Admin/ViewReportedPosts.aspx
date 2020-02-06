@@ -8,15 +8,19 @@
 
         <asp:UpdatePanel ID="ViewReportedPostsUpdatePanel" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="admin-table" OnRowCommand="gvReportedPosts_RowCommand">
-                    <Columns>
-                        <asp:BoundField DataField="reporterUsername" HeaderText="Reporter's Username" />
-                        <asp:BoundField DataField="reason" HeaderText="Reason" />
-                        <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd/MM/yyyy}" />
-                        <asp:ButtonField CommandName="ViewPost" Text="View Post" />
-                        <asp:ButtonField CommandName="DeletePost" Text="Delete" />
-                    </Columns>
-                </asp:GridView>
+                <div class="row">
+                    <div class="col table-responsive">
+                        <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvReportedPosts_RowCommand">
+                            <Columns>
+                                <asp:BoundField DataField="reporterUsername" HeaderText="Reporter's Username" />
+                                <asp:BoundField DataField="reason" HeaderText="Reason" />
+                                <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd\/MMM\/yyyy}" />
+                                <asp:ButtonField CommandName="ViewPost" Text="View Post" ButtonType="Button" ControlStyle-CssClass="btn btn-success text-white" />
+                                <asp:ButtonField CommandName="DeletePost" Text="Delete" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
 
                 <div class="modal" id="viewPostModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
                     <div class="modal-dialog" role="document">
@@ -41,7 +45,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="closeViewPostModal()">Close</button>
+                                <button type="button" class="btn btn-success text-white" onclick="closeViewPostModal()">Close</button>
                                 <asp:Button ID="ModalDeleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete Post" OnClick="ModalDeleteBtn_Click" CausesValidation="false" UseSubmitBehavior="False" ValidateRequestMode="Disabled"/>
                             </div>
                         </div>

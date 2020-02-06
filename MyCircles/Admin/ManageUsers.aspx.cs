@@ -14,11 +14,7 @@ namespace MyCircles.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<User> users = BLL.User.GetAllUsers();
-
-            this.userList = users;
-            gvUsers.DataSource = users;
-            gvUsers.DataBind();
+            refreshGridView(BLL.User.GetAllUsers());
         }
 
         protected void btnSearchSubmit_Click(object sender, EventArgs e)
@@ -48,9 +44,7 @@ namespace MyCircles.Admin
                     }
                 }
 
-                this.userList = resultUserList;
-                gvUsers.DataSource = resultUserList;
-                gvUsers.DataBind();
+                refreshGridView(resultUserList);
             }
             else
             {
@@ -96,7 +90,7 @@ namespace MyCircles.Admin
                 //(e.Row.Cells[3].Controls[0] as Button).Text = displayChgUserStatus;
                 try
                 {
-                    Button someCtrl = e.Row.FindControl("ChgUserStatus") as Button;
+                    Button someCtrl = e.Row.FindControl("btnChgUserStatus") as Button;
                     someCtrl.Text = displayChgUserStatus;
                     System.Diagnostics.Debug.WriteLine("are you running?");
                     System.Diagnostics.Debug.WriteLine(someCtrl == null);
@@ -105,6 +99,21 @@ namespace MyCircles.Admin
                     System.Diagnostics.Debug.WriteLine("failed to find control");
                 }
             }
+        }
+
+        protected void gvUsers_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvUsers.PageIndex = e.NewPageIndex;
+            refreshGridView(userList);
+        }
+
+        private void refreshGridView(List<User> dataToBind)
+        {
+            List<User> users = dataToBind;
+
+            this.userList = users;
+            gvUsers.DataSource = users;
+            gvUsers.DataBind();
         }
     }
 }

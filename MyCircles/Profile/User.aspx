@@ -185,7 +185,7 @@
                                                         <div class="mb-2 d-inline-flex">
                                                             <div class="border border-primary p-2 rounded d-inline mr-1">
                                                                 <span class="text-primary"><%#DataBinder.Eval(Container.DataItem, "CircleId")%>&nbsp;&nbsp;|&nbsp;&nbsp;<%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>&nbsp;
-                                                            <asp:Button ID="btRemove" runat="server" CssClass="text-danger bg-transparent border-0" Text="&times;" CausesValidation="False" CommandName="Remove" />
+                                                                <asp:Button ID="btRemove" runat="server" CssClass="text-danger bg-transparent border-0" Text="&times;" CausesValidation="False" CommandName="Remove" />
                                                             </div>
                                                         </div>
                                                     </ItemTemplate>
