@@ -12,23 +12,26 @@ namespace MyCircles.DAL
         {
             using (var db = new MyCirclesEntityModel())
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 return db.Messages.Where(m => m.ChatRoomId == chatRoomId).OrderBy(m => m.CreatedAt).ToList();
             }
         }
 
-        public static List<Message> GetNewChatRoomMessages(int chatRoomId)
+        public static List<Message> GetNewChatRoomMessages(int chatRoomId, int senderId)
         {
             using (var db = new MyCirclesEntityModel())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return db.Messages.Where(m => m.ChatRoomId == chatRoomId && m.IsSeen == false).OrderBy(m => m.CreatedAt).ToList();
+                return db.Messages.Where(m => m.ChatRoomId == chatRoomId && m.RecieverId == senderId && m.IsSeen == false).OrderBy(m => m.CreatedAt).ToList();
             }
         }
 
-        public static void AddMessage(int chatRoomId, string content, int recieverId, int senderId, string lat = null, string lng = null)
+        public static Message AddMessage(int chatRoomId, string content, int recieverId, int senderId, string lat = null, string lng = null)
         {
             using (var db = new MyCirclesEntityModel())
             {
+                db.Configuration.LazyLoadingEnabled = false;
+
                 Message newMessage = new Message();
                 newMessage.ChatRoomId = chatRoomId;
                 newMessage.Content = content;
@@ -45,6 +48,8 @@ namespace MyCircles.DAL
 
                 db.Messages.Add(newMessage);
                 db.SaveChanges();
+
+                return newMessage;
             }
         }
 
@@ -52,6 +57,8 @@ namespace MyCircles.DAL
         {
             using (var db = new MyCirclesEntityModel())
             {
+                db.Configuration.LazyLoadingEnabled = false;
+
                 foreach (var message in db.Messages.Where(m => m.ChatRoomId == chatRoomId && m.RecieverId == recieverId && m.IsSeen == false).ToList())
                 {
                     message.IsSeen = seenStatus;

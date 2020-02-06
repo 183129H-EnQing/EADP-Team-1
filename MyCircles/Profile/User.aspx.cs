@@ -16,6 +16,7 @@ using System.Device.Location;
 namespace MyCircles.Profile
 {
     //TODO: Messages with dragging points onto the map
+    //TODO: Hover over user icon to show profile preview
     //TODO: Show whether or not user is online
     //TODO: Create example data (user, circle, user circle w/ points)
     //TODO: Gain points for referring users to app
@@ -26,6 +27,7 @@ namespace MyCircles.Profile
     //TODO: Add support for Web API
     //TODO: Clean up the interface (show graph for circles maybe???)
     //TODO: Show following, followers, and strangers who dm'd you in user page
+    //TODO: Disable user from messaging themself
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;

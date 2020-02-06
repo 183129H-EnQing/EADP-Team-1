@@ -265,6 +265,7 @@
     <Content Include="Events\SignUpFreeEventPage.aspx" />
     <Content Include="Events\ViewAllEventPage.aspx" />
     <Content Include="Events\ViewEventDetails.aspx" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
