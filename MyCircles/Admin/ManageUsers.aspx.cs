@@ -94,9 +94,9 @@ namespace MyCircles.Admin
                     someCtrl.Text = displayChgUserStatus;
                     System.Diagnostics.Debug.WriteLine("are you running?");
                     System.Diagnostics.Debug.WriteLine(someCtrl == null);
-                } catch (Exception exp)
+                } catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("failed to find control");
+                    System.Diagnostics.Debug.WriteLine("failed to find control" + ex.Message);
                 }
             }
         }

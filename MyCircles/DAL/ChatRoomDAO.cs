@@ -33,5 +33,32 @@ namespace MyCircles.DAL
 
             return existingChatRoom;
         }
+
+        public static ChatRoom GetChatRoomById(int chatRoomId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                return db.ChatRooms.Where(cr => cr.Id == chatRoomId).FirstOrDefault();
+            }
+        }
+
+        public static int GetRecieverId(int senderId, int chatRoomId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                ChatRoom chatRoom = GetChatRoomById(chatRoomId);
+
+                if (chatRoom.User1Id != senderId)
+                {
+                    return chatRoom.User1Id;
+                }
+                else
+                {
+                    return chatRoom.User2Id;
+                }
+
+
+            }
+        }
     }
 }

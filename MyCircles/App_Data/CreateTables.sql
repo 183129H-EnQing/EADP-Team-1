@@ -501,25 +501,19 @@ CREATE TABLE [dbo].[ChatRoom] (
 
 
 CREATE TABLE [dbo].[Message] (
-
     [Id]             INT           IDENTITY (1, 1) NOT NULL,
-
     [CreatedAt]      DATETIME      NOT NULL,
-
     [ChatRoomId]     INT           NOT NULL,
-
-	[Content]		 VARCHAR (MAX) NULL,
-
+    [Content]        VARCHAR (MAX) NULL,
     [HasGeolocation] BIT           DEFAULT ((0)) NOT NULL,
-
     [Latitude]       FLOAT (53)    NULL,
-
     [Longitude]      FLOAT (53)    NULL,
-
     [Image]          VARCHAR (MAX) NULL,
-
+	[SenderId]       INT           NOT NULL,
+	[RecieverId]     INT           NOT NULL,
+	[IsSeen]         BIT           DEFAULT ((0)) NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-
-    CONSTRAINT [FK_Message_ToChatRoom] FOREIGN KEY ([ChatRoomId]) REFERENCES [dbo].[ChatRoom] ([Id])
-
+    CONSTRAINT [FK_Message_ToChatRoom] FOREIGN KEY ([ChatRoomId]) REFERENCES [dbo].[ChatRoom] ([Id]),
+	CONSTRAINT [FK_Sender_ToUser] FOREIGN KEY ([SenderId]) REFERENCES [dbo].[User] ([Id]),
+	CONSTRAINT [FK_Reciever_ToUser] FOREIGN KEY ([RecieverId]) REFERENCES [dbo].[User] ([Id]),
 );

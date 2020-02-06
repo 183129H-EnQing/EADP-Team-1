@@ -350,6 +350,18 @@ namespace MyCircles.BLL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
+                .HasMany(e => e.Messages)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.RecieverId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Messages1)
+                .WithRequired(e => e.User1)
+                .HasForeignKey(e => e.SenderId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.Mutuals)
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.User1Id)
