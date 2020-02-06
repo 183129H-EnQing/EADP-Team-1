@@ -49,6 +49,7 @@ namespace MyCircles.Admin
 
         public void deleteOp(int index)
         {
+            // TODO deleting from modal, index is out of range
             System.Diagnostics.Debug.WriteLine("deleteOp, index:" + index);
             UserReportedPost userReportedPost = ReportedPost.GetAllUserReportedPosts()[index];
             Post post = Post.GetPostById(userReportedPost.postId);
@@ -58,7 +59,7 @@ namespace MyCircles.Admin
             // delete reportedpost data
             ReportedPost rp = ReportedPost.GetReportedPostById(userReportedPost.id);
             System.Diagnostics.Debug.WriteLine("deleteOp, reportedPost:" + rp.reason);
-            ReportedPost.DeleteReportedPost(userReportedPost.id);
+            //ReportedPost.DeleteReportedPost(userReportedPost.id);
 
             // delete post data
             //Post.DeletePost(post.Id);
@@ -68,7 +69,7 @@ namespace MyCircles.Admin
             refreshGridView();
         }
 
-        public void refreshGridView()
+        private void refreshGridView()
         {
             gvReportedPosts.DataSource = ReportedPost.GetAllUserReportedPosts();
             gvReportedPosts.DataBind();
