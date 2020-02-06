@@ -22,7 +22,7 @@
                     </div>
                 </div>
 
-                <div class="modal" id="viewPostModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+                <div class="modal" id="viewPostModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -46,7 +46,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success text-white" onclick="closeViewPostModal()">Close</button>
-                                <asp:Button ID="ModalDeleteBtn" CssClass="btn btn-danger" runat="server" Text="Delete Post" OnClick="ModalDeleteBtn_Click" CausesValidation="false" UseSubmitBehavior="False" ValidateRequestMode="Disabled"/>
+                                <asp:Button ID="btnModalDelete" CssClass="btn btn-danger" runat="server" Text="Delete Post" OnClick="ModalDeleteBtn_Click" UseSubmitBehavior="false"/>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="gvReportedPosts" EventName="SelectedIndexChanged"/>
-                <asp:AsyncPostBackTrigger ControlID="ModalDeleteBtn" EventName="Click"/>
+                <asp:AsyncPostBackTrigger ControlID="btnModalDelete" EventName="Click"/>
             </Triggers>
         </asp:UpdatePanel>
     </form>
@@ -67,6 +67,8 @@
         }
 
         function closeViewPostModal() {
+            console.log("closing modal");
+            $(".modal-backdrop").remove();
             $('#viewPostModal').modal('hide')
         }
     </script>

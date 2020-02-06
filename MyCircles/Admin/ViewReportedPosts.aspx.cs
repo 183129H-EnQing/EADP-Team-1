@@ -11,15 +11,29 @@ namespace MyCircles.Admin
 {
     public partial class ViewReportedPosts : System.Web.UI.Page
     {
+        private string keySessionRowIdx = "ViewReportedPostsRowIdx";
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Session[keySessionRowIdx] = -1;
+            }
+
             refreshGridView();
         }
 
         protected void ModalDeleteBtn_Click(object sender, EventArgs e)
         {
-            int idx = gvReportedPosts.SelectedIndex;
-            deleteOp(idx);
+            System.Diagnostics.Debug.WriteLine("ModalDeleteBtn_Click," + Session[keySessionRowIdx]);
+            int selectedRowIdx = (int) Session[keySessionRowIdx];
+            if (selectedRowIdx > -1)
+            {
+                deleteOp(selectedRowIdx);
+                System.Diagnostics.Debug.WriteLine("Delete Btn click!");
+            }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "closeViewPostModal();", true);
         }
 
         protected void gvReportedPosts_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -34,6 +48,7 @@ namespace MyCircles.Admin
                     User postCreator = BLL.User.GetUserById(post.UserId);
 
                     System.Diagnostics.Debug.WriteLine("gv SelectedIndexChanged," + post.Id);
+                    Session[keySessionRowIdx] = idx;
 
                     lblModalPostCreatorName.Text = postCreator.Username;
                     imgModalPost.ImageUrl = post.Image;
@@ -59,7 +74,7 @@ namespace MyCircles.Admin
             // delete reportedpost data
             ReportedPost rp = ReportedPost.GetReportedPostById(userReportedPost.id);
             System.Diagnostics.Debug.WriteLine("deleteOp, reportedPost:" + rp.reason);
-            //ReportedPost.DeleteReportedPost(userReportedPost.id);
+            ReportedPost.DeleteReportedPost(userReportedPost.id);
 
             // delete post data
             //Post.DeletePost(post.Id);
