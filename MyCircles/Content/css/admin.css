@@ -31,7 +31,19 @@
     font-size: 40px;
 }
 
-.admin-table, .admin-table th, .admin-table td {
+.admin-table, .admin-table > tbody > tr > th, .admin-table > tbody > tr > td {
     border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.admin-table-pager td {
+    border-width: 0px 1px;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+.admin-table-pager > td {
+    padding: 0px;
     border-collapse: collapse;
 }
