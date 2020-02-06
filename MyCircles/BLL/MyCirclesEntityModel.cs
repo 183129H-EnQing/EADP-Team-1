@@ -98,6 +98,14 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Event>()
+                .Property(e => e.eventStartTime)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventEndTime)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
                 .Property(e => e.eventStartDate)
                 .IsUnicode(false);
 
@@ -126,7 +134,7 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Event>()
-                .Property(e => e.eventStatus_)
+                .Property(e => e.eventStatus)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Event>()

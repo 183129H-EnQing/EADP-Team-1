@@ -18,6 +18,12 @@ namespace MyCircles.BLL
         public string eventDescription { get; set; }
 
         [StringLength(50)]
+        public string eventStartTime { get; set; }
+
+        [StringLength(50)]
+        public string eventEndTime { get; set; }
+
+        [StringLength(50)]
         public string eventStartDate { get; set; }
 
         [StringLength(50)]
@@ -37,14 +43,13 @@ namespace MyCircles.BLL
         [StringLength(20)]
         public string eventEntryFeesStatus { get; set; }
 
-        [Column("eventStatus ")]
         [StringLength(20)]
-        public string eventStatus_ { get; set; }
+        public string eventStatus { get; set; }
 
         [StringLength(20)]
         public string singleOrRecurring { get; set; }
 
-        [StringLength(20)]
+        [StringLength(10)]
         public string maxTimeAPersonCanRegister { get; set; }
     }
 }

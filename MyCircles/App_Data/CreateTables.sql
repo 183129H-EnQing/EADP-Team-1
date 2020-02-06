@@ -180,6 +180,8 @@ CREATE TABLE [dbo].[Event] (
     [eventId]              INT           IDENTITY (1, 1) NOT NULL,
     [eventName]            VARCHAR (50)  NULL,
     [eventDescription]     VARCHAR (50)  NULL,
+	[eventStartTime]       VARCHAR (50)  NULL,
+	[eventEndTime]         VARCHAR (50)  NULL,
     [eventStartDate]       VARCHAR (50)  NULL,
     [eventEndDate]         VARCHAR (50)  NULL,
     [eventCategory]        VARCHAR (50)  NULL,
@@ -187,9 +189,9 @@ CREATE TABLE [dbo].[Event] (
     [eventImage]           VARCHAR (MAX) NULL,
     [eventMaxSlot]         VARCHAR (10)  NULL,
     [eventEntryFeesStatus] VARCHAR (20)  NULL,
-    [eventStatus ]         VARCHAR (20)  NULL,
+    [eventStatus]         VARCHAR (20)  NULL,
     [singleOrRecurring] VARCHAR(20) NULL, 
-    [maxTimeAPersonCanRegister] VARCHAR(20) NULL, 
+    [maxTimeAPersonCanRegister] VARCHAR(10) NULL, 
     PRIMARY KEY CLUSTERED ([eventId] ASC)
 );
 
