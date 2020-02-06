@@ -47,12 +47,8 @@ namespace MyCircles.Home
 
         protected void btnPost_Click(object sender, EventArgs e)
         {
-
-
             try
-
             {
-
                 var newPost = new BLL.Post();
                 newPost.Content = activity.Text;
                 newPost.DateTime = DateTime.Now;
@@ -75,10 +71,7 @@ namespace MyCircles.Home
             try
             {
                 foreach (RepeaterItem item in rptUserPosts.Items)
-
                 {
-
-
                     TextBox comment = (TextBox)item.FindControl("hello");
                     var newPost = new BLL.Post();
                     newPost.Comment = comment.Text;
