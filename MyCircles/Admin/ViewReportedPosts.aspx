@@ -10,11 +10,11 @@
             <ContentTemplate>
                 <div class="row">
                     <div class="col table-responsive">
-                        <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="admin-table" OnRowCommand="gvReportedPosts_RowCommand">
+                        <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvReportedPosts_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="reporterUsername" HeaderText="Reporter's Username" />
                                 <asp:BoundField DataField="reason" HeaderText="Reason" />
-                                <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd/MM/yyyy}" />
+                                <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd\/MMM\/yyyy}" />
                                 <asp:ButtonField CommandName="ViewPost" Text="View Post" ButtonType="Button" ControlStyle-CssClass="btn btn-success text-white" />
                                 <asp:ButtonField CommandName="DeletePost" Text="Delete" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
                             </Columns>

@@ -19,7 +19,7 @@
 
                 <div class="row mt-3">
                     <div class="col table-responsive">
-                        <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="admin-table" OnRowCommand="gvUsers_RowCommand" OnRowDataBound="gvUsers_RowDataBound" AllowPaging="True" OnPageIndexChanging="gvUsers_PageIndexChanging">
+                        <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvUsers_RowCommand" OnRowDataBound="gvUsers_RowDataBound" AllowPaging="True" OnPageIndexChanging="gvUsers_PageIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="Username" HeaderText="Username" />
                                 <asp:BoundField DataField="Name" HeaderText="Display Name" />
