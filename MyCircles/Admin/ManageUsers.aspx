@@ -25,14 +25,18 @@
                                 <asp:BoundField DataField="Name" HeaderText="Display Name" />
                                 <asp:BoundField DataField="EmailAddress" HeaderText="Email Address" />
                                 
-                                <asp:ButtonField CommandName="UserProfile" Text="View Profile" ButtonType="Button" ControlStyle-CssClass="btn btn-success text-white"/>
+                                <asp:ButtonField CommandName="UserProfile" Text="View Profile" ButtonType="Button" ControlStyle-CssClass="btn btn-success text-white">
+                                
+                                <ControlStyle CssClass="btn btn-success text-white" />
+                                </asp:ButtonField>
                                 
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:Button runat="server" CommandName="ChgUserStatus" ID="ChgUserStatus" Text="Disable User" CssClass="btn btn-danger" UseSubmitBehavior="false"/>
+                                        <asp:Button runat="server" CommandName="ChgUserStatus" ID="btnChgUserStatus" Text="Disable User" CssClass="btn btn-danger" UseSubmitBehavior="false"/>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
+                            <PagerStyle CssClass="admin-table-pager" HorizontalAlign="Center" />
                         </asp:GridView>
                     </div>
                 </div>

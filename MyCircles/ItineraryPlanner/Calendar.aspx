@@ -76,8 +76,6 @@
                                     console.log(fulldate);
                                 }
                                 else {
-                                    
-
                                     fulldate = dates[1];
                                     console.log("else");
                                     console.log(dates[1]);

@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-lg-2 col-md-3 d-none d-md-block p-0 admin-panel-navbar">
+            <div class="col-lg-2 col-md-3 d-none d-md-block pr-0 admin-panel-navbar">
                 <div class="card card-body">
                     <a class="admin-panel-navlink" href="Overview.aspx">
                         <div class="admin-panel-navitem">
