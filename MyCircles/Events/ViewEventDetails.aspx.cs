@@ -11,10 +11,11 @@ namespace MyCircles.Events
     {
         public Event singleEventDetails;
         public List<EventSchedule> eventSchedule;
+        public int totalAvaliableSlots;
+        public int TotalBookedSlot = 0;
         // public BLL.Event event1 = 
         // List<String> means the list inside must be string ,List<EventSchedule> means the list must be include EventSchedule fields in table 
         // List<String> scheduleList = new List<String>();
-        public int count;
         protected void Page_Load(object sender, EventArgs e)
         {
             int requestedEventId = int.Parse(Request.QueryString["eventID"]);
@@ -23,6 +24,7 @@ namespace MyCircles.Events
 
             // Get all event schedule data base on id
             getEventScheduleData(requestedEventId);
+            getAllSignUpDetails(requestedEventId);
         }
 
         // get all the event scheduleData function
@@ -33,11 +35,30 @@ namespace MyCircles.Events
             
             scheduleList = retrieveEventSchedule.getAllEventActivity(eventId);
 
-            System.Diagnostics.Debug.WriteLine("gh say: " + scheduleList);
+            //System.Diagnostics.Debug.WriteLine("gh say: " + scheduleList);
             rpEventSchedule.DataSource = scheduleList;
             rpEventSchedule.DataBind();
         }
 
-               
+        private void getAllSignUpDetails(int eventId)
+        {
+            SignUpEventDetail retrieveSignUpDetail = new SignUpEventDetail();
+            List<SignUpEventDetail> signUpEventDetailsList = new List<SignUpEventDetail>();
+
+            signUpEventDetailsList = retrieveSignUpDetail.GetSignUpEventDetails(eventId);
+            // signUpEventDetailList have no data
+            System.Diagnostics.Debug.WriteLine("gh say: " + signUpEventDetailsList.Count());
+            
+            foreach (SignUpEventDetail signUpEventDetailsListBB in signUpEventDetailsList)
+            {
+                var numberOfBookingSlot = signUpEventDetailsListBB.numberOfBookingSlot.ToString();
+              
+                TotalBookedSlot += Int32.Parse(numberOfBookingSlot);
+                System.Diagnostics.Debug.WriteLine("dinesh say: " + TotalBookedSlot);
+            }
+            totalAvaliableSlots = Int32.Parse(singleEventDetails.eventMaxSlot) - TotalBookedSlot;
+        }
+
+
     }
 }

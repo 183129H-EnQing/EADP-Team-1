@@ -49,19 +49,19 @@ namespace MyCircles.DAL
         }
 
 
-        public static void UpdateIsEventHost(int id, bool isEventHost)
-        {
-            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
-            {
-                User user = db.Users
-                        .Where(u => u.Id == id)
-                        .FirstOrDefault();
+        //public static void UpdateIsEventHost(int id, bool isEventHost)
+        //{
+        //    using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+        //    {
+        //        User user = db.Users
+        //                .Where(u => u.Id == id)
+        //                .FirstOrDefault();
 
-                user.IsEventHolder = isEventHost;
+        //        user.IsEventHolder = isEventHost;
 
-                db.SaveChanges();
-            }
-        }
+        //        db.SaveChanges();
+        //    }
+        //}
 
     }
 }

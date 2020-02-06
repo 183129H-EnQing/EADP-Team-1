@@ -65,7 +65,7 @@ namespace MyCircles.Events
             newEventSignUpEventData.userId = currentUser.Id;
             newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.SelectedItem.Text;
             newEventSignUpEventData.selectedEventToParticipate = selectedEventToParticipate;
-
+            newEventSignUpEventData.eventId = currentEventID;
             //  System.Diagnostics.Debug.WriteLine(String.Join("\n", userOptInEvent));
             //System.Diagnostics.Debug.WriteLine(currentUser.Name);
 
@@ -83,7 +83,7 @@ namespace MyCircles.Events
             List<String> datesList = new List<String>();
             foreach (EventSchedule eventScheduleBB in scheduleData)
             {
-               //System.Diagnostics.Debug.WriteLine("gh say: " + eventScheduleBB.startDate);
+               // System.Diagnostics.Debug.WriteLine("gh say: " + eventScheduleBB.startDate);
                if (datesList.Contains(eventScheduleBB.startDate) == false)
                 {
                     datesList.Add(eventScheduleBB.startDate);
