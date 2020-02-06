@@ -18,7 +18,7 @@ namespace MyCircles.Home
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
-            var nearby = new BLL.User();
+            
             
 
 
@@ -38,6 +38,11 @@ namespace MyCircles.Home
 
                 GMap.Overlays.Add(marker);
             }
+        }
+
+        protected void rptNearbyPost_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
         }
     }
 }

@@ -12,6 +12,7 @@ namespace MyCircles.BLL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Post()
         {
+            Comments = new HashSet<Comment>();
             ReportedPosts = new HashSet<ReportedPost>();
         }
 
@@ -35,6 +36,9 @@ namespace MyCircles.BLL
         public DateTime? DateTime { get; set; }
 
         public virtual Circle Circle { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual User User { get; set; }
 

@@ -318,6 +318,7 @@
     <Compile Include="BLL\Admin.cs" />
     <Compile Include="BLL\ChatRoom.cs" />
     <Compile Include="BLL\Circle.cs" />
+    <Compile Include="BLL\Comment.cs" />
     <Compile Include="BLL\Day.cs" />
     <Compile Include="BLL\DayByDay.cs" />
     <Compile Include="BLL\Event.cs" />
@@ -353,6 +354,7 @@
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\ChatRoomDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
+    <Compile Include="DAL\CommentDAO.cs" />
     <Compile Include="DAL\DayByDayDAO.cs" />
     <Compile Include="DAL\DayDAO.cs" />
     <Compile Include="DAL\EventDAO.cs" />
@@ -363,6 +365,7 @@
     <Compile Include="DAL\Joint_Models\DayLocation.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
     <Compile Include="DAL\ItineraryDAO.cs" />
+    <Compile Include="DAL\Joint_Models\UserComment.cs" />
     <Compile Include="DAL\Joint_Models\UserPost.cs" />
     <Compile Include="DAL\Joint_Models\UserReportedPost.cs" />
     <Compile Include="DAL\LocationDAO.cs" />

@@ -15,6 +15,7 @@ namespace MyCircles.BLL
             Admins = new HashSet<Admin>();
             ChatRooms = new HashSet<ChatRoom>();
             ChatRooms1 = new HashSet<ChatRoom>();
+            Comments = new HashSet<Comment>();
             Follows = new HashSet<Follow>();
             Follows1 = new HashSet<Follow>();
             Mutuals = new HashSet<Mutual>();
@@ -73,6 +74,9 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChatRoom> ChatRooms1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Follow> Follows { get; set; }

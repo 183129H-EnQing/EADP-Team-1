@@ -56,7 +56,6 @@ namespace MyCircles.BLL
         [StringLength(6)]
         public string locaRecom { get; set; }
 
-        [Required]
         [StringLength(30)]
         public string locaGeolocation { get; set; }
 

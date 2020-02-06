@@ -2,8 +2,105 @@
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
   
+<style>
+#mod {
+    position: relative;
+    background-color: grey;
+    border-radius: 5px;
+    font-size: 0;
+    margin-left: 20px;
+    padding: 5px;
+}
 
-    <form id="form1" runat="server">
+#mod:before {
+    position: absolute;
+    left: -20px;
+    top: 0;
+    content: '';
+
+    background-color: grey;
+    border-radius: 5px;
+    font-size: 0;
+    padding: 5px;
+}
+
+#mod:after {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    content: '';
+    background-color: grey;
+    border-radius: 5px;
+    font-size: 0;    
+    padding: 5px;
+}
+
+.form-check {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.form-check input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.form-check:hover input~.checkmark {
+	background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.form-check input:checked~.checkmark {
+	background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.form-check input:checked~.checkmark:after {
+	display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.form-check .checkmark:after {
+	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+    </style>
+<form id="form1" runat="server">
     <div class="container-fluid">
         <div class="row">
             <div class="col">   <div class="card" style="width: 18rem;">
@@ -22,12 +119,13 @@
                 <div class="mt-3 border border-secondary panel-group" style =" border-radius:16px 16px; margin-left:430px;" >
                     <%--<form>--%>
                         <div class="form-group mb-2 mt-3">
-                            <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="800" required></asp:TextBox>
+                            <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="800" ></asp:TextBox>
                         </div>
                         <div class="form-group justify-content-between d-flex">
                             <asp:FileUpload ID="FileUpload1"  runat="server" />                         
                             <asp:Button ID="btnPost" runat="server" Text="Post" class="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
                         </div>
+
                     <%--</form>--%>
                 </div>
             </div>
@@ -46,96 +144,131 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-3"></div>
+            <div class="col-3">
+            </div>
             <div class="col-6">
                 <div class="row">
                     <div class="col">
-                        <asp:Repeater ID="rptUserPosts" runat="server" ItemType="MyCircles.DAL.UserPost" OnItemDataBound="rptUserPosts_ItemDataBound">
+                        <asp:Repeater ID="rptUserPosts" runat="server" EnableViewState="false" ItemType="MyCircles.DAL.UserPost" OnItemDataBound="rptUserPosts_ItemDataBound" OnItemCommand="rptUserPosts_ItemCommand">
                             <ItemTemplate>
-                                <div class="card"  id="mypost"   runat="server">
+                                <div class="card" id="mypost" runat="server">
                                     <div class=" card-header d-flex bd-highlight bg-muted mb-2  ">
-			                            <div class="mr-auto p-1 bd-highlight">
-                                            <h5><asp:Label runat="server"><%#DataBinder.Eval(Container.DataItem, "User.Username")%></asp:Label></h5>
-			                            </div>
+                                        <div class="mr-auto p-1 bd-highlight">
+                                            <h5>
+                                                <asp:Label runat="server"><%#DataBinder.Eval(Container.DataItem, "User.Username")%></asp:Label></h5>
+                                        </div>
                                         <div>
                                             <h5><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%></h5>
                                         </div>
                                         &nbsp
                                         <div>
                                             <h5><%#DataBinder.Eval(Container.DataItem, "User.City")%></h5>
-                                        </div>
-                                        <div>
-                                            <asp:ImageButton src="../Content/images/3dot.jpg" runat="server" OnClick="ImageButton2_Click"  usesubmitbehavior="false" data-toggle="modal" width="20px" Height="15px"
-					                        data-target="#reportModal" />
-                                        </div>
+                                        </div>  
+                                        &nbsp
                                         <div class="modal fade" id="reportModal">
-						                    <div class="modal-dialog modal-dialog-centered">
-							                    <div class="modal-content">
-								                    <!-- Modal Header -->
-								                    <div class="modal-header">
-									                    <h4 class="modal-title">Report Image Or Title</h4>
-									                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-								                    </div>
-								                    <!-- Modal body -->
-								                    <div class="modal-body">
-									                    <label class="form-check">Innappropriate
-										                    <input class="form-check-input" type="radio" name="report" id="Innappropriate"
-											                    value="Innappropriate" checked>
-										                    <span class="checkmark"></span>
-									                    </label>
-									                    &nbsp;&nbsp;&nbsp;<label class="form-check">Unfollow
-										                    <input class="form-check-input" type="radio" name="report" id="Unfollow"
-											                    value="Unfollow">
-										                    <span class="checkmark"></span>
-									                    </label>
-									                    &nbsp;&nbsp;&nbsp;<label class="form-check">Copy Link
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Report Image Or Title</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">  
+                                                        <asp:RadioButtonList ID="RadioButtonList1" runat="server"> 
+                                                             <asp:ListItem class="form check" Selected="True">GBP</asp:ListItem>
+                                                        <%--<label class="form-check">
+                                                            Innappropriate Post
+										                    <input class="form-check" type="radio" name="report" id="Innappropriate"
+                                                                value="Innappropriate" checked="checked">
+                                                              <span class="checkmark"></span>
+                                                        </label>
+                                                       <label class="form-check">Share
+										                    <input class="form-check-input" type="radio" name="report" id="Share"
+                                                                value="Unfollow">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="form-check">Copy Link
 										                    <input class="form-check-input" type="radio" name="report" id="Copy Link"
-											                    value="Copy Link">
-										                    <span class="checkmark"></span>
-									                    </label>
-								                    &nbsp;&nbsp;&nbsp;</div>
-								                    <!-- Modal footer -->
-								                    <div class="modal-footer">
-									                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-									                    <button type="submit" id="butAddReport" class="btn btn-primary">Submit</button>
-								                    </div>
-							                    </div>
-						                    </div>
-				                        </div>
-                                    </div>
-                                    <div class="card-body">
-			                            <div class="responsive">
-				                            <div class="gallery text-center">
-					                            <a target="_blank" href="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>">
-						                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
-							                            style="max-height: 300px; width: auto; border-radius:8px;">
-					                            </a>
-				                            &nbsp;&nbsp;&nbsp;</div>
-                                            <span class="h5">
-                                            <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label></span>
-			                            </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="d-flex justify-content-between">
-                                             <div class="form-group col-md-6">
-                                             <asp:TextBox ID="hello"  class="form-control" runat="server" placeholder="Comment here" ></asp:TextBox>
-                                                  <asp:Label ID="Label2" runat="server" Text=""></asp:Label>&nbsp<asp:Label ID="Label1" runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Comment")%></asp:Label>
+                                                                value="Copy Link">
+                                                            <span class="checkmark"></span>
+                                                        </label>--%>
+                                                        </asp:RadioButtonList>
+                                                      
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                      
+                                                        <asp:Button ID="report" runat="server" OnClick="report_Click"  class="btn btn-primary" Text="Submit" />
+                                                    </div>
+                                                   
+                                                </div>
                                             </div>
-                                            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
-				                            <div class="text-right">
-                                                <asp:Button ID="Comment" runat="server" class="btn btn-primary text-light"  usesubmitbehavior="false" OnClick="Comment_Click"  Text="Comment" />
-			                                </div>
-		                                </div>
+                                        </div>
+                                          <div>                                           
+                                            <a id="mod" href="#"  onclick="openViewPostModal()"></a>
+                                            <script>
+                                                function openViewPostModal() {
+                                                    $("#reportModal").modal('show');                                                  
+                                                }
+
+                                                function closeViewPostModal() {
+                                                    $('#reportModal').modal('hide')
+                                                }
+                                            </script>
+                                        </div>
+                                    </div>                                   
+                                    <div class="card-body">
+                                        <div class="responsive">
+                                            <div class="gallery text-center">
+                                                <a target="_blank" href="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>">
+                                                    <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
+                                                        style="max-height: 300px; width: auto; border-radius: 8px;">
+                                                </a>
+                                                &nbsp;&nbsp;&nbsp;
+                                            </div>
+                                            <span class="h5">
+                                                <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label></span>
+                                        </div>
                                     </div>
-                                </div>
+                                     <div class="card-footer">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="form-group col-md-6">
+                                                        <asp:TextBox ID="hello" class="form-control" runat="server" placeholder="Comment here"></asp:TextBox>
+                                                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>&nbsp<asp:Label ID="Label1" runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Comment")%></asp:Label>
+                                                    </div>
+                                                    <div class="text-right">
+                                                    
+                                                        <asp:Button ID="Comment" runat="server" class="btn btn-primary text-light" usesubmitbehavior="true"  CommandName="Comment" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%> Text="Comment" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <asp:Repeater ID="rptComment" runat="server" EnableViewState="false" ItemType="MyCircles.DAL.UserComment">
+                                        <ItemTemplate>
+                                            <div class="m-3">
+                                                <div class="media mb-3">
+                                                    <img src="" class="rounded-circle mr-2" style="width: 50px;">
+                                                    <div class="media-body">
+                                                        <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%> </i></small></h4>
+                                                        <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>
+                                                        <a class="btn btn-warning  p-1 pl-2 pr-2" style="font-size: 12px;" data-toggle="confirmation"
+                                                            data-title="Confirm remove?" >remove</a>
+                                                    </div>
+                                                </div>                                              
+                                            </div>
+
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    </div>
                             </ItemTemplate>
                         </asp:Repeater>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col"></div>
-                </div>
             </div>
+            <div class="row">
+                <div class="col"></div>
+            </div>
+        </div>
             <div class="col-3 pl-0">
                 <div class="card" style="width: 18rem;">
                     <div class="card-header">
@@ -149,6 +282,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </form>
 </asp:Content>

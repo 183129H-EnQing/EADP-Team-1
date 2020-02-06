@@ -16,6 +16,7 @@ namespace MyCircles.BLL
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<ChatRoom> ChatRooms { get; set; }
         public virtual DbSet<Circle> Circles { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<DayByDay> DayByDays { get; set; }
         public virtual DbSet<Event> Events { get; set; }
@@ -58,6 +59,18 @@ namespace MyCircles.BLL
                 .HasMany(e => e.UserCircles)
                 .WithRequired(e => e.Circle)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Comment>()
+                .Property(e => e.comment_text)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Comment>()
+                .Property(e => e.comment_by)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Day>()
+                .Property(e => e.date)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Day>()
                 .Property(e => e.startTime)
@@ -105,23 +118,27 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
+                .Property(e => e.eventDescription)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.startDate)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.startTime)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.endTime)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.endDate)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
-                .Property(e => e.usersOptIn)
+                .Property(e => e.eventActivity)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Itinerary>()
@@ -214,11 +231,11 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Type)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Title)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Content)
@@ -282,19 +299,19 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.EmailAddress)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Name)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Bio)
@@ -327,6 +344,11 @@ namespace MyCircles.BLL
                 .HasMany(e => e.ChatRooms1)
                 .WithRequired(e => e.User1)
                 .HasForeignKey(e => e.User2Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Comments)
+                .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()

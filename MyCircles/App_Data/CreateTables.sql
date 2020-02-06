@@ -65,14 +65,6 @@ CREATE TABLE [dbo].[Notification] (
     CONSTRAINT [FK_Notification_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
 
-CREATE TABLE [dbo].[comments] (
-    [postid]       INT           NULL,
-    [comment_text] VARCHAR (500) NULL,
-    [comment_by]   VARCHAR (50)  NULL,
-    [comment_date] DATETIME      NULL
-);
-
-
 -- Follow Table
 CREATE TABLE [dbo].[Follow] (
     [Id]          INT      IDENTITY (1, 1) NOT NULL,
@@ -260,4 +252,15 @@ CREATE TABLE [dbo].[Message] (
     [Image]          VARCHAR (MAX) NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Message_ToChatRoom] FOREIGN KEY ([ChatRoomId]) REFERENCES [dbo].[ChatRoom] ([Id])
+);
+
+CREATE TABLE [dbo].[Comment] (
+    [Id]           INT           IDENTITY (1, 1) NOT NULL,
+    [PostId]       INT           NULL,
+    [comment_text] VARCHAR (500) NULL,
+    [comment_by]   VARCHAR (50)  NULL,
+    [comment_date] DATETIME      NULL,
+	[UserId]       INT           NOT NULL,
+	CONSTRAINT [FK_Comment_ToPost] FOREIGN KEY ([PostId]) REFERENCES [dbo].[Post] ([Id]),
+    CONSTRAINT [FK_Comment_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );

@@ -3,14 +3,6 @@
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-
-<script>
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
-</script>
 
  <form id="form1" runat="server">
      
@@ -23,11 +15,11 @@ $(function () {
         </tr>
         </thead>
         
-        <asp:Repeater ID="rptNearbyPost" runat="server" ItemType="MyCircles.DAL.UserDAO" OnItemDataBound="rptNearbyPost_ItemDataBound">
+        <asp:Repeater ID="rptNearbyPost" runat="server" ItemType="MyCircles.BLL.User" OnItemDataBound="rptNearbyPost_ItemDataBound">
         <ItemTemplate>
         <tbody>
         <tr>
-        <td><h3><%#DataBinder.Eval(Container.DataItem, "User.Username")%></h3>Follows U</td>
+        <td><h3><%#DataBinder.Eval(Container.DataItem, "Username")%></h3>Follows U</td>
         <td> <asp:Button ID="btn1" runat="server" Text="Follow" class="btn btn-primary" style="border-radius:12px" data-toggle="popover" data-content=" Following"></asp:button> </td>
         </tr>
       <%--  <tr>

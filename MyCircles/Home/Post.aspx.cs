@@ -18,6 +18,9 @@ namespace MyCircles.Home
     {
         public BLL.User currentUser;
 
+        
+       
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,11 +34,6 @@ namespace MyCircles.Home
         }
 
         protected void ImageMap1_Click(object sender, ImageMapEventArgs e)
-        {
-
-        }
-
-        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
 
         }
@@ -116,17 +114,59 @@ namespace MyCircles.Home
 
         protected void Btncircle_Click(object sender, EventArgs e)
         {
-
+          
+            
 
         }
 
+        
+
         protected void rptUserPosts_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            //Label tempLabel = (Label)e.Item.FindControl("lab_PostId");
-            //string thepostid = tempLabel.Text;
-            //GridView tempgv = (GridView)e.Item.FindControl("GridView1");
-            //tempgv.DataSource = "";
-            //tempgv.DataBind();
+            Repeater repeater = (e.Item.FindControl("rptComment") as Repeater);
+
+            var data = e.Item.DataItem;
+            DAL.UserPost userpost = data as DAL.UserPost;
+            repeater.DataSource = CommentDAO.GetCommentByPost(userpost.Post.Id);
+            repeater.DataBind();
+
+
+            //if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            //{
+            //    var post = e.Item.DataItem as DAL.Post;
+            //    repeater.DataSource = CommentDAO.GetCommentByPost(post.Id);
+            //    repeater.DataBind();
+            //}
+
+        }
+
+        protected void rptUserPosts_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if(e.CommandName == "Comment")
+            {
+                TextBox comment = (e.Item.FindControl("hello") as TextBox);
+                var comt = comment.Text;
+                var newComment = new BLL.Comment();
+                newComment.UserId = currentUser.Id;
+                newComment.PostId = Convert.ToInt32(e.CommandArgument);
+                newComment.comment_date = DateTime.Now;
+                newComment.comment_text = comment.Text;
+                CommentDAO.AddComment(newComment);
+
+
+
+
+
+            }
+        }
+
+        protected void report_Click(object sender, EventArgs e)
+        {
+            var newReport = new BLL.ReportedPost();
+            newReport.dateCreated = DateTime.Now;
+
+            
+
         }
     }
 }
