@@ -1,8 +1,21 @@
 ﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Timeline.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Timeline" Title="Timeline" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<%--    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>s
+    <style>
+        /*#hoverdiv {
+            visibility: hidden;
+        }*/
+        /*i:hover + #hoverdiv {
+            display: block;
+        }
+
+        #hoverdiv:focus {
+            display: block;
+        }*/
+    </style>
     <script>
         $(document).ready(function () {
             // Add smooth scrolling to all links
@@ -34,9 +47,9 @@
             <div class="col-md-1"></div>
             <div class="col-md-1 sticky-top">
                 <asp:Repeater ID="rpDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
-                    <ItemTemplate>
+                    <itemtemplate>
                         <h5><a href="#header<%#DataBinder.Eval(Container.DataItem, "dayByDayId") %>" style="text-decoration:none;"><%#DataBinder.Eval(Container.DataItem, "date") %></a></h5>
-                    </ItemTemplate>
+                    </itemtemplate>
                 </asp:Repeater>
             </div>
             <div class="col-md-8">
@@ -51,8 +64,90 @@
             </div>
             <div class="col-md-1"></div>
         </div>
+
+        <%--<div class="row">
+            <asp:Repeater ID="rpModal" runat="server" ItemType="MyCircles.BLL.DayByDay">
+                <itemtemplate>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="row border border-secondary p-3"> <!--asp repeater above -->
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="row mt-3">
+                                    <div class="col-md-3">img</div>
+                                    <div class="col-md-9">
+                                        <div class="row"><h5><%#DataBinder.Eval(Container.DataItem, "locaName") %></h5></div>
+                                        <div class="row"><%#DataBinder.Eval(Container.DataItem, "locaRating") %></div>
+                                        <div class="row" style="height: 75px; overflow: auto;"><%#DataBinder.Eval(Container.DataItem, "locaDesc") %></div>
+                                    </div>
+                                </div>
+                                <div class="row"><hr /></div>
+                                <div class="row">
+                                    <div class="col-md-6"><h6>Date:</h6></div>
+                                    <div class="col-md-3"><h6>Start Time:</h6></div>
+                                    <div class="col-md-3"><h6>End Time:</h6></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <asp:TextBox ID="tbdate" runat="server" Style="width: 75%" Text="<%#DataBinder.Eval(Container.DataItem, "date") %>"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:DropDownList ID="ddlstartTime" runat="server" Style="width: 100%" Text="<%#DataBinder.Eval(Container.DataItem, "startTime") %>"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:DropDownList ID="ddlendTime" runat="server" Style="width: 100%" Text="<%#DataBinder.Eval(Container.DataItem, "endTime") %>"></asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-12">
+                                         <asp:TextBox ID="tbnote" TextMode="MultiLine" runat="server" Style="width: 100%" placeholder="Add Notes"></asp:TextBox>
+                                    </div>
+                                </div>
+                                 <div class="row mb-3">
+                                     <div class="col-md-3"></div>
+                                     <div class="col-md-6 d-flex justify-content-center">
+                                         <asp:Button ID="Button1" runat="server" Text="Save"/>
+                                     </div>
+                                     <div class="col-md-3  d-flex justify-content-center">
+                                         <a href="#" class="text-decoration: none;">Delete Event</a>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </itemtemplate>
+            </asp:Repeater>
+        </div>--%>
+
+
+        <div id="eventModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <asp:Repeater ID="rpModal" runat="server" ItemType="MyCircles.BLL.DayByDay">
+                        <itemtemplate>
+                             <asp:TextBox ID="tbnote" TextMode="MultiLine" runat="server" Style="width: 100%" placeholder="Add Notes"></asp:TextBox>
+                        </itemtemplate>
+                    </asp:Repeater>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeViewPostModal()">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <asp:Repeater ID="rpParentDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
-            <ItemTemplate>
+            <itemtemplate>
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-1">
@@ -88,7 +183,7 @@
                                         <div class="col-md-5 col-sm-12 nopadding">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                    <h4 style="height: 28px; overflow: hidden; text-overflow: ellipsis;"><%#DataBinder.Eval(Container.DataItem, "locaName") %></h4>
+                                                    <h4 style="height: 28px;overflow: hidden;text-overflow: ellipsis;"><%#DataBinder.Eval(Container.DataItem, "locaName") %></h4>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <h6><%#DataBinder.Eval(Container.DataItem, "locaRating") %> stars</h6>
@@ -99,7 +194,27 @@
                                             </div>
                                         </div>
                                         <div class="col-md-1 col-sm-12 d-flex flex-row-reverse">
-                                            <h6><%#DataBinder.Eval(Container.DataItem, "landmarkType") %></h6>
+                                            <%--<i class='fa fa-ellipsis-v'></i>--%>
+                                            <div class="dropdown show">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class='fa fa-ellipsis-v'></i>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="#" onclick="openViewPostModal()">Edit Time</a>
+                                                    <a class="dropdown-item" href="#">Deletet Event</a>
+                                                    <a class="dropdown-item" href="#">Add Notes</a>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                function openViewPostModal() {
+                                                    $("#eventModal").modal('show');
+                                                }
+
+                                                function closeViewPostModal() {
+                                                    $('#eventModal').modal('hide')
+                                                }
+                                            </script>
+                                            <%--<h6><%#DataBinder.Eval(Container.DataItem, "landmarkType") %></h6>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +224,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-1"></div>
                 </div>
-            </ItemTemplate>
+            </itemtemplate>
         </asp:Repeater>
     </form>
     <%--<script>

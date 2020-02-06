@@ -10,15 +10,24 @@ namespace MyCircles.Admin
 {
     public partial class ManageUsers : System.Web.UI.Page
     {
-        private List<User> userList;
+        private string keySessionList = "ManageUsersList";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<User> users = BLL.User.GetAllUsers();
-
-            this.userList = users;
-            gvUsers.DataSource = users;
-            gvUsers.DataBind();
+            if (IsPostBack)
+            {
+                System.Diagnostics.Debug.WriteLine("page load postback!");
+                List<User> usersList = (List<User>)Session[keySessionList];
+                if (Session[keySessionList] == null) usersList = BLL.User.GetAllUsers();
+                refreshGridView(usersList);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("page load no postback!");
+                Session[keySessionList] = null;
+                gvUsers.DataSource = BLL.User.GetAllUsers();
+                gvUsers.DataBind();
+            }
         }
 
         protected void btnSearchSubmit_Click(object sender, EventArgs e)
@@ -48,9 +57,8 @@ namespace MyCircles.Admin
                     }
                 }
 
-                this.userList = resultUserList;
-                gvUsers.DataSource = resultUserList;
-                gvUsers.DataBind();
+                System.Diagnostics.Debug.WriteLine("searching," + resultUserList.Count);
+                refreshGridView(resultUserList);
             }
             else
             {
@@ -60,20 +68,29 @@ namespace MyCircles.Admin
 
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int idx = int.Parse(e.CommandArgument.ToString());
-            User user = userList[idx];
-            switch (e.CommandName)
+            if (e.CommandName == "ChgUserStatus" || e.CommandName == "UserProfile")
             {
-                case "ChgUserStatus":
-                    user.UpdateIsDisabled(!user.IsDeleted);
-                    this.userList = BLL.User.GetAllUsers();
-                    gvUsers.DataSource = userList;
-                    gvUsers.DataBind();
-                    break;
-                case "UserProfile":
-                    string profileLink = "/Profile/User.aspx?username=" + userList[idx].Username;
-                    Response.Redirect(profileLink);
-                    break;
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand pageIndex:" + gvUsers.PageIndex);
+                List<User> usersList = (List<User>)Session[keySessionList];
+                if (usersList == null) usersList = BLL.User.GetAllUsers();
+
+                int idx = int.Parse(e.CommandArgument.ToString()) + (10 * gvUsers.PageIndex);
+
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand cmdName:" + e.CommandName);
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand cmdArg:" + int.Parse(e.CommandArgument.ToString()));
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand index:" + idx);
+                User user = usersList[idx];
+                switch (e.CommandName)
+                {
+                    case "ChgUserStatus":
+                        user.UpdateIsDisabled(!user.IsDeleted);
+                        refreshGridView(BLL.User.GetAllUsers());
+                        break;
+                    case "UserProfile":
+                        string profileLink = "/Profile/User.aspx?username=" + usersList[idx].Username;
+                        Response.Redirect(profileLink);
+                        break;
+                }
             }
         }
 
@@ -81,30 +98,49 @@ namespace MyCircles.Admin
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound, cell[0].Text:" + e.Row.Cells[0].Text);
-                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound, RowIndex:" + e.Row.RowIndex);
-                User user = this.userList[e.Row.RowIndex];
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound pageIndex:" + gvUsers.PageIndex);
+                List<User> usersList = (List<User>)Session[keySessionList];
+                if (usersList == null) usersList = BLL.User.GetAllUsers();
+                int idx = e.Row.RowIndex + (10 * gvUsers.PageIndex);
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand index:" + idx);
+                User user = usersList[idx];
 
                 string displayChgUserStatus = "User";
                 if (user.IsDeleted) // if disabled
                     displayChgUserStatus = "Re-enable " + displayChgUserStatus;
                 else // if enabled
                     displayChgUserStatus = "Disable " + displayChgUserStatus;
-                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound, user.isDeleted:" + user.IsDeleted);
 
                 //Control 
-                //(e.Row.Cells[3].Controls[0] as Button).Text = displayChgUserStatus;
                 try
                 {
-                    Button someCtrl = e.Row.FindControl("ChgUserStatus") as Button;
+                    Button someCtrl = e.Row.FindControl("btnChgUserStatus") as Button;
                     someCtrl.Text = displayChgUserStatus;
                     System.Diagnostics.Debug.WriteLine("are you running?");
                     System.Diagnostics.Debug.WriteLine(someCtrl == null);
-                } catch (Exception exp)
+                } catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("failed to find control");
+                    System.Diagnostics.Debug.WriteLine("failed to find control" + ex.Message);
                 }
             }
+        }
+
+        protected void gvUsers_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvUsers.PageIndex = e.NewPageIndex;
+            System.Diagnostics.Debug.WriteLine("pagerindex");
+
+            List<User> usersList = (List<User>)Session[keySessionList];
+            if (usersList == null) usersList = BLL.User.GetAllUsers();
+            refreshGridView(usersList);
+        }
+
+        private void refreshGridView(List<User> dataToBind)
+        {
+            System.Diagnostics.Debug.WriteLine("refreshing gv," + dataToBind.Count);
+            Session[keySessionList] = dataToBind;
+            gvUsers.DataSource = dataToBind;
+            gvUsers.DataBind();
         }
     }
 }

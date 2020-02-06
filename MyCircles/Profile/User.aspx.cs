@@ -108,6 +108,7 @@ namespace MyCircles.Profile
             if (requestedUser.Id == currentUser.Id)
             {
                 btFollow.Visible = false;
+                btMessage.Visible = false;
             }
             else
             {
@@ -116,6 +117,7 @@ namespace MyCircles.Profile
 
                 lbDistance.InnerText = (sCoord.GetDistanceTo(eCoord) / 1000).ToString("0.0") + " km away";
                 btEditProfile.Visible = false;
+                btMessage.Visible = true;
                 followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
                 postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
 
@@ -271,7 +273,8 @@ namespace MyCircles.Profile
 
         protected void btMessage_Click(object sender, EventArgs e)
         {
-            Response.Redirect("User.aspx?username=" + currentUser.Username);
+            var chatroom = ChatRoomDAO.GetChatRoom(currentUser.Id, requestedUser.Id);
+            Response.Redirect("/Profile/Chat.aspx?chatroom=" + chatroom.Id);
         }
 
         protected void cbMakeEventHost_CheckedChanged(object sender, EventArgs e)
@@ -392,12 +395,5 @@ namespace MyCircles.Profile
         {
             e.MapCommand = "window.location.replace('/Profile/User.aspx?username=" + e.Overlay.Options.Name + "')";
         }
-
-        //[WebMethod]
-        //public static object GetData()
-        //{
-
-        //    return new { result = ... };
-        //}
     }
 }

@@ -73,6 +73,10 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Day>()
+                .Property(e => e.date)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Day>()
                 .Property(e => e.startTime)
                 .IsUnicode(false);
 
@@ -361,6 +365,18 @@ namespace MyCircles.BLL
                 .HasMany(e => e.Follows1)
                 .WithRequired(e => e.User1)
                 .HasForeignKey(e => e.FollowingId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Messages)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.RecieverId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Messages1)
+                .WithRequired(e => e.User1)
+                .HasForeignKey(e => e.SenderId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()

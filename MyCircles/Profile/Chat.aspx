@@ -13,8 +13,8 @@
                     <hr>
                 </div>
                 <div class="padding: 20px;"><h6 class="text-center" style="font-weight: 800;"><</h6></div>
-                <asp:UpdatePanel ID="UpdateCircleUpdatePanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
-                    <ContentTemplate>
+<%--                <asp:UpdatePanel ID="UpdateCircleUpdatePanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <ContentTemplate>--%>
                         <div class="col-md-12 chat-history" style="margin-bottom: 20px">
                             <div class="blog-entry">
                                 <asp:Repeater ID="rptMessages" runat="server" ItemType="MyCircles.BLL.Message">
@@ -40,13 +40,39 @@
                                 <asp:Button ID="btSendMessage" runat="server" CssClass="btn btn-primary btn-tall w-100" Text="Send" OnClick="btSendMessage_Click" AutoPostback="true" />
                             </div>
                         </div>
-                    </ContentTemplate>
+<%--                    </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="UpdateMessagesTimer" EventName="Tick" />
                     </Triggers>
                 </asp:UpdatePanel>
-                <asp:Timer ID="UpdateMessagesTimer" runat="server" Interval="1000" OnTick="UpdateMessagesTimer_Tick"></asp:Timer> 
+                <asp:Timer ID="UpdateMessagesTimer" runat="server" Interval="1000" OnTick="UpdateMessagesTimer_Tick"></asp:Timer> --%>
             </div>
         </div>
     </form>
+</asp:Content>
+
+<asp:Content ID="ChatDeferredScripts" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
+    <script>
+        function checkForNewMessages() {
+            $.ajax({
+                url: '/Profile/Chat.aspx/GetNewMessages',
+                data: '',
+                dataType: 'json',
+                contentType: 'application/json',
+                type: "POST",
+                success: function (data) {
+                    console.log(data);
+                },
+                complete: function (data) {
+                    setTimeout(checkForNewMessages, 1000);
+                },
+                error: function (data, err) {
+                    //alert("Your messages could not be retrieved");
+                    console.log(err);
+                }
+            });
+        }
+
+        setTimeout(checkForNewMessages, 1000);
+    </script>
 </asp:Content>

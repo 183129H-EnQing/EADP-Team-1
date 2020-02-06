@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles.ItineraryPlanner {
-    
-    
-    public partial class Timeline {
-        
+namespace MyCircles.ItineraryPlanner
+{
+
+
+    public partial class Timeline
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// rpDates control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpDates;
-        
+
         /// <summary>
         /// lbPlannerName control.
         /// </summary>
@@ -38,7 +40,16 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPlannerName;
-        
+
+        /// <summary>
+        /// rpModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpModal;
+
         /// <summary>
         /// rpParentDates control.
         /// </summary>

@@ -15,8 +15,6 @@
     color: inherit;
     text-decoration: none;
 }
-.admin-panel-navitem > a {
-}
 .admin-panel-navitem-divider {
     border-top: 1px solid #222;
 }
@@ -33,11 +31,19 @@
     font-size: 40px;
 }
 
-.admin-table {
-    border-collapse:collapse;
+.admin-table, .admin-table > tbody > tr > th, .admin-table > tbody > tr > td {
     border: 1px solid black;
+    border-collapse: collapse;
 }
 
-.admin-table td, .admin-table th {
-    padding: 10px;
+.admin-table-pager td {
+    border-width: 0px 1px;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+.admin-table-pager > td {
+    padding: 0px;
+    border-collapse: collapse;
 }
