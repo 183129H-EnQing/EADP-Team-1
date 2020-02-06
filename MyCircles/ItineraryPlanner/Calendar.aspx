@@ -45,7 +45,6 @@
                         var timetable = new Timetable();
 
                         timetable.setScope(8, 20);
-
                         //timetable.addLocations(['17 Jan', '18 Jan', '19 Jan', '20 Jan']);
                         //var myday = @hello;
                         //alert("FIRE" + myday);
@@ -56,33 +55,52 @@
                         var places = hi.split("|")  //split into individial places with details
                         //[ "Singapore Zoo ", "05 Feb", "1000", "1600" ]
                         console.log(places);
-                        
 
+
+                        var fulldate;
                         for (var i = 0; i < places.length; i++) {
-                            console.log("3");
-
                             if (places.length > 1) {
-                                console.log("4");
+                                console.log("places>1");
                                 console.log(places[i])
                                 var dates = places[i].split(",");
+                                console.log("datesssss");
+                                console.log(dates);
 
-                                timetable.addLocations([dates[1]]);
-                                //timetable.addLocations(["05 Feb"]);
 
-                                var date = dates[1].substring(0, 2);
+                                if (fulldate == dates[1]) {
+                                    console.log("if");
+                                    console.log(dates[1]);
 
-                                var startT1 = dates[2].substring(0, 2);
-                                var startT2 = dates[2].substring(2);
+                                    fulldate = dates[1];
+                                    console.log("ifff -- fulldate");
+                                    console.log(fulldate);
+                                }
+                                else {
+                                    
 
-                                var endT1 = dates[3].substring(0, 2);
-                                var endT2 = dates[3].substring(2);
+                                    fulldate = dates[1];
+                                    console.log("else");
+                                    console.log(dates[1]);
 
-                                timetable.addEvent(dates[0], dates[1], new Date(2020, 2, date, startT1, startT2), new Date(2020, 2, date, endT1, endT2), { url: '#' });
-                                //timetable.addEvent('Buddha Tooth Relic Temple', '05 Feb', new Date(2020, 2, 5, 14, 00), new Date(2020, 2, 5, 15, 00), { url: '#' });
+                                    timetable.addLocations([dates[1]]);
+                                }
 
-                                var renderer = new Timetable.Renderer(timetable);
-                                renderer.draw('.timetable');
+                                var date = fulldate.substring(0, 2);
+
+                                var startT1Hour = dates[2].substring(0, 2);
+                                var startT2Min = dates[2].substring(2);
+
+                                var endT1Hour = dates[3].substring(0, 2);
+                                var endT2Min = dates[3].substring(2);
+
+                                console.log(dates[0], fulldate, new Date(2020, 2, date, startT1Hour, startT2Min), new Date(2020, 2, date, endT1Hour, endT2Min))
+
+                                timetable.addEvent(dates[0], fulldate, new Date(2020, 2, date, startT1Hour, startT2Min), new Date(2020, 2, date, endT1Hour, endT2Min), { url: '#' });
+                                console.log("//////////////////");
                             }
+
+                            var renderer = new Timetable.Renderer(timetable);
+                            renderer.draw('.timetable');
                         }
                         
                         //timetable.addEvent('Buddha Tooth Relic Temple', '05 Feb', new Date(2020, 2, 5, 14, 00), new Date(2020, 2, 5, 15, 00), { url: '#' });
