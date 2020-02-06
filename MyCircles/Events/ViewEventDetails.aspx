@@ -79,27 +79,27 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-12 col-lg-4">
 							            <p class="font-italic">Timings</p>
-							            <p class="text-info"> 09.00AM - 06.00PM </p>
+							            <p class="text-info"><%=singleEventDetails.eventStartTime %> - <%=singleEventDetails.eventEndTime %></p>
 						            </div>
 
                                     <div class="col-sm-6 col-md-12 col-lg-4">
 							            <p class="font-italic">Entry Fees</p>
-							            <p class="text-info">Free</p>
+							            <p class="text-info"><%=singleEventDetails.eventEntryFeesStatus %></p>
 						            </div>
 
 						            <div class="col-sm-6 col-md-12 col-lg-4">
 							            <p class="font-italic">Category Type</p>
-							            <p class="text-info">Seminars</p>
+							            <p class="text-info"><%=singleEventDetails.eventCategory %></p>
 						            </div>
 
 						            <div class="col-sm-6 col-md-12 col-lg-4">
 							            <p class="font-italic">Date </p>
-							            <p class="text-info">15 Jan - 17 Jan 2020</p>
+							            <p class="text-info"><%=singleEventDetails.eventStartDate %> - <%=singleEventDetails.eventEndDate %></p>
 						            </div>
 
                                     <div class="col-sm-6 col-md-12 col-lg-4">
                                         <p class="font-italic">Avaliable Slots </p>
-							            <p class="text-info">40</p>
+							            <p class="text-info"><%=singleEventDetails.eventMaxSlot %></p>
                                     </div>
 
                                     <div class="col-sm-6 col-md-12 col-lg-4">

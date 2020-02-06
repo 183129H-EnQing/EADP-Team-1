@@ -37,5 +37,7 @@ namespace MyCircles.Events
             rpEventSchedule.DataSource = scheduleList;
             rpEventSchedule.DataBind();
         }
+
+               
     }
 }
