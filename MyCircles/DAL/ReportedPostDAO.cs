@@ -17,6 +17,15 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void AddReport(ReportedPost newReport)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.ReportedPosts.Add(newReport);
+                db.SaveChanges();
+            }
+        }
+
         public static List<ReportedPost> GetAllReportedPosts()
         {
             List<ReportedPost> reportedPosts = new List<ReportedPost>();

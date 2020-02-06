@@ -2,6 +2,7 @@
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
   
+   
 <style>
 #mod {
     position: relative;
@@ -100,6 +101,9 @@
 	background: white;
 }
     </style>
+
+
+
 <form id="form1" runat="server">
     <div class="container-fluid">
         <div class="row">
@@ -175,9 +179,14 @@
                                                     </div>
                                                     <!-- Modal body -->
                                                     <div class="modal-body">  
-                                                        <asp:RadioButtonList ID="RadioButtonList1" runat="server"> 
-                                                             <asp:ListItem class="form check" Selected="True">GBP</asp:ListItem>
-                                                        <%--<label class="form-check">
+                                                        <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+
+                                                             <asp:ListItem Selected="True">Innappropriate</asp:ListItem>
+                                                             <asp:ListItem>Spam and Misleading</asp:ListItem>
+                                                             <asp:ListItem>Pirated</asp:ListItem>
+                                                        </asp:RadioButtonList> 
+                                                       <%--   
+                                                        <label class="form-check">
                                                             Innappropriate Post
 										                    <input class="form-check" type="radio" name="report" id="Innappropriate"
                                                                 value="Innappropriate" checked="checked">
@@ -193,13 +202,14 @@
                                                                 value="Copy Link">
                                                             <span class="checkmark"></span>
                                                         </label>--%>
-                                                        </asp:RadioButtonList>
+                                                       
+                                                      
                                                       
                                                     </div>
                                                     <!-- Modal footer -->
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                      
-                                                        <asp:Button ID="report" runat="server" OnClick="report_Click"  class="btn btn-primary" Text="Submit" />
+                                                        <asp:Button ID="report" runat="server"  class="btn btn-primary" Text="Submit" CommandName="Report"  CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>/>
                                                     </div>
                                                    
                                                 </div>
@@ -283,4 +293,7 @@
             </div>
         </div>
     </form>
+
+      
 </asp:Content>
+

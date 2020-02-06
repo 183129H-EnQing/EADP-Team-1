@@ -17,10 +17,7 @@ namespace MyCircles.Home
     public partial class Post : System.Web.UI.Page
     {
         public BLL.User currentUser;
-
-        
-       
-
+        public List<UserPost> UserPosts;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +26,8 @@ namespace MyCircles.Home
 
             this.Title = "Home";
             CircleDAO.AddCircle("gym");
-            rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+            UserPosts = PostDAO.GetPostsByCircle("gym");
+            rptUserPosts.DataSource = UserPosts;
             rptUserPosts.DataBind();
         }
 
@@ -117,7 +115,7 @@ namespace MyCircles.Home
         protected void rptUserPosts_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             Repeater repeater = (e.Item.FindControl("rptComment") as Repeater);
-
+            
             var data = e.Item.DataItem;
             DAL.UserPost userpost = data as DAL.UserPost;
             repeater.DataSource = CommentDAO.GetCommentByPost(userpost.Post.Id);
@@ -145,21 +143,23 @@ namespace MyCircles.Home
                 newComment.comment_date = DateTime.Now;
                 newComment.comment_text = comment.Text;
                 CommentDAO.AddComment(newComment);
-
-
-
-
-
             }
+            if(e.CommandName == "Report")
+            {
+                RadioButtonList report = (e.Item.FindControl("RadioButtonList1") as RadioButtonList);
+                var userpostindex = e.Item.ItemIndex;
+                var rpt = report.SelectedValue;
+                UserPost selecteduserpost = UserPosts[userpostindex];
+                var newReport = new BLL.ReportedPost();
+                newReport.postId = selecteduserpost.Post.Id;
+                newReport.reason = rpt;
+                newReport.reporterUserId = selecteduserpost.User.Id;
+                ReportedPostDAO.AddReport(newReport);
+            }
+
+
         }
 
-        protected void report_Click(object sender, EventArgs e)
-        {
-            var newReport = new BLL.ReportedPost();
-            newReport.dateCreated = DateTime.Now;
-
-            
-
-        }
+       
     }
 }
