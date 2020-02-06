@@ -18,6 +18,8 @@ namespace MyCircles.BLL
             Comments = new HashSet<Comment>();
             Follows = new HashSet<Follow>();
             Follows1 = new HashSet<Follow>();
+            Messages = new HashSet<Message>();
+            Messages1 = new HashSet<Message>();
             Mutuals = new HashSet<Mutual>();
             Mutuals1 = new HashSet<Mutual>();
             Notifications = new HashSet<Notification>();
@@ -83,6 +85,12 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Follow> Follows1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Messages { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Messages1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mutual> Mutuals { get; set; }

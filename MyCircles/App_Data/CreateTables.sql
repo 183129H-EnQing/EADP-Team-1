@@ -221,6 +221,7 @@ CREATE TABLE [dbo].[EventSchedule] (
 
     [eventId]          INT            NULL,
 
+	[usersOptIn]       VARCHAR (MAX)  NULL,
     PRIMARY KEY CLUSTERED ([eventScheduleID] ASC),
 
     CONSTRAINT [eventId_EventSchedule_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId])
