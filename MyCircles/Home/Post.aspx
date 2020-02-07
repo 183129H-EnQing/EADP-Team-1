@@ -176,16 +176,7 @@
                                                     </h5>                                                
                                                 </div>                                             
                                                 <div> 
-                                                     <a id="mod" href="#"  onclick="openViewPostModal()"></a>
-                                                    <script>
-                                                        function openViewPostModal() {
-                                                            $("#modal<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>").modal('show');                                                  
-                                                        }
-
-                                                        function closeViewPostModal() {
-                                                            $("#modal<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>").modal('hide')
-                                                        }
-                                                    </script>
+                                                     <a id="mod" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)"></a>
                                                 </div>
                                             </div>
                                             <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" 
@@ -294,6 +285,13 @@
         </div>
     </div>
 </form>
+<script>
+    function openViewPostModal(id) {
+        $("#modal" + id).modal('show');                                                  
+    }
+
+   
+</script>
 
       
 </asp:Content>
