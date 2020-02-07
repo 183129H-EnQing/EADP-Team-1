@@ -1,7 +1,7 @@
 ﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Timeline.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Timeline" Title="Timeline" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
-<%--    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <%--    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
     <style>
         /*#hoverdiv {
@@ -76,23 +76,59 @@
             <div class="col-md-1"></div>
             <div class="col-md-1 sticky-top">
                 <asp:Repeater ID="rpDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
-                    <itemtemplate>
-                        <h5><a href="#header<%#DataBinder.Eval(Container.DataItem, "dayByDayId") %>" style="text-decoration:none;"><%#DataBinder.Eval(Container.DataItem, "date") %></a></h5>
-                    </itemtemplate>
+                    <ItemTemplate>
+                        <h5><a href="#header<%#DataBinder.Eval(Container.DataItem, "dayByDayId") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "date") %></a></h5>
+                    </ItemTemplate>
                 </asp:Repeater>
             </div>
             <div class="col-md-8">
                 <div class="row d-flex justify-content-center">
                     <%-- need insert title of Plan if possible--%>
                     <h2>
-                        <asp:Label ID="lbPlannerName" runat="server" Text="January Outing"></asp:Label></h2>
+                        <asp:Label ID="lbPlannerName" runat="server" Text="Feburary Outing"></asp:Label></h2>
                 </div>
             </div>
             <div class="col-md-1">
-                <a href="RequestFund.aspx" class="text-decoration-none">Request Fund<i class="fas fa-headset"></i></a>
+                <div class="dropdown show">
+                    <a class="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='fa fa-ellipsis-v'></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="RequestFund.aspx">Request Fund</a>
+                        <a class="dropdown-item" href="#" onclick="openViewPostModal">Delete Planner</a>
+                    </div>
+                </div>
             </div>
             <div class="col-md-1"></div>
         </div>
+
+
+        <script>
+            function openViewPostModal() {
+                $('#deleteModal<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>').modal('show');
+            }
+        </script>
+        <div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Delete?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this plan?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" onclick="btnDelete_Click"/>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <%--<div class="row">
             <asp:Repeater ID="rpModal" runat="server" ItemType="MyCircles.BLL.DayByDay">
@@ -150,121 +186,8 @@
             </asp:Repeater>
         </div>--%>
 
-
-
-
-
-
-
-
-
-        <div id="eventModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-                <%--<asp:Repeater ID="rpModal" runat="server" ItemType="MyCircles.DAL.Joint_Models.DayLocation" OnDataBinding="rpModal_DataBinding">       
-                    <Itemtemplate>--%>
-                        <div class="modal-content pl-3 pr-3"> 
-                            <div class="modal-header">
-                                <h5 class="modal-title">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                 <div class="row mb-2">
-                                    <%--<div class="col-md-4"><%#DataBinder.Eval(Container.DataItem, "locaName") %></div>--%>
-                                    <div class="col-md-8" style="height: 100px; overflow: auto;">Enjoy panoramic views of the city from high up above at Singapore Flyer. The Ferris wheel reaches 165 m (541 ft) at its pinnacle and takes half an hour to complete a spin. You can celebrate special occasions on board with a range of packages, including a signature cocktail flight or a couple's dinner with full butler service. Buy your tickets online to avoid waiting in line on the day of your visit.</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-6">Date</div>
-                                    <div class="col-md-3">Start Time</div>
-                                    <div class="col-md-3">End Time</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-6">
-                                        <asp:TextBox ID="tbeventDate" runat="server"></asp:TextBox> 
-                                        <%--onkeyup="runDate"--%>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <asp:DropDownList ID="ddlstartTime" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1">
-                                            <asp:ListItem Text="0800" />
-                                            <asp:ListItem Text="0830" />
-                                            <asp:ListItem Text="0900" />
-                                            <asp:ListItem Text="0930" />
-                                            <asp:ListItem Text="1000" />
-                                            <asp:ListItem Text="1030" />
-                                            <asp:ListItem Text="1100" />
-                                            <asp:ListItem Text="1130" />
-                                            <asp:ListItem Text="1200" />
-                                            <asp:ListItem Text="1230" />
-                                            <asp:ListItem Text="1300" />
-                                            <asp:ListItem Text="1300" />
-                                            <asp:ListItem Text="1400" />
-                                            <asp:ListItem Text="1430" />
-                                            <asp:ListItem Text="1500" />
-                                            <asp:ListItem Text="1530" />
-                                            <asp:ListItem Text="1600" />
-                                            <asp:ListItem Text="1630" />
-                                            <asp:ListItem Text="1700" />
-                                            <asp:ListItem Text="1730" />
-                                            <asp:ListItem Text="1800" />
-                                            <asp:ListItem Text="1830" />
-                                            <asp:ListItem Text="1900" />
-                                            <asp:ListItem Text="1930" />
-                                            <asp:ListItem Text="2000" />
-                                            <asp:ListItem Text="2030" />
-                                            <asp:ListItem Text="2100" />
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <asp:DropDownList ID="ddlendTime" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1">
-                                            <asp:ListItem Text="0800" />
-                                            <asp:ListItem Text="0830" />
-                                            <asp:ListItem Text="0900" />
-                                            <asp:ListItem Text="0930" />
-                                            <asp:ListItem Text="1000" />
-                                            <asp:ListItem Text="1030" />
-                                            <asp:ListItem Text="1100" />
-                                            <asp:ListItem Text="1130" />
-                                            <asp:ListItem Text="1200" />
-                                            <asp:ListItem Text="1230" />
-                                            <asp:ListItem Text="1300" />
-                                            <asp:ListItem Text="1300" />
-                                            <asp:ListItem Text="1400" />
-                                            <asp:ListItem Text="1430" />
-                                            <asp:ListItem Text="1500" />
-                                            <asp:ListItem Text="1530" />
-                                            <asp:ListItem Text="1600" />
-                                            <asp:ListItem Text="1630" />
-                                            <asp:ListItem Text="1700" />
-                                            <asp:ListItem Text="1730" />
-                                            <asp:ListItem Text="1800" />
-                                            <asp:ListItem Text="1830" />
-                                            <asp:ListItem Text="1900" />
-                                            <asp:ListItem Text="1930" />
-                                            <asp:ListItem Text="2000" />
-                                            <asp:ListItem Text="2030" />
-                                            <asp:ListItem Text="2100" />
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                         <asp:TextBox ID="tbnote" TextMode="MultiLine" runat="server" Style="width: 100%" placeholder="Add Notes"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeViewPostModal()">Close</button>
-                            </div>
-                        </div>
-                    <%--</Itemtemplate>
-                </asp:Repeater>--%>
-            </div>
-        </div>
-
         <asp:Repeater ID="rpParentDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
-            <itemtemplate>
+            <ItemTemplate>
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-1">
@@ -300,7 +223,7 @@
                                         <div class="col-md-5 col-sm-12 nopadding">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                    <h4 style="height: 28px;overflow: hidden;text-overflow: ellipsis;"><a href="LocationDetail.aspx?locId=<%#DataBinder.Eval(Container.DataItem, "locationId") %>"><%#DataBinder.Eval(Container.DataItem, "locaName") %></a></h4>
+                                                    <h4 style="height: 28px; overflow: hidden; text-overflow: ellipsis;"><a href="LocationDetail.aspx?locId=<%#DataBinder.Eval(Container.DataItem, "locationId") %>"><%#DataBinder.Eval(Container.DataItem, "locaName") %></a></h4>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <h6><%#DataBinder.Eval(Container.DataItem, "locaRating") %> stars</h6>
@@ -324,14 +247,124 @@
                                             </div>
                                             <script>
                                                 function openViewPostModal() {
-                                                    $("#eventModal").modal('show');
+                                                    $('#eventModal<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>').modal('show');
+                                                    $('tbeventDate<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>').val('<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "date") %>');
+                                                    $('ddlstartTime<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>').val('<%#DataBinder.Eval(Container.DataItem, "startTime") %>');
+                                                    $('ddlendTime<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>').val('<%#DataBinder.Eval(Container.DataItem, "startTime") %>');
+
                                                 }
 
                                                 function closeViewPostModal() {
-                                                    $('#eventModal').modal('hide')
+                                                    $('#eventModal<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>').modal('hide');
                                                 }
                                             </script>
                                             <%--<h6><%#DataBinder.Eval(Container.DataItem, "landmarkType") %></h6>--%>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id='eventModal<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>' class="modal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content pl-3 pr-3">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"><%#DataBinder.Eval(Container.DataItem, "locaName") %></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row mb-2">
+                                                    <div class="col-md-4">
+                                                        <asp:Image runat='server' Height='140px' Width='230px' ImageUrl='<%#DataBinder.Eval(Container.DataItem, "locaPic") %>' />
+                                                    </div>
+                                                    <div class="col-md-8" style="height: 125px; overflow: auto;"><%#DataBinder.Eval(Container.DataItem, "locaDesc") %></div>
+                                                </div>
+                                                <div class="row mb-2">
+                                                    <div class="col-md-6">Date</div>
+                                                    <div class="col-md-3">Start Time</div>
+                                                    <div class="col-md-3">End Time</div>
+                                                </div>
+                                                <div class="row mb-2">
+                                                    <div class="col-md-6">
+                                                        <%--<asp:TextBox ID="tbeventDate<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>" runat="server"></asp:TextBox>--%>
+                                                        <%--<input id='tbeventDate<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>' runat="server" />--%>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <%-- <asp:DropDownList ID="ddlstartTime<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1"> --%>
+                                                        <asp:DropDownList ID="ddlstartTime" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1">
+                                                            <asp:ListItem Value="0800" />
+                                                            <asp:ListItem Value="0830" />
+                                                            <asp:ListItem Value="0900" />
+                                                            <asp:ListItem Value="0930" />
+                                                            <asp:ListItem Value="1000" />
+                                                            <asp:ListItem Value="1030" />
+                                                            <asp:ListItem Value="1100" />
+                                                            <asp:ListItem Value="1130" />
+                                                            <asp:ListItem Value="1200" />
+                                                            <asp:ListItem Value="1230" />
+                                                            <asp:ListItem Value="1300" />
+                                                            <asp:ListItem Value="1300" />
+                                                            <asp:ListItem Value="1400" />
+                                                            <asp:ListItem Value="1430" />
+                                                            <asp:ListItem Value="1500" />
+                                                            <asp:ListItem Value="1530" />
+                                                            <asp:ListItem Value="1600" />
+                                                            <asp:ListItem Value="1630" />
+                                                            <asp:ListItem Value="1700" />
+                                                            <asp:ListItem Value="1730" />
+                                                            <asp:ListItem Value="1800" />
+                                                            <asp:ListItem Value="1830" />
+                                                            <asp:ListItem Value="1900" />
+                                                            <asp:ListItem Value="1930" />
+                                                            <asp:ListItem Value="2000" />
+                                                            <asp:ListItem Value="2030" />
+                                                            <asp:ListItem Value="2100" />
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <%-- <asp:DropDownList ID="ddlendTime<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1">--%>
+                                                        <asp:DropDownList ID="ddlendTime" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1">
+                                                            <asp:ListItem Value="0800" />
+                                                            <asp:ListItem Value="0830" />
+                                                            <asp:ListItem Value="0900" />
+                                                            <asp:ListItem Value="0930" />
+                                                            <asp:ListItem Value="1000" />
+                                                            <asp:ListItem Value="1030" />
+                                                            <asp:ListItem Value="1100" />
+                                                            <asp:ListItem Value="1130" />
+                                                            <asp:ListItem Value="1200" />
+                                                            <asp:ListItem Value="1230" />
+                                                            <asp:ListItem Value="1300" />
+                                                            <asp:ListItem Value="1300" />
+                                                            <asp:ListItem Value="1400" />
+                                                            <asp:ListItem Value="1430" />
+                                                            <asp:ListItem Value="1500" />
+                                                            <asp:ListItem Value="1530" />
+                                                            <asp:ListItem Value="1600" />
+                                                            <asp:ListItem Value="1630" />
+                                                            <asp:ListItem Value="1700" />
+                                                            <asp:ListItem Value="1730" />
+                                                            <asp:ListItem Value="1800" />
+                                                            <asp:ListItem Value="1830" />
+                                                            <asp:ListItem Value="1900" />
+                                                            <asp:ListItem Value="1930" />
+                                                            <asp:ListItem Value="2000" />
+                                                            <asp:ListItem Value="2030" />
+                                                            <asp:ListItem Value="2100" />
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <asp:TextBox ID="tbnote" TextMode="MultiLine" runat="server" Style="width: 100%" placeholder="Add Notes"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeViewPostModal()">Close</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -341,7 +374,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-1"></div>
                 </div>
-            </itemtemplate>
+            </ItemTemplate>
         </asp:Repeater>
     </form>
     <%--<script>

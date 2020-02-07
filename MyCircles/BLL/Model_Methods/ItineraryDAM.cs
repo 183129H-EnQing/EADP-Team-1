@@ -23,5 +23,12 @@ namespace MyCircles.BLL
             return ItineraryDAO.GetSpecificItinerary(itinerary);
 
         }
+
+        public static void DeletePlanner(int itineraryId)
+        {
+            DayDAO.DeleteDay(itineraryId);
+            DayByDayDAO.DeleteDayByDay(itineraryId);
+            ItineraryDAO.DeleteItinerary(itineraryId);
+        }
     }
 }

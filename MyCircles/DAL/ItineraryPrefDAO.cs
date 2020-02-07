@@ -16,5 +16,15 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public static void DeleteItineraryPref(int itineraryId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.ItineraryPrefs.RemoveRange(db.ItineraryPrefs.Where(i => i.itineraryId == itineraryId));
+                db.SaveChanges();
+            }
+        }
     }
+}
 }

@@ -56,5 +56,14 @@ namespace MyCircles.DAL
                 return dayLocation;
             }
         }
+
+        public static void DeleteDay(int itineraryId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Days.RemoveRange(db.Days.Where(i => i.itineraryId == itineraryId));
+                db.SaveChanges();
+            }
+        }
     }
 }
