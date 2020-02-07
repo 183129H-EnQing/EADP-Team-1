@@ -106,7 +106,7 @@
 
 <form id="form1" runat="server">
     <div class="container">
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-4 col-lg-3 d-none d-lg-block">
                  <div class="card">
                     <div class="card-header">
@@ -144,26 +144,26 @@
                     </div>--%>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-9">
+            <div class="col-sm-12 col-md-12 col-lg-7">
                 <div class="row">
-                    <div class="mt-3 border border-secondary col-7" style =" border-radius:16px 16px;" >
-                        <%--<form>--%>
-                        <div class="form-group mb-2 mt-3">
-                            <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox>
-                        </div>
-                        <div class="form-group justify-content-between d-flex">
-                            <div>
-                                <asp:FileUpload ID="FileUpload1"  runat="server" />                         
+                    <div class="col">
+                        <div class="border border-secondary px-3" style =" border-radius:16px 16px;" >
+                            <div class="form-group mb-2 mt-3">
+                                <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox>
                             </div>
-                            <div>
-                                <asp:Button ID="btnPost" runat="server" Text="Post" CssClass="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
+                            <div class="form-group justify-content-between d-flex">
+                                <div>
+                                    <asp:FileUpload ID="FileUpload1"  runat="server" />                         
+                                </div>
+                                <div>
+                                    <asp:Button ID="btnPost" runat="server" Text="Post" CssClass="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
+                                </div>
                             </div>
                         </div>
-                        <%--</form>--%>
                     </div>
                 </div>           
                 <div class="row mt-3">
-                    <div class="col-7 px-0">
+                    <div class="col">
                         <asp:Repeater ID="rptUserPosts" runat="server" EnableViewState="false" ItemType="MyCircles.DAL.UserPost" OnItemDataBound="rptUserPosts_ItemDataBound" OnItemCommand="rptUserPosts_ItemCommand">
                             <ItemTemplate>
                                 <div class="row">
@@ -178,9 +178,11 @@
                                                 <div> 
                                                      <a id="mod" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)"></a>
                                                 </div>
-                                            </div>
-                                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" 
+                                            </div>                                          
+                                            <div class="text-center">
+                                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" style="max-height: 300px; width: auto; border-radius:8px;" 
                                                 class="card-image">
+                                                </div>                                                
                                             <div class="card-body">
                                                 <div class="card-text">
                                                     <span class="h5">
@@ -202,16 +204,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <asp:Repeater ID="rptComment" runat="server" EnableViewState="false" ItemType="MyCircles.DAL.UserComment">
+                                            <asp:Repeater ID="rptComment" runat="server" EnableViewState="false"  ItemType="MyCircles.DAL.UserComment">
                                                 <ItemTemplate>
                                                     <div class="m-3">
                                                         <div class="media mb-3">
                                                             <img src="" class="rounded-circle mr-2" style="width: 50px;">
                                                             <div class="media-body">
                                                                 <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%> </i></small></h4>
-                                                                <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>
-                                                                <a class="btn btn-warning  p-1 pl-2 pr-2" style="font-size: 12px;" data-toggle="confirmation"
-                                                                    data-title="Confirm remove?" >remove</a>
+                                                                <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>                                                            
+                                                                  <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName ="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
                                                             </div>
                                                         </div>                                              
                                                     </div>
@@ -268,20 +269,33 @@
                     </div>
                 </div>
             </div>
-           <%--  <div class="row mt-5">
-            <div class="col-8 px-0">
-                <div class="card" style="width: 18rem;">
+            <div class="col-lg-2 col-12">
+                <div class="card">
                     <div class="card-header">
                         <h3 class="text-info">Connect</h3></div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Jamal <br /> 1.2km <asp:Button ID="Btn55" runat="server" Text="Follow"  class="btn btn-primary" data-toggle="popover" data-content=" Following" style="border-radius:12px" ></asp:button></li>
-                        <li class="list-group-item">Suresh <br /> 500m <asp:Button ID="Btn4" runat="server" Text="Follow" class="btn btn-primary" style="border-radius:12px"></asp:button></li>
-                        <li class="list-group-item">Sarah <br /> 250m  <asp:Button ID="Btn44" runat="server" Text="Follow" class="btn btn-primary" style="border-radius:12px"></asp:button></li>
+                       <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>Jamal</div>
+                            <div>
+                                <asp:Button ID="Button1" runat="server" Text="Follow"  usesubmitbehavior="false" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px" OnClick="Btncircle_Click" ></asp:button>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>Suresh</div>
+                            <div>
+                                <asp:Button ID="Button2" runat="server" Text="Follow" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px"></asp:button>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>Vishnu</div>
+                            <div>
+                                <asp:Button ID="Button4" runat="server" Text="Follow" class="btn btn-primary" style="border-radius:10px"></asp:button>
+                            </div>
+                        </li >
                         <li class="list-group-item"><asp:Button ID="btn6" runat="server" Text="More..." class="btn btn-secondary" style="border-radius:12px"  usesubmitbehavior="false" OnClick="btn6_Click"></asp:button></li>
                     </ul>
                 </div>
-            </div> 
-                 </div>--%>
+            </div>
         </div>
     </div>
 </form>
