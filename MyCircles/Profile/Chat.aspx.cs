@@ -16,7 +16,7 @@ namespace MyCircles.Profile
         public BLL.User currentUser;
         public BLL.User recieverUser;
 
-        //TODO: Do validation for the chatroom
+        //TODO: Enable follow user through web api
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();
