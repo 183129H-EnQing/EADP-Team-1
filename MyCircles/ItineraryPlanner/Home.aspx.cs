@@ -60,6 +60,7 @@ namespace MyCircles.ItineraryPlanner
 
             //check pref
             PrefSelect(newItinerary.itineraryId);
+            GeneratePlanner();
 
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
@@ -143,6 +144,19 @@ namespace MyCircles.ItineraryPlanner
                 newItineraryPref.itineraryId = newItinerary.itineraryId;
                 newItineraryPref.prefId = 6;
                 newItineraryPref.AddItineraryPref();
+            }
+        }
+
+        private void GeneratePlanner()
+        {
+            if (Session["prefB"] == null &&
+                Session["prefO"] == null &&
+                Session["prefM"] == null &&
+                Session["prefH"] == null &&
+                Session["prefS"] == null &&
+                Session["prefW"] == null)
+            {
+
             }
         }
     }

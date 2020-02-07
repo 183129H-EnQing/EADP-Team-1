@@ -34,7 +34,10 @@ namespace MyCircles.ItineraryPlanner
             Id = Convert.ToInt32(Request.QueryString["Id"]);
             itineraryList = retrieveSpecificItinerary.RetrieveSpecificItinerary(Id);
 
-            lbPlannerName.Text = retrieveSpecificItinerary.itineraryName;
+            foreach(var i in itineraryList)
+            {
+                lbPlannerName.Text = i.itineraryName;
+            }
 
             GetExisting();
         }
