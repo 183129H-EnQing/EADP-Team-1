@@ -175,8 +175,17 @@
                                                         <asp:Label runat="server"><%#DataBinder.Eval(Container.DataItem, "User.Username")%></asp:Label>
                                                     </h5>                                                
                                                 </div>                                             
-                                                <div> 
-                                                     <a id="mod" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)"></a>
+                                                <div>
+                                                <div class="dropdown show">
+                                                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class='fa fa-ellipsis-v'></i>
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#" onclick="openViewPostModal">Delete</a>
+                                                        <a class="dropdown-item" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
+                                                    </div>
+                                                </div>
+                                                    
                                                 </div>
                                             </div>                                          
                                             <div class="text-center">
@@ -186,7 +195,7 @@
                                             <div class="card-body pt-0">
                                                 <div class="card-text">
                                                     <span class="h5">
-                                                        <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label>
+                                                        <asp:Label runat="server" Text="" ><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label>
                                                     </span>
                                                 </div>
                                                 <div class="d-flex justify-content-end">

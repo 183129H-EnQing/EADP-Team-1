@@ -65,5 +65,14 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public static void AddDay(Day newday)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Days.Add(newday);
+                db.SaveChanges();
+            }
+        }
     }
 }
