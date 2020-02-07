@@ -6,25 +6,33 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using MyCircles.BLL;
-
+using static MyCircles.DAL.UserDAO;
 namespace MyCircles.Events
 {
     public partial class SignUpFreeEventPage : System.Web.UI.Page
     {
         public int currentEventID;
-        public BLL.User currentUser;
+        public BLL.User currentUser, requestedUser;
+        public Event singleEventDetails;
+
         protected void Page_Load(object sender, EventArgs e)
         {
         
             int requestedEventID = int.Parse(Request.QueryString["eventID"]);
-            System.Diagnostics.Debug.WriteLine(requestedEventID);
+            singleEventDetails = BLL.Event.GetEvent(requestedEventID);
+            requestedUser = GetUserByIdentifier(Request.QueryString["username"]);
+           // nameTB.Text = requestedUser.Name;
+
+            // System.Diagnostics.Debug.WriteLine(requestedEventID);
             getEventScheduleData(requestedEventID);
             currentEventID = requestedEventID;
+
             // i dk why must put like that then the check box can become true or false one... 
             // online say what sequence of event....
             if (!IsPostBack)
             {
                 GetDates();
+                getNumberOfSlots();
                 rpEventSchedule.DataBind();
                
             }
@@ -33,35 +41,36 @@ namespace MyCircles.Events
         protected void submitButt_Click(object sender, EventArgs e)
         {
             SignUpEventDetail newEventSignUpEventData = new SignUpEventDetail();
-            EventSchedule eventSchedule = new EventSchedule(); 
-
-            newEventSignUpEventData.name = nameTB.Text;
-            newEventSignUpEventData.contactNumber = contactNumberTB.Text;
-            //newEventSignUpEventData.date = "hello";
-
-            currentUser = (BLL.User)Session["currentUser"];
-            System.Diagnostics.Debug.WriteLine("hello" + currentUser.Id.ToString());
-            newEventSignUpEventData.numberOfBookingSlot = "1";
-            newEventSignUpEventData.eventId = currentEventID;
+            EventSchedule eventSchedule = new EventSchedule();
+            List<String> userOptInEvent = new List<string>();
+            string selectedEventToParticipate = "";
             foreach (Control control in rpEventSchedule.Controls)
             {
-                //System.Diagnostics.Debug.WriteLine("hello qing" + control.UniqueID);
                 var OptIncheckBox = (CheckBox)control.FindControl("optInCB");
                 var eventDescriptionLabel = (Label)control.FindControl("eventDescription");
-
-                System.Diagnostics.Debug.WriteLine(OptIncheckBox.Checked);
+                var eventScheduleId = (Label)control.FindControl("secretEventSheduleId");
+ 
 
                 if (OptIncheckBox.Checked)
                 {
+                    userOptInEvent.Add(eventScheduleId.Text);
+                    selectedEventToParticipate += eventScheduleId.Text + ",";
+                }      
 
-                }
-              
-                System.Diagnostics.Debug.WriteLine("hello qing" + eventDescriptionLabel.Text);
-            
             }
-               
+
+            newEventSignUpEventData.name = nameTB.Text;
+            newEventSignUpEventData.contactNumber = contactNumberTB.Text;
+            currentUser = (BLL.User)Session["currentUser"];
+            newEventSignUpEventData.userId = currentUser.Id;
+            newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.SelectedItem.Text;
+            newEventSignUpEventData.selectedEventToParticipate = selectedEventToParticipate;
+            newEventSignUpEventData.eventId = currentEventID;
+            //  System.Diagnostics.Debug.WriteLine(String.Join("\n", userOptInEvent));
+            //System.Diagnostics.Debug.WriteLine(currentUser.Name);
+
             newEventSignUpEventData.Add();
-         //   eventSchedule.AddOptIn();
+            eventSchedule.AddAndUpdateUserOptIn(selectedEventToParticipate, currentUser.Id);
             //Response.Redirect("ViewAllEventPage.aspx");
         }
 
@@ -69,13 +78,17 @@ namespace MyCircles.Events
         {
             EventSchedule eventSchedule = new EventSchedule();
             List<EventSchedule> scheduleList = new List<EventSchedule>();
-            //scheduleList1 = eventSchedule.getAllEventActivity();
+            var scheduleData = eventSchedule.getAllEventActivity(currentEventID);
 
             List<String> datesList = new List<String>();
-            foreach (EventSchedule eventScheduleBB in scheduleList)
+            foreach (EventSchedule eventScheduleBB in scheduleData)
             {
-               //System.Diagnostics.Debug.WriteLine("gh say: " + eventScheduleBB.startDate);
-                datesList.Add(eventScheduleBB.startDate);
+               // System.Diagnostics.Debug.WriteLine("gh say: " + eventScheduleBB.startDate);
+               if (datesList.Contains(eventScheduleBB.startDate) == false)
+                {
+                    datesList.Add(eventScheduleBB.startDate);
+                }
+               
             }
             dateDDL.DataSource = datesList;
             dateDDL.DataBind();
@@ -92,9 +105,23 @@ namespace MyCircles.Events
 
             scheduleList = retrieveEventSchedule.getAllEventActivity(eventId);
 
-            System.Diagnostics.Debug.WriteLine("gh say: " + scheduleList);
             rpEventSchedule.DataSource = scheduleList;
         
+        }
+
+        private void getNumberOfSlots()
+        {
+            int maxSlot = System.Convert.ToInt16(singleEventDetails.maxTimeAPersonCanRegister);
+            List<String> slotList = new List<String>();
+        
+            for (var x = 1; x < maxSlot + 1; x++)
+            {
+                var avaliableSlotOption = x.ToString();
+                slotList.Add(avaliableSlotOption);
+            }
+            NumberOfBookingSlotsDLL.DataSource = slotList;
+            NumberOfBookingSlotsDLL.DataBind();
+            //System.Diagnostics.Debug.WriteLine(String.Join("\n", slotList));
         }
     }
 }

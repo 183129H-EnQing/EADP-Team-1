@@ -17,5 +17,15 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public static List<SignUpEventDetail> GetSignUpEventDetails(int eventId)
+        {
+            List<SignUpEventDetail> SignUpEventDetailsList = new List<SignUpEventDetail>();
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                SignUpEventDetailsList = db.SignUpEventDetails.Where(event1 => event1.eventId == eventId).ToList();
+                return SignUpEventDetailsList;
+            }
+        }
     }
 }

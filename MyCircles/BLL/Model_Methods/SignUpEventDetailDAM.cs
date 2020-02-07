@@ -12,5 +12,11 @@ namespace MyCircles.BLL
         {
             SignUpEventDetailDAO.AddEventSignUp(this);
         }
+
+        public List<SignUpEventDetail> GetSignUpEventDetails(int eventId)
+        {
+            return SignUpEventDetailDAO.GetSignUpEventDetails(eventId);
+        }
+
     }
 }

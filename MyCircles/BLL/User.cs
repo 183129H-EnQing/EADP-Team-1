@@ -16,6 +16,7 @@ namespace MyCircles.BLL
             ChatRooms = new HashSet<ChatRoom>();
             ChatRooms1 = new HashSet<ChatRoom>();
             Comments = new HashSet<Comment>();
+            Events = new HashSet<Event>();
             Follows = new HashSet<Follow>();
             Follows1 = new HashSet<Follow>();
             Messages = new HashSet<Message>();
@@ -25,6 +26,7 @@ namespace MyCircles.BLL
             Notifications = new HashSet<Notification>();
             Posts = new HashSet<Post>();
             ReportedPosts = new HashSet<ReportedPost>();
+            SignUpEventDetails = new HashSet<SignUpEventDetail>();
             UserCircles = new HashSet<UserCircle>();
         }
 
@@ -81,6 +83,9 @@ namespace MyCircles.BLL
         public virtual ICollection<Comment> Comments { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Event> Events { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Follow> Follows { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -106,6 +111,9 @@ namespace MyCircles.BLL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportedPost> ReportedPosts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SignUpEventDetail> SignUpEventDetails { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserCircle> UserCircles { get; set; }
