@@ -146,6 +146,7 @@ namespace MyCircles.Home
             }
             if(e.CommandName == "Report")
             {
+                System.Diagnostics.Debug.WriteLine("rptUserPosts_ItemCommand report," + e.CommandArgument);
                 RadioButtonList report = (e.Item.FindControl("RadioButtonList1") as RadioButtonList);
                 var userpostindex = e.Item.ItemIndex;
                 var rpt = report.SelectedValue;
@@ -153,6 +154,7 @@ namespace MyCircles.Home
                 var newReport = new BLL.ReportedPost();
                 newReport.postId = selecteduserpost.Post.Id;
                 newReport.reason = rpt;
+                newReport.dateCreated = DateTime.Now;
                 newReport.reporterUserId = selecteduserpost.User.Id;
                 ReportedPostDAO.AddReport(newReport);
             }
