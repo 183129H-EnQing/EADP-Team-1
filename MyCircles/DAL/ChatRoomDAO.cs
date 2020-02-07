@@ -45,22 +45,74 @@ namespace MyCircles.DAL
             }
         }
 
+        public static List<UserChatRoom> GetUserChatRooms(int userId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                List<UserChatRoom> UserChatRoomList = new List<UserChatRoom>();
+
+                var query =
+                    from cr in db.ChatRooms
+                    join u1 in db.Users on cr.User1Id equals u1.Id
+                    join u2 in db.Users on cr.User2Id equals u2.Id
+                    where cr.User1Id == userId || cr.User2Id == userId
+                    select new
+                    {
+                        user1 = u1,
+                        user2 = u2,
+                        chatRoom = cr,
+                    };
+
+                foreach (var item in query.AsEnumerable())
+                {
+                    if (item.user1.Id == userId)
+                    {
+                        UserChatRoomList.Add(new UserChatRoom(item.user2, item.user1, item.chatRoom));
+                    } else
+                    {
+                        UserChatRoomList.Add(new UserChatRoom(item.user1, item.user2, item.chatRoom));
+                    }
+                }
+
+                if (UserChatRoomList.Count == 0) UserChatRoomList = null;
+
+                return UserChatRoomList;
+            }
+        }
+
         public static int GetRecieverId(int senderId, int chatRoomId)
         {
             using (var db = new MyCirclesEntityModel())
             {
                 ChatRoom chatRoom = GetChatRoomById(chatRoomId);
 
-                if (chatRoom.User1Id != senderId)
+                if (chatRoom != null)
                 {
-                    return chatRoom.User1Id;
+                    if (chatRoom.User1Id != senderId)
+                    {
+                        return chatRoom.User1Id;
+                    }
+                    else
+                    {
+                        return chatRoom.User2Id;
+                    }
                 }
                 else
                 {
-                    return chatRoom.User2Id;
+                    return 0;
                 }
 
+            }
+        }
 
+        public static void DeleteChatRoom(int chatRoomId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                ChatRoom chatRoom = GetChatRoomById(chatRoomId);
+                db.ChatRooms.Remove(chatRoom);
             }
         }
     }

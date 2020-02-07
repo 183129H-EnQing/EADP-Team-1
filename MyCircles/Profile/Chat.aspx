@@ -24,48 +24,78 @@
     </style>
 
     <form runat="server">
-        <div class="rounded container-lg content-container bg-white p-4 shadow-sm">
-            <header>
-                <div class="blog-entry">
-                    <h1 class="font_color"><b>Chat History</b></h1>
-                    <hr>
+        <div class="position-relative p-0 rounded container-lg content-container bg-white shadow-sm mb-4 border">
+            <div class="row">
+                <div class="col-md-4 pr-0 chatroom-user-list">
+                    <asp:Repeater ID="rptUserChatRooms" runat="server" ItemType="MyCircles.DAL.UserChatRoom">
+                        <ItemTemplate>
+                            <a href="/Profile/Chat.aspx?chatroom=<%#DataBinder.Eval(Container.DataItem, "ChatRoom.Id")%>" class="text-decoration-none">
+                                <div class='card border-light-color shadow-sm <%# ((int)DataBinder.Eval(Container.DataItem, "RequestedUser.Id") == recieverUser.Id) ? "selected thick-border" : "border" %>'>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3 profilepic-container">
+                                                <asp:Image runat='server' CssClass="small-profilepic rounded-circle" ImageUrl='<%#DataBinder.Eval(Container.DataItem, "RequestedUser.ProfileImage")%>' />
+                                            </div>
+                                            <div class="col-md-9 desc-container">
+                                                <span class='m-0 h5'><%#DataBinder.Eval(Container.DataItem, "RequestedUser.Name")%></span><br />
+                                                <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "RequestedUser.Username")%></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <div class="border-bottom">
+                    </div>
                 </div>
-            </header>
-            <article>
-                <div class="col-md-12 chat-history" style="margin-bottom: 20px;">
-                    <div id="chat-log" class="blog-entry overflow-auto">
-<%--                        <div class="row justify-content-end">
-                            <div class="col-auto">
-                                <div class="p-0 speech-bubble-receiver my-2">
-                                    <div class="show-location-div col-md-12 my-3" style="height:100%; width:100%; display: none;">
-                                        <div id="show-location-map-1" class="show-location-map"></div>
+                <div class="col-md-8 pl-0 border-left">
+                    <header class="position-sticky chat-header border-bottom bg-light rounded-top">
+                        <div class="p-4">
+                            <a href="/Profile/User.aspx?username=<%= recieverUser.Username %>" class="text-decoration-none">
+                                <div class="row justify-content-between">
+                                    <div class="col-1 profilepic-container">
+                                        <asp:Image ID="requestedUserProfilePicture" runat='server' CssClass="small-profilepic rounded-circle" />
+                                    </div>
+                                    <div class="col-5 desc-container pl-0">
+                                        <span class='m-0 h5'><%= recieverUser.Name %></span><span class='IsLoggedIn-<%= recieverUser.IsLoggedIn %>'>   •   <%= (recieverUser.IsLoggedIn) ? "Online" : "Offline" %></span><br />
+                                        <span class='m-0 text-muted'>@<%= recieverUser.Username %></span>
+                                    </div>
+                                    <div class="col-5 desc-container text-right">
+                                        <asp:Button ID="btSubmit" runat="server" CssClass="btn btn-primary" Text="Follow" CausesValidation="False" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </header>
+                    <article class="chat-content">
+                        <div class="col-md-12 chat-history p-4" style="margin-bottom: 20px;">
+                            <div id="chat-log" class="blog-entry">
+                            </div>
+                        </div>
+                    </article>
+                    <footer class="position-sticky chat-footer border-top bg-light rounded-bottom">
+                        <div class="row p-4">
+                            <div id="select-location-map" class="col-md-12 my-3" style="height: 100%; width: 100%; display: none;">
+                                <div id="map"></div>
+                                <input name="latitude" id="latitude" type="hidden" class="">
+                                <input name="longitude" id="longitude" type="hidden" class="">
+                            </div>
+                            <div class="col-10">
+                                <div class="input-group mb-3">
+                                    <input id="tbMessage" class="form-control" placeholder="Type a message" name="tbMessage" />
+                                    <div class="input-group-append">
+                                        <button id="show-map" class="btn btn-secondary" type="button">Attach Location</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>--%>
-                    </div>
-                </div>
-            </article>
-            <footer>
-                <div class="row">
-                    <div id="select-location-map" class="col-md-12 my-3" style="height:100%; width:100%; display: none;">
-                        <div id="map"></div>
-                        <input name="latitude" id="latitude" type="hidden" class="">
-                        <input name="longitude" id="longitude" type="hidden" class="">
-                    </div>
-                    <div class="col-10">
-                        <div class="input-group mb-3">
-                            <input id="tbMessage" class="form-control" placeholder="Type a message" name="tbMessage" required="true" />
-                            <div class="input-group-append">
-                                <button id="show-map" class="btn btn-secondary" type="button">Attach Location</button>
+                            <div class="col-2">
+                                <button id="btSendMessage" class="btn btn-primary btn-tall w-100"><i class="fas fa-paper-plane"></i></button>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-2">
-                        <button id="btSendMessage" class="btn btn-primary btn-tall w-100"><i class="fas fa-paper-plane"></i></button>
-                    </div>
+                    </footer>
                 </div>
-            </footer>
+            </div>
         </div>
     </form>
 
@@ -223,7 +253,8 @@
                     success: function (data) {
                         var newMessages = data.d.result;
                         for (i = 0; i < newMessages.length; i++) {
-                            appendMessage(newMessages[i])
+                            appendMessage(newMessages[i]);
+                            $('.chat-content').animate({ scrollTop: ($('.chat-content')[0].scrollHeight) });
                         }
                     },
                     complete: function (data) {
@@ -247,6 +278,7 @@
                         for (i = 0; i < allMessages.length; i++) {
                             appendMessage(allMessages[i])
                         }
+                        $('.chat-content').animate({ scrollTop: ($('.chat-content')[0].scrollHeight) });
                     },
                     error: function (data, err) {
                         console.log(err);
@@ -265,24 +297,29 @@
 
             $("form").submit(function (e) {
                 e.preventDefault();
-                chatRoomAttributes["messageContent"] = $("#tbMessage").val();
-                chatRoomAttributes["latitude"] = $("#latitude").val();
-                chatRoomAttributes["longitude"] = $("#longitude").val();
-                     
-                $.ajax({
-                    url: '/Profile/Chat.aspx/AddNewMessage',
-                    data: JSON.stringify(chatRoomAttributes),
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    type: "POST",
-                    success: function (data) {
-                        var newMessage = data.d.result;
-                        appendMessage(newMessage);
-                    },
-                    error: function (data, err) {
-                        console.log(err);
-                    }
-                });
+
+                if ($("#tbMessage").val()) {
+                    chatRoomAttributes["messageContent"] = $("#tbMessage").val();
+                    chatRoomAttributes["latitude"] = $("#latitude").val();
+                    chatRoomAttributes["longitude"] = $("#longitude").val();
+
+                    $.ajax({
+                        url: '/Profile/Chat.aspx/AddNewMessage',
+                        data: JSON.stringify(chatRoomAttributes),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        type: "POST",
+                        success: function (data) {
+                            var newMessage = data.d.result;
+                            appendMessage(newMessage);
+                            $('.chat-content').animate({ scrollTop: ($('.chat-content')[0].scrollHeight) });
+                            $("#tbMessage").val("");
+                        },
+                        error: function (data, err) {
+                            console.log(err);
+                        }
+                    });
+                }
             });
 
             setTimeout(checkForNewMessages, 1000);

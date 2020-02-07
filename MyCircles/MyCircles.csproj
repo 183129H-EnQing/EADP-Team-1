@@ -353,6 +353,7 @@
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\EventController.cs" />
+    <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\ChatRoomDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
@@ -367,6 +368,7 @@
     <Compile Include="DAL\Joint_Models\CircleFollowerDetails.cs" />
     <Compile Include="DAL\Joint_Models\DayLocation.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
+    <Compile Include="DAL\Joint_Models\UserChatRoom.cs" />
     <Compile Include="DAL\Joint_Models\UserComment.cs" />
     <Compile Include="DAL\Joint_Models\UserPost.cs" />
     <Compile Include="DAL\Joint_Models\UserReportedPost.cs" />

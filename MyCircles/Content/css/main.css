@@ -62,6 +62,11 @@
     width: 170px;
 }
 
+.small-profilepic {
+    height: 50px;
+    width: 50px;
+}
+
 .mainprofilepic-container {
     position: absolute;
     top: 215px;
@@ -118,4 +123,50 @@
     @include media-breakpoint-only(sm) {
         column-count: 1;
     }
+}
+
+.chat-header {
+    position: sticky;
+}
+
+.chat-footer {
+    position: sticky;
+}
+
+.chat-content {
+    height: 60vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.chatroom-user-list {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.fixed-wrapper {
+    position: absolute;
+    top: 0;
+    left: -240px; /* Move this out to the left of the site body, leaving a 20px gutter */
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.IsLoggedIn-False {
+    color: #d47a7a;
+}
+
+.IsLoggedIn-True {
+    color: #63c473;
+}
+
+.selected {
+    background-color: rgb(245, 248, 250);
 }
