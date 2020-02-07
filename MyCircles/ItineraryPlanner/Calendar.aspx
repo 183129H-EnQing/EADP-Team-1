@@ -91,9 +91,11 @@
                                 var endT1Hour = dates[3].substring(0, 2);
                                 var endT2Min = dates[3].substring(2);
 
+                                var locaId = dates[4]
+
                                 console.log(dates[0], fulldate, new Date(2020, 2, date, startT1Hour, startT2Min), new Date(2020, 2, date, endT1Hour, endT2Min))
 
-                                timetable.addEvent(dates[0], fulldate, new Date(2020, 2, date, startT1Hour, startT2Min), new Date(2020, 2, date, endT1Hour, endT2Min), { url: '#' });
+                                timetable.addEvent(dates[0], fulldate, new Date(2020, 2, date, startT1Hour, startT2Min), new Date(2020, 2, date, endT1Hour, endT2Min), { url: 'LocationDetail.aspx?locId=' + locaId });
                                 console.log("//////////////////");
                             }
 

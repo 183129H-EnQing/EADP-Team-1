@@ -244,10 +244,6 @@ namespace MyCircles.BLL
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
-                .Property(e => e.locaGeolocation)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Location>()
                 .HasMany(e => e.Days)
                 .WithRequired(e => e.Location)
                 .HasForeignKey(e => e.locationId)
