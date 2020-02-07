@@ -50,9 +50,9 @@ namespace MyCircles.Profile
         }
 
         [WebMethod]
-        public static object AddNewMessage(int chatRoomId, int recieverId, int senderId, string messageContent)
+        public static object AddNewMessage(int chatRoomId, int recieverId, int senderId, string messageContent, string latitude = null, string longitude = null)
         {
-            Message newMessage = MessageDAO.AddMessage(chatRoomId, messageContent, recieverId, senderId);
+            Message newMessage = MessageDAO.AddMessage(chatRoomId, messageContent, recieverId, senderId, latitude, longitude);
             return new { result = newMessage };
         }
     }
