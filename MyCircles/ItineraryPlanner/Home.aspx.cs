@@ -50,6 +50,7 @@ namespace MyCircles.ItineraryPlanner
             newItinerary.AddItinerary();
             Response.Write("<script> alert('Plan Created!');</script>");
 
+            //daybydays table
             int datesSize = betweenDates.Count;
             for(int i = 0; i < betweenDates.Count; i++)
             {
@@ -60,6 +61,7 @@ namespace MyCircles.ItineraryPlanner
 
             //check pref
             PrefSelect(newItinerary.itineraryId);
+            //days table and planner generate - with pref/no pref
             GeneratePlanner();
 
             Session["startDate"] = tbStartDate.Text;
@@ -149,6 +151,9 @@ namespace MyCircles.ItineraryPlanner
 
         private void GeneratePlanner()
         {
+            Day newDay = new Day();
+            Location getLocation = new Location();
+
             if (Session["prefB"] == null &&
                 Session["prefO"] == null &&
                 Session["prefM"] == null &&
