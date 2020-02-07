@@ -51,7 +51,10 @@ namespace MyCircles.Admin
                     Session[keySessionRowIdx] = idx;
 
                     lblModalPostCreatorName.Text = postCreator.Username;
+
                     imgModalPost.ImageUrl = post.Image;
+                    imgModalPost.Visible = post.Image != null;
+
                     lblModalContent.Text = post.Content;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openViewPostModal();", true);
                     break;

@@ -304,7 +304,9 @@ CREATE TABLE [dbo].[Location] (
 
     [locaRecom]       NCHAR (6)      NOT NULL,
 
-    [locaGeolocation] NCHAR (30)     NULL,
+    [locaLatitude]  FLOAT(53)    NULL,
+
+    [locaLongitude]  FLOAT(53)    NULL,
 
     PRIMARY KEY CLUSTERED ([locaId] ASC),
 
@@ -338,13 +340,9 @@ CREATE TABLE [dbo].[DayByDay] (
 
     [dayBydayId]  INT		   IDENTITY(1,1) NOT NULL ,
 
-
-
     [itineraryId] INT          NOT NULL,
 
-	[date]        VARCHAR (10) NOT NULL,
-
-	[dayId]       INT          NOT NULL,
+	[date]        VARCHAR (10) NOT NULL
 
     PRIMARY KEY CLUSTERED ([dayBydayId] ASC),
 

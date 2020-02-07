@@ -12,24 +12,28 @@ namespace MyCircles.Profile
 {
     public partial class Chat : System.Web.UI.Page
     {
-        public int chatRoomId;
+        public int chatRoomId = 0;
         public BLL.User currentUser;
         public BLL.User recieverUser;
 
-        //TODO: Do validation for the chatroom
+        //TODO: Enable follow user through web api
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();
 
-            try
+            chatRoomId = Convert.ToInt32(Request.QueryString["chatroom"]);
+            currentUser = (BLL.User)Session["currentUser"];
+            rptUserChatRooms.DataSource = ChatRoomDAO.GetUserChatRooms(currentUser.Id);
+            recieverUser = UserDAO.GetUserById(ChatRoomDAO.GetRecieverId(currentUser.Id, chatRoomId));
+
+            if (chatRoomId.Equals(0) || recieverUser == null)
             {
-                chatRoomId = Convert.ToInt32(Request.QueryString["chatroom"]);
-                currentUser = (BLL.User)Session["currentUser"];
-                recieverUser = UserDAO.GetUserById(ChatRoomDAO.GetRecieverId(currentUser.Id, chatRoomId));
+                Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username);
             }
-            catch (Exception ex)
+            else
             {
-                Response.Redirect("/Home/Post.aspx");
+                rptUserChatRooms.DataBind();
+                requestedUserProfilePicture.ImageUrl = recieverUser.ProfileImage;
             }
         }
 

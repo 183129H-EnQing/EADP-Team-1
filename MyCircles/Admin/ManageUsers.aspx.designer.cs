@@ -31,6 +31,15 @@ namespace MyCircles.Admin {
         protected global::System.Web.UI.UpdatePanel ManageUsersUpdatePanel;
         
         /// <summary>
+        /// ddlQueryType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlQueryType;
+        
+        /// <summary>
         /// tbSearchInput control.
         /// </summary>
         /// <remarks>
