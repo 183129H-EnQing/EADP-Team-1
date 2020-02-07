@@ -12,15 +12,25 @@ namespace MyCircles.BLL
         public int Id { get; set; }
 
         [Required]
-        [StringLength(16)]
+        [StringLength(128)]
         public string Type { get; set; }
 
-        [StringLength(20)]
-        public string Title { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string Action { get; set; }
+
+        [Required]
+        [StringLength(128)]
+        public string Source { get; set; }
 
         [Column(TypeName = "text")]
-        [Required]
-        public string Content { get; set; }
+        public string AdditionalMessage { get; set; }
+
+        [StringLength(128)]
+        public string CallToAction { get; set; }
+
+        [StringLength(128)]
+        public string CallToActionLink { get; set; }
 
         public bool IsRead { get; set; }
 

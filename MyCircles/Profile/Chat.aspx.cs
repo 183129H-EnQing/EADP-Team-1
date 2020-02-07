@@ -17,6 +17,7 @@ namespace MyCircles.Profile
         public BLL.User recieverUser;
 
         //TODO: Enable follow user through web api
+        //TODO: Delete conversations
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();

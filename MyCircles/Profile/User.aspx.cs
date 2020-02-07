@@ -25,8 +25,10 @@ namespace MyCircles.Profile
     //TODO: Fix the autocomplete bug
     //TODO: Add edit user profile
     //TODO: Clean up the interface (show graph for circles maybe???)
+    //TODO: Enable follow user through web api
     //TODO: Show following, followers, and strangers who dm'd you in user page
-    //TODO: Disable user from messaging themself
+    //TODO: Edit Profile
+    //TODO: Search function
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
@@ -268,7 +270,10 @@ namespace MyCircles.Profile
             else if (e.CommandName == "Message")
             {
                 var chatroom = ChatRoomDAO.GetChatRoom(currentUser.Id, Int32.Parse(e.CommandArgument.ToString()));
-                Response.Redirect("/Profile/Chat.aspx?chatroom=" + chatroom.Id);
+                if (chatroom != null)
+                {
+                    Response.Redirect("/Profile/Chat.aspx?chatroom=" + chatroom.Id); 
+                }
             }
         }
 

@@ -262,11 +262,23 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
-                .Property(e => e.Title)
+                .Property(e => e.Action)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
-                .Property(e => e.Content)
+                .Property(e => e.Source)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notification>()
+                .Property(e => e.AdditionalMessage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notification>()
+                .Property(e => e.CallToAction)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notification>()
+                .Property(e => e.CallToActionLink)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Post>()
