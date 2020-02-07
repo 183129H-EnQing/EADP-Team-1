@@ -19,5 +19,11 @@ namespace MyCircles.BLL
             LocationDAO dao = new LocationDAO();
             return dao.ByTagLocation(locationTag);
         }
+
+        public List<Location> RetrieveALocation(int locId)
+        {
+            LocationDAO dao = new LocationDAO();
+            return dao.ByALocation(locId);
+        }
     }
 }

@@ -36,3 +36,4 @@ const getCurrentCity = (lat = null, lng = null) => {
         }
     });
 };
+

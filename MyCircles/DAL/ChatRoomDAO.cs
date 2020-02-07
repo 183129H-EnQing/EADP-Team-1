@@ -14,21 +14,24 @@ namespace MyCircles.DAL
 
             using (var db = new MyCirclesEntityModel())
             {
-                existingChatRoom = db.ChatRooms.Where(cr =>
-                                            (cr.User1Id == user1Id && cr.User2Id == user2Id) ||
-                                            (cr.User1Id == user2Id && cr.User2Id == user1Id))
-                                        .FirstOrDefault();
-
-                if (existingChatRoom == null)
+                if (user1Id != user2Id)
                 {
-                    existingChatRoom = new ChatRoom();
-                    existingChatRoom.User1Id = user1Id;
-                    existingChatRoom.User2Id = user2Id;
-                    existingChatRoom.CreatedAt = DateTime.Now;
-                    db.ChatRooms.Add(existingChatRoom);
-                }
+                    existingChatRoom = db.ChatRooms.Where(cr =>
+                            (cr.User1Id == user1Id && cr.User2Id == user2Id) ||
+                            (cr.User1Id == user2Id && cr.User2Id == user1Id))
+                        .FirstOrDefault();
 
-                db.SaveChanges();
+                    if (existingChatRoom == null)
+                    {
+                        existingChatRoom = new ChatRoom();
+                        existingChatRoom.User1Id = user1Id;
+                        existingChatRoom.User2Id = user2Id;
+                        existingChatRoom.CreatedAt = DateTime.Now;
+                        db.ChatRooms.Add(existingChatRoom);
+                    }
+
+                    db.SaveChanges();
+                }
             }
 
             return existingChatRoom;

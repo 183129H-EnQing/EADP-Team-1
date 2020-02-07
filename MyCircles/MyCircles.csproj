@@ -148,6 +148,7 @@
       <DependentUpon>MyCircles.mdf</DependentUpon>
     </Content>
     <Content Include="Content\css\jquery.flexdatalist.css" />
+    <Content Include="Content\images\generic-user-marker.png" />
     <Content Include="Content\images\profile-picture-1.jpeg" />
     <Content Include="Content\images\profile-picture-2.jpg" />
     <Content Include="Content\images\profile-picture-3.jpg" />
@@ -265,6 +266,7 @@
     <Content Include="Events\SignUpFreeEventPage.aspx" />
     <Content Include="Events\ViewAllEventPage.aspx" />
     <Content Include="Events\ViewEventDetails.aspx" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

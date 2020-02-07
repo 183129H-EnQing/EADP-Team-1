@@ -144,5 +144,19 @@ namespace MyCircles.ItineraryPlanner
 
             rep.DataSource = daybydayList;
         }
+
+        protected void rpModal_DataBinding(object sender, EventArgs e)
+        {
+            Repeater rep = (Repeater)(sender);
+
+            int daybydayId = (int)(Eval("dayBydayId"));
+
+            //retrieve location from Days table
+            List<DayLocation> daysList = new List<DayLocation>();
+
+            daysList = DayDAO.GetAllDayLocation(daybydayId);
+
+            rep.DataSource = daysList;
+        }
     }
 }

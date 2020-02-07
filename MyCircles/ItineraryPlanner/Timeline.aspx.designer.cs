@@ -42,13 +42,40 @@ namespace MyCircles.ItineraryPlanner
         protected global::System.Web.UI.WebControls.Label lbPlannerName;
 
         /// <summary>
-        /// rpModal control.
+        /// tbeventDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpModal;
+        protected global::System.Web.UI.WebControls.TextBox tbeventDate;
+
+        /// <summary>
+        /// ddlstartTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlstartTime;
+
+        /// <summary>
+        /// ddlendTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlendTime;
+
+        /// <summary>
+        /// tbnote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbnote;
 
         /// <summary>
         /// rpParentDates control.

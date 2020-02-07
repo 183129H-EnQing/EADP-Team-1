@@ -25,6 +25,12 @@ namespace MyCircles.BLL
         public string eventDescription { get; set; }
 
         [StringLength(50)]
+        public string eventStartTime { get; set; }
+
+        [StringLength(50)]
+        public string eventEndTime { get; set; }
+
+        [StringLength(50)]
         public string eventStartDate { get; set; }
 
         [StringLength(50)]
@@ -36,12 +42,31 @@ namespace MyCircles.BLL
         [StringLength(50)]
         public string eventHolderName { get; set; }
 
+        public int? eventHolderId { get; set; }
+
         public string eventImage { get; set; }
+
+        [StringLength(10)]
+        public string eventMaxSlot { get; set; }
+
+        [StringLength(20)]
+        public string eventEntryFeesStatus { get; set; }
+
+        [StringLength(20)]
+        public string eventStatus { get; set; }
+
+        [StringLength(20)]
+        public string singleOrRecurring { get; set; }
+
+        [StringLength(10)]
+        public string maxTimeAPersonCanRegister { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventSchedule> EventSchedules { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SignUpEventDetail> SignUpEventDetails { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

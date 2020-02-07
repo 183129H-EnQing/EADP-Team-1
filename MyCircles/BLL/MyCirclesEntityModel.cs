@@ -98,6 +98,14 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Event>()
+                .Property(e => e.eventStartTime)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventEndTime)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
                 .Property(e => e.eventStartDate)
                 .IsUnicode(false);
 
@@ -115,6 +123,26 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Event>()
                 .Property(e => e.eventImage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventMaxSlot)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventEntryFeesStatus)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventStatus)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.singleOrRecurring)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Event>()
+                .Property(e => e.maxTimeAPersonCanRegister)
                 .IsUnicode(false);
 
             modelBuilder.Entity<EventSchedule>()
@@ -139,6 +167,10 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.eventActivity)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EventSchedule>()
+                .Property(e => e.usersOptIn)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Itinerary>()
@@ -209,10 +241,6 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.locaRecom)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Location>()
-                .Property(e => e.locaGeolocation)
                 .IsFixedLength();
 
             modelBuilder.Entity<Location>()
@@ -354,6 +382,11 @@ namespace MyCircles.BLL
                 .HasMany(e => e.Comments)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Events)
+                .WithOptional(e => e.User)
+                .HasForeignKey(e => e.eventHolderId);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Follows)

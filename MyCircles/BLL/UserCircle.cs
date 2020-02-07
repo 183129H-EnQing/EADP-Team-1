@@ -18,6 +18,7 @@ namespace MyCircles.BLL
         public string CircleId { get; set; }
 
         public int Points { get; set; }
+
         [field: NonSerialized]
         public virtual Circle Circle { get; set; }
         [field: NonSerialized]

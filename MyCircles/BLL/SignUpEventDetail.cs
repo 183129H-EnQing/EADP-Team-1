@@ -19,13 +19,17 @@ namespace MyCircles.BLL
         [StringLength(8)]
         public string contactNumber { get; set; }
 
-        [StringLength(1)]
+        [StringLength(10)]
         public string numberOfBookingSlot { get; set; }
 
         public string selectedEventToParticipate { get; set; }
 
         public int? eventId { get; set; }
 
+        public int? userId { get; set; }
+
         public virtual Event Event { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

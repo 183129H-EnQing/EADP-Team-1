@@ -12,10 +12,9 @@ namespace MyCircles.Profile
 {
     public partial class Chat : System.Web.UI.Page
     {
-        static int chatRoomId;
-        static List<Message> messages;
-        BLL.User currentUser;
-        BLL.User recieverUser;
+        public int chatRoomId;
+        public BLL.User currentUser;
+        public BLL.User recieverUser;
 
         //TODO: Do validation for the chatroom
         protected void Page_Load(object sender, EventArgs e)
@@ -27,7 +26,6 @@ namespace MyCircles.Profile
                 chatRoomId = Convert.ToInt32(Request.QueryString["chatroom"]);
                 currentUser = (BLL.User)Session["currentUser"];
                 recieverUser = UserDAO.GetUserById(ChatRoomDAO.GetRecieverId(currentUser.Id, chatRoomId));
-                BindMessages();
             }
             catch (Exception ex)
             {
@@ -35,29 +33,27 @@ namespace MyCircles.Profile
             }
         }
 
-        protected void UpdateMessagesTimer_Tick(object sender, EventArgs e)
+        [WebMethod]
+        public static object GetAllMessages(int chatRoomId, int recieverId, int senderId)
         {
-            BindMessages();
-        }
-
-        protected void btSendMessage_Click(object sender, EventArgs e)
-        {
-            MessageDAO.AddMessage(chatRoomId, tbMessage.Text, recieverUser.Id, currentUser.Id);
-            BindMessages();
-        }
-
-        protected void BindMessages()
-        {
-            messages = MessageDAO.GetChatRoomMessages(chatRoomId);
-            rptMessages.DataSource = messages;
-            rptMessages.DataBind();
+            var allMessages = MessageDAO.GetChatRoomMessages(chatRoomId);
+            MessageDAO.SetMessageSeenStatus(chatRoomId, senderId);
+            return new { result = allMessages };
         }
 
         [WebMethod]
-        public static object GetNewMessages()
+        public static object GetNewMessages(int chatRoomId, int recieverId, int senderId)
         {
-            var newMessages = MessageDAO.GetNewChatRoomMessages(chatRoomId);
+            var newMessages = MessageDAO.GetNewChatRoomMessages(chatRoomId, senderId);
+            MessageDAO.SetMessageSeenStatus(chatRoomId, senderId);
             return new { result = newMessages };
+        }
+
+        [WebMethod]
+        public static object AddNewMessage(int chatRoomId, int recieverId, int senderId, string messageContent, string latitude = null, string longitude = null)
+        {
+            Message newMessage = MessageDAO.AddMessage(chatRoomId, messageContent, recieverId, senderId, latitude, longitude);
+            return new { result = newMessage };
         }
     }
 }

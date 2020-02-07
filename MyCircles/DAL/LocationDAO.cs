@@ -8,9 +8,9 @@ namespace MyCircles.DAL
 {
     public class LocationDAO
     {
-        public List<Location>  GetAllLocation()
+        public List<Location> GetAllLocation()
         {
-            List<Location> allLocaList= new List<Location>();
+            List<Location> allLocaList = new List<Location>();
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
                 allLocaList = db.Locations.ToList();
@@ -25,6 +25,16 @@ namespace MyCircles.DAL
             {
                 locaListByTag = db.Locations.Where(i => i.landmarkType == locationTag).ToList();
                 return locaListByTag;
+            }
+        }
+
+        public List<Location> ByALocation(int locId)
+        {
+            List<Location> alocList = new List<Location>();
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                alocList = db.Locations.Where(i => i.locaId == locId).ToList();
+                return alocList;
             }
         }
     }

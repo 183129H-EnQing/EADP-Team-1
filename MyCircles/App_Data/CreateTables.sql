@@ -176,27 +176,25 @@ CREATE TABLE [dbo].[Mutual] (
 
 
 -- Event Table
-
 CREATE TABLE [dbo].[Event] (
-
-    [eventId]          INT             IDENTITY (1, 1) NOT NULL,
-
-    [eventName]        VARCHAR (50)    NULL,
-
-    [eventDescription] VARCHAR (50)    NULL,
-
-    [eventStartDate]   VARCHAR (50)    NULL,
-
-    [eventEndDate]     VARCHAR (50)    NULL,
-
-    [eventCategory]    VARCHAR (50)    NULL,
-
-    [eventHolderName]  VARCHAR (50)    NULL,
-
-    [eventImage]       VARCHAR (MAX)   NULL,
-
-    PRIMARY KEY CLUSTERED ([eventId] ASC)
-
+    [eventId]                   INT           IDENTITY (1, 1) NOT NULL,
+    [eventName]                 VARCHAR (50)  NULL,
+    [eventDescription]          VARCHAR (50)  NULL,
+    [eventStartTime]            VARCHAR (50)  NULL,
+    [eventEndTime]              VARCHAR (50)  NULL,
+    [eventStartDate]            VARCHAR (50)  NULL,
+    [eventEndDate]              VARCHAR (50)  NULL,
+    [eventCategory]             VARCHAR (50)  NULL,
+    [eventHolderName]           VARCHAR (50)  NULL,
+	[eventHolderId]             Int			  NULl,
+    [eventImage]                VARCHAR (MAX) NULL,
+    [eventMaxSlot]              VARCHAR (10)  NULL,
+    [eventEntryFeesStatus]      VARCHAR (20)  NULL,
+    [eventStatus]               VARCHAR (20)  NULL,
+    [singleOrRecurring]         VARCHAR (20)  NULL,
+    [maxTimeAPersonCanRegister] VARCHAR (10)  NULL,
+    PRIMARY KEY CLUSTERED ([eventId] ASC),
+	CONSTRAINT [FK_Event_userId] FOREIGN KEY ([eventHolderId]) REFERENCES [dbo].[User] ([Id])
 );
 
 
@@ -204,25 +202,16 @@ CREATE TABLE [dbo].[Event] (
 -- EventSchedule Table
 
 CREATE TABLE [dbo].[EventSchedule] (
-
-    [eventScheduleID]  INT            IDENTITY (1, 1) NOT NULL,
-
-    [eventDescription] VARCHAR (50)   NULL,
-
-    [startDate]        VARCHAR (10)   NULL,
-
-    [startTime]        VARCHAR (10)   NULL,
-
-    [endTime]          VARCHAR (10)   NULL,
-
-    [endDate]          VARCHAR (10)   NULL,
-
-    [eventActivity]    VARCHAR (MAX)  NULL,
-
-    [eventId]          INT            NULL,
-
+    [eventScheduleID]  INT           IDENTITY (1, 1) NOT NULL,
+    [eventDescription] VARCHAR (50)  NULL,
+    [startDate]        VARCHAR (10)  NULL,
+    [startTime]        VARCHAR (10)  NULL,
+    [endTime]          VARCHAR (10)  NULL,
+    [endDate]          VARCHAR (10)  NULL,
+    [eventActivity]    VARCHAR (MAX) NULL,
+    [eventId]          INT           NULL,
+    [usersOptIn]       VARCHAR (MAX) NULL,
     PRIMARY KEY CLUSTERED ([eventScheduleID] ASC),
-
     CONSTRAINT [eventId_EventSchedule_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId])
 
 );
@@ -232,26 +221,20 @@ CREATE TABLE [dbo].[EventSchedule] (
 -- SignUpEventDetails Table
 
 CREATE TABLE [dbo].[SignUpEventDetails] (
-
-    [Id]                         INT           NOT NULL IDENTITY,
-
+    [Id]                         INT           IDENTITY (1, 1) NOT NULL,
     [name]                       VARCHAR (50)  NULL,
-
     [date]                       VARCHAR (50)  NULL,
-
     [contactNumber]              VARCHAR (8)   NULL,
-
-    [numberOfBookingSlot]        VARCHAR (1)   NULL,
-
+    [numberOfBookingSlot]        VARCHAR (10)  NULL,
     [selectedEventToParticipate] VARCHAR (MAX) NULL,
-
     [eventId]                    INT           NULL,
-
+    [userId]					 INT NULL, 
     PRIMARY KEY CLUSTERED ([Id] ASC),
-
-    CONSTRAINT [eventID_SignUpEventDetails_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId])
-
+    CONSTRAINT [eventID_SignUpEventDetails_ToEventTable] FOREIGN KEY ([eventId]) REFERENCES [dbo].[Event] ([eventId]),
+	CONSTRAINT [userId_SignUpEventDetails_ToUserTable] FOREIGN KEY ([userId]) REFERENCES [dbo].[User] ([Id])
 );
+
+
 
 
 
