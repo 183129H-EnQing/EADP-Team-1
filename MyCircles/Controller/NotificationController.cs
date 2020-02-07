@@ -13,7 +13,7 @@ using MyCircles.BLL;
 
 namespace MyCircles.Controller
 {
-    public class NotificationsController : ApiController
+    public class NotificationController : ApiController
     {
         private MyCirclesEntityModel db = new MyCirclesEntityModel();
 
@@ -115,7 +115,21 @@ namespace MyCircles.Controller
             db.Notifications.Add(notification);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = notification.Id }, notification);
+            var notificationDto = new NotificationDTO()
+            {
+                Id = notification.Id,
+                Action = notification.Action,
+                Source = notification.Source,
+                UserId = notification.UserId,
+                Type = notification.Type,
+                CallToAction = notification.CallToAction,
+                CallToActionLink = notification.CallToActionLink,
+                IsRead = notification.IsRead,
+                AdditionalMessage = notification.AdditionalMessage,
+                CreatedAt = notification.CreatedAt
+            };
+
+            return Ok(notificationDto);
         }
 
         // DELETE: api/Notifications/5

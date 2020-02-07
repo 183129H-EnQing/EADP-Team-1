@@ -47,7 +47,7 @@ function addNotificationToasts(notifications) {
                 '<img src="/Content/images/MyCirclesIconStatic.png" width="20px" height="20px" alt="MyCircles Logo">&nbsp;' +
                 '<strong class="mr-auto"><b>MyCircles</b></strong><small class="text-muted">just now</small><button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">' +
                 '<span aria-hidden="true">&times;</span></button></div><div class="toast-body">' +
-                `You\'ve <span class="${notifications[i].Type}-action" style="font-weight:800;">${notifications[i].Action}</span> from ${notifications[i].Source}!`
+                `You\'ve <span class="${notifications[i].Type}-action" style="font-weight:800;">${notifications[i].Action}</span> from ${notifications[i].Source}! ${notifications[i].AdditionalMessage}`
 
             if (notifications[i].AdditionalMessage != "null") {
                 toast.concat(notifications[i].AdditionalMessage);

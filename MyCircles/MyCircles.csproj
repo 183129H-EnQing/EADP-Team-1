@@ -354,7 +354,7 @@
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\EventController.cs" />
-    <Compile Include="Controller\NotificationsController.cs" />
+    <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\ChatRoomDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
