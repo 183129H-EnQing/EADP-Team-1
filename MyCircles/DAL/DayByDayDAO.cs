@@ -35,5 +35,15 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public static List<int> RetrieveDayByDayIdByDate(string date)
+        {
+            List<int> datesList = new List<int>();
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                datesList = db.DayByDays.Where(i => i.date == date).Select(x => x.dayBydayId).ToList();
+                return datesList;
+            }
+        }
     }
 }

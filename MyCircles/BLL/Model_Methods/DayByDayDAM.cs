@@ -16,5 +16,10 @@ namespace MyCircles.BLL
         {
             return DayByDayDAO.GetByItinerary(Id);
         }
+
+        public List<int> RetrieveDayByDayIdByDate(string date)
+        {
+            return DayByDayDAO.RetrieveDayByDayIdByDate(date);
+        }
     }
 }

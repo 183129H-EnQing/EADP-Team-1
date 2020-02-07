@@ -15,6 +15,9 @@ namespace MyCircles.ItineraryPlanner
         DayByDay newDayByDay = new DayByDay();
         ItineraryPref newItineraryPref = new ItineraryPref();
 
+        List<string> daybydaysList = new List<string>();
+        int createdItineraryId;
+
         public BLL.User currentUser;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -58,6 +61,7 @@ namespace MyCircles.ItineraryPlanner
                 newDayByDay.date = betweenDates[i];
                 newDayByDay.AddDayByDay();
             }
+            daybydaysList = betweenDates;
 
             //check pref
             PrefSelect(newItinerary.itineraryId);
@@ -66,6 +70,7 @@ namespace MyCircles.ItineraryPlanner
 
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
+            createdItineraryId = newItinerary.itineraryId;
 
             string url = "Timeline.aspx?Id=" + newItinerary.itineraryId;
             Response.Redirect(url);
@@ -152,7 +157,12 @@ namespace MyCircles.ItineraryPlanner
         private void GeneratePlanner()
         {
             Day newDay = new Day();
+
             Location getLocation = new Location();
+            List<Location> allocationlist = new List<Location>();
+            allocationlist = getLocation.RetrieveAllLocation();
+
+            List<int> daybydayIdList = new List<int>();
 
             if (Session["prefB"] == null &&
                 Session["prefO"] == null &&
@@ -161,7 +171,29 @@ namespace MyCircles.ItineraryPlanner
                 Session["prefS"] == null &&
                 Session["prefW"] == null)
             {
+                foreach (var i in daybydaysList) //dates
+                {
+                    DayByDay dbd = new DayByDay();
+                    daybydayIdList = dbd.RetrieveDayByDayIdByDate(i);
 
+                    foreach (var j in daybydayIdList) //daybyday id
+                    {
+                        newDay.date = i;
+                        newDay.dayByDayId = j;
+                        newDay.itineraryId = createdItineraryId;
+                        //need to get location and allocate time to newday
+
+                        DateTime startTime = Convert.ToDateTime(0800);
+                        DateTime endTime = Convert.ToDateTime(2100);
+                        DateTime freeTime = Convert.ToDateTime(0030); //lunch, dinner, travel
+
+
+
+                        newDay.AddDay();
+                    }
+                }
+
+                
             }
         }
     }
