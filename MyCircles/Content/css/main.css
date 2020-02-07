@@ -160,11 +160,11 @@
 }
 
 .IsLoggedIn-False {
-    background-color: #d47a7a;
+    color: #d47a7a;
 }
 
 .IsLoggedIn-True {
-    background-color: #63c473;
+    color: #63c473;
 }
 
 .selected {

@@ -52,7 +52,20 @@
                 <div class="col-md-8 pl-0 border-left">
                     <header class="position-sticky chat-header border-bottom bg-light rounded-top">
                         <div class="p-4">
-                            <h1 class="text-dark-color"><b>Chat History</b></h1>
+                            <a href="/Profile/User.aspx?username=<%= recieverUser.Username %>" class="text-decoration-none">
+                                <div class="row justify-content-between">
+                                    <div class="col-1 profilepic-container">
+                                        <asp:Image ID="requestedUserProfilePicture" runat='server' CssClass="small-profilepic rounded-circle" />
+                                    </div>
+                                    <div class="col-5 desc-container pl-0">
+                                        <span class='m-0 h5'><%= recieverUser.Name %></span><span class='IsLoggedIn-<%= recieverUser.IsLoggedIn %>'>   •   <%= (recieverUser.IsLoggedIn) ? "Online" : "Offline" %></span><br />
+                                        <span class='m-0 text-muted'>@<%= recieverUser.Username %></span>
+                                    </div>
+                                    <div class="col-5 desc-container text-right">
+                                        <asp:Button ID="btSubmit" runat="server" CssClass="btn btn-primary" Text="Follow" CausesValidation="False" />
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </header>
                     <article class="chat-content">
@@ -70,7 +83,7 @@
                             </div>
                             <div class="col-10">
                                 <div class="input-group mb-3">
-                                    <input id="tbMessage" class="form-control" placeholder="Type a message" name="tbMessage" required="true" />
+                                    <input id="tbMessage" class="form-control" placeholder="Type a message" name="tbMessage" />
                                     <div class="input-group-append">
                                         <button id="show-map" class="btn btn-secondary" type="button">Attach Location</button>
                                     </div>
@@ -284,26 +297,29 @@
 
             $("form").submit(function (e) {
                 e.preventDefault();
-                chatRoomAttributes["messageContent"] = $("#tbMessage").val();
-                chatRoomAttributes["latitude"] = $("#latitude").val();
-                chatRoomAttributes["longitude"] = $("#longitude").val();
-                     
-                $.ajax({
-                    url: '/Profile/Chat.aspx/AddNewMessage',
-                    data: JSON.stringify(chatRoomAttributes),
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    type: "POST",
-                    success: function (data) {
-                        var newMessage = data.d.result;
-                        appendMessage(newMessage);
-                        $('.chat-content').animate({ scrollTop: ($('.chat-content')[0].scrollHeight) });
-                        $("#tbMessage").val("");
-                    },
-                    error: function (data, err) {
-                        console.log(err);
-                    }
-                });
+
+                if ($("#tbMessage").val()) {
+                    chatRoomAttributes["messageContent"] = $("#tbMessage").val();
+                    chatRoomAttributes["latitude"] = $("#latitude").val();
+                    chatRoomAttributes["longitude"] = $("#longitude").val();
+
+                    $.ajax({
+                        url: '/Profile/Chat.aspx/AddNewMessage',
+                        data: JSON.stringify(chatRoomAttributes),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        type: "POST",
+                        success: function (data) {
+                            var newMessage = data.d.result;
+                            appendMessage(newMessage);
+                            $('.chat-content').animate({ scrollTop: ($('.chat-content')[0].scrollHeight) });
+                            $("#tbMessage").val("");
+                        },
+                        error: function (data, err) {
+                            console.log(err);
+                        }
+                    });
+                }
             });
 
             setTimeout(checkForNewMessages, 1000);

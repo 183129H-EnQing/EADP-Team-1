@@ -88,14 +88,31 @@ namespace MyCircles.DAL
             {
                 ChatRoom chatRoom = GetChatRoomById(chatRoomId);
 
-                if (chatRoom.User1Id != senderId)
+                if (chatRoom != null)
                 {
-                    return chatRoom.User1Id;
+                    if (chatRoom.User1Id != senderId)
+                    {
+                        return chatRoom.User1Id;
+                    }
+                    else
+                    {
+                        return chatRoom.User2Id;
+                    }
                 }
                 else
                 {
-                    return chatRoom.User2Id;
+                    return 0;
                 }
+
+            }
+        }
+
+        public static void DeleteChatRoom(int chatRoomId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                ChatRoom chatRoom = GetChatRoomById(chatRoomId);
+                db.ChatRooms.Remove(chatRoom);
             }
         }
     }

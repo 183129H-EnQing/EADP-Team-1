@@ -12,7 +12,7 @@ namespace MyCircles.Profile
 {
     public partial class Chat : System.Web.UI.Page
     {
-        public int chatRoomId;
+        public int chatRoomId = 0;
         public BLL.User currentUser;
         public BLL.User recieverUser;
 
@@ -21,11 +21,20 @@ namespace MyCircles.Profile
         {
             RedirectValidator.isUser();
 
-                chatRoomId = Convert.ToInt32(Request.QueryString["chatroom"]);
-                currentUser = (BLL.User)Session["currentUser"];
-                recieverUser = UserDAO.GetUserById(ChatRoomDAO.GetRecieverId(currentUser.Id, chatRoomId));
-                rptUserChatRooms.DataSource = ChatRoomDAO.GetUserChatRooms(currentUser.Id);
+            chatRoomId = Convert.ToInt32(Request.QueryString["chatroom"]);
+            currentUser = (BLL.User)Session["currentUser"];
+            rptUserChatRooms.DataSource = ChatRoomDAO.GetUserChatRooms(currentUser.Id);
+            recieverUser = UserDAO.GetUserById(ChatRoomDAO.GetRecieverId(currentUser.Id, chatRoomId));
+
+            if (chatRoomId.Equals(0) || recieverUser == null)
+            {
+                Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username);
+            }
+            else
+            {
                 rptUserChatRooms.DataBind();
+                requestedUserProfilePicture.ImageUrl = recieverUser.ProfileImage;
+            }
         }
 
         [WebMethod]
