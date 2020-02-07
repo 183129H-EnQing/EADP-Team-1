@@ -18,6 +18,9 @@ namespace MyCircles.Home
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
+            var followinguser = new BLL.User();
+
+
             
             
 
