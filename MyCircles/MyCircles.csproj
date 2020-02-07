@@ -367,6 +367,7 @@
     <Compile Include="DAL\Joint_Models\CircleFollowerDetails.cs" />
     <Compile Include="DAL\Joint_Models\DayLocation.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
+    <Compile Include="DAL\Joint_Models\UserChatRoom.cs" />
     <Compile Include="DAL\Joint_Models\UserComment.cs" />
     <Compile Include="DAL\Joint_Models\UserPost.cs" />
     <Compile Include="DAL\Joint_Models\UserReportedPost.cs" />

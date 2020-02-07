@@ -21,16 +21,11 @@ namespace MyCircles.Profile
         {
             RedirectValidator.isUser();
 
-            try
-            {
                 chatRoomId = Convert.ToInt32(Request.QueryString["chatroom"]);
                 currentUser = (BLL.User)Session["currentUser"];
                 recieverUser = UserDAO.GetUserById(ChatRoomDAO.GetRecieverId(currentUser.Id, chatRoomId));
-            }
-            catch (Exception ex)
-            {
-                Response.Redirect("/Home/Post.aspx");
-            }
+                rptUserChatRooms.DataSource = ChatRoomDAO.GetUserChatRooms(currentUser.Id);
+                rptUserChatRooms.DataBind();
         }
 
         [WebMethod]
