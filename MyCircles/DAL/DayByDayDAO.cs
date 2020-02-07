@@ -26,5 +26,14 @@ namespace MyCircles.DAL
                 return daybydayList;
             }
         }
+
+        public static void DeleteDayByDay(int itineraryId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.DayByDays.RemoveRange(db.DayByDays.Where(i => i.itineraryId == itineraryId));
+                db.SaveChanges();
+            }
+        }
     }
 }

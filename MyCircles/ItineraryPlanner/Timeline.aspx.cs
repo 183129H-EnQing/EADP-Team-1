@@ -14,6 +14,11 @@ namespace MyCircles.ItineraryPlanner
     {
         public string dayStr1;
 
+
+        int Id;
+        Itinerary retrieveSpecificItinerary = new Itinerary();
+        List<Itinerary> itineraryList = new List<Itinerary>();
+
         Itinerary newItinerary = new Itinerary();
         MyCirclesEntityModel db = new MyCirclesEntityModel();
         List<DayByDay> daybydayList = new List<DayByDay>();
@@ -26,6 +31,14 @@ namespace MyCircles.ItineraryPlanner
             {
                 getMonthDate();
             }*/
+            Id = Convert.ToInt32(Request.QueryString["Id"]);
+            itineraryList = retrieveSpecificItinerary.RetrieveSpecificItinerary(Id);
+
+            foreach(var i in itineraryList)
+            {
+                lbPlannerName.Text = i.itineraryName;
+            }
+
             GetExisting();
         }
         #region getMonthDate
@@ -74,12 +87,8 @@ namespace MyCircles.ItineraryPlanner
         private void GetExisting()
         {
             //lbPlannerName.Text = Request.QueryString["Id"];
-            int Id = Convert.ToInt32(Request.QueryString["Id"]);
 
-            Itinerary retrieveSpecificItinerary = new Itinerary();
-            List<Itinerary> itineraryList = new List<Itinerary>();
-
-            itineraryList = retrieveSpecificItinerary.RetrieveSpecificItinerary(Id);
+            
 
             //rpItinerary.DataSource = itineraryList;
             //rpItinerary.DataBind();
@@ -145,18 +154,9 @@ namespace MyCircles.ItineraryPlanner
             rep.DataSource = daybydayList;
         }
 
-        protected void rpModal_DataBinding(object sender, EventArgs e)
+        protected void btnDelete_Click(object sender, EventArgs e)
         {
-            Repeater rep = (Repeater)(sender);
-
-            int daybydayId = (int)(Eval("dayBydayId"));
-
-            //retrieve location from Days table
-            List<DayLocation> daysList = new List<DayLocation>();
-
-            daysList = DayDAO.GetAllDayLocation(daybydayId);
-
-            rep.DataSource = daysList;
+            Itinerary.DeletePlanner(Id);
         }
     }
 }

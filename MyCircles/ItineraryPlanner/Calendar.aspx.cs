@@ -38,7 +38,8 @@ namespace MyCircles.ItineraryPlanner
                 location += i.locaName + ",";
                 location += i.date + ",";
                 location += i.startTime + ",";
-                location += i.endTime;
+                location += i.endTime + ",";
+                location += i.locationId;
                 location += "|";
             }
 

@@ -115,12 +115,13 @@ namespace MyCircles.Home
         protected void rptUserPosts_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             Repeater repeater = (e.Item.FindControl("rptComment") as Repeater);
+           
             
             var data = e.Item.DataItem;
             DAL.UserPost userpost = data as DAL.UserPost;
             repeater.DataSource = CommentDAO.GetCommentByPost(userpost.Post.Id);
             repeater.DataBind();
-
+          
 
             //if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             //{
@@ -146,6 +147,7 @@ namespace MyCircles.Home
             }
             if(e.CommandName == "Report")
             {
+               
                 RadioButtonList report = (e.Item.FindControl("RadioButtonList1") as RadioButtonList);
                 var userpostindex = e.Item.ItemIndex;
                 var rpt = report.SelectedValue;
@@ -153,9 +155,13 @@ namespace MyCircles.Home
                 var newReport = new BLL.ReportedPost();
                 newReport.postId = selecteduserpost.Post.Id;
                 newReport.reason = rpt;
+                newReport.dateCreated = DateTime.Now;
                 newReport.reporterUserId = selecteduserpost.User.Id;
                 ReportedPostDAO.AddReport(newReport);
             }
+
+          
+            
 
 
         }

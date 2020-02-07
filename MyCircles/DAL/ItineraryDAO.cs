@@ -38,5 +38,14 @@ namespace MyCircles.DAL
                 return itineraryList;
             }
         }
+
+        public static void DeleteItinerary(int itineraryId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Itineraries.RemoveRange(db.Itineraries.Where(i => i.itineraryId == itineraryId));
+                db.SaveChanges();
+            }
+        }
     }
 }

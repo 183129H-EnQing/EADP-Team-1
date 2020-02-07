@@ -6,19 +6,21 @@
         <div class="container-fluid mt-5 mb-5">
             <asp:Repeater ID="rpLocation" runat="server" ItemType="MyCircles.BLL.Location">
                 <ItemTemplate>
-                    <div class="row mt-3">
+                    <div class="row mt-3 mb-4">
                         <div class="col-md-2"></div>
                         <div class="col-md-5">
-                            <div class="row"><h5><%#DataBinder.Eval(Container.DataItem, "locaName") %></h5></div>
+                            <div class="row d-flex justify-content-between">
+                                <h5><%#DataBinder.Eval(Container.DataItem, "locaName") %></h5>
+                                <h6><%#DataBinder.Eval(Container.DataItem, "locaRating") %></h6>
+                            </div>
                             <div class="row">
                                 <img src="<%#DataBinder.Eval(Container.DataItem, "locaPic") %>" alt="<%#DataBinder.Eval(Container.DataItem, "locaName") %>"/>
                             </div>
-                            <div class="row"><h5><%#DataBinder.Eval(Container.DataItem, "locaRating") %></h5></div>
                             <div class="row">
                                 <p><%#DataBinder.Eval(Container.DataItem, "locaDesc") %></p>
                             </div>
                             <div class="row"><h6>On the web</h6></div>
-                            <div class="row"><a href="<%#DataBinder.Eval(Container.DataItem, "locaWeb") %>"><%#DataBinder.Eval(Container.DataItem, "locaWeb") %></a></div>
+                            <div class="row"><a href="<%#DataBinder.Eval(Container.DataItem, "locaWeb") %>" target="_blank"><%#DataBinder.Eval(Container.DataItem, "locaWeb") %></a></div>
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-2">
@@ -40,9 +42,9 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-             <div class="row">
-                 <reimers:map id="GMap" width="100%" height="300px" runat="server" Zoom="18" />
-             </div>
+            <div class="row">
+                <reimers:map id="GMap" width="100%" height="300px" runat="server" Zoom="18" />
+            </div>
         </div>
     </form>
 </asp:Content>
