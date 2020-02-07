@@ -32,6 +32,9 @@ namespace MyCircles.Admin
 
         protected void btnSearchSubmit_Click(object sender, EventArgs e)
         {
+            int queryTypeId = int.Parse(ddlQueryType.SelectedValue);
+            System.Diagnostics.Debug.WriteLine("query type id:" + queryTypeId);
+
             string inputStr = tbSearchInput.Text;
             List<User> users = BLL.User.GetAllUsers();
 
@@ -43,18 +46,25 @@ namespace MyCircles.Admin
                 List<User> resultUserList = new List<User>();
                 foreach (User user in users)
                 {
-                    if (user.Username.Contains(inputStr))
+                    bool shouldAddUser = false;
+                    switch (queryTypeId)
                     {
-                        resultUserList.Add(user);
+                        case 0: // All
+                            shouldAddUser = user.Username.Contains(inputStr) || user.Name.Contains(inputStr) || user.EmailAddress.Contains(inputStr);
+                            break;
+                        case 1: // Username
+                            shouldAddUser = user.Username.Contains(inputStr);
+                            break;
+                        case 2: // Display Name
+                            shouldAddUser = user.Name.Contains(inputStr);
+                            break;
+                        case 3: // Email
+                            shouldAddUser = user.EmailAddress.Contains(inputStr);
+                            break;
                     }
-                    else if (user.Name.Contains(inputStr))
-                    {
+
+                    if (shouldAddUser)
                         resultUserList.Add(user);
-                    }
-                    else if (user.EmailAddress.Contains(inputStr))
-                    {
-                        resultUserList.Add(user);
-                    }
                 }
 
                 System.Diagnostics.Debug.WriteLine("searching," + resultUserList.Count);
