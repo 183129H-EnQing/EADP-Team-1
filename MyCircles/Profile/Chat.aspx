@@ -256,7 +256,10 @@
 
             $("#show-map").click(function () {
                 $("#select-location-map").slideToggle("slow", function () {
-                    // Animation complete.
+                    if ($("#select-location-map").not(":visible")) {
+                        $("#latitude").val("");
+                        $("#longitude").val("");
+                    }
                 });
             });
 
