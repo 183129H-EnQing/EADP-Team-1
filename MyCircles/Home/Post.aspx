@@ -183,7 +183,7 @@
                                             <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" style="max-height: 300px; width: auto; border-radius:8px;" 
                                                 class="card-image">
                                                 </div>                                                
-                                            <div class="card-body">
+                                            <div class="card-body pt-0">
                                                 <div class="card-text">
                                                     <span class="h5">
                                                         <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label>
