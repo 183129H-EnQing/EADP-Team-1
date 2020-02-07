@@ -105,71 +105,130 @@
 
 
 <form id="form1" runat="server">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col">   <div class="card" style="width: 18rem;">
-                    <div class="card-header">
-                        <h3 class="text-dark">Upcoming Events</h3>
-                        None.
-                    </div>
-                    <ul class="list-group list-group-flush">
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row d-flex">
-            <div class="col d-flex justify-content-center">
-                <div class="mt-3 border border-secondary panel-group" style =" border-radius:16px 16px; margin-left:430px;" >
-                    <%--<form>--%>
-                        <div class="form-group mb-2 mt-3">
-                            <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="800" ></asp:TextBox>
-                        </div>
-                        <div class="form-group justify-content-between d-flex">
-                            <asp:FileUpload ID="FileUpload1"  runat="server" />                         
-                            <asp:Button ID="btnPost" runat="server" Text="Post" class="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
-                        </div>
-
-                    <%--</form>--%>
-                </div>
-            </div>
-            <div class="col-3 pl-0">
-                <div class="card" style="width: 18rem;">
+            <div class="col-md-4 col-lg-3 d-none d-lg-block">
+                 <div class="card">
                     <div class="card-header">
                         <h3 class="text-info">Circles</h3>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">#Guitar<asp:Button ID="Btncircle" runat="server" Text="Add"  usesubmitbehavior="false" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px" OnClick="Btncircle_Click" ></asp:button></li>
-                        <li class="list-group-item">#Starwars&nbsp<asp:Button ID="Btnc" runat="server" Text="Add" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px"></asp:button></li>
-                        <li class="list-group-item">#VisualStudio&nbsp<asp:Button ID="Button3" runat="server" Text="Add" class="btn btn-primary" style="border-radius:10px"></asp:button></li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>#Guitar</div>
+                            <div>
+                                <asp:Button ID="Btncircle" runat="server" Text="Add"  usesubmitbehavior="false" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px" OnClick="Btncircle_Click" ></asp:button>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>#Starwars</div>
+                            <div>
+                                <asp:Button ID="Btnc" runat="server" Text="Add" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px"></asp:button>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>#VisualStudio</div>
+                            <div>
+                                <asp:Button ID="Button3" runat="server" Text="Add" class="btn btn-primary" style="border-radius:10px"></asp:button>
+                            </div>
+                        </li>
                     </ul>
+                <%-- <div class="col">   <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                                <h3 class="text-dark">Upcoming Events</h3>
+                                None.
+                            </div>
+                            <ul class="list-group list-group-flush">
+
+                            </ul>
+                        </div>
+                    </div>--%>
                 </div>
             </div>
-        </div>
-
-        <div class="row mt-3">
-            <div class="col-3">
-            </div>
-            <div class="col-6">
+            <div class="col-sm-12 col-md-12 col-lg-9">
                 <div class="row">
-                    <div class="col">
+                    <div class="mt-3 border border-secondary col-7" style =" border-radius:16px 16px;" >
+                        <%--<form>--%>
+                        <div class="form-group mb-2 mt-3">
+                            <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox>
+                        </div>
+                        <div class="form-group justify-content-between d-flex">
+                            <div>
+                                <asp:FileUpload ID="FileUpload1"  runat="server" />                         
+                            </div>
+                            <div>
+                                <asp:Button ID="btnPost" runat="server" Text="Post" CssClass="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
+                            </div>
+                        </div>
+                        <%--</form>--%>
+                    </div>
+                </div>           
+                <div class="row mt-3">
+                    <div class="col-7 px-0">
                         <asp:Repeater ID="rptUserPosts" runat="server" EnableViewState="false" ItemType="MyCircles.DAL.UserPost" OnItemDataBound="rptUserPosts_ItemDataBound" OnItemCommand="rptUserPosts_ItemCommand">
                             <ItemTemplate>
-                                <div class="card" id="mypost" runat="server">
-                                    <div class=" card-header d-flex bd-highlight bg-muted mb-2  ">
-                                        <div class="mr-auto p-1 bd-highlight">
-                                            <h5>
-                                                <asp:Label runat="server"><%#DataBinder.Eval(Container.DataItem, "User.Username")%></asp:Label></h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card" id="mypost" runat="server">
+                                            <div class="card-header p-2 d-flex justify-content-between">
+                                                <div class="mr-auto p-1">
+                                                    <h5>
+                                                        <asp:Label runat="server"><%#DataBinder.Eval(Container.DataItem, "User.Username")%></asp:Label>
+                                                    </h5>                                                
+                                                </div>                                             
+                                                <div> 
+                                                     <a id="mod" href="#"  onclick="openViewPostModal()"></a>
+                                                    <script>
+                                                        function openViewPostModal() {
+                                                            $("#modal<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>").modal('show');                                                  
+                                                        }
+
+                                                        function closeViewPostModal() {
+                                                            $("#modal<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>").modal('hide')
+                                                        }
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" 
+                                                class="card-image">
+                                            <div class="card-body">
+                                                <div class="card-text">
+                                                    <span class="h5">
+                                                        <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label>
+                                                    </span>
+                                                </div>
+                                                <div class="d-flex justify-content-end">
+                                                    <p><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%>, <%#DataBinder.Eval(Container.DataItem, "User.City")%></p>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="form-group col-md-6">
+                                                        <asp:TextBox ID="hello" class="form-control" runat="server" placeholder="Comment here"></asp:TextBox>
+                                                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>&nbsp<asp:Label ID="Label1" runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Comment")%></asp:Label>
+                                                    </div>
+                                                    <div class="text-right">                                                    
+                                                        <asp:Button ID="Comment" runat="server" class="btn btn-primary text-light" usesubmitbehavior="true"  CommandName="Comment" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%> Text="Comment" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <asp:Repeater ID="rptComment" runat="server" EnableViewState="false" ItemType="MyCircles.DAL.UserComment">
+                                                <ItemTemplate>
+                                                    <div class="m-3">
+                                                        <div class="media mb-3">
+                                                            <img src="" class="rounded-circle mr-2" style="width: 50px;">
+                                                            <div class="media-body">
+                                                                <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%> </i></small></h4>
+                                                                <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>
+                                                                <a class="btn btn-warning  p-1 pl-2 pr-2" style="font-size: 12px;" data-toggle="confirmation"
+                                                                    data-title="Confirm remove?" >remove</a>
+                                                            </div>
+                                                        </div>                                              
+                                                    </div>
+
+                                                </ItemTemplate>
+                                            </asp:Repeater>
                                         </div>
-                                        <div>
-                                            <h5><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%></h5>
-                                        </div>
-                                        &nbsp
-                                        <div>
-                                            <h5><%#DataBinder.Eval(Container.DataItem, "User.City")%></h5>
-                                        </div>  
-                                        &nbsp
-                                        <div class="modal fade" id="reportModal">
+                                        <div class="modal fade" id="modal<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>" >
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <!-- Modal Header -->
@@ -181,18 +240,18 @@
                                                     <div class="modal-body">  
                                                         <asp:RadioButtonList ID="RadioButtonList1" runat="server">
 
-                                                             <asp:ListItem Selected="True">Innappropriate</asp:ListItem>
-                                                             <asp:ListItem>Spam and Misleading</asp:ListItem>
-                                                             <asp:ListItem>Pirated</asp:ListItem>
+                                                                <asp:ListItem Selected="True">Innappropriate</asp:ListItem>
+                                                                <asp:ListItem>Spam and Misleading</asp:ListItem>
+                                                                <asp:ListItem>Pirated</asp:ListItem>
                                                         </asp:RadioButtonList> 
-                                                       <%--   
+                                                        <%--   
                                                         <label class="form-check">
                                                             Innappropriate Post
 										                    <input class="form-check" type="radio" name="report" id="Innappropriate"
                                                                 value="Innappropriate" checked="checked">
-                                                              <span class="checkmark"></span>
+                                                                <span class="checkmark"></span>
                                                         </label>
-                                                       <label class="form-check">Share
+                                                        <label class="form-check">Share
 										                    <input class="form-check-input" type="radio" name="report" id="Share"
                                                                 value="Unfollow">
                                                             <span class="checkmark"></span>
@@ -202,87 +261,27 @@
                                                                 value="Copy Link">
                                                             <span class="checkmark"></span>
                                                         </label>--%>
-                                                       
-                                                      
-                                                      
                                                     </div>
                                                     <!-- Modal footer -->
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                      
                                                         <asp:Button ID="report" runat="server"  class="btn btn-primary" Text="Submit" CommandName="Report"  CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>/>
-                                                    </div>
-                                                   
+                                                    </div>    
                                                 </div>
                                             </div>
                                         </div>
-                                          <div>                                           
-                                            <a id="mod" href="#"  onclick="openViewPostModal()"></a>
-                                            <script>
-                                                function openViewPostModal() {
-                                                    $("#reportModal").modal('show');                                                  
-                                                }
-
-                                                function closeViewPostModal() {
-                                                    $('#reportModal').modal('hide')
-                                                }
-                                            </script>
-                                        </div>
-                                    </div>                                   
-                                    <div class="card-body">
-                                        <div class="responsive">
-                                            <div class="gallery text-center">
-                                                <a target="_blank" href="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>">
-                                                    <img src="<%#DataBinder.Eval(Container.DataItem, "Post.Image") %>" alt="Image unavailable"
-                                                        style="max-height: 300px; width: auto; border-radius: 8px;">
-                                                </a>
-                                                &nbsp;&nbsp;&nbsp;
-                                            </div>
-                                            <span class="h5">
-                                                <asp:Label runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Content")%></asp:Label></span>
-                                        </div>
                                     </div>
-                                     <div class="card-footer">
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="form-group col-md-6">
-                                                        <asp:TextBox ID="hello" class="form-control" runat="server" placeholder="Comment here"></asp:TextBox>
-                                                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>&nbsp<asp:Label ID="Label1" runat="server" Text=""><%#DataBinder.Eval(Container.DataItem, "Post.Comment")%></asp:Label>
-                                                    </div>
-                                                    <div class="text-right">
-                                                    
-                                                        <asp:Button ID="Comment" runat="server" class="btn btn-primary text-light" usesubmitbehavior="true"  CommandName="Comment" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%> Text="Comment" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    <asp:Repeater ID="rptComment" runat="server" EnableViewState="false" ItemType="MyCircles.DAL.UserComment">
-                                        <ItemTemplate>
-                                            <div class="m-3">
-                                                <div class="media mb-3">
-                                                    <img src="" class="rounded-circle mr-2" style="width: 50px;">
-                                                    <div class="media-body">
-                                                        <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%> </i></small></h4>
-                                                        <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>
-                                                        <a class="btn btn-warning  p-1 pl-2 pr-2" style="font-size: 12px;" data-toggle="confirmation"
-                                                            data-title="Confirm remove?" >remove</a>
-                                                    </div>
-                                                </div>                                              
-                                            </div>
-
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                    </div>
+                                </div>
                             </ItemTemplate>
                         </asp:Repeater>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col"></div>
-            </div>
-        </div>
-            <div class="col-3 pl-0">
+           <%--  <div class="row mt-5">
+            <div class="col-8 px-0">
                 <div class="card" style="width: 18rem;">
                     <div class="card-header">
-                        <h3 class="text-info">Connect To More   </div>
+                        <h3 class="text-info">Connect</h3></div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Jamal <br /> 1.2km <asp:Button ID="Btn55" runat="server" Text="Follow"  class="btn btn-primary" data-toggle="popover" data-content=" Following" style="border-radius:12px" ></asp:button></li>
                         <li class="list-group-item">Suresh <br /> 500m <asp:Button ID="Btn4" runat="server" Text="Follow" class="btn btn-primary" style="border-radius:12px"></asp:button></li>
@@ -290,9 +289,11 @@
                         <li class="list-group-item"><asp:Button ID="btn6" runat="server" Text="More..." class="btn btn-secondary" style="border-radius:12px"  usesubmitbehavior="false" OnClick="btn6_Click"></asp:button></li>
                     </ul>
                 </div>
-            </div>
+            </div> 
+                 </div>--%>
         </div>
-    </form>
+    </div>
+</form>
 
       
 </asp:Content>

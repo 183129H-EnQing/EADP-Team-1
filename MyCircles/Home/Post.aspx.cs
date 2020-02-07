@@ -153,6 +153,7 @@ namespace MyCircles.Home
                 var newReport = new BLL.ReportedPost();
                 newReport.postId = selecteduserpost.Post.Id;
                 newReport.reason = rpt;
+                newReport.dateCreated = DateTime.Now;
                 newReport.reporterUserId = selecteduserpost.User.Id;
                 ReportedPostDAO.AddReport(newReport);
             }

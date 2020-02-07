@@ -25,6 +25,16 @@ namespace MyCircles.BLL
 
         public string Image { get; set; }
 
+        public int SenderId { get; set; }
+
+        public int RecieverId { get; set; }
+
+        public bool IsSeen { get; set; }
+
         public virtual ChatRoom ChatRoom { get; set; }
+
+        public virtual User User { get; set; }
+
+        public virtual User User1 { get; set; }
     }
 }
