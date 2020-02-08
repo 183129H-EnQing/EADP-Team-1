@@ -95,17 +95,16 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="RequestFund.aspx">Request Fund</a>
-                        <a class="dropdown-item" href="#" onclick="openViewPostModal">Delete Planner</a>
+                        <a class="dropdown-item" href="#" onclick="openDeleteModal()" >Delete Planner</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-1"></div>
         </div>
 
-
         <script>
-            function openViewPostModal() {
-                $('#deleteModal<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>').modal('show');
+            function openDeleteModal() {
+                $('#deleteModal').modal('show');
             }
         </script>
         <div id="deleteModal" class="modal" tabindex="-1" role="dialog">
@@ -121,7 +120,7 @@
                         <p>Are you sure you want to delete this plan?</p>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" onclick="btnDelete_Click"/>
+                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" onclick="btnDelete_Click" CssClass="btn btn-primary"/>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -209,7 +208,7 @@
                         </div>
                         <asp:Repeater ID="rpChildDayLocation" runat="server" ItemType="MyCircles.DAL.Joint_Models.DayLocation" OnDataBinding="rpChildDayLocation_DataBinding">
                             <ItemTemplate>
-                                <div class="row border border-primary mb-5">
+                                <div class="row border border-primary">
                                     <div class="row pt-3 pl-3">
                                         <div class="col-md-1 mr-5 col-sm-1">
                                             <br />
@@ -262,6 +261,26 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="notesdiv<%#DataBinder.Eval(Container.DataItem, "dayId") %>" class="row pl-3 border border-primary border-top-0 mb-5" style="display: none;">
+                                    <div class="col-md-1 mr-5"></div>
+                                    <div class="col-md-1"><h6>Notes:</h6></div>
+                                    <div class="col-md-7">
+                                        <p id="notesData<%#DataBinder.Eval(Container.DataItem, "dayId") %>"><%#DataBinder.Eval(Container.DataItem, "notes") %></p>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
+
+                                <script>
+                                    function showNotes() {
+                                        var x = <%#DataBinder.Eval(Container.DataItem, "dayId") %>;
+                                        var divs = document.getElementById("notesdiv" + x);
+                                        var data = document.getElementById("notesData" + x);
+                                        if (data.innerHTML != null) {
+                                            divs.style.display = "block";
+                                        }
+                                    }
+                                    window.onload = showNotes();
+                                </script>
 
 
                                 <div id='eventModal<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>' class="modal" tabindex="-1" role="dialog">
@@ -367,6 +386,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>

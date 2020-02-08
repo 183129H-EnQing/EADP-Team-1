@@ -43,31 +43,31 @@ function addNotificationToasts(notifications) {
     if (notifications.length > 0) {
         for (i = 0; i < notifications.length; i++) {
             let toast =
-                '<div class="toast rounded" role="alert" aria-live="assertive" aria-atomic="true" data-delay="600000"><div class="toast-header">' +
+                '<div class="toast rounded" role="alert" aria-live="assertive" aria-atomic="true" data-delay="100000"><div class="toast-header">' +
                 '<img src="/Content/images/MyCirclesIconStatic.png" width="20px" height="20px" alt="MyCircles Logo">&nbsp;' +
                 '<strong class="mr-auto"><b>MyCircles</b></strong><small class="text-muted">just now</small><button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">' +
                 '<span aria-hidden="true">&times;</span></button></div><div class="toast-body">' +
-                `You\'ve <span class="${notifications[i].Type}-action" style="font-weight:800;">${notifications[i].Action}</span> from ${notifications[i].Source}! ${notifications[i].AdditionalMessage}`
+                `<div style="font-weight:500;"><span class="${notifications[i].Type}-action">${notifications[i].Action}</span> from ${notifications[i].Source.toLowerCase()}</div>`
 
-            if (notifications[i].AdditionalMessage != "null") {
-                toast.concat(notifications[i].AdditionalMessage);
+            if (notifications[i].AdditionalMessage) {
+                toast.concat(`<div class="toast-body">${notifications[i].AdditionalMessage}</div>`);
             }
 
             toast.concat(`</div>`);
 
             if (notifications[i].CallToAction) {
                 toast.concat(
-                    `<div class="toast-body">${notifications[i].CallToAction}</div>` +
-                    `<div class="toast-footer row" style="padding: 5px;"><div class="col-6 text-center" style="border-right: 1px solid rgb(196, 196, 196);">` +
+                    `<div class="toast-footer row" style="padding: 5px;">` +
                     `<form method="post" action="${notifications[i].CallToActionLink}" id="acceptInvitationForm">` +
-                    `<button type="submit" style="border: 0; background-color: transparent;"><span class="positive-action">Accept</span></button></form></div>` +
-                    `<div class="col-6 text-center" style="border-left: 1px solid rgb(196, 196, 196);"><button type="button" data-dismiss="toast" aria-label="Close" style="border: 0; background-color: transparent;"><span class="negative-action">Reject</span></button></div></div>`
+                    `<button type="submit" style="border: 0; background-color: transparent;"><span class="positive-action">${notifications[i].CallToAction}</span></button></form></div>`
                 );
             };
 
             toast.concat(`</div>`);
 
             $('.toast-container').append(toast);
+
+            $('.toast').toast('show');
         };
     };
 }
@@ -81,6 +81,12 @@ function ajaxHelper(uri, method, data) {
         data: data ? JSON.stringify(data) : null
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.log(errorThrown);
+    });
+}
+
+function getUserNotifications(userId) {
+    ajaxHelper(`${notificationUri}/${userId}`, 'GET', null).done(function (data) {
+        addNotificationToasts(data);
     });
 }
 
@@ -101,9 +107,6 @@ function addNotification({ Action, Source, UserId, Type = "positive", Additional
     });
 }
 
-function getUserNotifications(userId) {
-    ajaxHelper(`${notificationUri}/${userId}`, 'GET', null).done(function (data) {
-        addNotificationToasts(data);
-        $('.toast').toast('show');
-    });
-}
+$('body').on('click', '.close', function () {
+    $(this).closest('.toast').toast('hide')
+})

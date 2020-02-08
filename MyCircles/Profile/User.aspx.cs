@@ -33,20 +33,55 @@ namespace MyCircles.Profile
     {
         public BLL.User currentUser, requestedUser;
         public List<List<CircleFollowerDetails>> circleFollowerDetailList = new List<List<CircleFollowerDetails>>();
-        public List<UserCircle> requestedUserCircleList
+
+        public List<UserCircle> existingUserCircleList
         {
             get
             {
-                List<UserCircle> requestedUserCircleList = (List<UserCircle>)this.ViewState["requestedUserCircleList"];
-                if (requestedUserCircleList == null)
+                List<UserCircle> existingUserCircleList = (List<UserCircle>)this.ViewState["existingUserCircleList"];
+                if (existingUserCircleList == null)
                 {
-                    this.ViewState["requestedUserCircleList"] = new List<UserCircle>();
+                    this.ViewState["existingUserCircleList"] = new List<UserCircle>();
                 }
-                return (List<UserCircle>)(this.ViewState["requestedUserCircleList"]);
+                return (List<UserCircle>)(this.ViewState["existingUserCircleList"]);
             }
             set
             {
-                ViewState["requestedUserCircleList"] = value;
+                ViewState["existingUserCircleList"] = value;
+            }
+        }
+
+        public List<UserCircle> removeUserCircleList
+        {
+            get
+            {
+                List<UserCircle> removeUserCircleList = (List<UserCircle>)this.ViewState["removeUserCircleList"];
+                if (removeUserCircleList == null)
+                {
+                    this.ViewState["removeUserCircleList"] = new List<UserCircle>();
+                }
+                return (List<UserCircle>)(this.ViewState["removeUserCircleList"]);
+            }
+            set
+            {
+                ViewState["removeUserCircleList"] = value;
+            }
+        }
+
+        public List<UserCircle> addUserCircleList
+        {
+            get
+            {
+                List<UserCircle> addUserCircleList = (List<UserCircle>)this.ViewState["addUserCircleList"];
+                if (addUserCircleList == null)
+                {
+                    this.ViewState["addUserCircleList"] = new List<UserCircle>();
+                }
+                return (List<UserCircle>)(this.ViewState["addUserCircleList"]);
+            }
+            set
+            {
+                ViewState["addUserCircleList"] = value;
             }
         }
 
@@ -69,20 +104,20 @@ namespace MyCircles.Profile
 
             if (!Page.IsPostBack)
             {
-                requestedUserCircleList = UserCircleDAO.GetAllUserCircles(requestedUser.Id);
-                foreach (UserCircle userCircle in requestedUserCircleList)
+                existingUserCircleList = UserCircleDAO.GetAllUserCircles(requestedUser.Id);
+                foreach (UserCircle userCircle in existingUserCircleList)
                 {
                     var userDetailsForCircle = UserCircleDAO.GetCircleFollowerDetails(userCircle.CircleId);
                     circleFollowerDetailList.Add(userDetailsForCircle);
                 }
 
-                rptUpdateCircles.DataSource = requestedUserCircleList;
+                rptUpdateCircles.DataSource = existingUserCircleList;
                 rptUpdateCircles.DataBind();
 
-                rptUserCircles.DataSource = requestedUserCircleList;
+                rptUserCircles.DataSource = existingUserCircleList;
                 rptUserCircles.DataBind();
 
-                rptCircleFollowerLinks.DataSource = requestedUserCircleList;
+                rptCircleFollowerLinks.DataSource = existingUserCircleList;
                 rptCircleFollowerLinks.DataBind();
 
                 rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
@@ -170,7 +205,7 @@ namespace MyCircles.Profile
                 GeneralHelpers.AddValidationError(Page, "addCircleGroup", "Required fields are not filled up");
             }
 
-            if (requestedUserCircleList.Where(uc => uc.CircleId == circleName).Count() > 0)
+            if (addUserCircleList.Where(uc => uc.CircleId == circleName).Count() > 0 || existingUserCircleList.Where(uc => uc.CircleId == circleName).Count() > 0)
             {
                 GeneralHelpers.AddValidationError(Page, "addCircleGroup", "There are duplicate circles present");
             }
@@ -185,29 +220,40 @@ namespace MyCircles.Profile
                 UserCircle newUserCircle = new UserCircle();
                 newUserCircle.CircleId = circleName;
                 newUserCircle.UserId = currentUser.Id;
-                requestedUserCircleList.Add(newUserCircle);
+                addUserCircleList.Add(newUserCircle);
             }
 
 
             tbCircleInput.Text = "";
             tbCircleInput.Focus();
-            rptUpdateCircles.DataSource = requestedUserCircleList;
+            rptUpdateCircles.DataSource = existingUserCircleList.Concat(addUserCircleList);
             rptUpdateCircles.DataBind();
             updateCirclesModal();
         }
 
         protected void btClear_Click(object sender, EventArgs e)
         {
-            requestedUserCircleList.Clear();
-            rptUpdateCircles.DataSource = requestedUserCircleList;
+            addUserCircleList.Clear();
+            rptUpdateCircles.DataSource = existingUserCircleList.Concat(addUserCircleList);
             rptUpdateCircles.DataBind();
             updateCirclesModal();
         }
 
-        protected void btRemove_Click(int circleIndex)
+        protected void btRemove_Click(int userCircleId)
         {
-            requestedUserCircleList.RemoveAt(circleIndex);
-            rptUpdateCircles.DataSource = requestedUserCircleList;
+            var existingUserCircle = existingUserCircleList.SingleOrDefault(x => x.Id == userCircleId);
+
+            if (existingUserCircle != null)
+            {
+                existingUserCircleList.RemoveAll(x => x.Id == userCircleId);
+                removeUserCircleList.Add(existingUserCircle);
+            }
+            else
+            {
+                addUserCircleList.RemoveAll(a => a.Id == userCircleId);
+            }
+
+            rptUpdateCircles.DataSource = existingUserCircleList.Concat(addUserCircleList);
             rptUpdateCircles.DataBind();
             updateCirclesModal();
         }
@@ -216,7 +262,7 @@ namespace MyCircles.Profile
         {
             if (e.CommandName == "Remove")
             {
-                btRemove_Click(e.Item.ItemIndex);
+                btRemove_Click(int.Parse(e.CommandArgument.ToString()));
             }
         }
 
@@ -225,7 +271,7 @@ namespace MyCircles.Profile
             signedOutErrorContainer.Visible = false;
             Page.Validate();
 
-            if (!requestedUserCircleList.Any())
+            if (!existingUserCircleList.Concat(addUserCircleList).Any())
             {
                 GeneralHelpers.AddValidationError(Page, "addUserCirclesGroup", "No circles have been added");
             }
@@ -237,11 +283,30 @@ namespace MyCircles.Profile
             }
             else
             {
-                UserCircleDAO.RemoveUserCircles(requestedUser.Id);
-
-                foreach (UserCircle userCircle in requestedUserCircleList)
+                foreach (UserCircle userCircle in removeUserCircleList)
                 {
-                    UserCircleDAO.AddUserCircle(userCircle);
+                    UserCircleDAO.ChangeUserCirclePoints(
+                        userId: userCircle.UserId,
+                        circleName: userCircle.CircleId,
+                        points: -50,
+                        source: "Removing the circle",
+                        addNotification: true
+                    );
+
+                    UserCircleDAO.RemoveUserCircle(userCircle.Id);
+                }
+
+                foreach (UserCircle userCircle in addUserCircleList)
+                {
+                    UserCircle addedUserCircle = UserCircleDAO.AddUserCircle(userCircle);
+
+                    UserCircleDAO.ChangeUserCirclePoints(
+                        userId: addedUserCircle.UserId,
+                        circleName: addedUserCircle.CircleId,
+                        points: 50,
+                        source: "Joining the circle",
+                        addNotification: true
+                    );
                 }
 
                 Response.Redirect("/Redirect.aspx");

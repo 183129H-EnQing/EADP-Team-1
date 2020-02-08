@@ -13,7 +13,7 @@
                                 <h5><%#DataBinder.Eval(Container.DataItem, "locaName") %></h5>
                                 <h6><%#DataBinder.Eval(Container.DataItem, "locaRating") %></h6>
                             </div>
-                            <div class="row">
+                            <div class="row mb-4">
                                 <img src="<%#DataBinder.Eval(Container.DataItem, "locaPic") %>" alt="<%#DataBinder.Eval(Container.DataItem, "locaName") %>"/>
                             </div>
                             <div class="row">

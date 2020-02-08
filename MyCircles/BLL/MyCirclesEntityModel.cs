@@ -80,6 +80,10 @@ namespace MyCircles.BLL
                 .Property(e => e.endTime)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Day>()
+               .Property(e => e.notes)
+               .IsUnicode(false);
+
             modelBuilder.Entity<DayByDay>()
                 .Property(e => e.date)
                 .IsUnicode(false);
@@ -258,15 +262,15 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
-                .Property(e => e.Type)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Notification>()
                 .Property(e => e.Action)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Source)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notification>()
+                .Property(e => e.Type)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()

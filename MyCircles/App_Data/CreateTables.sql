@@ -109,9 +109,9 @@ CREATE TABLE [dbo].[Post] (
 -- Notification Table
 CREATE TABLE [dbo].[Notification] (
     [Id]				INT           IDENTITY (1, 1) NOT NULL,
-    [Type]				VARCHAR (128) NOT NULL,
-    [Action]			VARCHAR (128) NOT NULL,
-	[Source]			VARCHAR (128) NOT NULL,
+    [Action]			VARCHAR (128) NULL,
+	[Source]			VARCHAR (128) NULL,
+    [Type]				VARCHAR (128) NULL,
     [AdditionalMessage] TEXT          NULL,
 	[CallToAction]		VARCHAR (128) NULL,
 	[CallToActionLink]  VARCHAR (128) NULL,
@@ -361,6 +361,8 @@ CREATE TABLE [dbo].[Day] (
     [endTime]     VARCHAR (16) NOT NULL,
 
     [locationId]  INT          NOT NULL,
+
+    [notes] NCHAR(100) NULL,
 
     CONSTRAINT [PK_dbo.Day] PRIMARY KEY CLUSTERED ([dayId] ASC),
 

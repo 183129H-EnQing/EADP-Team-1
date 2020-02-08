@@ -8,6 +8,15 @@ namespace MyCircles.DAL
 {
     public static class UserCircleDAO
     {
+        public static UserCircle GetUserCircleByCircleAndUserId(int userId, string circleName)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                return db.UserCircles
+                    .Where(uc => uc.UserId == userId && uc.CircleId == circleName).FirstOrDefault();
+            }
+        }
+
         public static void AddUserCircle(int userId, string circleName)
         {
             using (var db = new MyCirclesEntityModel())
@@ -28,7 +37,7 @@ namespace MyCircles.DAL
             }
         }
 
-        public static void AddUserCircle(UserCircle newUserCircle)
+        public static UserCircle AddUserCircle(UserCircle newUserCircle)
         {
             using (var db = new MyCirclesEntityModel())
             {
@@ -41,6 +50,37 @@ namespace MyCircles.DAL
 
                 db.UserCircles.Add(newUserCircle);
                 db.SaveChanges();
+
+                return newUserCircle;
+            }
+        }
+
+        public static void ChangeUserCirclePoints(int userId, string circleName, int points, string source, bool addNotification, string callToAction = null, string callToActionLink = null)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                UserCircle userCircle = 
+                    db.UserCircles
+                        .Where(uc => uc.UserId == userId && uc.CircleId == circleName).FirstOrDefault();
+
+                if (userCircle != null)
+                {
+                    userCircle.Points += points;
+                    db.SaveChanges();
+
+                    if (addNotification)
+                    {
+                        Notification notification = new Notification();
+                        notification.Type = (points > 0) ? "positive" : "negative";
+                        notification.Action = (points > 0) ? "Gained" : "Lost";
+                        notification.Action += $" {points} points in {circleName}";
+                        notification.Source = source;
+                        notification.UserId = userId;
+                        notification.CallToAction = callToAction;
+                        notification.CallToActionLink = callToActionLink;
+                        NotificationDAO.AddNotification(notification);
+                    }
+                }
             }
         }
 
@@ -53,12 +93,29 @@ namespace MyCircles.DAL
             }
         }
 
-        public static void RemoveUserCircles(int userId)
+        public static List<UserCircle> RemoveUserCircles(int userId)
         {
             using (var db = new MyCirclesEntityModel())
             {
+                List<UserCircle> existingUserCircles = db.UserCircles.Where(uc => uc.UserId == userId).ToList();
+
                 db.UserCircles.RemoveRange(db.UserCircles.Where(uc => uc.UserId == userId));
                 db.SaveChanges();
+
+                return existingUserCircles;
+            }
+        }
+
+        public static UserCircle RemoveUserCircle(int id)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                UserCircle existingUserCircle = db.UserCircles.Where(uc => uc.Id == id).FirstOrDefault();
+
+                db.UserCircles.Remove(existingUserCircle);
+                db.SaveChanges();
+
+                return existingUserCircle;
             }
         }
 

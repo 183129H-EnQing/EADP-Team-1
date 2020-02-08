@@ -164,7 +164,7 @@ namespace MyCircles.ItineraryPlanner
 
             List<int> daybydayIdList = new List<int>();
 
-            if (Session["prefB"] == null &&
+            if (Session["prefB"] == null &&             //if no select pref
                 Session["prefO"] == null &&
                 Session["prefM"] == null &&
                 Session["prefH"] == null &&
@@ -187,8 +187,11 @@ namespace MyCircles.ItineraryPlanner
                         DateTime endTime = Convert.ToDateTime(2100);
                         DateTime freeTime = Convert.ToDateTime(0030); //lunch, dinner, travel
 
+                        allocationlist = getLocation.RetrieveAllLocation();
+                        //make a day
+                        List<Location> aday = new List<Location>();
 
-
+                        //HELP
                         newDay.AddDay();
                     }
                 }
