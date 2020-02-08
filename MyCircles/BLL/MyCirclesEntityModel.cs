@@ -137,6 +137,10 @@ namespace MyCircles.BLL
                 .Property(e => e.eventLocation)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Event>()
+                .Property(e => e.eventTicketCost)
+                .IsUnicode(false);
+
             modelBuilder.Entity<EventSchedule>()
                 .Property(e => e.eventDescription)
                 .IsUnicode(false);
