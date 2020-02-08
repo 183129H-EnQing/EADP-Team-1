@@ -100,7 +100,7 @@ CREATE TABLE [dbo].[Post] (
 
     CONSTRAINT [FK_Post_ToCircle] FOREIGN KEY ([CircleId]) REFERENCES [dbo].[Circle] ([Id]),
 
-    CONSTRAINT [FK_Post_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
+    CONSTRAINT [FK_Post_ToUser] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id]) 
 
 );
 

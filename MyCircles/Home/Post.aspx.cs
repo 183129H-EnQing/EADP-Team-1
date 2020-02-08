@@ -164,10 +164,11 @@ namespace MyCircles.Home
 
             if(e.CommandName == "Delete")
             {         
-                var data = e.Item.DataItem;
-                BLL.Post userpost = data as BLL.Post;
                 var deleteId = Convert.ToInt32(e.CommandArgument);
-                if (User == currentUser)
+                var userpostindex = e.Item.ItemIndex;
+                UserPost selecteduserpost = UserPosts[userpostindex];
+
+                if (currentUser.Id == selecteduserpost.Post.Id)
                 {
                     PostDAO.DeletePost(deleteId);
                 }
