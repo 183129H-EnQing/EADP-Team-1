@@ -237,7 +237,7 @@ namespace MyCircles.Profile
             }
             else
             {
-                List<UserCircle> existingUserCircles = UserCircleDAO.RemoveUserCircles(requestedUser.Id);
+                //List<UserCircle> existingUserCircles = UserCircleDAO.RemoveUserCircles(requestedUser.Id);
 
                 foreach (UserCircle userCircle in requestedUserCircleList)
                 {
