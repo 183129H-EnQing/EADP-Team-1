@@ -237,11 +237,18 @@ namespace MyCircles.Profile
             }
             else
             {
-                UserCircleDAO.RemoveUserCircles(requestedUser.Id);
+                List<UserCircle> existingUserCircles = UserCircleDAO.RemoveUserCircles(requestedUser.Id);
 
                 foreach (UserCircle userCircle in requestedUserCircleList)
                 {
-                    UserCircleDAO.AddUserCircle(userCircle);
+                    UserCircle addedUserCircle = UserCircleDAO.AddUserCircle(userCircle);
+                    UserCircleDAO.ChangeUserCirclePoints(
+                        userId: addedUserCircle.UserId,
+                        circleName: addedUserCircle.CircleId,
+                        points: 50,
+                        source: "joining a new circle",
+                        addNotification: true
+                    );
                 }
 
                 Response.Redirect("/Redirect.aspx");

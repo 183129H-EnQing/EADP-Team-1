@@ -8,6 +8,15 @@ namespace MyCircles.DAL
 {
     public static class UserCircleDAO
     {
+        public static UserCircle GetUserCircleByCircleAndUserId(int userId, string circleName)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                return db.UserCircles
+                    .Where(uc => uc.UserId == userId && uc.CircleId == circleName).FirstOrDefault();
+            }
+        }
+
         public static void AddUserCircle(int userId, string circleName)
         {
             using (var db = new MyCirclesEntityModel())
@@ -28,7 +37,7 @@ namespace MyCircles.DAL
             }
         }
 
-        public static void AddUserCircle(UserCircle newUserCircle)
+        public static UserCircle AddUserCircle(UserCircle newUserCircle)
         {
             using (var db = new MyCirclesEntityModel())
             {
@@ -41,6 +50,33 @@ namespace MyCircles.DAL
 
                 db.UserCircles.Add(newUserCircle);
                 db.SaveChanges();
+
+                return newUserCircle;
+            }
+        }
+
+        public static void ChangeUserCirclePoints(int userId, string circleName, int points, string source, bool addNotification)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                UserCircle userCircle = GetUserCircleByCircleAndUserId(userId, circleName);
+
+                if (userCircle != null)
+                {
+                    userCircle.Points += points;
+                    db.SaveChanges();
+
+                    if (addNotification)
+                    {
+                        Notification notification = new Notification();
+                        notification.Type = (points > 0) ? "positive" : "negative";
+                        notification.Action = (points > 0) ? "Gained" : "Lost";
+                        notification.Action += $" {points} points in {circleName}";
+                        notification.Source = source;
+                        notification.UserId = userId;
+                        NotificationDAO.AddNotification(notification);
+                    }
+                }
             }
         }
 
