@@ -11,17 +11,14 @@ namespace MyCircles.BLL
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(128)]
-        public string Type { get; set; }
-
-        [Required]
         [StringLength(128)]
         public string Action { get; set; }
 
-        [Required]
         [StringLength(128)]
         public string Source { get; set; }
+
+        [StringLength(128)]
+        public string Type { get; set; }
 
         [Column(TypeName = "text")]
         public string AdditionalMessage { get; set; }

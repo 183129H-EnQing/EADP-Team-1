@@ -286,15 +286,6 @@
                 });
             });
 
-            $("#show-map").click(function () {
-                $("#select-location-map").slideToggle("slow", function () {
-                    if ($("#select-location-map").not(":visible")) {
-                        $("#latitude").val("");
-                        $("#longitude").val("");
-                    }
-                });
-            });
-
             $("form").submit(function (e) {
                 e.preventDefault();
 
@@ -316,7 +307,7 @@
                             $("#tbMessage").val("");
 
                             addNotification({
-                                Action: "gotten a message",
+                                Action: "Message",
                                 Source: "<%= currentUser.Name %>",
                                 UserId: <%= recieverUser.Id %>,
                                 AdditionalMessage: chatRoomAttributes["messageContent"]
@@ -327,6 +318,15 @@
                         }
                     });
                 }
+            });
+
+            $("#show-map").click(function () {
+                $("#select-location-map").slideToggle("slow", function () {
+                    if ($("#select-location-map").not(":visible")) {
+                        $("#latitude").val("");
+                        $("#longitude").val("");
+                    }
+                });
             });
 
             setTimeout(checkForNewMessages, 1000);

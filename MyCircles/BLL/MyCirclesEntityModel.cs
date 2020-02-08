@@ -258,15 +258,15 @@ namespace MyCircles.BLL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
-                .Property(e => e.Type)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Notification>()
                 .Property(e => e.Action)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
                 .Property(e => e.Source)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notification>()
+                .Property(e => e.Type)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Notification>()
