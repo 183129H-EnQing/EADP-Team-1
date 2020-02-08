@@ -23,9 +23,9 @@ namespace MyCircles.BLL
             return ReportedPostDAO.GetAllUserReportedPosts();
         }
 
-        public static void DeleteReportedPost(int id)
+        public static void DeleteReportedPostByPostId(int postId)
         {
-            ReportedPostDAO.DeleteReportedPost(id);
+            ReportedPostDAO.DeleteReportedPostByPostId(postId);
         }
     }
 }
