@@ -310,7 +310,9 @@
                                 Action: "Message",
                                 Source: "<%= currentUser.Name %>",
                                 UserId: <%= recieverUser.Id %>,
-                                AdditionalMessage: chatRoomAttributes["messageContent"]
+                                AdditionalMessage: chatRoomAttributes["messageContent"],
+                                CallToAction: "View Message",
+                                CallToActionLink: `/Profile/Chat.aspx?chatroom=${chatRoomAttributes.chatRoomId}`,
                             });
                         },
                         error: function (data, err) {
