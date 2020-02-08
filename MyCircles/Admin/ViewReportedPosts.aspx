@@ -16,7 +16,7 @@
                                 <asp:BoundField DataField="reason" HeaderText="Reason" />
                                 <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd\/MMM\/yyyy}" />
                                 <asp:ButtonField CommandName="ViewPost" Text="View Post" ButtonType="Button" ControlStyle-CssClass="btn btn-success text-white" />
-                                <asp:ButtonField CommandName="DeletePost" Text="Delete" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
+                                <asp:ButtonField CommandName="DeletePost" Text="Delete Report & Post" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
                             </Columns>
                         </asp:GridView>
                     </div>
@@ -46,7 +46,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success text-white" onclick="closeViewPostModal()">Close</button>
-                                <asp:Button ID="btnModalDelete" CssClass="btn btn-danger" runat="server" Text="Delete Post" OnClick="ModalDeleteBtn_Click" UseSubmitBehavior="false"/>
+                                <asp:Button ID="btnModalDelete" CssClass="btn btn-danger" runat="server" Text="Delete Report & Post" OnClick="ModalDeleteBtn_Click" UseSubmitBehavior="false"/>
                             </div>
                         </div>
                     </div>

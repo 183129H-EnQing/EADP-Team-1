@@ -18,14 +18,14 @@ namespace MyCircles.Admin
             {
                 System.Diagnostics.Debug.WriteLine("page load postback!");
                 List<User> usersList = (List<User>)Session[keySessionList];
-                if (Session[keySessionList] == null) usersList = BLL.User.GetAllUsers();
+                if (Session[keySessionList] == null) usersList = RetrieveNonAdminUsers();
                 refreshGridView(usersList);
             }
             else
             {
                 System.Diagnostics.Debug.WriteLine("page load no postback!");
                 Session[keySessionList] = null;
-                gvUsers.DataSource = BLL.User.GetAllUsers();
+                gvUsers.DataSource = RetrieveNonAdminUsers();
                 gvUsers.DataBind();
             }
         }
@@ -36,7 +36,7 @@ namespace MyCircles.Admin
             System.Diagnostics.Debug.WriteLine("query type id:" + queryTypeId);
 
             string inputStr = tbSearchInput.Text;
-            List<User> users = BLL.User.GetAllUsers();
+            List<User> users = RetrieveNonAdminUsers();
 
             System.Diagnostics.Debug.WriteLine("search submit with:" + inputStr);
 
@@ -82,7 +82,7 @@ namespace MyCircles.Admin
             {
                 System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand pageIndex:" + gvUsers.PageIndex);
                 List<User> usersList = (List<User>)Session[keySessionList];
-                if (usersList == null) usersList = BLL.User.GetAllUsers();
+                if (usersList == null) usersList = RetrieveNonAdminUsers();
 
                 int idx = int.Parse(e.CommandArgument.ToString()) + (10 * gvUsers.PageIndex);
 
@@ -94,7 +94,7 @@ namespace MyCircles.Admin
                 {
                     case "ChgUserStatus":
                         user.UpdateIsDisabled(!user.IsDeleted);
-                        refreshGridView(BLL.User.GetAllUsers());
+                        refreshGridView(usersList);
                         break;
                     case "UserProfile":
                         string profileLink = "/Profile/User.aspx?username=" + usersList[idx].Username;
@@ -110,7 +110,7 @@ namespace MyCircles.Admin
             {
                 System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound pageIndex:" + gvUsers.PageIndex);
                 List<User> usersList = (List<User>)Session[keySessionList];
-                if (usersList == null) usersList = BLL.User.GetAllUsers();
+                if (usersList == null) usersList = RetrieveNonAdminUsers();
                 int idx = e.Row.RowIndex + (10 * gvUsers.PageIndex);
                 System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand index:" + idx);
                 User user = usersList[idx];
@@ -141,7 +141,7 @@ namespace MyCircles.Admin
             System.Diagnostics.Debug.WriteLine("pagerindex");
 
             List<User> usersList = (List<User>)Session[keySessionList];
-            if (usersList == null) usersList = BLL.User.GetAllUsers();
+            if (usersList == null) usersList = RetrieveNonAdminUsers();
             refreshGridView(usersList);
         }
 
@@ -151,6 +151,21 @@ namespace MyCircles.Admin
             Session[keySessionList] = dataToBind;
             gvUsers.DataSource = dataToBind;
             gvUsers.DataBind();
+        }
+
+        private List<User> RetrieveNonAdminUsers()
+        {
+            List<User> users = new List<User>();
+
+            foreach (User user in BLL.User.GetAllUsers())
+            {
+                if (BLL.Admin.RetrieveAdmin(user) == null)
+                {
+                    users.Add(user);
+                }
+            }
+
+            return users;
         }
     }
 }
