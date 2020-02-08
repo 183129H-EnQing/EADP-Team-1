@@ -19,6 +19,8 @@ namespace MyCircles.Home
         public BLL.User currentUser;
         public List<UserPost> UserPosts;
 
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();
@@ -160,12 +162,25 @@ namespace MyCircles.Home
                 ReportedPostDAO.AddReport(newReport);
             }
 
+            if(e.CommandName == "Delete")
+            {         
+                var data = e.Item.DataItem;
+                UserPost userpost = data as UserPost;
+                if (User == currentUser)
+                {
+                    PostDAO.DeletePost(userpost.Post.Id);
+                }
+
+            }
+
           
             
 
 
         }
-
        
+
+
+
     }
 }
