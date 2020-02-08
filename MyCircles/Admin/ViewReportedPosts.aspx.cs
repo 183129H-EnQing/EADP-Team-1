@@ -31,6 +31,7 @@ namespace MyCircles.Admin
             {
                 deleteOp(selectedRowIdx);
                 System.Diagnostics.Debug.WriteLine("Delete Btn click!");
+                
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "closeViewPostModal();", true);

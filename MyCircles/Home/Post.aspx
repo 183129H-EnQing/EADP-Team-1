@@ -180,8 +180,8 @@
                                                     <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class='fa fa-ellipsis-v'></i>
                                                     </a>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <a class="dropdown-item" href="#" onclick="openViewPostModal">Delete</a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">                                                
+                                                        <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete" CommandArgument=""  Text="Delete" />
                                                         <a class="dropdown-item" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
                                                     </div>
                                                 </div>
