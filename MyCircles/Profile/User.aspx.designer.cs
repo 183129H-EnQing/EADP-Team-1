@@ -30,7 +30,7 @@ namespace MyCircles.Profile
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Reimers.Google.Map.map GMap;
+        protected global::Reimers.Google.Map.Map GMap;
 
         /// <summary>
         /// ProfilePicImage control.

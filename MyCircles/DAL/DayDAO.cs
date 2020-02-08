@@ -81,11 +81,12 @@ namespace MyCircles.DAL
 
                 foreach (Location location in locations)
                 {
-                    if ((userDateTime.AddHours(int.Parse(location.locaRecom)).TimeOfDay < startTime) &&
-                        (userDateTime.AddHours(int.Parse(location.locaRecom)).TimeOfDay > endTime))
+                    TimeSpan nextEventFinishTime = userDateTime.AddHours(int.Parse(location.locaRecom)).TimeOfDay;
+
+                    if ((nextEventFinishTime > endTime))
                     {
                         userDateTime = userDateTime.AddDays(1);
-                        userDateTime += startTime;
+                        userDateTime = userDateTime.Date + startTime;
                     }
 
                     if (userDateTime > endDate)

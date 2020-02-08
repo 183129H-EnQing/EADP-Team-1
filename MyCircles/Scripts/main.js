@@ -50,23 +50,20 @@ function addNotificationToasts(notifications) {
                 `<div style="font-weight:500;"><span class="${notifications[i].Type}-action">${notifications[i].Action}</span> from ${notifications[i].Source.toLowerCase()}</div>`
 
             if (notifications[i].AdditionalMessage) {
-                toast.concat(`<div class="toast-body">${notifications[i].AdditionalMessage}</div>`);
+                toast += `<div class="text-italic">${notifications[i].AdditionalMessage}</div>`;
             }
 
-            toast.concat(`</div>`);
+            toast += `</div>`;
 
             if (notifications[i].CallToAction) {
-                toast.concat(
-                    `<div class="toast-footer row" style="padding: 5px;">` +
-                    `<form method="post" action="${notifications[i].CallToActionLink}" id="acceptInvitationForm">` +
+                toast +=
+                    `<div class="toast-footer text-center" style="padding: 5px;">` +
+                    `<form method="post" action="${notifications[i].CallToActionLink}">` +
                     `<button type="submit" style="border: 0; background-color: transparent;"><span class="positive-action">${notifications[i].CallToAction}</span></button></form></div>`
-                );
             };
 
             toast.concat(`</div>`);
-
             $('.toast-container').append(toast);
-
             $('.toast').toast('show');
         };
     };
@@ -90,7 +87,7 @@ function getUserNotifications(userId) {
     });
 }
 
-function addNotification({ Action, Source, UserId, Type = "positive", AdditionalMessage = null, CallToAction = null, CallToActionLink = null, IsRead = false } = {}) {
+function addNotification({ Action, Source, UserId, Type = "neutral", AdditionalMessage = null, CallToAction = null, CallToActionLink = null, IsRead = false } = {}) {
     var notification = {
         Action: Action,
         Source: Source,
@@ -106,7 +103,3 @@ function addNotification({ Action, Source, UserId, Type = "positive", Additional
         console.log(item);
     });
 }
-
-$('body').on('click', '.close', function () {
-    $(this).closest('.toast').toast('hide')
-})
