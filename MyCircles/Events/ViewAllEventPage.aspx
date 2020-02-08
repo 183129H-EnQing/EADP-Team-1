@@ -143,7 +143,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
-                                                     <span class="eventOrganiser">By Nanyang polytechnic</span>
+                                                     <span class="eventOrganiser"><%=singleEvent.eventHolderName %></span>
                                                 </div>
                                             </div> 
 

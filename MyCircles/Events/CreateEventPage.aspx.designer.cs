@@ -22,6 +22,15 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.TextBox eventTitleTB;
         
         /// <summary>
+        /// eventDescriptionTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox eventDescriptionTB;
+        
+        /// <summary>
         /// CategoryDropDownList control.
         /// </summary>
         /// <remarks>
@@ -121,13 +130,13 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.DropDownList entryFeeStatusDDL;
         
         /// <summary>
-        /// entryFee control.
+        /// entryFeeTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox entryFee;
+        protected global::System.Web.UI.WebControls.TextBox entryFeeTB;
         
         /// <summary>
         /// maxTimeAPersonCanRegisterDLL control.
@@ -164,6 +173,33 @@ namespace MyCircles.Events {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox maxSlotTB;
+        
+        /// <summary>
+        /// signedOutErrorContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl signedOutErrorContainer;
+        
+        /// <summary>
+        /// lbErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbErrorMsg;
+        
+        /// <summary>
+        /// vsAddCircles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsAddCircles;
         
         /// <summary>
         /// submitButt control.

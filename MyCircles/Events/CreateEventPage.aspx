@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+<%--<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <div class="container-fluid mt-3">
@@ -57,6 +59,11 @@
                                     <asp:TextBox type="text" class="form-control" ID="eventTitleTB" runat="server"></asp:TextBox>
                                 </div>
 
+                                <div class="form-group">
+                                    <label id="eventDescription">EventDescription</label>
+                                    <asp:TextBox ID="eventDescriptionTB" runat="server" TextMode="MultiLine" CssClass="form-control" style="width:100%;"></asp:TextBox>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
@@ -101,13 +108,13 @@
                         <div class="card card-body">
                               <div class="form-group">
                                     <label id="LocationLB">Location</label>
-                                       <asp:DropDownList ID="LocationDLL" runat="server" class="form-control" ClientIDMode="Static">
-                                            <asp:ListItem Value="Venue" />
-                                            <asp:ListItem Value="To Be Announced" />
+                                       <asp:DropDownList ID="LocationDLL" runat="server" class="form-control" ClientIDMode="Static" AutoPostBack="false" >
+                                           <asp:ListItem Value="To Be Announced" />
+                                           <asp:ListItem Value="Venue" />
                                        </asp:DropDownList>
                               </div>
-                              <div class="form-group"> 
-                                  <asp:TextBox type="text" class="form-control" ID="LocationTB" runat="server" placeholder="Enter Your Venue Here"></asp:TextBox>
+                              <div class="form-group" ID="LocationTBContainer" ClientIDMode="Static" style="display:none;"> 
+                                  <asp:TextBox type="text" class="form-control" ID="LocationTB" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
                               </div>     
                         </div>
                     </div>
@@ -297,43 +304,51 @@
 
                               <div class="form-group">
                                     <label class="mt-2">EntryFee</label>
-                                       <asp:DropDownList ID="entryFeeStatusDDL" runat="server" class="form-control" ClientIDMode="Static">
+                                       <asp:DropDownList ID="entryFeeStatusDDL" runat="server" class="form-control" ClientIDMode="Static" AutoPostBack="false">
                                            <asp:ListItem Value="Free" /> 
                                            <asp:ListItem Value="Not Free" />
                                        </asp:DropDownList>
                               </div>
-                              <div class="form-group"> 
-                                  <asp:TextBox type="text" class="form-control" ID="entryFee" runat="server" placeholder="Enter Your Entry Fee Price"></asp:TextBox>
+                              <div class="form-group" id="entryFeeTBConatiner" ClientIDMode="Static" style="display:none;"> 
+                                  <asp:TextBox type="text" class="form-control" ID="entryFeeTB" runat="server" placeholder="Enter Your Entry Fee Price"></asp:TextBox>
                               </div>   
                             
                               <div class="form-group">
                                   <label>Maximum Time A Person Can Register</label>
 
-                                  <asp:DropDownList ID="maxTimeAPersonCanRegisterDLL" runat="server" class="form-control" ClientIDMode="Static">
+                                  <asp:DropDownList ID="maxTimeAPersonCanRegisterDLL" runat="server" class="form-control" ClientIDMode="Static" AutoPostBack="false">
                                     <asp:ListItem Value="No Limit" /> 
                                     <asp:ListItem Value="Got Limit" />
                                   </asp:DropDownList>
                               </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="maxTimeAPersonCanRegisterTBConatiner" ClientIDMode="Static" style="display:none;">
                                <asp:TextBox type="text" class="form-control" ID="maxTimeAPersonCanRegisterTB" runat="server" placeholder="Enter The Limit A Person Can Book"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
                                 <label>Maxmium Slot Avaliable</label>
-                                <asp:DropDownList ID="maxSlotAvaliableDDL" runat="server" class="form-control" ClientIDMode="Static">
+                                <asp:DropDownList ID="maxSlotAvaliableDDL" runat="server" class="form-control" ClientIDMode="Static" AutoPostBack="false">
                                     <asp:ListItem Value="No Limit" /> 
                                     <asp:ListItem Value="Got Limit" />
                                  </asp:DropDownList>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="maxSlotTBConatiner" ClientIDMode="Static" style="display:none;">
                                 <asp:TextBox type="text" class="form-control" ID="maxSlotTB" runat="server" placeholder="Enter The Maxmium Available Slots"></asp:TextBox>                            
                             </div>
                            
                         </div>
                     </div>
-                        <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-2" runat="server" Text="Submit" OnClick="submitButt_Click" />
+                          <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
+                                <div class="signedOutErrorBlock">
+                                    <i class="fas fa-exclamation-triangle"></i>&nbsp;
+                                    <asp:Label ID="lbErrorMsg" runat="server">
+                                        <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addEvent" />
+                                    </asp:Label>
+                                </div>
+                           </div>
+                        <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" OnClick="submitButt_Click" />
                     </form>
                 </div>
             </div>
@@ -356,6 +371,51 @@
                       minDate:new Date()
                 });
         });
-        
+
+<%--          var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+        var editor_content = quill.container.innerHTML;
+        var x = <%=quillData %> 
+            x = editor_content
+        console.log(editor_content);--%>
+        function hideOrShowExtraTB() {
+            var locationDDLValue = document.getElementById("LocationDLL").value;
+            var entryFeeStatusDDLValue = document.getElementById("entryFeeStatusDDL").value;
+            var maxTimeAPersonCanRegisterDLLValue = document.getElementById("maxTimeAPersonCanRegisterDLL").value;
+            var maxSlotAvaliableDDLValue = document.getElementById("maxSlotAvaliableDDL").value;
+
+            console.log(maxSlotAvaliableDDLValue)
+
+            if (locationDDLValue == "Venue") {
+                document.getElementById("LocationTBContainer").style.display = "block";
+            }
+            else {
+                document.getElementById("LocationTBContainer").style.display = "none";
+            }
+
+            if (entryFeeStatusDDLValue == "Not Free") {
+                document.getElementById("entryFeeTBConatiner").style.display = "block";
+            }
+            else {
+                document.getElementById("entryFeeTBConatiner").style.display = "none";
+            }
+
+            if (maxTimeAPersonCanRegisterDLLValue == "Got Limit") {
+                document.getElementById("maxTimeAPersonCanRegisterTBConatiner").style.display = "block";
+            }
+            else {
+                document.getElementById("maxTimeAPersonCanRegisterTBConatiner").style.display = "none";
+            }
+
+            if (maxSlotAvaliableDDLValue == "Got Limit") {
+                document.getElementById("maxSlotTBConatiner").style.display = "block";
+            }
+            else {
+                document.getElementById("maxSlotTBConatiner").style.display = "none";
+            }
+            
+        }
+       
         </script>
 </asp:Content>
