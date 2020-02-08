@@ -158,7 +158,7 @@ namespace MyCircles.Home
                 newReport.postId = selecteduserpost.Post.Id;
                 newReport.reason = rpt;
                 newReport.dateCreated = DateTime.Now;
-                newReport.reporterUserId = selecteduserpost.User.Id;
+                newReport.reporterUserId = currentUser.Id;
                 ReportedPostDAO.AddReport(newReport);
             }
 
