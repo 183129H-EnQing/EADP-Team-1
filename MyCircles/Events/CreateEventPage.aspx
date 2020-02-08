@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="CreateEventPage.aspx.cs" Inherits="MyCircles.Events.CreateEventPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SignedInHeadPlaceholder" runat="server">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
@@ -54,26 +54,29 @@
                           
                                 <div class="form-group">
                                     <label id="eventLB">Event Title</label>
-                                    <asp:TextBox type="text" class="form-control" ID="eventTB" runat="server"></asp:TextBox>
+                                    <asp:TextBox type="text" class="form-control" ID="eventTitleTB" runat="server"></asp:TextBox>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="form-group">
                                                 <label>Category</label>
-                                            <asp:DropDownList ID="CategoryDropDownList" runat="server" class="form-control">
-
+                                            <asp:DropDownList ID="CategoryDropDownList" runat="server" class="form-control" ClientIDMode="Static">
+                                                <asp:ListItem Value="Sports & Fitness" />
+                                                <asp:ListItem Value="Performing & Visual Arts"/>
+                                                <asp:ListItem Value="Science & Technology" />
+                                                
                                             </asp:DropDownList>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+         <%--                           <div class="col-6">
                                         <div class="form-group">
                                             <label>SubCategory</label>
                                             <asp:DropDownList ID="SubCategoryDropDownList" runat="server" class="form-control"  ClientIDMode="Static">
 
                                             </asp:DropDownList>
                                         </div>
-                                    </div>
+                                    </div>--%>
                                 </div>
 
                                 <div class="form-group">
@@ -121,7 +124,7 @@
                         </h5>
                         <div class="card card-body">
                               <div class="radio">
-                                  <label><input type="radio" name="optradio" checked>Single Event - Happens once and can last multiple days</label>
+                                  <label><asp:RadioButton ID="singleEventRadioButton" runat="server" type="radio" Checked="true"/>Single Event - Happens once and can last multiple days</label>
                               </div>                         
 
                               <div class="row">
@@ -129,8 +132,8 @@
                                         <div class="form-group">
                                             <label>StartDate</label>
                                              <div class="input-group date" id="datetimepickerStartDate" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerStartDate"/>
-                                                <div class="input-group-append" data-target="#datetimepickerStartDate" data-toggle="datetimepicker">
+                                                 <asp:TextBox ID="startDateTB" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerStartDate" runat="server"></asp:TextBox>
+                                                 <div class="input-group-append" data-target="#datetimepickerStartDate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div>
@@ -139,8 +142,8 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>EndDate</label>
-                                            <div class="input-group date" id="datetimepickerEndDate" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerEndDate"/>
+                                            <div class="input-group date" id="datetimepickerEndDate" data-target-input="nearest">                                             
+                                                 <asp:TextBox ID="endDateTB" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerEndDate" runat="server"></asp:TextBox>
                                                 <div class="input-group-append" data-target="#datetimepickerEndDate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -281,13 +284,13 @@
                         <div class="card card-body">
                             <div class="row">
                                 <div class="col-12">
-                                     <label >Image Upload</label>
+                                     <label >Main Event Image</label>
                                 </div>
                             </div>
 
                             <div class="row"> 
                                 <div class="col-12">
-                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    <asp:FileUpload ID="imageUpload" runat="server" />
                                 </div>
                            
                             </div>
@@ -300,7 +303,7 @@
                                        </asp:DropDownList>
                               </div>
                               <div class="form-group"> 
-                                  <asp:TextBox type="text" class="form-control" ID="entryFeeStatus" runat="server" placeholder="Enter Your Entry Fee Price"></asp:TextBox>
+                                  <asp:TextBox type="text" class="form-control" ID="entryFee" runat="server" placeholder="Enter Your Entry Fee Price"></asp:TextBox>
                               </div>   
                             
                               <div class="form-group">
@@ -313,7 +316,7 @@
                               </div>
 
                             <div class="form-group">
-                               <asp:TextBox type="text" class="form-control" ID="TextBox1" runat="server" placeholder="Enter The Limit A Person Can Book"></asp:TextBox>
+                               <asp:TextBox type="text" class="form-control" ID="maxTimeAPersonCanRegisterTB" runat="server" placeholder="Enter The Limit A Person Can Book"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
@@ -327,10 +330,10 @@
                             <div class="form-group">
                                 <asp:TextBox type="text" class="form-control" ID="maxSlotTB" runat="server" placeholder="Enter The Maxmium Available Slots"></asp:TextBox>                            
                             </div>
-
+                           
                         </div>
                     </div>
-
+                        <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-2" runat="server" Text="Submit" OnClick="submitButt_Click" />
                     </form>
                 </div>
             </div>
@@ -352,6 +355,7 @@
                       format: 'L',
                       minDate:new Date()
                 });
-            });
+        });
+        
         </script>
 </asp:Content>

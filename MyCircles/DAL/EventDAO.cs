@@ -28,5 +28,15 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void AddNewEvent(Event eventData)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                db.Events.Add(eventData);
+
+                db.SaveChanges();
+            }
+        }
+
     }
 }
