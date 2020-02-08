@@ -8,11 +8,13 @@ namespace MyCircles.DAL.Joint_Models
 {
     public class DayLocation
     {
+        public int dayId { get; set; }
         public string date { get; set; }
         public int itineraryId { get; set; }
         public int locationId { get; set; }
         public string startTime { get; set; }
         public string endTime { get; set; }
+        public string notes { get; set; }
 
 
         //public int locaId { get; set; }
@@ -28,11 +30,13 @@ namespace MyCircles.DAL.Joint_Models
 
         public DayLocation(Day d, Location l)
         {
+            this.dayId = d.dayId;
             this.date = d.date;
             this.itineraryId = d.itineraryId;
             this.locationId = d.locationId;
             this.startTime = d.startTime;
             this.endTime = d.endTime;
+            this.notes = d.notes;
 
             landmarkType = l.landmarkType;
             locaPic = l.locaPic;
