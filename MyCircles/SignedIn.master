@@ -47,7 +47,24 @@
         </div>
     </nav>
 
+    <div aria-live="polite" aria-atomic="true" style="z-index:1; position:relative;">
+        <div style="position: absolute; top: 30px; right: 15px;" class="toast-container">
+        </div>
+    </div>
+
     <asp:ContentPlaceHolder ID="SignedInContentPlaceholder" runat="server" />
+
+    <script>
+        $(document).ready(function () {
+            getUserNotifications(<%= currentUser.Id %>);
+        });
+
+        setInterval(function () {
+            getUserNotifications(<%= currentUser.Id %>)
+        }, 5000);
+
+        //
+    </script>
 </asp:Content>
 
 <asp:Content ID="DeferredScriptsTempContent" ContentPlaceHolderID="DeferredScriptsPlaceholder" runat="server">

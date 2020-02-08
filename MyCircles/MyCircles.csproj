@@ -323,6 +323,7 @@
     <Compile Include="BLL\Comment.cs" />
     <Compile Include="BLL\Day.cs" />
     <Compile Include="BLL\DayByDay.cs" />
+    <Compile Include="BLL\DTO\NotificationDTO.cs" />
     <Compile Include="BLL\Event.cs" />
     <Compile Include="BLL\EventSchedule.cs" />
     <Compile Include="BLL\Follow.cs" />
@@ -375,6 +376,7 @@
     <Compile Include="DAL\LocationDAO.cs" />
     <Compile Include="DAL\MessageDAO.cs" />
     <Compile Include="DAL\MutualDAO.cs" />
+    <Compile Include="DAL\NotificationDAO.cs" />
     <Compile Include="DAL\PostDAO.cs" />
     <Compile Include="DAL\ReportedPostDAO.cs" />
     <Compile Include="DAL\SignUpEventDetailDAO.cs" />

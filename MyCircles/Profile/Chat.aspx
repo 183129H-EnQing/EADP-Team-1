@@ -178,7 +178,7 @@
                         directionsDisplay.setDirections(response);
                         directionsDisplay.setMap(map);
                     } else {
-                        alert("Directions Request from your location to " + "{{{ shop.name }}}" + " failed: " + status);
+                        alert("Directions request from your location to failed: " + status);
                     }
                 });
 
@@ -209,10 +209,10 @@
                 return new Date(jsonDateString.match(/\d+/)[0] * 1);
             };
 
-            function appendMessage(message) {
+            function appendMessage(message, currentUserId) {
                 let messageDiv;
 
-                if (message.SenderId == <%= currentUser.Id %>) {
+                if (message.SenderId == currentUserId) {
                     messageDiv =
                         '<div class="row justify-content-end">' +
                         '<div class="col-auto">' +
@@ -253,7 +253,7 @@
                     success: function (data) {
                         var newMessages = data.d.result;
                         for (i = 0; i < newMessages.length; i++) {
-                            appendMessage(newMessages[i]);
+                            appendMessage(newMessages[i], chatRoomAttributes["currentUserId"]);
                             $('.chat-content').animate({ scrollTop: ($('.chat-content')[0].scrollHeight) });
                         }
                     },
@@ -276,7 +276,7 @@
                     success: function (data) {
                         var allMessages = data.d.result;
                         for (i = 0; i < allMessages.length; i++) {
-                            appendMessage(allMessages[i])
+                            appendMessage(allMessages[i], chatRoomAttributes["senderId"])
                         }
                         $('.chat-content').animate({ scrollTop: ($('.chat-content')[0].scrollHeight) });
                     },
@@ -311,9 +311,16 @@
                         type: "POST",
                         success: function (data) {
                             var newMessage = data.d.result;
-                            appendMessage(newMessage);
+                            appendMessage(newMessage, chatRoomAttributes["senderId"]);
                             $('.chat-content').animate({ scrollTop: ($('.chat-content')[0].scrollHeight) });
                             $("#tbMessage").val("");
+
+                            addNotification({
+                                Action: "gotten a message",
+                                Source: "<%= currentUser.Name %>",
+                                UserId: <%= recieverUser.Id %>,
+                                AdditionalMessage: chatRoomAttributes["messageContent"]
+                            });
                         },
                         error: function (data, err) {
                             console.log(err);

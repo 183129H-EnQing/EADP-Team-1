@@ -8,6 +8,7 @@ using System.Web.SessionState;
 using System.Web.Http;
 using System.Web.UI;
 using Nemiro.OAuth;
+using Newtonsoft.Json;
 
 namespace MyCircles
 {
@@ -19,6 +20,7 @@ namespace MyCircles
         void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
 
             ScriptManager.ScriptResourceMapping.AddDefinition("jquery",
                 new ScriptResourceDefinition

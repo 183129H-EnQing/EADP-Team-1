@@ -159,11 +159,11 @@
     display: inline-block;
 }
 
-.IsLoggedIn-False {
+.IsLoggedIn-False, .negative-action {
     color: #d47a7a;
 }
 
-.IsLoggedIn-True {
+.IsLoggedIn-True, .positive-action {
     color: #63c473;
 }
 
