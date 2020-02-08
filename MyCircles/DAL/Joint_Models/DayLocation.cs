@@ -13,6 +13,7 @@ namespace MyCircles.DAL.Joint_Models
         public int locationId { get; set; }
         public string startTime { get; set; }
         public string endTime { get; set; }
+        public string notes { get; set; }
 
 
         //public int locaId { get; set; }
@@ -33,6 +34,7 @@ namespace MyCircles.DAL.Joint_Models
             this.locationId = d.locationId;
             this.startTime = d.startTime;
             this.endTime = d.endTime;
+            this.notes = d.notes;
 
             landmarkType = l.landmarkType;
             locaPic = l.locaPic;

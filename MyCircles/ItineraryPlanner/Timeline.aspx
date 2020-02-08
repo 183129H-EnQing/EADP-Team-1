@@ -95,17 +95,16 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="RequestFund.aspx">Request Fund</a>
-                        <a class="dropdown-item" href="#" onclick="openViewPostModal">Delete Planner</a>
+                        <a class="dropdown-item" href="#" onclick="openDeleteModal()" >Delete Planner</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-1"></div>
         </div>
 
-
         <script>
-            function openViewPostModal() {
-                $('#deleteModal<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>').modal('show');
+            function openDeleteModal() {
+                $('#deleteModal').modal('show');
             }
         </script>
         <div id="deleteModal" class="modal" tabindex="-1" role="dialog">
@@ -121,7 +120,7 @@
                         <p>Are you sure you want to delete this plan?</p>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" onclick="btnDelete_Click"/>
+                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" onclick="btnDelete_Click" CssClass="btn btn-primary"/>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -260,6 +259,18 @@
                                             </script>
                                             <%--<h6><%#DataBinder.Eval(Container.DataItem, "landmarkType") %></h6>--%>
                                         </div>
+                                    </div>
+                                    <div class="row pl-3">
+                                        <div class="col-md-1 mr-5"></div>
+                                        <div class="col-md-10">
+                                             <div class="row">
+                                                <h6>Notes: </h6>
+                                            </div>
+                                            <div class="row">
+                                                <p>hello world</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
                                     </div>
                                 </div>
 

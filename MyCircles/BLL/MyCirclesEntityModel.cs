@@ -80,6 +80,10 @@ namespace MyCircles.BLL
                 .Property(e => e.endTime)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Day>()
+               .Property(e => e.notes)
+               .IsUnicode(false);
+
             modelBuilder.Entity<DayByDay>()
                 .Property(e => e.date)
                 .IsUnicode(false);
