@@ -5,6 +5,7 @@
         .fliterText{
             font-size:14px;
         }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
@@ -116,9 +117,9 @@
                                 <a href="/Events/ViewEventDetails.aspx?eventID=<%=singleEvent.eventId%>"> 
                                 <div class="card card-body" id="Div1">
                                     <div class="row">
-                                        <div class="col-sm-3 col-md-12">
+                                        <div class="col-sm-3 col-md-12 ">
                                             <!-- event image -->
-                                               <img src="../Content/images/MyCirclesBackground.png" alt="Card Image" style="width:100%;" />
+                                               <img alt="Card image cap" class="card-img-top img-fluid" src="..<%=singleEvent.eventImage %>" style="width: 200px; height: 150px;" />
                                         </div>
                                         <div class="col-sm-9 col-md-12 col-lg-12">
                                             <div class="row">
@@ -142,7 +143,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
-                                                     <span class="eventOrganiser">By Nanyang polytechnic</span>
+                                                     <span class="eventOrganiser"><%=singleEvent.eventHolderName %></span>
                                                 </div>
                                             </div> 
 

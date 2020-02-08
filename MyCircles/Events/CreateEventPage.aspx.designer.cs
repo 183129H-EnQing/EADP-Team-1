@@ -13,13 +13,22 @@ namespace MyCircles.Events {
     public partial class CreateEventPage {
         
         /// <summary>
-        /// eventTB control.
+        /// eventTitleTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox eventTB;
+        protected global::System.Web.UI.WebControls.TextBox eventTitleTB;
+        
+        /// <summary>
+        /// eventDescriptionTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox eventDescriptionTB;
         
         /// <summary>
         /// CategoryDropDownList control.
@@ -29,15 +38,6 @@ namespace MyCircles.Events {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList CategoryDropDownList;
-        
-        /// <summary>
-        /// SubCategoryDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SubCategoryDropDownList;
         
         /// <summary>
         /// organizerTB control.
@@ -67,6 +67,33 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.TextBox LocationTB;
         
         /// <summary>
+        /// singleEventRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton singleEventRadioButton;
+        
+        /// <summary>
+        /// startDateTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox startDateTB;
+        
+        /// <summary>
+        /// endDateTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox endDateTB;
+        
+        /// <summary>
         /// startTimeDLL control.
         /// </summary>
         /// <remarks>
@@ -85,13 +112,13 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.DropDownList endTimeDLL;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// imageUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.FileUpload imageUpload;
         
         /// <summary>
         /// entryFeeStatusDDL control.
@@ -103,13 +130,13 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.DropDownList entryFeeStatusDDL;
         
         /// <summary>
-        /// entryFeeStatus control.
+        /// entryFeeTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox entryFeeStatus;
+        protected global::System.Web.UI.WebControls.TextBox entryFeeTB;
         
         /// <summary>
         /// maxTimeAPersonCanRegisterDLL control.
@@ -121,13 +148,13 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.DropDownList maxTimeAPersonCanRegisterDLL;
         
         /// <summary>
-        /// TextBox1 control.
+        /// maxTimeAPersonCanRegisterTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox maxTimeAPersonCanRegisterTB;
         
         /// <summary>
         /// maxSlotAvaliableDDL control.
@@ -146,5 +173,41 @@ namespace MyCircles.Events {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox maxSlotTB;
+        
+        /// <summary>
+        /// signedOutErrorContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl signedOutErrorContainer;
+        
+        /// <summary>
+        /// lbErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbErrorMsg;
+        
+        /// <summary>
+        /// vsAddCircles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsAddCircles;
+        
+        /// <summary>
+        /// submitButt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitButt;
     }
 }

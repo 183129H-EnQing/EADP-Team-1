@@ -185,6 +185,8 @@ CREATE TABLE [dbo].[Event] (
     [eventStatus]               VARCHAR (20)  NULL,
     [singleOrRecurring]         VARCHAR (20)  NULL,
     [maxTimeAPersonCanRegister] VARCHAR (10)  NULL,
+	[eventLocation]				VARCHAR(50) NULL, 
+	[eventTicketCost]		    VARCHAR(10) NULL,
     PRIMARY KEY CLUSTERED ([eventId] ASC),
 	CONSTRAINT [FK_Event_userId] FOREIGN KEY ([eventHolderId]) REFERENCES [dbo].[User] ([Id])
 );
