@@ -149,7 +149,7 @@
                     <div class="col">
                         <div class="border border-secondary px-3" style =" border-radius:16px 16px;" >
                             <div class="form-group mb-2 mt-3">
-                                <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox>
+                                <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox><asp:DropDownList ID="DropDownList1"  runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                             <div class="form-group justify-content-between d-flex">
                                 <div>
@@ -173,10 +173,11 @@
                                                 <div class="mr-auto p-1">
                                                     <h5>
                                                         <asp:Label runat="server"><%#DataBinder.Eval(Container.DataItem, "User.Username")%></asp:Label>
+                                                         <h6><span class="badge badge-secondary"><%#DataBinder.Eval(Container.DataItem, "Post.CircleId")%></span></h6>
                                                     </h5>                                                
                                                 </div>                                             
-                                                <div>
-                                                <div class="dropdown show">
+                                                <div>                                                                                                                                                                                                                                                  
+                                                <div class="dropdown show">                                                
                                                     <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class='fa fa-ellipsis-v'></i>
                                                     </a>
@@ -184,8 +185,8 @@
                                                         <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete"  CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>  Text="Delete" />
                                                         <a class="dropdown-item" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
                                                     </div>
-                                                </div>
-                                                    
+                                                </div> 
+                                                     
                                                 </div>
                                             </div>                                          
                                             <div class="text-center">
@@ -219,7 +220,7 @@
                                                         <div class="media mb-3">
                                                             <img src="" class="rounded-circle mr-2" style="width: 50px;">
                                                             <div class="media-body">
-                                                                <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%> </i></small></h4>
+                                                                <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%></i></small></h4>
                                                                 <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>                                                            
                                                                   <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName ="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
                                                             </div>
@@ -281,7 +282,7 @@
             <div class="col-lg-2 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-info">Connect</h3></div>
+                        <h3 class="text-info">Connectt</h3></div>
                     <ul class="list-group list-group-flush">
                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>Jamal</div>

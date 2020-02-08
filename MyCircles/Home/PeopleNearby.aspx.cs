@@ -19,10 +19,11 @@ namespace MyCircles.Home
             currentUser = (BLL.User)Session["currentUser"];
 
             var followinguser = new BLL.User();
-
+             
+            
 
             
-            
+           
 
 
 

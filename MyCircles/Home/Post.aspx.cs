@@ -26,6 +26,16 @@ namespace MyCircles.Home
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
+            var circlesname = UserCircleDAO.GetAllUserCircles(currentUser.Id);
+
+            if (!IsPostBack)
+            {
+                DropDownList1.DataSource = circlesname;
+                DropDownList1.DataTextField = "CircleId";
+                DropDownList1.DataValueField = "CircleId";
+                DropDownList1.DataBind();
+            }
+           
             this.Title = "Home";
             CircleDAO.AddCircle("gym");
             UserPosts = PostDAO.GetPostsByCircle("gym");
@@ -51,7 +61,7 @@ namespace MyCircles.Home
                 newPost.Content = activity.Text;
                 newPost.DateTime = DateTime.Now;
                 newPost.UserId = currentUser.Id;
-                newPost.CircleId = "gym";
+                newPost.CircleId = DropDownList1.SelectedValue;
                 newPost.Image = GeneralHelpers.UploadFile(FileUpload1);
                 PostDAO.AddPost(newPost);
 
@@ -202,10 +212,11 @@ namespace MyCircles.Home
 
         }
 
-        
-       
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+           
 
-
+        }
     }
 }
