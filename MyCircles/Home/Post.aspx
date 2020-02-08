@@ -177,11 +177,11 @@
                                                 </div>                                             
                                                 <div>
                                                 <div class="dropdown show">
-                                                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class='fa fa-ellipsis-v'></i>
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>">                                                
-                                                        <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>  Text="Delete" />
+                                                        <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete"  CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>  Text="Delete" />
                                                         <a class="dropdown-item" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
                                                     </div>
                                                 </div>

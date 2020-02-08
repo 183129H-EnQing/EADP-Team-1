@@ -123,6 +123,21 @@ namespace MyCircles.Home
             DAL.UserPost userpost = data as DAL.UserPost;
             repeater.DataSource = CommentDAO.GetCommentByPost(userpost.Post.Id);
             repeater.DataBind();
+            var deltee = e.Item.ItemIndex;
+            UserPost user = UserPosts[deltee];
+            var dletepost = user.User.Id;
+            Button delte = (e.Item.FindControl("Delete") as Button);
+
+            if (currentUser.Id == dletepost )
+            {
+          
+                delte.Visible = true;
+            }
+            else
+            {
+                delte.Visible = false;
+            }
+            
           
 
             //if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -167,15 +182,17 @@ namespace MyCircles.Home
                 var deleteId = Convert.ToInt32(e.CommandArgument);
                 var userpostindex = e.Item.ItemIndex;
                 UserPost selecteduserpost = UserPosts[userpostindex];
+               
+              
 
-                if (currentUser.Id == selecteduserpost.Post.Id)
+                if (currentUser.Id == selecteduserpost.User.Id)
                 {
+
+                    ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
                     PostDAO.DeletePost(deleteId);
+
                 }
-                else
-                {
-                   
-                }
+              
 
             }
 
