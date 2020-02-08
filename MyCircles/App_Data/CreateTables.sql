@@ -231,24 +231,16 @@ CREATE TABLE [dbo].[SignUpEventDetails] (
 
 
 -- Itinerary Table
-
 CREATE TABLE [dbo].[Itinerary] (
-
-    [itineraryId]    INT          IDENTITY (1, 1) NOT NULL,
-
-    [userId]         INT          NOT NULL,
-
-	[itineraryName]  VARCHAR(50)  NOT NULL,
-
-    [startDate]      VARCHAR (15) NOT NULL,
-
-    [endDate]        VARCHAR (15) NOT NULL,
-
-    [groupSize]      VARCHAR (3)  NOT NULL,
-
+    [itineraryId]   INT          IDENTITY (1, 1) NOT NULL,
+    [userId]        INT          NOT NULL,
+    [itineraryName] VARCHAR (50) NOT NULL,
+    [startDate]     DATETIME     NOT NULL,
+    [endDate]       DATETIME     NOT NULL,
+    [groupSize]     VARCHAR (3)  NOT NULL,
     PRIMARY KEY CLUSTERED ([itineraryId] ASC)
-
 );
+
 
 
 
@@ -345,31 +337,17 @@ CREATE TABLE [dbo].[DayByDay] (
 
 
 -- Day Table
-
 CREATE TABLE [dbo].[Day] (
-
     [dayId]       INT          IDENTITY (1, 1) NOT NULL,
-
-	[date]		VARCHAR(10)      NULL,
-
+    [date]        DATETIME     NULL,
     [dayByDayId]  INT          NOT NULL,
-
     [itineraryId] INT          NOT NULL,
-
-    [startTime]   VARCHAR (16) NOT NULL,
-
-    [endTime]     VARCHAR (16) NOT NULL,
-
+    [startTime]   DATETIME     NOT NULL,
+    [endTime]     DATETIME     NOT NULL,
     [locationId]  INT          NOT NULL,
-
-    [notes] NCHAR(100) NULL,
-
     CONSTRAINT [PK_dbo.Day] PRIMARY KEY CLUSTERED ([dayId] ASC),
-
     CONSTRAINT [FK_dbo.Day_dbo.Location_locationId] FOREIGN KEY ([locationId]) REFERENCES [dbo].[Location] ([locaId]),
-
     CONSTRAINT [FK_dbo.Day_dbo.DayByDay_dayByDayId] FOREIGN KEY ([dayByDayId]) REFERENCES [dbo].[DayByDay] ([dayBydayId])
-
 );
 
 

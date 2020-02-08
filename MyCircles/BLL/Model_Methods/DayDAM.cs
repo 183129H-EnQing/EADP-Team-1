@@ -14,9 +14,9 @@ namespace MyCircles.BLL
             return DayDAO.GetAllDayLocation(daybydayId);
         }
 
-        public void AddDay()
-        {
-            DayDAO.AddDay(this);
-        }
+        //public void AddDay()
+        //{
+        //    DayDAO.AddDay(this);
+        //}
     }
 }

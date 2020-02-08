@@ -17,9 +17,9 @@ namespace MyCircles.BLL
             return DayByDayDAO.GetByItinerary(Id);
         }
 
-        public List<int> RetrieveDayByDayIdByDate(string date)
+        public DayByDay RetrieveDayByDayIdByDate(string date, int itineraryId)
         {
-            return DayByDayDAO.RetrieveDayByDayIdByDate(date);
+            return DayByDayDAO.RetrieveDayByDayByDate(date, itineraryId);
         }
     }
 }

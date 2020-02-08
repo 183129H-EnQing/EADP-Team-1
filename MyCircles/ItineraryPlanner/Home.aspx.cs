@@ -32,8 +32,8 @@ namespace MyCircles.ItineraryPlanner
             //add to Itinerary table
             newItinerary.userId = currentUser.Id;
             newItinerary.itineraryName = tbName.Text;
-            newItinerary.startDate = tbStartDate.Text;
-            newItinerary.endDate = tbEndDate.Text;
+            newItinerary.startDate = Convert.ToDateTime(tbStartDate.Text);
+            newItinerary.endDate = Convert.ToDateTime(tbEndDate.Text);
             newItinerary.groupSize = tbNoPeople.Text;
 
             //Calculate Middle Dates
@@ -61,16 +61,17 @@ namespace MyCircles.ItineraryPlanner
                 newDayByDay.date = betweenDates[i];
                 newDayByDay.AddDayByDay();
             }
-            daybydaysList = betweenDates;
 
-            //check pref
-            PrefSelect(newItinerary.itineraryId);
-            //days table and planner generate - with pref/no pref
-            GeneratePlanner();
+            daybydaysList = betweenDates;
 
             Session["startDate"] = tbStartDate.Text;
             Session["endDate"] = tbEndDate.Text;
             createdItineraryId = newItinerary.itineraryId;
+
+            //check pref
+            PrefSelect(newItinerary.itineraryId);
+            //days table and planner generate - with pref/no pref
+            GeneratePlanner(newItinerary);
 
             string url = "Timeline.aspx?Id=" + newItinerary.itineraryId;
             Response.Redirect(url);
@@ -154,16 +155,8 @@ namespace MyCircles.ItineraryPlanner
             }
         }
 
-        private void GeneratePlanner()
+        private void GeneratePlanner(Itinerary newItinerary)
         {
-            Day newDay = new Day();
-
-            Location getLocation = new Location();
-            List<Location> allocationlist = new List<Location>();
-            allocationlist = getLocation.RetrieveAllLocation();
-
-            List<int> daybydayIdList = new List<int>();
-
             if (Session["prefB"] == null &&             //if no select pref
                 Session["prefO"] == null &&
                 Session["prefM"] == null &&
@@ -171,32 +164,7 @@ namespace MyCircles.ItineraryPlanner
                 Session["prefS"] == null &&
                 Session["prefW"] == null)
             {
-                foreach (var i in daybydaysList) //dates
-                {
-                    DayByDay dbd = new DayByDay();
-                    daybydayIdList = dbd.RetrieveDayByDayIdByDate(i);
-
-                    foreach (var j in daybydayIdList) //daybyday id
-                    {
-                        newDay.date = i;
-                        newDay.dayByDayId = j;
-                        newDay.itineraryId = createdItineraryId;
-                        //need to get location and allocate time to newday
-
-                        DateTime startTime = Convert.ToDateTime(0800);
-                        DateTime endTime = Convert.ToDateTime(2100);
-                        DateTime freeTime = Convert.ToDateTime(0030); //lunch, dinner, travel
-
-                        allocationlist = getLocation.RetrieveAllLocation();
-                        //make a day
-                        List<Location> aday = new List<Location>();
-
-                        //HELP
-                        newDay.AddDay();
-                    }
-                }
-
-                
+                DayDAO.AddDay(newItinerary);
             }
         }
     }

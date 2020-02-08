@@ -11,24 +11,18 @@ namespace MyCircles.BLL
     {
         public int dayId { get; set; }
 
-        [StringLength(10)]
-        public string date { get; set; }
+        public DateTime? date { get; set; }
 
         public int dayByDayId { get; set; }
 
         public int itineraryId { get; set; }
 
-        [Required]
-        [StringLength(16)]
-        public string startTime { get; set; }
+        public DateTime startTime { get; set; }
 
-        [Required]
-        [StringLength(16)]
-        public string endTime { get; set; }
+        public DateTime endTime { get; set; }
 
         public int locationId { get; set; }
 
-        [StringLength(100)]
         public string notes { get; set; }
 
         public virtual DayByDay DayByDay { get; set; }

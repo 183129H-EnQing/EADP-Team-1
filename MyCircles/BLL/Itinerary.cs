@@ -24,13 +24,9 @@ namespace MyCircles.BLL
         [StringLength(50)]
         public string itineraryName { get; set; }
 
-        [Required]
-        [StringLength(15)]
-        public string startDate { get; set; }
+        public DateTime startDate { get; set; }
 
-        [Required]
-        [StringLength(15)]
-        public string endDate { get; set; }
+        public DateTime endDate { get; set; }
 
         [Required]
         [StringLength(3)]

@@ -66,12 +66,50 @@ namespace MyCircles.DAL
             }
         }
 
-        public static void AddDay(Day newday)
+        public static void AddDay(Itinerary itinerary)
         {
             using (var db = new MyCirclesEntityModel())
             {
-                db.Days.Add(newday);
-                db.SaveChanges();
+                TimeSpan startTime = new TimeSpan(9, 0, 0);
+                TimeSpan endTime = new TimeSpan(21, 0, 0);
+
+                DateTime userDateTime = itinerary.startDate + startTime;
+                DateTime endDate = itinerary.endDate + endTime;
+                int interval = 30;
+
+                List<Location> locations = db.Locations.ToList();
+
+                foreach (Location location in locations)
+                {
+                    if ((userDateTime.AddHours(int.Parse(location.locaRecom)).TimeOfDay < startTime) &&
+                        (userDateTime.AddHours(int.Parse(location.locaRecom)).TimeOfDay > endTime))
+                    {
+                        userDateTime = userDateTime.AddDays(1);
+                        userDateTime += startTime;
+                    }
+
+                    if (userDateTime > endDate)
+                    {
+                        break;
+                    }
+
+                    string dayByDayDate = userDateTime.ToString("dd MMM");
+                    DayByDay dayByDay = db.DayByDays.Where(i => i.date == dayByDayDate && i.itineraryId == itinerary.itineraryId).FirstOrDefault();
+
+                    Day newDay = new Day();
+                    newDay.date = userDateTime;
+                    newDay.itineraryId = itinerary.itineraryId;
+                    newDay.locationId = location.locaId;
+                    newDay.startTime = userDateTime;
+                    newDay.dayByDayId = dayByDay.dayBydayId;
+                    newDay.endTime = userDateTime.AddHours(int.Parse(location.locaRecom));
+
+                    db.Days.Add(newDay);
+                    db.SaveChanges();
+
+                    userDateTime = userDateTime.AddHours(int.Parse(location.locaRecom));
+                    userDateTime = userDateTime.AddMinutes(interval);
+                }
             }
         }
     }

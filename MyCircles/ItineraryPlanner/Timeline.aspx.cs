@@ -137,7 +137,7 @@ namespace MyCircles.ItineraryPlanner
         {
             Repeater rep = (Repeater)(sender);
 
-            int daybydayId = (int)(Eval("dayBydayId"));
+            int daybydayId = (int)(Eval("dayByDayId"));
 
             //retrieve location from Days table
             List<DayLocation> daysList = new List<DayLocation>();

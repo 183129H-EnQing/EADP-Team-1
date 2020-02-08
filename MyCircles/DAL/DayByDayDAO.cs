@@ -36,13 +36,12 @@ namespace MyCircles.DAL
             }
         }
 
-        public static List<int> RetrieveDayByDayIdByDate(string date)
+        public static DayByDay RetrieveDayByDayByDate(string date, int itineraryId)
         {
-            List<int> datesList = new List<int>();
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
-                datesList = db.DayByDays.Where(i => i.date == date).Select(x => x.dayBydayId).ToList();
-                return datesList;
+                var dayByDayId = db.DayByDays.Where(i => i.date == date && i.itineraryId == itineraryId).FirstOrDefault();
+                return dayByDayId;
             }
         }
     }

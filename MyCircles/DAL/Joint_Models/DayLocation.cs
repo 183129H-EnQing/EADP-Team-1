@@ -9,11 +9,11 @@ namespace MyCircles.DAL.Joint_Models
     public class DayLocation
     {
         public int dayId { get; set; }
-        public string date { get; set; }
+        public DateTime? date { get; set; }
         public int itineraryId { get; set; }
         public int locationId { get; set; }
-        public string startTime { get; set; }
-        public string endTime { get; set; }
+        public DateTime startTime { get; set; }
+        public DateTime endTime { get; set; }
         public string notes { get; set; }
 
 

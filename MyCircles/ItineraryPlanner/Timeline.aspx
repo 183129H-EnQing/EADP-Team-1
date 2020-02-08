@@ -306,6 +306,7 @@
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-md-6">
+                                                        <%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>
                                                         <%--<asp:TextBox ID="tbeventDate<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>" runat="server"></asp:TextBox>--%>
                                                         <%--<input id='tbeventDate<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>' runat="server" />--%>
                                                     </div>

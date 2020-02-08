@@ -68,22 +68,6 @@ namespace MyCircles.BLL
                 .Property(e => e.comment_by)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Day>()
-                .Property(e => e.date)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Day>()
-                .Property(e => e.startTime)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Day>()
-                .Property(e => e.endTime)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Day>()
-               .Property(e => e.notes)
-               .IsUnicode(false);
-
             modelBuilder.Entity<DayByDay>()
                 .Property(e => e.date)
                 .IsUnicode(false);
@@ -179,14 +163,6 @@ namespace MyCircles.BLL
 
             modelBuilder.Entity<Itinerary>()
                 .Property(e => e.itineraryName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Itinerary>()
-                .Property(e => e.startDate)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Itinerary>()
-                .Property(e => e.endDate)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Itinerary>()
