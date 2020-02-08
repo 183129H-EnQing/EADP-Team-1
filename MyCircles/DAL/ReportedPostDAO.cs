@@ -56,11 +56,11 @@ namespace MyCircles.DAL
             }
         }
 
-        public static void DeleteReportedPost(int reportedPostId)
+        public static void DeleteReportedPostByPostId(int postId)
         {
             using (var db = new MyCirclesEntityModel())
             {
-                db.ReportedPosts.RemoveRange(db.ReportedPosts.Where(p => p.Id == reportedPostId));
+                db.ReportedPosts.RemoveRange(db.ReportedPosts.Where(p => p.postId == postId));
                 db.SaveChanges();
             }
         }

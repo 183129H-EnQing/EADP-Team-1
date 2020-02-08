@@ -26,6 +26,16 @@ namespace MyCircles.Home
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
+            var circlesname = UserCircleDAO.GetAllUserCircles(currentUser.Id);
+
+            if (!IsPostBack)
+            {
+                DropDownList1.DataSource = circlesname;
+                DropDownList1.DataTextField = "CircleId";
+                DropDownList1.DataValueField = "CircleId";
+                DropDownList1.DataBind();
+            }
+           
             this.Title = "Home";
             CircleDAO.AddCircle("gym");
             UserPosts = PostDAO.GetPostsByCircle("gym");
@@ -51,7 +61,7 @@ namespace MyCircles.Home
                 newPost.Content = activity.Text;
                 newPost.DateTime = DateTime.Now;
                 newPost.UserId = currentUser.Id;
-                newPost.CircleId = "gym";
+                newPost.CircleId = DropDownList1.SelectedValue;
                 newPost.Image = GeneralHelpers.UploadFile(FileUpload1);
                 PostDAO.AddPost(newPost);
 
@@ -123,6 +133,21 @@ namespace MyCircles.Home
             DAL.UserPost userpost = data as DAL.UserPost;
             repeater.DataSource = CommentDAO.GetCommentByPost(userpost.Post.Id);
             repeater.DataBind();
+            var deltee = e.Item.ItemIndex;
+            UserPost user = UserPosts[deltee];
+            var dletepost = user.User.Id;
+            Button delte = (e.Item.FindControl("Delete") as Button);
+
+            if (currentUser.Id == dletepost )
+            {
+          
+                delte.Visible = true;
+            }
+            else
+            {
+                delte.Visible = false;
+            }
+            
           
 
             //if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -158,18 +183,26 @@ namespace MyCircles.Home
                 newReport.postId = selecteduserpost.Post.Id;
                 newReport.reason = rpt;
                 newReport.dateCreated = DateTime.Now;
-                newReport.reporterUserId = selecteduserpost.User.Id;
+                newReport.reporterUserId = currentUser.Id;
                 ReportedPostDAO.AddReport(newReport);
             }
 
             if(e.CommandName == "Delete")
             {         
-                var data = e.Item.DataItem;
-                UserPost userpost = data as UserPost;
-                if (User == currentUser)
+                var deleteId = Convert.ToInt32(e.CommandArgument);
+                var userpostindex = e.Item.ItemIndex;
+                UserPost selecteduserpost = UserPosts[userpostindex];
+               
+              
+
+                if (currentUser.Id == selecteduserpost.User.Id)
                 {
-                    PostDAO.DeletePost(userpost.Post.Id);
+
+                    ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
+                    PostDAO.DeletePost(deleteId);
+
                 }
+              
 
             }
 
@@ -178,9 +211,12 @@ namespace MyCircles.Home
 
 
         }
-       
 
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+           
 
+        }
     }
 }

@@ -78,10 +78,10 @@ namespace MyCircles.Admin
             // delete reportedpost data
             ReportedPost rp = ReportedPost.GetReportedPostById(userReportedPost.id);
             System.Diagnostics.Debug.WriteLine("deleteOp, reportedPost:" + rp.reason);
-            ReportedPost.DeleteReportedPost(userReportedPost.id);
+            ReportedPost.DeleteReportedPostByPostId(userReportedPost.postId);
 
             // delete post data
-            //Post.DeletePost(post.Id);
+            Post.DeletePost(post.Id);
 
             // TODO - Investigate why cannot use remove, but removeRange can work for inside the DAO
 
