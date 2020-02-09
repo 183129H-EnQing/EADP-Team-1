@@ -18,7 +18,7 @@
                                 <asp:ListItem Value="3">Email Address</asp:ListItem>
                             </asp:DropDownList>
                             <asp:TextBox ID="tbSearchInput" runat="server" CssClass="form-control mr-3"></asp:TextBox>
-                            <asp:Button ID="btnSearchSubmit" runat="server" Text="Search" CausesValidation="false" CssClass="btn btn-success text-white" OnClick="btnSearchSubmit_Click" UseSubmitBehavior="False" AutoPostBack="true" />
+                            <asp:Button ID="btnSearchSubmit" runat="server" Text="Search" CausesValidation="false" CssClass="btn btn-primary" OnClick="btnSearchSubmit_Click" UseSubmitBehavior="False" AutoPostBack="true" />
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                                 
                                 <asp:ButtonField CommandName="UserProfile" Text="View Profile" ButtonType="Button" ControlStyle-CssClass="btn btn-success text-white">
                                 
-                                <ControlStyle CssClass="btn btn-success text-white" />
+                                <ControlStyle CssClass="btn btn-primary" />
                                 </asp:ButtonField>
                                 
                                 <asp:TemplateField>
