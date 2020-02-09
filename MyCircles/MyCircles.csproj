@@ -159,6 +159,7 @@
     <Content Include="Events\CreateEventPage.aspx" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="ItineraryPlanner\LocationDetail.aspx" />
+    <Content Include="ItineraryPlanner\Weather.aspx" />
     <Content Include="Profile\Search.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
@@ -470,6 +471,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Weather.aspx.cs">
+      <DependentUpon>Weather.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Weather.aspx.designer.cs">
+      <DependentUpon>Weather.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Chat.aspx.cs">
       <DependentUpon>Chat.aspx</DependentUpon>
