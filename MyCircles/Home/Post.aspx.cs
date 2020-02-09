@@ -37,10 +37,8 @@ namespace MyCircles.Home
             }
            
             this.Title = "Home";
-            CircleDAO.AddCircle("gym");
-            UserPosts = PostDAO.GetPostsByCircle("gym");
-            rptUserPosts.DataSource = UserPosts;
-            rptUserPosts.DataBind();
+            //CircleDAO.AddCircle("gym");
+            refreshGv();
         }
 
         protected void ImageMap1_Click(object sender, ImageMapEventArgs e)
@@ -65,14 +63,15 @@ namespace MyCircles.Home
                 newPost.Image = GeneralHelpers.UploadFile(FileUpload1);
                 PostDAO.AddPost(newPost);
 
-                rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
-                rptUserPosts.DataBind();
+                refreshGv();
 
             }
             catch (DbEntityValidationException ex)
             {
                 var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
             }
+
+          
         }
         protected void Comment_Click(object sender, EventArgs e)
         {
@@ -87,9 +86,7 @@ namespace MyCircles.Home
                     newPost.CircleId = "gym";
                     PostDAO.AddPost(newPost);
 
-                    rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
-                    rptUserPosts.DataBind();
-
+                    refreshGv();
                 }
             }
             catch (DbEntityValidationException ex)
@@ -134,18 +131,21 @@ namespace MyCircles.Home
             repeater.DataSource = CommentDAO.GetCommentByPost(userpost.Post.Id);
             repeater.DataBind();
             var deltee = e.Item.ItemIndex;
-            UserPost user = UserPosts[deltee];
-            var dletepost = user.User.Id;
+            
+            var dletepost = userpost.User.Id;
             Button delte = (e.Item.FindControl("Delete") as Button);
+            HyperLink report = (e.Item.FindControl("mreport") as HyperLink);
 
             if (currentUser.Id == dletepost )
             {
           
                 delte.Visible = true;
+         
             }
             else
             {
                 delte.Visible = false;
+               
             }
             
           
@@ -191,7 +191,7 @@ namespace MyCircles.Home
             {         
                 var deleteId = Convert.ToInt32(e.CommandArgument);
                 var userpostindex = e.Item.ItemIndex;
-                UserPost selecteduserpost = UserPosts[userpostindex];
+                UserPost selecteduserpost = ((List<UserPost>)rptUserPosts.DataSource)[userpostindex];
                
               
 
@@ -212,11 +212,24 @@ namespace MyCircles.Home
 
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+     
+
+        public void refreshGv()
         {
+            List<UserPost> userposts = new List<UserPost>();
+            List<BLL.UserCircle> userCircles = UserCircleDAO.GetAllUserCircles(currentUser.Id);
 
-           
-
+            foreach (BLL.UserCircle circle in userCircles)
+            {
+                List<UserPost> posts = PostDAO.GetPostsByCircle(circle.CircleId);
+                foreach (UserPost post in posts)
+                {
+                    userposts.Add(post);
+                }
+            }
+            
+            rptUserPosts.DataSource = userposts;
+            rptUserPosts.DataBind();
         }
     }
 }
