@@ -56,6 +56,27 @@ namespace MyCircles.DAL
             }
         }
 
+        public static List<UserReportedPost> GetAllUserReportedPostsSortByPostId()
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var followingUsers = db.ReportedPosts
+                    .ToList()
+                    .Join(
+                        db.Users,
+                        reportedPosts => reportedPosts.reporterUserId,
+                        user => user.Id,
+                        (reportedPosts, user) => new UserReportedPost(reportedPosts, user)
+                    )
+                    .OrderBy(reportedPost => reportedPost.postId)
+                    .ToList();
+
+                return followingUsers;
+            }
+        }
+
         public static void DeleteReportedPostByPostId(int postId)
         {
             using (var db = new MyCirclesEntityModel())
