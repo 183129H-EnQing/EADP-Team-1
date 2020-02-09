@@ -347,6 +347,7 @@ CREATE TABLE [dbo].[Day] (
     [startTime]   DATETIME     NOT NULL,
     [endTime]     DATETIME     NOT NULL,
     [locationId]  INT          NOT NULL,
+    [notes]       NCHAR(100)  NULL,
     CONSTRAINT [PK_dbo.Day] PRIMARY KEY CLUSTERED ([dayId] ASC),
     CONSTRAINT [FK_dbo.Day_dbo.Location_locationId] FOREIGN KEY ([locationId]) REFERENCES [dbo].[Location] ([locaId]),
     CONSTRAINT [FK_dbo.Day_dbo.DayByDay_dayByDayId] FOREIGN KEY ([dayByDayId]) REFERENCES [dbo].[DayByDay] ([dayBydayId])

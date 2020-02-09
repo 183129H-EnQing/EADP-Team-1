@@ -81,7 +81,7 @@ namespace MyCircles.DAL
 
                 foreach (Location location in locations)
                 {
-                    TimeSpan nextEventFinishTime = userDateTime.AddHours(int.Parse(location.locaRecom)).TimeOfDay;
+                    TimeSpan nextEventFinishTime = userDateTime.AddMinutes(int.Parse(location.locaRecom)).TimeOfDay;
 
                     if ((nextEventFinishTime > endTime))
                     {
@@ -103,12 +103,12 @@ namespace MyCircles.DAL
                     newDay.locationId = location.locaId;
                     newDay.startTime = userDateTime;
                     newDay.dayByDayId = dayByDay.dayBydayId;
-                    newDay.endTime = userDateTime.AddHours(int.Parse(location.locaRecom));
+                    newDay.endTime = userDateTime.AddMinutes(int.Parse(location.locaRecom));
 
                     db.Days.Add(newDay);
                     db.SaveChanges();
 
-                    userDateTime = userDateTime.AddHours(int.Parse(location.locaRecom));
+                    userDateTime = userDateTime.AddMinutes(int.Parse(location.locaRecom));
                     userDateTime = userDateTime.AddMinutes(interval);
                 }
             }
