@@ -17,7 +17,7 @@
                                 <asp:ListItem Value="2">Display Name</asp:ListItem>
                                 <asp:ListItem Value="3">Email Address</asp:ListItem>
                             </asp:DropDownList>
-                            <asp:TextBox ID="tbSearchInput" runat="server" CssClass="form-control mr-sm-3 mb-sm-0 mb-3" placeholder="Search"></asp:TextBox>
+                            <asp:TextBox ID="tbSearchInput" runat="server" CssClass="form-control mr-sm-3 mb-sm-0 mb-3" placeholder="Input query"></asp:TextBox>
                             <asp:Button ID="btnSearchSubmit" runat="server" Text="Search" CausesValidation="false" CssClass="btn btn-primary" OnClick="btnSearchSubmit_Click" UseSubmitBehavior="False" AutoPostBack="true" />
                         </div>
                     </div>
