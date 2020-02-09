@@ -2,11 +2,11 @@
 
 <asp:Content ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <form id="form1" runat="server">
-        <h1>hello map</h1>
-        <div class="row">
+        <%--<h1>hello map</h1>--%>
+        <div class="row mt-5">
             <div class="col-md-1"></div>
             <div class="col-md-1"></div>
-            <div class="col-md-8 border border-secondary">
+            <div class="col-md-8">
                 <div id="map" style="width:100%; height: 400px;"></div>
                 <%--<script>
                     var map;
@@ -22,7 +22,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-1"></div>
         </div>
-        <script>
+        <%--<script>
             let userLatitude = 1.4043, userLongitude = 103.793;
             let userLocation = { lat: userLatitude, lng: userLongitude };
 
@@ -102,6 +102,9 @@
 
                 return bounds;
             }
+        </script>--%>
+        <script>
+
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlz2KBmeCFI5fsKZd0S0asMYbPIHOLpy0&callback=initMap" defer></script>
     </form>

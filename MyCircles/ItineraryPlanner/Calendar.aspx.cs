@@ -16,6 +16,7 @@ namespace MyCircles.ItineraryPlanner
         protected void Page_Load(object sender, EventArgs e)
         {
             GetExistingCalendar();
+            lbPlannerName.Text = Session["itineraryName"].ToString();
         }
 
         private void GetExistingCalendar()

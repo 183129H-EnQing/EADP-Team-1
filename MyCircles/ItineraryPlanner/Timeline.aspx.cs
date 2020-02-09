@@ -37,8 +37,9 @@ namespace MyCircles.ItineraryPlanner
             foreach(var i in itineraryList)
             {
                 lbPlannerName.Text = i.itineraryName;
+                Session["itineraryName"] = i.itineraryName;
             }
-
+            
             GetExisting();
         }
         #region getMonthDate
