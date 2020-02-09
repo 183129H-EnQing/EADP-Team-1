@@ -34,6 +34,11 @@ namespace MyCircles.Home
                 DropDownList1.DataTextField = "CircleId";
                 DropDownList1.DataValueField = "CircleId";
                 DropDownList1.DataBind();
+
+                DropDownList2.DataSource = circlesname;
+                DropDownList2.DataTextField = "CircleId";
+                DropDownList2.DataValueField = "CircleId";
+                DropDownList2.DataBind();
             }
            
             this.Title = "Home";
@@ -230,6 +235,11 @@ namespace MyCircles.Home
             
             rptUserPosts.DataSource = userposts;
             rptUserPosts.DataBind();
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("User.aspx");
         }
     }
 }

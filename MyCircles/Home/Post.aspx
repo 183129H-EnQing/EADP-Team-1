@@ -107,41 +107,25 @@
 <form id="form1" runat="server">
     <div class="container">
         <div class="row mt-3">
-            <div class="col-md-4 col-lg-3 d-none d-lg-block">
+            <div class="col-md-4 col-lg-3 d-none d-lg-block">               
                  <div class="card">
                     <div class="card-header">
-                        <h3 class="text-info">Circles</h3>
+                        <h3 class="text-info">Your Circles</h3>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>#Guitar</div>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">                            
                             <div>
-                                <asp:Button ID="Btncircle" runat="server" Text="Add"  usesubmitbehavior="false" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px" OnClick="Btncircle_Click" ></asp:button>
+                                <asp:DropDownList ID="DropDownList2" CssClass="btn-lg btn-info "   Width="200" runat="server">
+                                </asp:DropDownList>
+                            </div>
+                        </li>                       
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>Add Circles..</div>
+                            <div>
+                                <asp:Button ID="Button3" runat="server" Text="Add" OnClick="Button3_Click"  class="btn btn-primary" style="border-radius:10px"></asp:button>
                             </div>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>#Starwars</div>
-                            <div>
-                                <asp:Button ID="Btnc" runat="server" Text="Add" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px"></asp:button>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>#VisualStudio</div>
-                            <div>
-                                <asp:Button ID="Button3" runat="server" Text="Add" class="btn btn-primary" style="border-radius:10px"></asp:button>
-                            </div>
-                        </li>
-                    </ul>
-                <%-- <div class="col">   <div class="card" style="width: 18rem;">
-                            <div class="card-header">
-                                <h3 class="text-dark">Upcoming Events</h3>
-                                None.
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                            </ul>
-                        </div>
-                    </div>--%>
+                    </ul>             
                 </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6">
@@ -151,10 +135,10 @@
                             <div class="form-group mb-2 mt-3">
                             <div class="form-group justify-content-between d-flex">
                                 <div>
-                                     <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="200" ></asp:TextBox>
+                                     <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox>
                                 </div>
                                 <div>
-                                <asp:DropDownList ID="DropDownList1"  CssClass="btn btn-info dropdown-toggle" runat="server" AutoPostBack="true" ></asp:DropDownList>
+                                <asp:DropDownList ID="DropDownList1"  CssClass="btn btn-info dropdown-toggle" runat="server"  ></asp:DropDownList>
                                 </div>                                                              
                             </div>
                                </div>
@@ -289,7 +273,7 @@
             <div class="col-lg-3 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-info">Connect</h3></div>
+                        <h3 class="text-info">Connect More</h3></div>
                     <ul class="list-group list-group-flush">
                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>Jamal</div>
