@@ -11,13 +11,13 @@
                 <div class="row">
                     <div class="col d-flex justify-content-end">
                         <div class="form-inline">
-                            <asp:DropDownList ID="ddlQueryType" runat="server" CssClass="custom-select mr-3">
+                            <asp:DropDownList ID="ddlQueryType" runat="server" CssClass="custom-select mr-sm-3 mb-sm-0 mb-3">
                                 <asp:ListItem Selected="True" Value="0">All</asp:ListItem>
                                 <asp:ListItem Value="1">Username</asp:ListItem>
                                 <asp:ListItem Value="2">Display Name</asp:ListItem>
                                 <asp:ListItem Value="3">Email Address</asp:ListItem>
                             </asp:DropDownList>
-                            <asp:TextBox ID="tbSearchInput" runat="server" CssClass="form-control mr-3"></asp:TextBox>
+                            <asp:TextBox ID="tbSearchInput" runat="server" CssClass="form-control mr-sm-3 mb-sm-0 mb-3" placeholder="Input query"></asp:TextBox>
                             <asp:Button ID="btnSearchSubmit" runat="server" Text="Search" CausesValidation="false" CssClass="btn btn-primary" OnClick="btnSearchSubmit_Click" UseSubmitBehavior="False" AutoPostBack="true" />
                         </div>
                     </div>
