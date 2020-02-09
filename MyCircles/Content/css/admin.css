@@ -27,8 +27,11 @@
 }
 
 .number-thingy {
-    color: red;
-    font-size: 40px;
+    color: #0cb0ca;
+    font-size: 34px;
+    border: 0;
+    background: inherit;
+    padding-top: 0;
 }
 
 .admin-table, .admin-table > tbody > tr > th, .admin-table > tbody > tr > td {
