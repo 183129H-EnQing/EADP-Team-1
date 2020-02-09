@@ -10,7 +10,7 @@
             <ContentTemplate>
                 <div class="row">
                     <div class="col table-responsive">
-                        <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvReportedPosts_RowCommand">
+                        <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvReportedPosts_RowCommand" OnDataBound="gvReportedPosts_DataBound">
                             <Columns>
                                 <asp:BoundField DataField="reporterUsername" HeaderText="Reporter's Username" />
                                 <asp:BoundField DataField="reason" HeaderText="Reason" />
