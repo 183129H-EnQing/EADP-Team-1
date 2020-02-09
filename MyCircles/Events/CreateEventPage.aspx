@@ -372,6 +372,11 @@
                 });
         });
 
+
+        window.onload = function () {
+            hideOrShowExtraTB();
+        }
+       
 <%--          var quill = new Quill('#editor', {
             theme: 'snow'
         });
@@ -385,7 +390,7 @@
             var maxTimeAPersonCanRegisterDLLValue = document.getElementById("maxTimeAPersonCanRegisterDLL").value;
             var maxSlotAvaliableDDLValue = document.getElementById("maxSlotAvaliableDDL").value;
 
-            console.log(maxSlotAvaliableDDLValue)
+            //console.log(maxSlotAvaliableDDLValue)
 
             if (locationDDLValue == "Venue") {
                 document.getElementById("LocationTBContainer").style.display = "block";

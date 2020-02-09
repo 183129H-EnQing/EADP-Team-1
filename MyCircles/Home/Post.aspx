@@ -144,13 +144,20 @@
                     </div>--%>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-7">
+            <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="row">
                     <div class="col">
                         <div class="border border-secondary px-3" style =" border-radius:16px 16px;" >
                             <div class="form-group mb-2 mt-3">
-                                <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox><asp:DropDownList ID="DropDownList1"  runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
+                            <div class="form-group justify-content-between d-flex">
+                                <div>
+                                     <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="200" ></asp:TextBox>
+                                </div>
+                                <div>
+                                <asp:DropDownList ID="DropDownList1"  CssClass="btn btn-info dropdown-toggle" runat="server" AutoPostBack="true" ></asp:DropDownList>
+                                </div>                                                              
                             </div>
+                               </div>
                             <div class="form-group justify-content-between d-flex">
                                 <div>
                                     <asp:FileUpload ID="FileUpload1"  runat="server" />                         
@@ -183,7 +190,7 @@
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>">                                                
                                                         <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete"  CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>  Text="Delete" />
-                                                        <a class="dropdown-item" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
+                                                        <a class="dropdown-item" ID="mreport" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
                                                     </div>
                                                 </div> 
                                                      
@@ -279,10 +286,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-12">
+            <div class="col-lg-3 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-info">Connectt</h3></div>
+                        <h3 class="text-info">Connect</h3></div>
                     <ul class="list-group list-group-flush">
                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>Jamal</div>

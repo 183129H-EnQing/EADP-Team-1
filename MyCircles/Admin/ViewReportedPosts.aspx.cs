@@ -44,7 +44,7 @@ namespace MyCircles.Admin
             {
                 case "ViewPost":
                     System.Diagnostics.Debug.WriteLine("gvReportedPosts_RowCommand, ViewPost:" + e.CommandArgument);
-                    UserReportedPost userReportedPost = ReportedPost.GetAllUserReportedPosts()[idx];
+                    UserReportedPost userReportedPost = getDataList()[idx];
                     Post post = Post.GetPostById(userReportedPost.postId);
                     User postCreator = BLL.User.GetUserById(post.UserId);
 
@@ -66,11 +66,60 @@ namespace MyCircles.Admin
             }
         }
 
+        protected void gvReportedPosts_DataBound(object sender, EventArgs e)
+        {
+            int topRowIdx = -1;
+            int currPostId = -1;
+            int rowSpan = 0;
+
+            for (int idx = 0; idx < getDataList().Count; idx++)
+            {
+                UserReportedPost report = getDataList()[idx];
+                GridViewRow row = gvReportedPosts.Rows[idx];
+
+                if (report.postId != currPostId) // new post for current report, not the same post as previous report
+                {
+                    // need to set row span when going to next post
+                    if (currPostId > -1)
+                    {
+                        GridViewRow topRow = gvReportedPosts.Rows[topRowIdx];
+                        topRow.Cells[3].RowSpan = rowSpan;
+                        topRow.Cells[4].RowSpan = rowSpan;
+                    }
+
+                    rowSpan = 1; // resets row span to 1, because new row
+                    topRowIdx = idx; // saves this top row
+                    currPostId = report.postId;
+                }
+                else // current report's postId matches previous report's postId, so increase rowSpan
+                {
+                    // to hide the cell, cause no need to display anymore
+                    row.Cells[3].Visible = false;
+                    row.Cells[4].Visible = false;
+
+                    // increase rowSpawn cause this row's post is the same as before
+                    rowSpan += 1;
+                }
+
+                if (idx == (getDataList().Count-1)) // when reaches the end of the row, we must assign the topRow thingy and stuffs
+                {
+                    GridViewRow topRow = gvReportedPosts.Rows[topRowIdx];
+                    topRow.Cells[3].RowSpan = rowSpan;
+                    topRow.Cells[4].RowSpan = rowSpan;
+                }
+            }
+
+            //GridViewRow row = gvReportedPosts.Rows[0];
+            //row.Cells[3].RowSpan = 2;
+            //GridViewRow row1 = gvReportedPosts.Rows[1];
+            //row1.Cells[3].Visible = false;
+        }
+
         public void deleteOp(int index)
         {
             // TODO deleting from modal, index is out of range
             System.Diagnostics.Debug.WriteLine("deleteOp, index:" + index);
-            UserReportedPost userReportedPost = ReportedPost.GetAllUserReportedPosts()[index];
+            UserReportedPost userReportedPost = getDataList()[index];
             Post post = Post.GetPostById(userReportedPost.postId);
 
             System.Diagnostics.Debug.WriteLine("deleteOp, postId:" + post.Id);
@@ -90,8 +139,13 @@ namespace MyCircles.Admin
 
         private void refreshGridView()
         {
-            gvReportedPosts.DataSource = ReportedPost.GetAllUserReportedPosts();
+            gvReportedPosts.DataSource = getDataList();
             gvReportedPosts.DataBind();
+        }
+
+        private List<UserReportedPost> getDataList()
+        {
+            return ReportedPost.GetAllUserReportedPostsSortByPostId();
         }
     }
 }
