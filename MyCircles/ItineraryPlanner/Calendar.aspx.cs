@@ -36,9 +36,9 @@ namespace MyCircles.ItineraryPlanner
             foreach (var i in daysList)
             {
                 location += i.locaName + ",";
-                location += i.date + ",";
-                location += i.startTime + ",";
-                location += i.endTime + ",";
+                location += i.date.ToString("dd MMM") + ",";
+                location += i.startTime.ToString("HHmm") + ",";
+                location += i.endTime.ToString("HHmm") + ",";
                 location += i.locationId;
                 location += "|";
             }
