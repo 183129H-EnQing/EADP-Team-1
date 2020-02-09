@@ -147,12 +147,10 @@ namespace MyCircles.DAL
 
         public static List<User> GetAllUsers()
         {
-            List<User> users = new List<User>();
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
-                users = db.Users.ToList();
+                return db.Users.ToList();
             }
-            return users;
         }
 
         public static void UpdateIsEventHost(int id, bool isEventHost)

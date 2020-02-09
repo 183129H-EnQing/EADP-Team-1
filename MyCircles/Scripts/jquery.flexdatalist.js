@@ -118,7 +118,7 @@ jQuery.fn.flexdatalist = function (_option, _value) {
         disabled: null,
         maxShownResults: 100,
         removeOnBackspace: true,
-        noResultsText: 'Create new circle called "{keyword}"',
+        noResultsText: 'No results found',
         toggleSelected: false,
         allowDuplicateValues: false,
         redoSearchOnFocus: true,

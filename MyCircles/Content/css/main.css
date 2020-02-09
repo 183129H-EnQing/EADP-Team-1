@@ -170,3 +170,7 @@
 .selected {
     background-color: rgb(245, 248, 250);
 }
+
+.object-fit {
+    object-fit: cover;
+}

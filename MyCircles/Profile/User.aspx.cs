@@ -15,7 +15,6 @@ using System.Device.Location;
 
 namespace MyCircles.Profile
 {
-    //TODO: Show reciever details and switch between users
     //TODO: Hover over user icon to show profile preview
     //TODO: Show whether or not user is online
     //TODO: Create example data (user, circle, user circle w/ points)
@@ -222,7 +221,6 @@ namespace MyCircles.Profile
                 newUserCircle.UserId = currentUser.Id;
                 addUserCircleList.Add(newUserCircle);
             }
-
 
             tbCircleInput.Text = "";
             tbCircleInput.Focus();

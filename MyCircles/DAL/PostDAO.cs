@@ -8,6 +8,14 @@ namespace MyCircles.DAL
 {
     public static class PostDAO
     {
+        public static List<Post> GetPosts()
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                return db.Posts.ToList();
+            }
+        }
+
         public static void AddPost(Post newPost)
         {
             using (var db = new MyCirclesEntityModel())

@@ -242,6 +242,10 @@
         if (url.searchParams.get('addingCircles')) {
             $('#editprofile-modal').modal('show');
         }
+
+        $('.flexdatalist').flexdatalist({
+            noResultsText: 'Create new circle called "{keyword}"',
+        });
     </script>
 </asp:Content>
 

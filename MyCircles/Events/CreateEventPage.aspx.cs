@@ -18,6 +18,8 @@ namespace MyCircles.Events
             entryFeeStatusDDL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
             maxTimeAPersonCanRegisterDLL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
             maxSlotAvaliableDDL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
+
+            
         }
 
         protected void submitButt_Click(object sender, EventArgs e)
@@ -83,7 +85,36 @@ namespace MyCircles.Events
                 GeneralHelpers.AddValidationError(Page, "addEvent", "Start Date nor filled up under Date And Time");
             }
 
-            System.Diagnostics.Debug.WriteLine("Remember to validate date and time ");
+            DateTime startDate;
+            DateTime endDate;
+
+            DateTime.TryParse(startDateTB.Text,out startDate);
+            DateTime.TryParse(endDateTB.Text, out endDate);
+
+            string startTime = startTimeDLL.Text;
+            string endTime = endTimeDLL.Text;
+
+            string startTimeHour = startTime.Substring(0, 2);
+            string startTimeMinutes = startTime.Substring(2, 2);
+            string endTimeHour = endTime.Substring(0, 2);
+            string endTimeMinutes = endTime.Substring(2, 2);
+
+
+            if (startDate > endDate)
+            {
+                GeneralHelpers.AddValidationError(Page, "addEvent", "why start date later than end date?");
+            }
+            else
+            {
+                if(startDate == endDate)
+                {
+                    if (Int32.Parse(startTimeHour) > Int32.Parse(endTimeHour))
+                    {
+                        GeneralHelpers.AddValidationError(Page, "addEvent", "Start Time cannot be Later than End Time Since Date is the same");
+                    }
+                }
+          
+            }
 
             if (entryFeeStatusDDL.Text == "Not Free")
             {

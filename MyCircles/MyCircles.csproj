@@ -159,6 +159,7 @@
     <Content Include="Events\CreateEventPage.aspx" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="ItineraryPlanner\LocationDetail.aspx" />
+    <Content Include="Profile\Search.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
     <Content Include="Content\bootstrap\js\dist\alert.js" />
@@ -323,7 +324,10 @@
     <Compile Include="BLL\Comment.cs" />
     <Compile Include="BLL\Day.cs" />
     <Compile Include="BLL\DayByDay.cs" />
+    <Compile Include="BLL\DTO\CircleDTO.cs" />
     <Compile Include="BLL\DTO\NotificationDTO.cs" />
+    <Compile Include="BLL\DTO\PostDTO.cs" />
+    <Compile Include="BLL\DTO\UserDTO.cs" />
     <Compile Include="BLL\Event.cs" />
     <Compile Include="BLL\EventSchedule.cs" />
     <Compile Include="BLL\Follow.cs" />
@@ -353,8 +357,11 @@
     <Compile Include="BLL\SignUpEventDetail.cs" />
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
+    <Compile Include="Controller\CirclesController.cs" />
     <Compile Include="Controller\EventController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
+    <Compile Include="Controller\PostsController.cs" />
+    <Compile Include="Controller\UsersController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\ChatRoomDAO.cs" />
     <Compile Include="DAL\CircleDAO.cs" />
@@ -484,6 +491,13 @@
     </Compile>
     <Compile Include="Profile\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\User.aspx.cs">
       <DependentUpon>User.aspx</DependentUpon>

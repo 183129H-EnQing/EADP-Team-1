@@ -27,7 +27,7 @@
                         <a class="nav-link" href="/ItineraryPlanner/Home.aspx" runat="server">Planner <% if (Request.Url.AbsoluteUri.Contains("Planner")) { %> <span class="sr-only">(current)</span>  <% } %></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Profile/Search" runat="server">Search</a>
+                        <a class="nav-link" href="/Profile/Search.aspx" runat="server">Search</a>
                     </li>
                 </ul>
 
@@ -59,9 +59,11 @@
             getUserNotifications(<%= currentUser.Id %>);
         });
 
-        setInterval(function () {
-            getUserNotifications(<%= currentUser.Id %>)
-        }, 5000);
+        if (showNotifications) {
+            setInterval(function () {
+                getUserNotifications(<%= currentUser.Id %>)
+            }, 5000);
+        }
 
         //
     </script>
