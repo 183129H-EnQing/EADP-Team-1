@@ -157,8 +157,11 @@
     <Content Include="Content\images\UserOutlineOffline.png" />
     <Content Include="Content\images\UserOutlineOnline.png" />
     <Content Include="Events\CreateEventPage.aspx" />
+    <Content Include="Events\ViewEventPageCreated.aspx" />
+    <Content Include="Events\ViewEventPageRegistered.aspx" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="ItineraryPlanner\LocationDetail.aspx" />
+    <Content Include="ItineraryPlanner\Weather.aspx" />
     <Content Include="Profile\Search.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
@@ -396,6 +399,20 @@
     <Compile Include="Events\CreateEventPage.aspx.designer.cs">
       <DependentUpon>CreateEventPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Events\ViewEventPageCreated.aspx.cs">
+      <DependentUpon>ViewEventPageCreated.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events\ViewEventPageCreated.aspx.designer.cs">
+      <DependentUpon>ViewEventPageCreated.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Events\ViewEventPageRegistered.aspx.cs">
+      <DependentUpon>ViewEventPageRegistered.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events\ViewEventPageRegistered.aspx.designer.cs">
+      <DependentUpon>ViewEventPageRegistered.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -470,6 +487,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Weather.aspx.cs">
+      <DependentUpon>Weather.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Weather.aspx.designer.cs">
+      <DependentUpon>Weather.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Chat.aspx.cs">
       <DependentUpon>Chat.aspx</DependentUpon>

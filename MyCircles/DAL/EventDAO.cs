@@ -38,5 +38,15 @@ namespace MyCircles.DAL
             }
         }
 
+        public static List<Event> GetAllEventCreatedByUser(int userId)
+        {
+            List<Event> eventList = new List<Event>();
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                eventList = db.Events.Where(event1 => event1.eventHolderId == userId).ToList();
+                return eventList;
+            }
+        }
+
     }
 }

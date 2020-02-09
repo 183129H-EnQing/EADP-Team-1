@@ -23,6 +23,11 @@ namespace MyCircles.BLL
             return ReportedPostDAO.GetAllUserReportedPosts();
         }
 
+        public static List<DAL.Joint_Models.UserReportedPost> GetAllUserReportedPostsSortByPostId()
+        {
+            return ReportedPostDAO.GetAllUserReportedPostsSortByPostId();
+        }
+
         public static void DeleteReportedPostByPostId(int postId)
         {
             ReportedPostDAO.DeleteReportedPostByPostId(postId);

@@ -142,14 +142,13 @@
                 <div class="row mb-3">
                     <asp:Repeater ID="rpItinerary" runat="server" ItemType="MyCircles.BLL.Itinerary">
                         <ItemTemplate>
-                            <div class="card mr-4" style="width: 18rem;">
-                                <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card mr-4" style="width: 18rem; background-color: ">
                                 <div class="card-body">
+                                    <div class="row" style="height:5px; background-color: green;"></div>
                                     <h5 class="card-title"><b><%#DataBinder.Eval(Container.DataItem, "itineraryName") %> </b></h5>
                                     <h6 class="card-subtitle mb-2 text-muted">Created by you</h6>
-                                    <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> to <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
+                                    <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate", "{0:dd MMM}") %> to <%#DataBinder.Eval(Container.DataItem, "endDate", "{0:dd MMM}") %></p>
                                     <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %> Youth</p>
-
                                     <a href="Timeline.aspx?Id=<%#DataBinder.Eval(Container.DataItem, "itineraryId") %>" class="btn btn-primary">Click to view</a>
                                 </div>
                             </div>

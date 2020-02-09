@@ -6,12 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyCircles.BLL;
 using static MyCircles.DAL.UserDAO;
+using MyCircles.DAL;
 
 namespace MyCircles.Events
 {
     public partial class CreateEventPage : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
+        public BLL.Circle circleData;
         protected void Page_Load(object sender, EventArgs e)
         {
             LocationDLL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
@@ -19,9 +21,13 @@ namespace MyCircles.Events
             maxTimeAPersonCanRegisterDLL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
             maxSlotAvaliableDDL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
 
-            
+            getAllCircleData();
         }
 
+        protected void eventScheduleDataAddTB(object sender, EventArgs e)
+        {
+
+        }
         protected void submitButt_Click(object sender, EventArgs e)
         {  
             Event newEventData = new Event();
@@ -196,7 +202,7 @@ namespace MyCircles.Events
                 newEventData.eventEntryFeesStatus = entryFeeStatusDDL.Text;
 
                 var imagePath = GeneralHelpers.UploadFile(imageUpload);
-                System.Diagnostics.Debug.WriteLine("hello world testing",imagePath);
+                //System.Diagnostics.Debug.WriteLine("hello world testing",imagePath);
                 newEventData.eventImage = imagePath;
 
                 newEventData.eventStatus = "onGoing";
@@ -238,6 +244,24 @@ namespace MyCircles.Events
         
 
             //Response.Redirect("ViewAllEventPage.aspx");
+        }
+
+       
+        private void getAllCircleData()
+        {
+            Circle retrieveAllCircleData = new Circle();
+            List<Circle> allCircleData = new List<Circle>();
+            List<String> circleDataList = new List<String>();
+
+            allCircleData = CircleDAO.GetAllCircles();
+            foreach (Circle singleCircleData in allCircleData)
+            {
+                circleDataList.Add(singleCircleData.Id);
+            }
+            System.Diagnostics.Debug.WriteLine("hello world testing", circleDataList);
+            CategoryDropDownList.DataSource = circleDataList;
+            CategoryDropDownList.DataBind();
+
         }
     }
 

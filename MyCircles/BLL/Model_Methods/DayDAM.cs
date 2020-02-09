@@ -18,5 +18,9 @@ namespace MyCircles.BLL
         //{
         //    DayDAO.AddDay(this);
         //}
+        public static void UpdateDay(int dayId, string notes)
+        {
+            DayDAO.UpdateDay(dayId, notes);
+        }
     }
 }

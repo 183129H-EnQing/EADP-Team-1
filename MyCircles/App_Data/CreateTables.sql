@@ -341,7 +341,7 @@ CREATE TABLE [dbo].[DayByDay] (
 -- Day Table
 CREATE TABLE [dbo].[Day] (
     [dayId]       INT          IDENTITY (1, 1) NOT NULL,
-    [date]        DATETIME     NULL,
+    [date]        DATETIME     NOT NULL,
     [dayByDayId]  INT          NOT NULL,
     [itineraryId] INT          NOT NULL,
     [startTime]   DATETIME     NOT NULL,

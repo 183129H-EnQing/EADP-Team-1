@@ -120,5 +120,10 @@ namespace MyCircles.ItineraryPlanner
         {
             selectItemTag();
         }
+
+        protected void chkShowPlanItems_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

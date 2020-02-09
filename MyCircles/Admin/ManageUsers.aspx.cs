@@ -35,7 +35,7 @@ namespace MyCircles.Admin
             int queryTypeId = int.Parse(ddlQueryType.SelectedValue);
             System.Diagnostics.Debug.WriteLine("query type id:" + queryTypeId);
 
-            string inputStr = tbSearchInput.Text;
+            string inputStr = tbSearchInput.Text.ToLower();
             List<User> users = RetrieveNonAdminUsers();
 
             System.Diagnostics.Debug.WriteLine("search submit with:" + inputStr);
@@ -50,16 +50,16 @@ namespace MyCircles.Admin
                     switch (queryTypeId)
                     {
                         case 0: // All
-                            shouldAddUser = user.Username.Contains(inputStr) || user.Name.Contains(inputStr) || user.EmailAddress.Contains(inputStr);
+                            shouldAddUser = user.Username.ToLower().Contains(inputStr) || user.Name.ToLower().Contains(inputStr) || user.EmailAddress.ToLower().Contains(inputStr);
                             break;
                         case 1: // Username
-                            shouldAddUser = user.Username.Contains(inputStr);
+                            shouldAddUser = user.Username.ToLower().Contains(inputStr);
                             break;
                         case 2: // Display Name
-                            shouldAddUser = user.Name.Contains(inputStr);
+                            shouldAddUser = user.Name.ToLower().Contains(inputStr);
                             break;
                         case 3: // Email
-                            shouldAddUser = user.EmailAddress.Contains(inputStr);
+                            shouldAddUser = user.EmailAddress.ToLower().Contains(inputStr);
                             break;
                     }
 

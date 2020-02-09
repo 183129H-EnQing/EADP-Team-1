@@ -9,7 +9,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-2 position-sticky">
                 <div class="row">
-                    <asp:CheckBox ID="chkShowPlanItems" runat="server" Text=" &nbsp Show items in my plan" AutoPostBack="true" />
+                    <asp:CheckBox ID="chkShowPlanItems" runat="server" Text=" &nbsp Show items in my plan" AutoPostBack="true" OnCheckedChanged="chkShowPlanItems_CheckedChanged"/>
                 </div>
                 <br />
                 <div class="row">

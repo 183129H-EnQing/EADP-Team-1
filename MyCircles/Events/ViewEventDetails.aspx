@@ -99,7 +99,13 @@
 
                                     <div class="col-sm-6 col-md-12 col-lg-4">
                                         <p class="font-italic">Avaliable Slots </p>
-							            <p class="text-info"><%=totalAvaliableSlots %></p>
+                                        <%if (totalAvaliableSlots == 0) { %>
+                                            <p class="text-info"><%=avaliableSlotsText %></p>
+                                        <%} %>     
+                                        
+                                        <%else { %>
+                                             <p class="text-info"><%=totalAvaliableSlots %></p>
+                                        <%} %>
                                     </div>
 
                                     <div class="col-sm-6 col-md-12 col-lg-4">

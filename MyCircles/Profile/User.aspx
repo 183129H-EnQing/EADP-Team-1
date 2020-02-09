@@ -46,6 +46,9 @@
                 <li class="nav-item">
                     <a class="nav-link" id="pills-people-tab" data-toggle="pill" href="#pills-people" role="tab" aria-controls="pills-people" aria-selected="false" data-url="?action=people">People</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-events-tab" data-toggle="pill" href="#pills-events" role="tab" aria-controls="pills-events" aria-selected="false" data-url="?action=people">Event</a>
+                </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
@@ -157,6 +160,22 @@
                         <h4 id="followWarning" class="text-center" runat="server">You have not followed any person yet</h4>
                     </div>
                 </div>
+
+                <div class="tab-pane fade" id="pills-events" role="tabpanel" aria-labelledby="pills-events-tab">
+                    <div class="row">
+                         <div class="col-md-3 border-right">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab-events" role="tablist" aria-orientation="vertical">
+                               <a class="nav-link" id=v-pills-createEvent-tab data-toggle="pill" href=#v-pills-createEvent role="tab" aria-controls=v-pills-createEvent>EventCreated</a>
+                            </div>
+                         
+                        </div>
+                        <div class="col-9">
+                   
+                        </div>
+                    </div>
+                   <%--  <asp:Button runat="server" cssClass="btn btn-primary px-4 w-100" Text="Notify EveryOne"  />--%>
+                </div>
+
             </div>
         </div>
 
@@ -246,6 +265,16 @@
         $('.flexdatalist').flexdatalist({
             noResultsText: 'Create new circle called "{keyword}"',
         });
+
+        
+ <%--       addNotification({
+            Action: "Message",
+            Source: "<%= currentUser.Name %>",
+            UserId: <%= recieverUser.Id %>,
+            AdditionalMessage: chatRoomAttributes["messageContent"],
+            CallToAction: "View Message",
+            CallToActionLink: `/Profile/Chat.aspx?chatroom=${chatRoomAttributes.chatRoomId}`,
+        });--%>
     </script>
 </asp:Content>
 

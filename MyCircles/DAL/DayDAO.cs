@@ -66,6 +66,21 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void UpdateDay(int dayId, string notes)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                List<Day> dayList = new List<Day>();
+                dayList = db.Days.Where(i => i.dayId == dayId).ToList();
+                foreach (Day d in dayList)
+                {
+                    d.notes = notes;
+                }
+
+                db.SaveChanges();
+            }
+        }
+
         public static void AddDay(Itinerary itinerary)
         {
             using (var db = new MyCirclesEntityModel())
