@@ -1,9 +1,18 @@
 ﻿var notificationUri = '/api/notifications';
+var followUri = '/api/follows';
+var postUri = '/api/posts';
+var circlesUri = '/api/circles';
+var showNotifications = true;
+
 
 function disableAsyncButton(btn, message = "Loading...") {
     btn.value = message;
     btn.disabled = true;
 }
+
+function parseJsonDate(jsonDateString) {
+    return new Date(jsonDateString.match(/\d+/)[0] * 1);
+};
 
 const getCurrentCity = (lat = null, lng = null) => {
     return new Promise((resolve, reject) => {

@@ -103,6 +103,7 @@
             var chatRoomAttributes = { chatRoomId: '<%= chatRoomId %>', recieverId: '<%= recieverUser.Id %>', senderId: '<%= currentUser.Id %>' };
             let userLatitude = <%= currentUser.Latitude %>, userLongitude = <%= currentUser.Longitude %>;
             let userLocation = { lat: userLatitude, lng: userLongitude };
+            showNotifications = false;
 
             function initMap() {
                 let map = new google.maps.Map(document.getElementById('map'), { zoom: 18 });
@@ -204,10 +205,6 @@
 
                 return bounds;
             }
-
-            function parseJsonDate(jsonDateString) {
-                return new Date(jsonDateString.match(/\d+/)[0] * 1);
-            };
 
             function appendMessage(message, currentUserId) {
                 let messageDiv;

@@ -25,7 +25,8 @@ namespace MyCircles.DAL
             {
                 db.Configuration.LazyLoadingEnabled = false;
 
-                var commentList = db.Comments
+                var commentList = 
+                    db.Comments
                     .Where(p => p.PostId == postid)
                     .ToList()
                     .Join(
