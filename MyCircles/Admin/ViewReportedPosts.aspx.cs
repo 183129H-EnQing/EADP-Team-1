@@ -93,8 +93,11 @@ namespace MyCircles.Admin
                 }
                 else // current report's postId matches previous report's postId, so increase rowSpan
                 {
+                    // to hide the cell, cause no need to display anymore
                     row.Cells[3].Visible = false;
                     row.Cells[4].Visible = false;
+
+                    // increase rowSpawn cause this row's post is the same as before
                     rowSpan += 1;
                 }
 
