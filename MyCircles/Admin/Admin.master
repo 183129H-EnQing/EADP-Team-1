@@ -9,7 +9,7 @@
         <div class="row mt-3 d-md-none">
             <div class="col-12 admin-panel-navbar">
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-light" data-toggle="collapse" data-target="#collapseAdminNavbar">
+                    <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseAdminNavbar">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
