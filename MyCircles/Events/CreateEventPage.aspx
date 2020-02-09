@@ -340,14 +340,48 @@
                            
                         </div>
                     </div>
-                          <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
-                                <div class="signedOutErrorBlock">
-                                    <i class="fas fa-exclamation-triangle"></i>&nbsp;
-                                    <asp:Label ID="lbErrorMsg" runat="server">
-                                        <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addEvent" />
-                                    </asp:Label>
-                                </div>
-                           </div>
+
+
+                  <div class="d-flex justify-content-between mt-3">
+                        <h4 class="text-primary my-auto">Advanced Options </h4>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collaspeAdvancedOptions" aria-expanded="false" aria-controls="collapseExample">Show/Hide</button>
+                    </div>
+
+                    <div class="collapse" id="collaspeAdvancedOptions">
+                        <h5 style="font-size: 16px;">
+                            Nothing
+                        </h5>
+                        <div class="card card-body">
+                              <div class="form-group">
+                                    <asp:Button ID="Button1" type="Button" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Add" UseSubmitBehavior="false" OnClick="eventScheduleDataAddTB"/>
+                              </div>
+                              <div class="row">
+                                  <div class="col-4">
+                                       <label>Start Time</label>
+                                       <asp:TextBox type="text" class="form-control" ID="TextBox1" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
+                                  </div>
+                                  <div class="col-4">
+                                      <label>End Time</label>
+                                       <asp:TextBox type="text" class="form-control" ID="TextBox2" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
+                                  </div>
+                                  <div class="col-4">
+                                       <label>Event Name</label>
+                                       <asp:TextBox type="text" class="form-control" ID="TextBox3" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
+                                  </div>
+                                 
+                              </div>     
+                        </div>
+                    </div>
+
+                        <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
+                            <div class="signedOutErrorBlock">
+                                <i class="fas fa-exclamation-triangle"></i>&nbsp;
+                            <asp:Label ID="lbErrorMsg" runat="server">
+                                <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addEvent" />
+                            </asp:Label>
+                            </div>
+                        </div>
+
                         <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" OnClick="submitButt_Click" />
                     </form>
                 </div>

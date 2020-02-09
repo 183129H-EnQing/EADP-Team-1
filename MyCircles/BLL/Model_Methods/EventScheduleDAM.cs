@@ -19,5 +19,10 @@ namespace MyCircles.BLL {
             EventScheduleDAO.AddAndUpdateUserOptIn(selectedEventToParticipate,userId);
         }
 
+        public List<EventSchedule> GetAllEventRegisteredByUser(int userId)
+        {
+            return EventScheduleDAO.GetAllEventRegisteredByUser(userId);
+        }
+
     }
 }

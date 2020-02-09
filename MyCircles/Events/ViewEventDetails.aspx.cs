@@ -11,7 +11,7 @@ namespace MyCircles.Events
     {
         public Event singleEventDetails;
         public List<EventSchedule> eventSchedule;
-        public int totalAvaliableSlots;
+        public int totalAvaliableSlots = 0;
         public int TotalBookedSlot = 0;
         // public BLL.Event event1 = 
         // List<String> means the list inside must be string ,List<EventSchedule> means the list must be include EventSchedule fields in table 
@@ -56,7 +56,15 @@ namespace MyCircles.Events
                 TotalBookedSlot += Int32.Parse(numberOfBookingSlot);
                 System.Diagnostics.Debug.WriteLine("dinesh say: " + TotalBookedSlot);
             }
-            totalAvaliableSlots = Int32.Parse(singleEventDetails.eventMaxSlot) - TotalBookedSlot;
+            //if (singleEventDetails.eventMaxSlot == "No Limit")
+            //{
+            //    totalAvaliableSlots = "No Limit";
+            //}
+            //else
+            //{
+            //    totalAvaliableSlots = Int32.Parse(singleEventDetails.eventMaxSlot) - TotalBookedSlot;
+            //}
+            
         }
 
 
