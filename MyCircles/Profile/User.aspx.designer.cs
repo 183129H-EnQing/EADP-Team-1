@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles.Profile
-{
-
-
-    public partial class User
-    {
-
+namespace MyCircles.Profile {
+    
+    
+    public partial class User {
+        
         /// <summary>
         /// UserScriptManager control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager UserScriptManager;
-
+        
         /// <summary>
         /// GMap control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Reimers.Google.Map.Map GMap;
-
+        
         /// <summary>
         /// ProfilePicImage control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ProfilePicImage;
-
+        
         /// <summary>
         /// lbName control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbName;
-
+        
         /// <summary>
         /// followBadge control.
         /// </summary>
@@ -58,7 +56,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl followBadge;
-
+        
         /// <summary>
         /// lbUsername control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbUsername;
-
+        
         /// <summary>
         /// lbBio control.
         /// </summary>
@@ -76,7 +74,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbBio;
-
+        
         /// <summary>
         /// lbCity control.
         /// </summary>
@@ -85,7 +83,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbCity;
-
+        
         /// <summary>
         /// lbDistance control.
         /// </summary>
@@ -94,7 +92,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbDistance;
-
+        
         /// <summary>
         /// btEditProfile control.
         /// </summary>
@@ -103,7 +101,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btEditProfile;
-
+        
         /// <summary>
         /// FollowUpdatePanel control.
         /// </summary>
@@ -112,7 +110,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel FollowUpdatePanel;
-
+        
         /// <summary>
         /// cbMakeEventHost control.
         /// </summary>
@@ -121,7 +119,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbMakeEventHost;
-
+        
         /// <summary>
         /// btFollow control.
         /// </summary>
@@ -130,7 +128,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btFollow;
-
+        
         /// <summary>
         /// btMessage control.
         /// </summary>
@@ -139,7 +137,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btMessage;
-
+        
         /// <summary>
         /// userPostsContainer control.
         /// </summary>
@@ -148,7 +146,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userPostsContainer;
-
+        
         /// <summary>
         /// postWarning control.
         /// </summary>
@@ -157,7 +155,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl postWarning;
-
+        
         /// <summary>
         /// userCirclesContainer control.
         /// </summary>
@@ -166,7 +164,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userCirclesContainer;
-
+        
         /// <summary>
         /// rptUserCircles control.
         /// </summary>
@@ -175,7 +173,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptUserCircles;
-
+        
         /// <summary>
         /// rptCircleFollowerLinks control.
         /// </summary>
@@ -184,7 +182,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCircleFollowerLinks;
-
+        
         /// <summary>
         /// followingUserListContainer control.
         /// </summary>
@@ -193,7 +191,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl followingUserListContainer;
-
+        
         /// <summary>
         /// rptUserFollowing control.
         /// </summary>
@@ -202,7 +200,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptUserFollowing;
-
+        
         /// <summary>
         /// followWarning control.
         /// </summary>
@@ -211,7 +209,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl followWarning;
-
+        
         /// <summary>
         /// UpdateCircleUpdatePanel control.
         /// </summary>
@@ -220,7 +218,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdateCircleUpdatePanel;
-
+        
         /// <summary>
         /// addCirclesCloseButton control.
         /// </summary>
@@ -229,7 +227,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton addCirclesCloseButton;
-
+        
         /// <summary>
         /// addCirclesIntroBlurb control.
         /// </summary>
@@ -238,7 +236,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addCirclesIntroBlurb;
-
+        
         /// <summary>
         /// rptUpdateCircles control.
         /// </summary>
@@ -247,7 +245,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptUpdateCircles;
-
+        
         /// <summary>
         /// circleInputForm control.
         /// </summary>
@@ -256,7 +254,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl circleInputForm;
-
+        
         /// <summary>
         /// circleInputGroupBlock control.
         /// </summary>
@@ -265,7 +263,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl circleInputGroupBlock;
-
+        
         /// <summary>
         /// circleInputGroup control.
         /// </summary>
@@ -274,7 +272,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl circleInputGroup;
-
+        
         /// <summary>
         /// tbCircleInput control.
         /// </summary>
@@ -283,7 +281,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbCircleInput;
-
+        
         /// <summary>
         /// signedOutErrorContainer control.
         /// </summary>
@@ -292,7 +290,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl signedOutErrorContainer;
-
+        
         /// <summary>
         /// lbErrorMsg control.
         /// </summary>
@@ -301,7 +299,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbErrorMsg;
-
+        
         /// <summary>
         /// vsAddCircles control.
         /// </summary>
@@ -310,7 +308,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary vsAddCircles;
-
+        
         /// <summary>
         /// btAddCircle control.
         /// </summary>
@@ -319,7 +317,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btAddCircle;
-
+        
         /// <summary>
         /// btClear control.
         /// </summary>
@@ -328,7 +326,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btClear;
-
+        
         /// <summary>
         /// btSubmit control.
         /// </summary>
@@ -337,7 +335,7 @@ namespace MyCircles.Profile
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btSubmit;
-
+        
         /// <summary>
         /// existingCircles control.
         /// </summary>
