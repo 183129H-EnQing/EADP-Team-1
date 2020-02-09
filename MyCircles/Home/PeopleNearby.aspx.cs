@@ -1,4 +1,5 @@
-﻿using Reimers.Google.Map;
+﻿using MyCircles.DAL;
+using Reimers.Google.Map;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,14 +19,10 @@ namespace MyCircles.Home
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
-            var followinguser = new BLL.User();
-             
-            
+            var notfollow = UserDAO.GetNewUser(currentUser.Id);
 
-            
-           
-
-
+            GridViewFollow.DataSource = notfollow;
+            GridViewFollow.DataBind();
 
             GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
 
