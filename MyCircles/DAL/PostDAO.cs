@@ -25,7 +25,7 @@ namespace MyCircles.DAL
             }
         }
 
-        public static List<UserPost> GetPostsByCircle(string circleName)
+        public static List<UserPost> GetPostsByCircle(string circleName) //En qing i can add here the order by inside here
         {
             using (var db = new MyCirclesEntityModel())
             {
