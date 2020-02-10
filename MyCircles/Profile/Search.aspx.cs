@@ -11,8 +11,13 @@ namespace MyCircles.Profile
     //TODO: Change autocomplete no content found text according to which section is clicked
     public partial class Search : System.Web.UI.Page
     {
+        public BLL.User currentUser;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            RedirectValidator.isUser();
+            currentUser = (BLL.User)Session["currentUser"];
+
             foreach (BLL.Post post in PostDAO.GetPosts())
             {
                 postDataList.InnerHtml += "<option value='" + post.Content + "'>" + post.Content + "</option>";

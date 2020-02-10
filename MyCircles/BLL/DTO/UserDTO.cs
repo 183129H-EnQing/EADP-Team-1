@@ -18,5 +18,6 @@ namespace MyCircles.BLL
         public string ProfileImage { get; set; }
         public bool IsLoggedIn { get; set; }
         public bool IsFollowedByUser { get; set; }
+        public bool IsUser { get; set; } = true;
     }
 }

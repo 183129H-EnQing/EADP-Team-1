@@ -68,6 +68,13 @@ namespace MyCircles.Home
                 rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
                 rptUserPosts.DataBind();
 
+                UserCircleDAO.ChangeUserCirclePoints(
+                    userId: currentUser.Id,
+                    circleName: newPost.CircleId,
+                    points: 30,
+                    source: "creating a new post",
+                    addNotification: true
+                );
             }
             catch (DbEntityValidationException ex)
             {

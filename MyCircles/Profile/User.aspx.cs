@@ -20,14 +20,13 @@ namespace MyCircles.Profile
     //TODO: Create example data (user, circle, user circle w/ points)
     //TODO: Gain points for referring users to app
     //TODO: Show all the mutual circles
-    //TODO: Add points and show points source
-    //TODO: Fix the autocomplete bug
-    //TODO: Add edit user profile
     //TODO: Clean up the interface (show graph for circles maybe???)
-    //TODO: Enable follow user through web api
-    //TODO: Show following, followers, and strangers who dm'd you in user page
-    //TODO: Edit Profile
-    //TODO: Search function
+    //TODO: Clean up presentation slides
+    //TODO: Give buttons icons
+    //TODO: Be able to to visit chat without being in a chat room
+    //TODO: Make login and redirect prettier
+    //TODO: Guan Hong's View Event Details
+
     public partial class User : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
@@ -144,7 +143,6 @@ namespace MyCircles.Profile
 
             if (requestedUser.Id == currentUser.Id)
             {
-                btFollow.Visible = false;
                 btMessage.Visible = false;
             }
             else
@@ -156,12 +154,6 @@ namespace MyCircles.Profile
                 btEditProfile.Visible = false;
                 btMessage.Visible = true;
                 followWarning.InnerText = requestedUser.Name + " has not followed anyone yet";
-                postWarning.InnerText = requestedUser.Name + " has not created any posts yet";
-
-                updateFollowButton();
-
-                if (FollowDAO.SearchFollow(requestedUser.Id, currentUser.Id) != null) followBadge.Visible = true;
-
             }
 
             if (String.IsNullOrEmpty(requestedUser.Bio)) 
@@ -181,17 +173,6 @@ namespace MyCircles.Profile
             {
                 followWarning.Visible = true;
             }
-        }
-
-        protected void btFollow_Click(object sender, EventArgs e)
-        {
-            int requestedUserId = requestedUser.Id;
-            Button button = (Button)sender;
-
-            if (button.Attributes["UserId"] != null) requestedUserId = int.Parse(button.Attributes["UserId"]);
-
-            FollowDAO.ToggleFollow(currentUser.Id, requestedUserId);
-            updateFollowButton();
         }
 
         protected void btAddCircle_Click(object sender, EventArgs e)
@@ -325,12 +306,7 @@ namespace MyCircles.Profile
 
         protected void rptUserFollowing_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            if (e.CommandName == "Unfollow")
-            {
-                FollowDAO.ToggleFollow(currentUser.Id, Int32.Parse(e.CommandArgument.ToString()));
-                Response.Redirect(Request.RawUrl);
-            }
-            else if (e.CommandName == "Message")
+            if (e.CommandName == "Message")
             {
                 var chatroom = ChatRoomDAO.GetChatRoom(currentUser.Id, Int32.Parse(e.CommandArgument.ToString()));
                 if (chatroom != null)
@@ -429,22 +405,6 @@ namespace MyCircles.Profile
                     GMap.Overlays.Add(userMarker);
                     GMap.Overlays.Add(overlayMarker);
                 }
-            }
-        }
-
-        protected void updateFollowButton()
-        {
-            Follow existingFollow = FollowDAO.SearchFollow(currentUser.Id, requestedUser.Id);
-
-            if (existingFollow == null)
-            {
-                btFollow.Text = "Follow";
-                btFollow.CssClass = "btn btn-outline-primary float-right m-5 px-4";
-            }
-            else
-            {
-                btFollow.Text = "Following";
-                btFollow.CssClass = "btn btn-primary float-right m-5 px-4";
             }
         }
 

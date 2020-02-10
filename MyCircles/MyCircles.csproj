@@ -76,6 +76,7 @@
     <Reference Include="Reimers.Google.Map, Version=5.3.95.699, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Reimers.Google.Map.5.3.95.699\lib\Net40\Reimers.Google.Map.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Device" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http" />
@@ -244,6 +245,7 @@
     <Content Include="Home\Post.aspx" />
     <Content Include="ItineraryPlanner\Header.Master" />
     <Content Include="Admin\Admin.master" />
+    <None Include="Properties\PublishProfiles\MyCircles - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Register.aspx" />
@@ -325,6 +327,8 @@
     <Compile Include="BLL\Day.cs" />
     <Compile Include="BLL\DayByDay.cs" />
     <Compile Include="BLL\DTO\CircleDTO.cs" />
+    <Compile Include="BLL\DTO\CommentDTO.cs" />
+    <Compile Include="BLL\DTO\FollowDTO.cs" />
     <Compile Include="BLL\DTO\NotificationDTO.cs" />
     <Compile Include="BLL\DTO\PostDTO.cs" />
     <Compile Include="BLL\DTO\UserDTO.cs" />
@@ -359,6 +363,7 @@
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\CirclesController.cs" />
     <Compile Include="Controller\EventController.cs" />
+    <Compile Include="Controller\FollowsController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PostsController.cs" />
     <Compile Include="Controller\UsersController.cs" />

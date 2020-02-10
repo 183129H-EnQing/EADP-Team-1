@@ -5,26 +5,33 @@
 </asp:Content>
 
 <asp:Content ID="RedirectContent" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
-    <form runat="server" name="geolocationForm" id="geolocationForm" onsubmit="geolocationForm_Submit">
+    <form runat="server" name="geolocationForm" id="geolocationForm" onsubmit="geolocationForm_Submit" class="h-100">
         <div class="container h-100">
-	        <div class="row h-100 justify-content-center align-items-center text-center">
-		        Loading...
-	        </div>
+	        <div class="row h-100 justify-content-center align-items-center">
+                <figure class="redirect-logo">
+                    <img src="/Content/images/MyCirclesIconStatic.png" alt="MyCircles Logo" id="redirectLogo">
+                </figure>
+                <div class="redirect-geolocation-fail" style="display: none;">
+                    <span class="h4">Please enable location to have an optimal experience</span>
+                </div>
+            </div>
         </div>
 
-	    <div class="row form-group">
-		    <asp:TextBox ID="tbLat" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="Latitude" ClientIDMode="Static"></asp:TextBox>
-	    </div>
+        <div class="d-none">
+            <div class="row form-group">
+                <asp:TextBox ID="tbLat" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="Latitude" ClientIDMode="Static"></asp:TextBox>
+            </div>
 
-	    <div class="row form-group">
-		    <asp:TextBox ID="tbLong" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="Longitude" ClientIDMode="Static"></asp:TextBox>
-	    </div>
+            <div class="row form-group">
+                <asp:TextBox ID="tbLong" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="Longitude" ClientIDMode="Static"></asp:TextBox>
+            </div>
 
-        <div class="row form-group">
-		    <asp:TextBox ID="tbCity" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="City" ClientIDMode="Static"></asp:TextBox>
-	    </div>
+            <div class="row form-group">
+                <asp:TextBox ID="tbCity" runat="server" CssClass="form-control-lg m-1" type="hidden" placeholder="City" ClientIDMode="Static"></asp:TextBox>
+            </div>
 
-        <asp:Button ID="btSubmit" runat="server" CssClass="btn invisible" type="hidden" ClientIDMode="Static" OnClick="geolocationForm_Submit" />
+            <asp:Button ID="btSubmit" runat="server" CssClass="btn invisible" type="hidden" ClientIDMode="Static" OnClick="geolocationForm_Submit" />
+        </div>
     </form>
 </asp:Content>
 
@@ -55,7 +62,8 @@
 
         function error() {
             alert("We could not determine your location.")
-            submitButton.click();
+            $("#redirect-logo").css("display", "none");
+            $("#redirect-geolocation-fail").css("display", "block");
         }
 
         if (!navigator.geolocation) {

@@ -20,6 +20,7 @@
     <WebStackScaffolding_DbContextTypeFullName>MyCircles.BLL.MyCirclesEntityModel</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>True</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_DbContextDialogWidth>600</WebStackScaffolding_DbContextDialogWidth>
+    <NameOfLastUsedPublishProfile>MyCircles - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

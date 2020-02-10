@@ -1,4 +1,16 @@
-﻿body {
+﻿html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+body > div {
+    flex: 1;
+}
+
+body {
     background-color: #f6f6f6;
 }
 
@@ -107,7 +119,7 @@
     height: 50px;
 }
 
-.display-False {
+.display-False, .display-false {
     display: none !important;
 }
 
@@ -173,4 +185,24 @@
 
 .object-fit {
     object-fit: cover;
+}
+
+@keyframes changescale {
+    from {
+        width: 100px;
+        height: 100px;
+    }
+
+    to {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+#redirectLogo {
+    animation-duration: 1s;
+    animation-name: changescale;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }

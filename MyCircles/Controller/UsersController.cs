@@ -18,25 +18,57 @@ namespace MyCircles.Controller
         private MyCirclesEntityModel db = new MyCirclesEntityModel();
 
         // GET: api/Users
+        [HttpGet]
+        [Route("api/users")]
         public IQueryable<User> GetUsers()
         {
             return db.Users;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> GetUser(int id)
+        // GET: api/Users/bob
+        [HttpGet]
+        [Route("api/users/{searchQuery}")]
+        [ResponseType(typeof(List<UserDTO>))]
+        public async Task<IHttpActionResult> GetUserBySearchQuery(string searchQuery)
         {
-            User user = await db.Users.FindAsync(id);
-            if (user == null)
+            var users = await 
+                db.Users
+                    .Where(u => u.Username.Contains(searchQuery) || u.Name.Contains(searchQuery))
+                    .Select(p => new UserDTO()
+                    {
+                        Id = p.Id,
+                        Username = p.Username,
+                        EmailAddress = p.EmailAddress,
+                        Name = p.Name,
+                        Bio = p.Bio,
+                        Longitude = p.Longitude,
+                        City = p.City,
+                        ProfileImage = p.ProfileImage,
+                        IsLoggedIn = p.IsLoggedIn
+                    })
+                    .ToListAsync();
+
+            if (users == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(users);
         }
 
+        //[HttpGet]
+        //[Route("api/users/GetFollowingUsers/{userId:int}")]
+        //[ResponseType(typeof(bool))]
+        //public async Task<IHttpActionResult> GetFollowingUsers(int userId)
+        //{
+        //    bool followingUsers = (await db.Follows.Where(f => f.FollowerId == followerId && f.FollowingId == followingId).FirstOrDefaultAsync() != null) ? true : false;
+
+        //    return Ok(followExists);
+        //}
+
         // PUT: api/Users/5
+        [HttpPut]
+        [Route("api/users")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUser(int id, User user)
         {
@@ -72,6 +104,8 @@ namespace MyCircles.Controller
         }
 
         // POST: api/Users
+        [HttpPost]
+        [Route("api/users")]
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> PostUser(User user)
         {
@@ -87,6 +121,8 @@ namespace MyCircles.Controller
         }
 
         // DELETE: api/Users/5
+        [HttpDelete]
+        [Route("api/Users/{id:int}")]
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> DeleteUser(int id)
         {

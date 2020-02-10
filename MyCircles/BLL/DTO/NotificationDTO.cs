@@ -17,5 +17,6 @@ namespace MyCircles.BLL
         public bool IsRead { get; set; }
         public DateTime CreatedAt { get; set; }
         public int UserId { get; set; }
+        public bool IsNotification { get; set; } = true;
     }
 }

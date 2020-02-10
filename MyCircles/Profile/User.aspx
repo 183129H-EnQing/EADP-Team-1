@@ -14,7 +14,7 @@
                     <asp:Image ID="ProfilePicImage" runat="server" CssClass="profilepic rounded-circle img-fluid" />
                 </div>
                 <div class="maindesc-container">
-                    <asp:Label ID="lbName" cssClass="m-0 h1" runat="server"></asp:Label><span id="followBadge" class="badge badge-secondary" runat="server" visible="false">Follows you</span><br />
+                    <asp:Label ID="lbName" cssClass="m-0 h1" runat="server"></asp:Label><br />
                     <asp:Label ID="lbUsername" class="m-0 text-muted" runat="server">@</asp:Label><br />
                     <span id="lbBio" class="bio-span d-block font-italic py-3" runat="server"></span>
                     <i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp;
@@ -26,11 +26,11 @@
                 <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:CheckBox ID="cbMakeEventHost" runat="server" Visible="false" CssClass="float-right" OnCheckedChanged="cbMakeEventHost_CheckedChanged" Text="Event Host" AutoPostBack="true"/>
-                        <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />
+                        <%--<asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />--%>
+                        <button id="btFollowProfile" class="btn btn-outline-primary m-5 px-4 btn-follow float-right" type="button" followingId=<%= requestedUser.Id %> followerId=<%= currentUser.Id %>>Follow</button>
                         <asp:Button ID="btMessage" runat="server" Text="Message" CssClass="btn btn-outline-secondary float-right my-5 px-4" OnClick="btMessage_Click" UseSubmitBehavior="false" />
                     </ContentTemplate>
                     <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="btFollow" EventName="Click" />
                         <asp:AsyncPostBackTrigger ControlID="cbMakeEventHost" EventName="CheckedChanged"/>
                     </Triggers>
                 </asp:UpdatePanel>
@@ -49,8 +49,8 @@
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
-                    <div id="userPostsContainer" class="container py-5 px-7" runat="server">
-                        <h4 id="postWarning" class="text-center" runat="server">You have not made any posts yet</h4>
+                    <div id="userPostsContainer" class="container py-5 px-7">
+                        <h4 id="no-post-message" class="text-center">You have not made any posts yet</h4>
                     </div>
                 </div>
                 <div class="tab-pane fade show active" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
@@ -143,7 +143,7 @@
                                     <div class="card-footer">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <asp:Button runat="server" cssClass="btn btn-primary px-4 w-100" Text="Following" CommandName="Unfollow" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> Enabled="<%# requestedUser.Id == currentUser.Id %>" />
+                                                <button class="btn btn-primary px-4 w-100 btn-follow" type="button" followingId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> followerId=<%# currentUser.Id %>>Follow</button>
                                             </div>
                                             <div class="col-md-6">
                                                 <asp:Button runat="server" cssClass="btn btn-outline-secondary px-4 w-100" Text="Message" CommandName="Message" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> />
@@ -245,6 +245,22 @@
 
         $('.flexdatalist').flexdatalist({
             noResultsText: 'Create new circle called "{keyword}"',
+        });
+
+        $(document).ready(function () {
+            ajaxHelper(`${postUri}`, 'GET', null).done(function (data) {
+                if (data.length) {
+                    if (data[0].IsPost) {
+                        var postHtml = getPostDom(data);
+                        $('#no-post-message').css("display", "none");
+                        $('#userPostsContainer').append(postHtml);
+                    } else {
+                        $('#no-post-message').css("display", "block");
+                    }
+                } else {
+                    $('#no-post-message').css("display", "block");
+                }
+            });
         });
     </script>
 </asp:Content>
