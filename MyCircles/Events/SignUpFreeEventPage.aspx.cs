@@ -64,14 +64,32 @@ namespace MyCircles.Events
             newEventSignUpEventData.contactNumber = contactNumberTB.Text;
             currentUser = (BLL.User)Session["currentUser"];
             newEventSignUpEventData.userId = currentUser.Id;
-        
-           // newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.SelectedItem.Text;
+
+            if (String.IsNullOrEmpty(NumberOfBookingSlotsDLL.Text))
+            {
+                GeneralHelpers.AddValidationError(Page, "registerEvent", "Booking Slot Amount is empty");
+            }
+            if (String.IsNullOrEmpty(NumberOfBookingSlotsTB.Text))
+            {
+                GeneralHelpers.AddValidationError(Page, "registerEvent", "Booking Slot Amount is empty");
+            }
+            System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
+            if (NumberOfBookingSlotsDLL.Text != "")
+            {
+                newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.Text;
+            }
+            else
+            {
+                newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsTB.Text;
+            }
+
             newEventSignUpEventData.selectedEventToParticipate = selectedEventToParticipate;
             newEventSignUpEventData.eventId = currentEventID;
+            newEventSignUpEventData.date = dateDDL.Text ;
             //  System.Diagnostics.Debug.WriteLine(String.Join("\n", userOptInEvent));
             //System.Diagnostics.Debug.WriteLine(currentUser.Name);
 
-            System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
+            //System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
             newEventSignUpEventData.Add();
             eventSchedule.AddAndUpdateUserOptIn(selectedEventToParticipate, currentUser.Id);
             var ticketPrice = singleEventDetails.eventTicketCost;
@@ -79,26 +97,40 @@ namespace MyCircles.Events
             Response.Redirect("ViewAllEventPage.aspx");
         }
 
-        public List<EventSchedule> GetDates()
+        public void GetDates()
         {
-            EventSchedule eventSchedule = new EventSchedule();
-            List<EventSchedule> scheduleList = new List<EventSchedule>();
-            var scheduleData = eventSchedule.getAllEventActivity(currentEventID);
-
+            DateTime startDate;
+            DateTime endDate;
+            DateTime startDateTemp;
             List<String> datesList = new List<String>();
-            foreach (EventSchedule eventScheduleBB in scheduleData)
+
+            DateTime.TryParse(singleEventDetails.eventStartDate, out startDate);
+            DateTime.TryParse(singleEventDetails.eventEndDate, out endDate);
+            DateTime.TryParse(singleEventDetails.eventEndDate, out startDateTemp);
+
+            System.Diagnostics.Debug.WriteLine(startDate + " " +endDate);
+            if (startDate == endDate)
             {
-               // System.Diagnostics.Debug.WriteLine("gh say: " + eventScheduleBB.startDate);
-               if (datesList.Contains(eventScheduleBB.startDate) == false)
-                {
-                    datesList.Add(eventScheduleBB.startDate);
-                }
-               
+                //System.Diagnostics.Debug.WriteLine("gh say:11 " + (startDate - endDate).TotalDays);
+                datesList.Add(startDate.ToShortDateString().ToString());
             }
+            else
+            {
+                var dateDifference = (endDate - startDate).TotalDays;
+               // System.Diagnostics.Debug.WriteLine("hello world:" + dateDifference);
+                for (var i = 0; i <= (endDate - startDate).TotalDays;i++)
+                {
+                    DateTime newstartDate;
+                    newstartDate = startDate.AddDays(i);
+                    //System.Diagnostics.Debug.WriteLine("startDate: " +startDate);
+                    datesList.Add(newstartDate.ToShortDateString().ToString());
+ 
+                }
+            }
+
+
             dateDDL.DataSource = datesList;
             dateDDL.DataBind();
-
-            return scheduleList;
 
         }
 
@@ -110,7 +142,7 @@ namespace MyCircles.Events
 
             scheduleList = retrieveEventSchedule.getAllEventActivity(eventId);
 
-            System.Diagnostics.Debug.WriteLine(scheduleList);
+            //System.Diagnostics.Debug.WriteLine(scheduleList);
             rpEventSchedule.DataSource = scheduleList;
         
         }

@@ -69,6 +69,15 @@
                             </asp:Repeater>
                         </tbody>
                     </table>
+
+                      <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
+                            <div class="signedOutErrorBlock">
+                                <i class="fas fa-exclamation-triangle"></i>&nbsp;
+                            <asp:Label ID="lbErrorMsg" runat="server">
+                                <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="registerEvent" />
+                            </asp:Label>
+                            </div>
+                        </div>
                     <asp:Button ID="submitButt" runat="server" Text="Submit" ClientIDMode="Static" CssClass="form-check-label btn btn-success btn-block mt-2" OnClick="submitButt_Click" />
                 </form>
                   
@@ -87,6 +96,7 @@
             var numberOfBookingSlotTB = document.getElementById("NumberOfBookingSlotsTB").value;
             //console.log(numberOfBookingSlotDDL);
             console.log(ticketPrice);
+            document.getElementById("TotalCost").innerText = ticketPrice * numberOfBookingSlotTB;
         }
     </script>
 <%--    <script src="/Content/timetable.js-master/dist/scripts/timetable.js"></script>

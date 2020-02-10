@@ -59,6 +59,7 @@ namespace MyCircles.Events
             foreach (SignUpEventDetail signUpEventDetailsListBB in signUpEventDetailsList)
             {
                 string numberOfBookingSlot;
+                System.Diagnostics.Debug.WriteLine("gh say: " + signUpEventDetailsListBB.numberOfBookingSlot);
                 if (signUpEventDetailsListBB.numberOfBookingSlot != null)
                 {
                     numberOfBookingSlot = signUpEventDetailsListBB.numberOfBookingSlot.ToString();

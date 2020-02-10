@@ -16,11 +16,11 @@ namespace MyCircles.Events
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int Id = Convert.ToInt32(Request.QueryString["Id"]);
+            //int Id = Convert.ToInt32(Request.QueryString["Id"]);
 
-            DayByDay getByTag = new DayByDay();
-            List<DayByDay> daybydayList = new List<DayByDay>();
-            daybydayList = getByTag.RetrieveByItinerary(Id);
+            //DayByDay getByTag = new DayByDay();
+            //List<DayByDay> daybydayList = new List<DayByDay>();
+            //daybydayList = getByTag.RetrieveByItinerary(Id);
         }
 
      
