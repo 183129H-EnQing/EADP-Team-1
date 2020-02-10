@@ -350,7 +350,7 @@
                             </div>
                         </div>
 
-                        <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" " />
+                        <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" />
                     </form>
                 </div>
             </div>
