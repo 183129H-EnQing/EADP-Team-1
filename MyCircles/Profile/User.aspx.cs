@@ -125,12 +125,6 @@ namespace MyCircles.Profile
                 bindExisitingCircles();
                 updateCirclesModal();
                 initializeNearbyUserMap();
-
-                if (currentUser.Id != requestedUser.Id && BLL.Admin.RetrieveAdmin(currentUser) != null)
-                {
-                    cbMakeEventHost.Visible = true;
-                    cbMakeEventHost.Checked = requestedUser.IsEventHolder;
-                }
             }
 
             GMap.OverlayClick += new EventHandler<OverlayEventArgs>(MarkerClick);
@@ -344,15 +338,6 @@ namespace MyCircles.Profile
         {
             var chatroom = ChatRoomDAO.GetChatRoom(currentUser.Id, requestedUser.Id);
             Response.Redirect("/Profile/Chat.aspx?chatroom=" + chatroom.Id);
-        }
-
-        protected void cbMakeEventHost_CheckedChanged(object sender, EventArgs e)
-        {
-            if (sender is CheckBox)
-            {
-                CheckBox cbSender = (CheckBox) sender;
-                requestedUser.UpdateIsEventHost(cbSender.Checked);
-            }
         }
 
         private void bindExisitingCircles()
