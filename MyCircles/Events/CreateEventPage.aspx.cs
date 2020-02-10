@@ -240,11 +240,12 @@ namespace MyCircles.Events
                 }
 
                 UserCircleDAO.ChangeUserCirclePoints(currentUser.Id, CategoryDropDownList.Text, 20, "Creating An Event",true);
-                newEventData.AddNewEvent();
+                Event newCreatedEvt = newEventData.AddNewEvent();
+
+                Response.Redirect("EventSchedulePage.aspx?eventID=" + newCreatedEvt.eventId);
             }
 
 
-            Response.Redirect("EventSchedulePage.aspx");
         }
 
 

@@ -64,12 +64,14 @@ namespace MyCircles.Events
             newEventSignUpEventData.contactNumber = contactNumberTB.Text;
             currentUser = (BLL.User)Session["currentUser"];
             newEventSignUpEventData.userId = currentUser.Id;
+        
            // newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.SelectedItem.Text;
             newEventSignUpEventData.selectedEventToParticipate = selectedEventToParticipate;
             newEventSignUpEventData.eventId = currentEventID;
             //  System.Diagnostics.Debug.WriteLine(String.Join("\n", userOptInEvent));
             //System.Diagnostics.Debug.WriteLine(currentUser.Name);
 
+            System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
             newEventSignUpEventData.Add();
             eventSchedule.AddAndUpdateUserOptIn(selectedEventToParticipate, currentUser.Id);
             var ticketPrice = singleEventDetails.eventTicketCost;
