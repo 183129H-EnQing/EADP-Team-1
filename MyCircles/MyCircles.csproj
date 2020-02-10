@@ -179,7 +179,7 @@
     <Content Include="Content\images\UserOutlineOnline.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Events\CreateEventPage.aspx" />
-    <Content Include="Events\EditRegisterationPage.aspx" />
+    <Content Include="Events\EventSchedulePage.aspx" />
     <Content Include="Events\testing1.aspx" />
     <Content Include="Events\ViewEventPageCreated.aspx" />
     <Content Include="Events\ViewEventPageRegistered.aspx" />
@@ -449,6 +449,13 @@
     </Compile>
     <Compile Include="Events\CreateEventPage.aspx.designer.cs">
       <DependentUpon>CreateEventPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Events\EventSchedulePage.aspx.cs">
+      <DependentUpon>EventSchedulePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events\EventSchedulePage.aspx.designer.cs">
+      <DependentUpon>EventSchedulePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Events\testing1.aspx.cs">
       <DependentUpon>testing1.aspx</DependentUpon>

@@ -242,12 +242,12 @@ namespace MyCircles.Events
                 UserCircleDAO.ChangeUserCirclePoints(currentUser.Id, CategoryDropDownList.Text, 20, "Creating An Event",true);
                 newEventData.AddNewEvent();
             }
-        
 
-            //Response.Redirect("ViewAllEventPage.aspx");
+
+            Response.Redirect("EventSchedulePage.aspx");
         }
 
-       
+
         private void getAllCircleData()
         {
             Circle retrieveAllCircleData = new Circle();

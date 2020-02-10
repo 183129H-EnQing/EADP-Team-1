@@ -74,7 +74,7 @@ namespace MyCircles.Events
             eventSchedule.AddAndUpdateUserOptIn(selectedEventToParticipate, currentUser.Id);
             var ticketPrice = singleEventDetails.eventTicketCost;
 
-            //Response.Redirect("ViewAllEventPage.aspx");
+            Response.Redirect("ViewAllEventPage.aspx");
         }
 
         public List<EventSchedule> GetDates()
