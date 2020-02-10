@@ -11,18 +11,15 @@
             <ContentTemplate>
                 <ul class="nav nav-pills mb-3 border-bottom px-4" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="pill" href="#pillStats" role="tab" aria-controls="pill-stats" aria-selected="true">Stats</a>
+                        <a class="nav-link active" data-toggle="pill" href="#pill-reportedposts" role="tab" aria-controls="pill-reportedposts" aria-selected="false">Reports</a>
                     </li>
                     <li class="nav-item">
-                        <%--<a>Reported Posts</a>--%>
-                        <a class="nav-link" data-toggle="pill" href="#pill-reportedposts" role="tab" aria-controls="pill-reportedposts" aria-selected="false">Reported Posts</a>
+                        <a class="nav-link" data-toggle="pill" href="#pillStats" role="tab" aria-controls="pill-stats" aria-selected="true">Stats</a>
                     </li>
                 </ul>
+
                 <div class="tab-content mx-6">
-                    <div class="tab-pane fade show active" id="pillStats" role="tabpanel" aria-labelledby="pill-stats-pane">
-                        Stats
-                    </div>
-                    <div class="tab-pane fade" id="pill-reportedposts" role="tabpanel" aria-labelledby="pill-reportedposts-pane">
+                    <div class="tab-pane fade show active" id="pill-reportedposts" role="tabpanel" aria-labelledby="pill-reportedposts-pane">
                         
                         <div class="row">
                             <div class="col table-responsive">
@@ -32,9 +29,17 @@
                                         <asp:BoundField DataField="reason" HeaderText="Reason" />
                                         <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd\/MMM\/yyyy}" />
                                         <asp:ButtonField CommandName="ViewPost" Text="View Post" ButtonType="Button" ControlStyle-CssClass="btn btn-primary" />
-                                        <asp:ButtonField CommandName="DeletePost" Text="Delete Report & Post" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
+                                        <asp:ButtonField CommandName="DeletePost" Text="Delete Post" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
                                     </Columns>
                                 </asp:GridView>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="pillStats" role="tabpanel" aria-labelledby="pill-stats-pane">
+                        <div class="row">
+                            <div class="col">
+                                <canvas id="statsChart" class="text-dark"></canvas>
                             </div>
                         </div>
 
@@ -65,7 +70,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" onclick="closeViewPostModal()">Close</button>
-                                <asp:Button ID="btnModalDelete" CssClass="btn btn-danger" runat="server" Text="Delete Report & Post" OnClick="ModalDeleteBtn_Click" UseSubmitBehavior="false"/>
+                                <asp:Button ID="btnModalDelete" CssClass="btn btn-danger" runat="server" Text="Delete Post" OnClick="ModalDeleteBtn_Click" UseSubmitBehavior="false"/>
                             </div>
                         </div>
                     </div>
@@ -81,6 +86,10 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="JSPlaceHolder" runat="server">
+    <%-- Chart.js --%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+
     <script>
         function openViewPostModal() {
             $("#viewPostModal").modal('show');
@@ -91,5 +100,43 @@
             $(".modal-backdrop").remove();
             $('#viewPostModal').modal('hide')
         }
+
+        function viewReportedPost_onload() {
+            var dateToCount = JSON.parse('<%=jsonStringDict %>');
+            console.log(dateToCount);
+
+            var jsonDates = Object.keys(dateToCount); // keys
+            console.log(jsonDates);
+
+            var jsonCounts = Object.values(dateToCount);
+            console.log(jsonCounts);
+
+            var chartCanvas = $('#statsChart');
+            var chart = new Chart(chartCanvas, {
+                type: 'bar',
+                data: {
+                    labels: jsonDates,
+                    datasets: [{
+                        label: 'Reports created',
+                        backgroundColor: '#0cb0ca',
+                        data: jsonCounts,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                stepSize:1,
+                                beginAtZero: true,
+                                suggestedMax: 10
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        
+        window.addEventListener("load", viewReportedPost_onload, false);
     </script>
 </asp:Content>

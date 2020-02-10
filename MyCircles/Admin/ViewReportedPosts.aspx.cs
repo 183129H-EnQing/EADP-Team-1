@@ -6,12 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyCircles.DAL.Joint_Models;
 using MyCircles.BLL;
+using Newtonsoft.Json;
 
 namespace MyCircles.Admin
 {
     public partial class ViewReportedPosts : System.Web.UI.Page
     {
         private string keySessionRowIdx = "ViewReportedPostsRowIdx";
+        public string jsonStringDict = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +23,15 @@ namespace MyCircles.Admin
             }
 
             refreshGridView();
+
+
+            IDictionary<string, int> dateToReportsDict = new Dictionary<string, int>();
+            foreach (ReportedPostCount count in ReportedPost.GetReportedPostCountByDate())
+            {
+                dateToReportsDict.Add(count.dateCreated.ToString("dd/MMM/yyyy"), count.reportsCount);
+            }
+            jsonStringDict = JsonConvert.SerializeObject(dateToReportsDict);
+            System.Diagnostics.Debug.WriteLine(jsonStringDict);
         }
 
         protected void ModalDeleteBtn_Click(object sender, EventArgs e)
