@@ -1,4 +1,5 @@
-﻿using MyCircles.DAL;
+﻿using MyCircles.BLL;
+using MyCircles.DAL;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -40,9 +41,13 @@ namespace MyCircles.Home
                 DropDownList2.DataValueField = "CircleId";
                 DropDownList2.DataBind();
 
+
                 
             }
-           
+            var notfollow = UserDAO.GetNewUser(currentUser.Id);
+            Repeater1.DataSource = notfollow;
+            Repeater1.DataBind();
+
             this.Title = "Home";
             //CircleDAO.AddCircle("gym");
             refreshGv();
@@ -192,6 +197,7 @@ namespace MyCircles.Home
                     newComment.comment_date = DateTime.Now;
                     newComment.comment_text = comment.Text;
                     CommentDAO.AddComment(newComment);
+                    comment.Text = String.Empty;
 
                     repeater.DataSource = CommentDAO.GetCommentByPost(Convert.ToInt32(e.CommandArgument));
                     repeater.DataBind();
@@ -224,11 +230,19 @@ namespace MyCircles.Home
                     if (currentUser.Id == selecteduserpost.User.Id)
                     {
 
-                    CommentDAO.DeleteCommentByPostId(selecteduserpost.Post.Id);
+                        CommentDAO.DeleteCommentByPostId(selecteduserpost.Post.Id);
                         ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
                         PostDAO.DeletePost(deleteId);
                         refreshGv();
-                    }
+
+                        UserCircleDAO.ChangeUserCirclePoints(
+                            userId: currentUser.Id,
+                            circleName: selecteduserpost.Post.CircleId,
+                            points: -30,
+                            source: "removing a post",
+                            addNotification: true
+                        );
+                }
 
 
                 }

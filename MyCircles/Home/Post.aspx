@@ -270,9 +270,9 @@
                                                 <ItemTemplate>
                                                     <div class="m-3">
                                                         <div class="media mb-3">
-                                                            <img src="" class="rounded-circle mr-2" style="width: 50px;">
+                                                            <img src="<%#DataBinder.Eval(Container.DataItem, "User.ProfileImage")%>" class="rounded-circle mr-2" style="width: 50px;">
                                                             <div class="media-body">
-                                                                <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%></i></small></h4>
+                                                                <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted <%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%></i></small></h4>
                                                                 <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>                                                            
                                                                   <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
                                                             </div>
@@ -334,27 +334,22 @@
             <div class="col-lg-3 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-info">Connect More</h3></div>
+                        <h3 class="text-info">Sugested</h3></div>
                     <ul class="list-group list-group-flush">
-                       <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>Jamal</div>
+                        
+                    <asp:Repeater ID="Repeater1" runat="server" ItemType="MyCircles.BLL.User">
+                        <ItemTemplate>
+        
+                             <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div><h6><%#DataBinder.Eval(Container.DataItem, "Username")%></h6> <p><small><%#DataBinder.Eval(Container.DataItem, "City")%></small></p></div>
                             <div>
-                                <asp:Button ID="Button1" runat="server" Text="Follow"  usesubmitbehavior="false" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px" OnClick="Btncircle_Click" ></asp:button>
+                                <img src=<%#DataBinder.Eval(Container.DataItem, "ProfileImage")%> class="rounded-circle mr-2" style="width: 50px;">
+                              
                             </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>Suresh</div>
-                            <div>
-                                <asp:Button ID="Button2" runat="server" Text="Follow" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px"></asp:button>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>Vishnu</div>
-                            <div>
-                                <asp:Button ID="Button4" runat="server" Text="Follow" class="btn btn-primary" style="border-radius:10px"></asp:button>
-                            </div>
-                        </li >
-                        <li class="list-group-item"><asp:Button ID="btn6" runat="server" Text="More..." class="btn btn-secondary" style="border-radius:12px"  usesubmitbehavior="false" OnClick="btn6_Click"></asp:button></li>
+                        </li>                             
+                        </ItemTemplate>
+                    </asp:Repeater>                                                               
+                        <li class="list-group-item"><asp:Button ID="btn6" runat="server" Text="Follow Them" class="btn btn-primary" style="border-radius:12px"  usesubmitbehavior="false" OnClick="btn6_Click"></asp:button></li>
                     </ul>
                 </div>
             </div>

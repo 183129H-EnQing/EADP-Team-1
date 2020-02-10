@@ -99,6 +99,8 @@ namespace MyCircles.Profile
             currentUser = (BLL.User)Session["currentUser"];
             requestedUser = GetUserByIdentifier(Request.QueryString["username"]);
             if (requestedUser == null) requestedUser = currentUser;
+            Event retrieveEventData = new Event();
+            List<Event> createdEventDataList = new List<Event>();
 
             if (!Page.IsPostBack)
             {
@@ -120,6 +122,10 @@ namespace MyCircles.Profile
 
                 rptUserFollowing.DataSource = FollowDAO.GetAllFollowingUsers(requestedUser.Id);
                 rptUserFollowing.DataBind();
+
+                createdEventDataList = retrieveEventData.GetAllEventCreatedByUser(currentUser.Id);
+                rpViewEventPageCreated.DataSource = createdEventDataList;
+                rpViewEventPageCreated.DataBind();
 
                 bindExisitingCircles();
                 updateCirclesModal();

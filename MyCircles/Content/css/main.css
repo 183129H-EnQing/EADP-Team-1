@@ -200,7 +200,7 @@ body {
 }
 
 #redirectLogo {
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-name: changescale;
     animation-timing-function: ease;
     animation-iteration-count: infinite;

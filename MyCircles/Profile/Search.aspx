@@ -119,7 +119,7 @@
         .bind("propertychange change keyup input", function (event) {
             let searchQuery = $('#tbSearchQuery').val();
 
-            ajaxHelper(`${postUri}/${searchQuery}`, 'GET', null).done(function (data) {
+            ajaxHelper(`${postUri}/getbyquery/${searchQuery}`, 'GET', null).done(function (data) {
                 $('.search-post').remove();
 
                 if (data.length) {

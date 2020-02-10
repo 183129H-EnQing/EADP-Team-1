@@ -21,11 +21,12 @@ namespace MyCircles.Controller
 
         // GET: api/Posts
         [HttpGet]
-        [Route("api/posts")]
-        public async Task<IHttpActionResult> GetPosts()
+        [Route("api/posts/{userId:int}")]
+        public async Task<IHttpActionResult> GetPosts(int userId)
         {
             var posts = await
                 (from p in db.Posts
+                 where p.UserId == userId
                  select new PostDTO()
                  {
                      Id = p.Id,
@@ -80,7 +81,7 @@ namespace MyCircles.Controller
 
         // GET: api/Posts/5
         [HttpGet]
-        [Route("api/posts/{searchQuery}")]
+        [Route("api/posts/getbyquery/{searchQuery}")]
         [ResponseType(typeof(List<Post>))]
         public async Task<IHttpActionResult> GetPostsBySearchQuery(string searchQuery)
         {

@@ -31,14 +31,20 @@ background: #fff;
  <form id="form1" runat="server">
      
         <div>
-        <h1 class="text-primary">Suggested</h1> 
-       <asp:GridView ID="GridViewFollow"  AutoGenerateColumns ="False" CssClass="table table-condensed table-hover" OnRowCommand="GridViewFollow_RowCommand" runat="server">
+        <h1 class="text-primary">Suggested Users</h1> 
+       <asp:GridView ID="GridViewFollow"  AutoGenerateColumns ="False" CssClass="table table-condensed table-hover" OnDataBound="GridViewFollow_DataBound" OnRowDataBound="GridViewFollow_RowDataBound" OnRowCommand="GridViewFollow_RowCommand" runat="server">
            <Columns>
-               <asp:ImageField DataImageUrlField="ProfileImage" ControlStyle-Width="40" ControlStyle-Height = "40"></asp:ImageField>         
-               <asp:BoundField DataField="Username" HeaderText="Circle User's" />
+               <asp:ImageField DataImageUrlField="ProfileImage" HeaderText="DP" ControlStyle-Width="40" ControlStyle-Height = "40"></asp:ImageField>         
+               <asp:BoundField DataField="Username" HeaderText="Users" />
+                <asp:TemplateField HeaderText="Circles">                   
+                    <ItemTemplate>
+                        <asp:DropDownList ID="DropDownList1" CssClass="form-control" Width="150" runat="server"></asp:DropDownList>  
+                       
+                    </ItemTemplate> 
+                 </asp:TemplateField> 
                 <asp:TemplateField ShowHeader="False">
             <ItemTemplate>
-                <button class="btn btn-info btn-follow " type="button" followingId=<%= requestedUser.Id %> follower=<%= currentUser.Id %>>Follow</button>
+                <button class="btn btn-info btn-follow " type="button" followingId=<%= currentUser.Id %> follower=<%= currentUser.Id %>>Follow</button>
             </ItemTemplate>
                     </asp:TemplateField>             
            </Columns>
