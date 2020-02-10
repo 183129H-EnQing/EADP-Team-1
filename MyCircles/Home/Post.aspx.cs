@@ -39,11 +39,14 @@ namespace MyCircles.Home
                 DropDownList2.DataTextField = "CircleId";
                 DropDownList2.DataValueField = "CircleId";
                 DropDownList2.DataBind();
+
+                
             }
            
             this.Title = "Home";
             //CircleDAO.AddCircle("gym");
             refreshGv();
+            
         }
 
         protected void ImageMap1_Click(object sender, ImageMapEventArgs e)
@@ -163,61 +166,63 @@ namespace MyCircles.Home
             //}
 
         }
-
-        protected void rptUserPosts_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            if(e.CommandName == "Comment")
+   
+            protected void rptUserPosts_ItemCommand(object source, RepeaterCommandEventArgs e)
             {
-                TextBox comment = (e.Item.FindControl("hello") as TextBox);
-                var comt = comment.Text;
-                var newComment = new BLL.Comment();
-                newComment.UserId = currentUser.Id;
-                newComment.PostId = Convert.ToInt32(e.CommandArgument);
-                newComment.comment_date = DateTime.Now;
-                newComment.comment_text = comment.Text;
-                CommentDAO.AddComment(newComment);
-            }
-            if(e.CommandName == "Report")
-            {
-               
-                RadioButtonList report = (e.Item.FindControl("RadioButtonList1") as RadioButtonList);
-                var userpostindex = e.Item.ItemIndex;
-                var rpt = report.SelectedValue;
-                UserPost selecteduserpost = UserPosts[userpostindex];
-                var newReport = new BLL.ReportedPost();
-                newReport.postId = selecteduserpost.Post.Id;
-                newReport.reason = rpt;
-                newReport.dateCreated = DateTime.Now;
-                newReport.reporterUserId = currentUser.Id;
-                ReportedPostDAO.AddReport(newReport);
-            }
-
-            if(e.CommandName == "Delete")
-            {         
-                var deleteId = Convert.ToInt32(e.CommandArgument);
-                var userpostindex = e.Item.ItemIndex;
-                UserPost selecteduserpost = ((List<UserPost>)rptUserPosts.DataSource)[userpostindex];
-               
-              
-
-                if (currentUser.Id == selecteduserpost.User.Id)
+                if (e.CommandName == "Comment")
+                {
+                    TextBox comment = (e.Item.FindControl("hello") as TextBox);
+                    var comt = comment.Text;
+                    var newComment = new BLL.Comment();
+                    newComment.UserId = currentUser.Id;
+                    newComment.PostId = Convert.ToInt32(e.CommandArgument);
+                    newComment.comment_date = DateTime.Now;
+                    newComment.comment_text = comment.Text;
+                    CommentDAO.AddComment(newComment);
+                }
+                if (e.CommandName == "Report")
                 {
 
-                    ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
-                    PostDAO.DeletePost(deleteId);
+                    RadioButtonList report = (e.Item.FindControl("RadioButtonList1") as RadioButtonList);
+                    var userpostindex = e.Item.ItemIndex;
+                    var rpt = report.SelectedValue;
+                    UserPost selecteduserpost = UserPosts[userpostindex];
+                    var newReport = new BLL.ReportedPost();
+                    newReport.postId = selecteduserpost.Post.Id;
+                    newReport.reason = rpt;
+                    newReport.dateCreated = DateTime.Now;
+                    newReport.reporterUserId = currentUser.Id;
+                    ReportedPostDAO.AddReport(newReport);
+                     
+                }
+
+                if (e.CommandName == "Delete")
+                {
+                    var deleteId = Convert.ToInt32(e.CommandArgument);
+                    var userpostindex = e.Item.ItemIndex;
+                    UserPost selecteduserpost = ((List<UserPost>)rptUserPosts.DataSource)[userpostindex];
+
+
+
+                    if (currentUser.Id == selecteduserpost.User.Id)
+                    {
+
+                        ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
+                        PostDAO.DeletePost(deleteId);
+
+                    }
+
 
                 }
-              
+
+
+
+
 
             }
-
-          
-            
+        
 
 
-        }
-
-     
 
         public void refreshGv()
         {
