@@ -399,7 +399,6 @@
     <Compile Include="Controller\CirclesController.cs" />
     <Compile Include="Controller\EventController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
-    <Compile Include="Controller\PaymentTicketController.cs" />
     <Compile Include="Controller\PostsController.cs" />
     <Compile Include="Controller\UsersController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
@@ -532,11 +531,8 @@
     <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Common.cs" />
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PaypalLogger.cs" />
-    <Compile Include="Models\RequestFlow.cs" />
-    <Compile Include="Models\RequestFlowItem.cs" />
     <Compile Include="Profile\Chat.aspx.cs">
       <DependentUpon>Chat.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

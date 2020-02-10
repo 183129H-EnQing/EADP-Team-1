@@ -153,6 +153,30 @@ namespace MyCircles.DAL
             }
         }
 
+        public static List<User>GetNewUser(int id)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                var followuser = FollowDAO.GetAllFollowingUsers(id);
+                var getUser = db.Users.Where(u => u.Id != id).ToList();
+                var notFollowuser = new List<User>();
+
+                for (int i = 0; followuser.Count > i; i++ )
+                {
+                    for (int j=0; getUser.Count > j; j++)
+                    {
+                        if (followuser[i].User.Id != getUser[j].Id)
+                        { 
+                            notFollowuser.Add(getUser[j]);
+                        }
+                    }
+                }
+
+                return notFollowuser;
+                     
+            }
+        }
+
         public static void UpdateIsEventHost(int id, bool isEventHost)
         {
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
