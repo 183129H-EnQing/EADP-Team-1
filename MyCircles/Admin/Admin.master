@@ -29,6 +29,11 @@
                             Manage Users
                         </div>
                     </a>
+                    <a class="admin-panel-navlink" href="ManageCircles.aspx">
+                        <div class="admin-panel-navitem admin-panel-navitem-divider">
+                            Manage Circles
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -48,6 +53,11 @@
                     <a class="admin-panel-navlink" href="ManageUsers.aspx">
                         <div class="admin-panel-navitem admin-panel-navitem-divider">
                             Manage Users
+                        </div>
+                    </a>
+                    <a class="admin-panel-navlink" href="ManageCircles.aspx">
+                        <div class="admin-panel-navitem admin-panel-navitem-divider">
+                            Manage Circles
                         </div>
                     </a>
                 </div>

@@ -32,11 +32,11 @@ background: #fff;
      
         <div>
         <h1 class="text-primary">Suggested</h1> 
-       <asp:GridView ID="GridViewFollow"  AutoGenerateColumns ="False" CssClass="table table-condensed table-hover" runat="server">
+       <asp:GridView ID="GridViewFollow"  AutoGenerateColumns ="False" CssClass="table table-condensed table-hover" OnRowCommand="GridViewFollow_RowCommand" runat="server">
            <Columns>
                <asp:ImageField DataImageUrlField="ProfileImage" ControlStyle-Width="40" ControlStyle-Height = "40"></asp:ImageField>         
                <asp:BoundField DataField="Username" HeaderText="Circle User's" />                            
-               <asp:ButtonField CommandName="Follow" Text="Follow" ButtonType="Button" ControlStyle-CssClass="btn btn-info text-white" />
+               <asp:ButtonField CommandName="Follow"  Text="Follow" ButtonType="Button" ControlStyle-CssClass="btn btn-info text-white" />
               
            </Columns>
        </asp:GridView>

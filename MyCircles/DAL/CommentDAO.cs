@@ -41,6 +41,14 @@ namespace MyCircles.DAL
             }
         }
 
+        public static Comment GetCommentById(int id)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                return db.Comments.Where(comment => comment.Id == id).FirstOrDefault();
+            }
+        }
+
         public static void DeleteComment(int Id)
         {
             using (var db = new MyCirclesEntityModel())
@@ -50,5 +58,14 @@ namespace MyCircles.DAL
             }
         }
 
+
+        public static void DeleteCommentByPostId(int postId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Comments.RemoveRange(db.Comments.Where(p => p.PostId == postId));
+                db.SaveChanges();
+            }
+        }
     }
 }

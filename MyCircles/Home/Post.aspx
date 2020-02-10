@@ -100,6 +100,67 @@
 	border-radius: 50%;
 	background: white;
 }
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+ 
     </style>
 
 
@@ -115,7 +176,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">                            
                             <div>
-                                <asp:DropDownList ID="DropDownList2" CssClass="btn-lg btn-info "   Width="200" runat="server">
+                                <asp:DropDownList ID="DropDownList2" CssClass="custom-select "   Width="200" runat="server">
                                 </asp:DropDownList>
                             </div>
                         </li>                       
@@ -144,7 +205,7 @@
                                </div>
                             <div class="form-group justify-content-between d-flex">
                                 <div>
-                                    <asp:FileUpload ID="FileUpload1"  runat="server" />                         
+                                    <asp:FileUpload ID="FileUpload1" CssClass="btn btn-default" runat="server" />                         
                                 </div>
                                 <div>
                                     <asp:Button ID="btnPost" runat="server" Text="Post" CssClass="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
@@ -191,7 +252,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="d-flex justify-content-end">
-                                                    <p><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%>, <%#DataBinder.Eval(Container.DataItem, "User.City")%></p>
+                                                    <p><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:d/MM/yyyy}")%>, <%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%>, <%#DataBinder.Eval(Container.DataItem, "User.City")%></p>
                                                 </div>
                                             </div>
                                             <div class="card-footer">
@@ -205,7 +266,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <asp:Repeater ID="rptComment" runat="server" EnableViewState="false"  ItemType="MyCircles.DAL.UserComment">
+                                            <asp:Repeater ID="rptComment" runat="server" OnItemCommand="rptComment_ItemCommand" OnItemDataBound="rptComment_ItemDataBound"   EnableViewState="false"   ItemType="MyCircles.DAL.UserComment">
                                                 <ItemTemplate>
                                                     <div class="m-3">
                                                         <div class="media mb-3">
@@ -213,7 +274,7 @@
                                                             <div class="media-body">
                                                                 <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%></i></small></h4>
                                                                 <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>                                                            
-                                                                  <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName ="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
+                                                                  <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
                                                             </div>
                                                         </div>                                              
                                                     </div>

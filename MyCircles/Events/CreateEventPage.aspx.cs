@@ -26,7 +26,7 @@ namespace MyCircles.Events
 
         protected void eventScheduleDataAddTB(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Debug.WriteLine("hello world testing");
         }
         protected void submitButt_Click(object sender, EventArgs e)
         {  
@@ -181,7 +181,7 @@ namespace MyCircles.Events
             {
                 newEventData.eventName = eventTitleTB.Text;
                 newEventData.eventDescription = eventDescriptionTB.Text;
-                newEventData.eventCategory = CategoryDropDownList.Text;
+                newEventData.eventCategory = CategoryDropDownList.Text;              
                 newEventData.eventHolderName = organizerTB.Text;
                 newEventData.eventHolderId = currentUser.Id;
                 if (LocationDLL.Text == "To Be Announced")
@@ -239,14 +239,16 @@ namespace MyCircles.Events
                     newEventData.eventMaxSlot = maxSlotTB.Text;
                 }
 
-                newEventData.AddNewEvent();
-            }
-        
+                UserCircleDAO.ChangeUserCirclePoints(currentUser.Id, CategoryDropDownList.Text, 20, "Creating An Event",true);
+                Event newCreatedEvt = newEventData.AddNewEvent();
 
-            //Response.Redirect("ViewAllEventPage.aspx");
+                Response.Redirect("EventSchedulePage.aspx?eventID=" + newCreatedEvt.eventId);
+            }
+
+
         }
 
-       
+
         private void getAllCircleData()
         {
             Circle retrieveAllCircleData = new Circle();

@@ -57,14 +57,22 @@
                             </div>
 
                             <div class="modal-body">
-                                <div class="font-weight-bold">
-                                    Created by <asp:Label ID="lblModalPostCreatorName" runat="server" Text="CreatorName"></asp:Label>
+                                <div class="d-flex justify-content-between">
+                                    <div class="font-weight-bold">
+                                        Created by <asp:Label ID="lblModalPostCreatorName" runat="server" Text="CreatorName"></asp:Label>
+                                    </div>
+                                    <div>
+                                        <span class="badge badge-secondary"><asp:Label ID="lblModalCircleId" runat="server" Text="gym"></asp:Label></span>
+                                    </div>
                                 </div>
                                 <div class="text-center">
                                     <asp:Image ID="imgModalPost" runat="server" AlternateText="PostImage" CssClass="mb-2" />
                                 </div>
                                 <div>
                                     <asp:Label ID="lblModalContent" runat="server" Text="Content"></asp:Label>
+                                </div>
+                                <div class="text-right">
+                                    <asp:Label ID="lblModalTimeLocation" runat="server" Text="9.32pm, NYP"></asp:Label>
                                 </div>
                             </div>
 

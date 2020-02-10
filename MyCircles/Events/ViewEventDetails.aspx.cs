@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyCircles.BLL;
+using static MyCircles.DAL.UserDAO;
+using MyCircles.DAL;
+
 namespace MyCircles.Events
 {
     public partial class ViewEventDetails : System.Web.UI.Page
@@ -14,6 +17,9 @@ namespace MyCircles.Events
         public int totalAvaliableSlots = 0;
         public string avaliableSlotsText = "";
         public int TotalBookedSlot = 0;
+        public string toEditPage = "";
+        
+        public BLL.User currentUser, requestedUser;
         // public BLL.Event event1 = 
         // List<String> means the list inside must be string ,List<EventSchedule> means the list must be include EventSchedule fields in table 
         // List<String> scheduleList = new List<String>();
@@ -45,17 +51,42 @@ namespace MyCircles.Events
         {
             SignUpEventDetail retrieveSignUpDetail = new SignUpEventDetail();
             List<SignUpEventDetail> signUpEventDetailsList = new List<SignUpEventDetail>();
-
+            currentUser = (BLL.User)Session["currentUser"];
             signUpEventDetailsList = retrieveSignUpDetail.GetSignUpEventDetails(eventId);
             // signUpEventDetailList have no data
             System.Diagnostics.Debug.WriteLine("gh say: " + signUpEventDetailsList.Count());
             
             foreach (SignUpEventDetail signUpEventDetailsListBB in signUpEventDetailsList)
             {
-                var numberOfBookingSlot = signUpEventDetailsListBB.numberOfBookingSlot.ToString();
-              
-                TotalBookedSlot += Int32.Parse(numberOfBookingSlot);
+                string numberOfBookingSlot;
+                if (signUpEventDetailsListBB.numberOfBookingSlot != null)
+                {
+                    numberOfBookingSlot = signUpEventDetailsListBB.numberOfBookingSlot.ToString();
+                }
+                else
+                {
+                    numberOfBookingSlot = "";
+                }
+               
+                if (numberOfBookingSlot == "")
+                {
+                    numberOfBookingSlot = "No Limit";
+                }
+                else
+                {
+                    TotalBookedSlot += Int32.Parse(numberOfBookingSlot);
+                }
+               
                 System.Diagnostics.Debug.WriteLine("dinesh say: " + TotalBookedSlot);
+
+                if (signUpEventDetailsListBB.userId == currentUser.Id)
+                {
+                    toEditPage = "True";
+                }
+                else
+                {
+                    toEditPage = "False";
+                }
             }
             if (singleEventDetails.eventMaxSlot == "No Limit")
             {

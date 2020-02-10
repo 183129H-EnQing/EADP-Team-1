@@ -7,6 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using MyCircles.BLL;
 using static MyCircles.DAL.UserDAO;
+
 namespace MyCircles.Events
 {
     public partial class SignUpFreeEventPage : System.Web.UI.Page
@@ -63,15 +64,19 @@ namespace MyCircles.Events
             newEventSignUpEventData.contactNumber = contactNumberTB.Text;
             currentUser = (BLL.User)Session["currentUser"];
             newEventSignUpEventData.userId = currentUser.Id;
-            newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.SelectedItem.Text;
+        
+           // newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.SelectedItem.Text;
             newEventSignUpEventData.selectedEventToParticipate = selectedEventToParticipate;
             newEventSignUpEventData.eventId = currentEventID;
             //  System.Diagnostics.Debug.WriteLine(String.Join("\n", userOptInEvent));
             //System.Diagnostics.Debug.WriteLine(currentUser.Name);
 
+            System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
             newEventSignUpEventData.Add();
             eventSchedule.AddAndUpdateUserOptIn(selectedEventToParticipate, currentUser.Id);
-            //Response.Redirect("ViewAllEventPage.aspx");
+            var ticketPrice = singleEventDetails.eventTicketCost;
+
+            Response.Redirect("ViewAllEventPage.aspx");
         }
 
         public List<EventSchedule> GetDates()
@@ -105,23 +110,32 @@ namespace MyCircles.Events
 
             scheduleList = retrieveEventSchedule.getAllEventActivity(eventId);
 
+            System.Diagnostics.Debug.WriteLine(scheduleList);
             rpEventSchedule.DataSource = scheduleList;
         
         }
 
         private void getNumberOfSlots()
         {
-            int maxSlot = System.Convert.ToInt16(singleEventDetails.maxTimeAPersonCanRegister);
-            List<String> slotList = new List<String>();
-        
-            for (var x = 1; x < maxSlot + 1; x++)
+            if (singleEventDetails.maxTimeAPersonCanRegister != "No Limit")
             {
-                var avaliableSlotOption = x.ToString();
-                slotList.Add(avaliableSlotOption);
+                int maxSlot = System.Convert.ToInt16(singleEventDetails.maxTimeAPersonCanRegister);
+                List<String> slotList = new List<String>();
+
+                for (var x = 1; x < maxSlot + 1; x++)
+                {
+                    var avaliableSlotOption = x.ToString();
+                    slotList.Add(avaliableSlotOption);
+                }
+                NumberOfBookingSlotsDLL.DataSource = slotList;
+                NumberOfBookingSlotsDLL.DataBind();
+                //System.Diagnostics.Debug.WriteLine(String.Join("\n", slotList));
             }
-            NumberOfBookingSlotsDLL.DataSource = slotList;
-            NumberOfBookingSlotsDLL.DataBind();
-            //System.Diagnostics.Debug.WriteLine(String.Join("\n", slotList));
+            else
+            {
+
+            }
         }
+   
     }
 }

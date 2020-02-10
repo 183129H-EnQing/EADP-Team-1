@@ -27,5 +27,10 @@ namespace MyCircles.BLL
         {
             PostDAO.DeletePost(postId);
         }
+
+        public static List<UserPost> GetPostsByCircleSortByTime(string circleName)
+        {
+            return PostDAO.GetPostsByCircleSortByTime(circleName);
+        }
     }
 }
