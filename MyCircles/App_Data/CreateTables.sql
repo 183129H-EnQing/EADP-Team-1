@@ -398,23 +398,14 @@ CREATE TABLE [dbo].[Admin] (
 -- ReportedPosts Table
 
 CREATE TABLE [dbo].[ReportedPosts] (
-
     [Id]             INT           IDENTITY (1, 1) NOT NULL,
-
     [reason]         VARCHAR (MAX) NOT NULL,
-
-    [postId]         INT           NOT NULL,
-
+    [postId]         INT           NULL,
     [reporterUserId] INT           NOT NULL,
-
     [dateCreated]    DATE          NOT NULL,
-
-	PRIMARY KEY CLUSTERED ([Id] ASC),
-
+    PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [dbo].[Post] ([Id]),
-
     CONSTRAINT [FK_ReporterUserId_ToUserTable] FOREIGN KEY ([reporterUserId]) REFERENCES [dbo].[User] ([Id])
-
 );
 
 
