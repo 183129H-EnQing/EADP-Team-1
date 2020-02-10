@@ -34,13 +34,13 @@ namespace MyCircles.DAL
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
 
-                SignUpEventDetailsList = db.SignUpEventDetails.Where(i => i.userId == userId).ToList()
-                    .Join(
-                    db.EventSchedules,
-                    signUpDetails => signUpDetails.userId,
-                    es => es.usersOptIn.Contains(userId.ToString()),
-                    (signUpDetails, es) => new SignUpAndEventScheduleDetails(signUpDetails, es)
-                    ).ToList();
+                //SignUpEventDetailsList = db.SignUpEventDetails.Where(i => i.userId == userId).ToList()
+                //    .Join(
+                //    db.EventSchedules,
+                //    signUpDetails => signUpDetails.userId,
+                //    es => es.usersOptIn.Contains(userId.ToString()),
+                //    (signUpDetails, es) => new SignUpAndEventScheduleDetails(signUpDetails, es)
+                //    ).ToList();
 
                     
                 return SignUpEventDetailsList;
