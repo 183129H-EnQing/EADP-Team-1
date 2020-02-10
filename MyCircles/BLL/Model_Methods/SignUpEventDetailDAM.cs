@@ -18,5 +18,9 @@ namespace MyCircles.BLL
             return SignUpEventDetailDAO.GetSignUpEventDetails(eventId);
         }
 
+        public List<SignUpEventDetail> getUserSignUpEventDetails(int userId)
+        {
+            return SignUpEventDetailDAO.getUserSignUpEventDetails(userId);
+        }
     }
 }

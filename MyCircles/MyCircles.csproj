@@ -184,6 +184,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="ItineraryPlanner\LocationDetail.aspx" />
+    <Content Include="Profile\EditProfile.aspx" />
     <Content Include="Profile\Search.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
@@ -281,7 +282,6 @@
     <Content Include="ItineraryPlanner\Timeline.aspx" />
     <Content Include="Profile\Chat.aspx" />
     <Content Include="ItineraryPlanner\ViewLocation.aspx" />
-    <Content Include="Profile\EditProfile.aspx" />
     <Content Include="Profile\User.aspx" />
     <Content Include="Redirect.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -415,6 +415,7 @@
     <Compile Include="DAL\Joint_Models\CircleFollowerDetails.cs" />
     <Compile Include="DAL\Joint_Models\DayLocation.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
+    <Compile Include="DAL\Joint_Models\SignUpAndEventScheduleDetails.cs" />
     <Compile Include="DAL\Joint_Models\UserChatRoom.cs" />
     <Compile Include="DAL\Joint_Models\UserComment.cs" />
     <Compile Include="DAL\Joint_Models\UserPost.cs" />
