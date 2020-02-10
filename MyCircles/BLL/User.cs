@@ -33,11 +33,11 @@ namespace MyCircles.BLL
         public int Id { get; set; }
 
         [Required]
-        [StringLength(32)]
+        [StringLength(128)]
         public string Username { get; set; }
 
         [Required]
-        [StringLength(32)]
+        [StringLength(128)]
         public string EmailAddress { get; set; }
 
         [StringLength(256)]

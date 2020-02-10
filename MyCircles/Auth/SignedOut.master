@@ -1,13 +1,23 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Base.Master" AutoEventWireup="true" CodeBehind="SignedOut.master.cs" Inherits="MyCircles.SignedOut" %>
 
 <asp:Content ID="SignedOutBase" ContentPlaceHolderID="BaseContentPlaceholder" runat="server">
-    <div class="container-fluid bg-white">
+    <style>
+        body { background-color: white; }
+    </style>
+
+    <div class="container-fluid bg-white h-100">
         <div class="row justify-content-center vh-100">
-            <div class="col-md-7 signedOutInfoBlock d-none d-md-block">
-                <b>This is a very cool app thank</b>
+            <div class="col-md-6 signedOutInfoBlock d-none d-md-block">
+                <div class="bg-transparent m-0 jumbotron d-flex align-items-center h-100">
+                    <div class="container text-white h4">
+                        <span>Follow a circle that matches your interests.</span><br /><br /><br /><br />
+                        <span>Meet people from your circle.</span><br /><br /><br /><br />
+                        <span>Plan events in your circle.</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-5 signedOutUtilityBlock">
+            <div class="col-md-6 signedOutUtilityBlock">
                 <div class="center-block" style="padding: 20%">
                     <div class="content-heading text-center clearfix">
                         <svg viewBox="0 0 16 16" width="5rem" style="overflow:visible;">

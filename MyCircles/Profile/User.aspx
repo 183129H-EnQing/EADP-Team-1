@@ -14,7 +14,7 @@
                     <asp:Image ID="ProfilePicImage" runat="server" CssClass="profilepic rounded-circle img-fluid" />
                 </div>
                 <div class="maindesc-container">
-                    <asp:Label ID="lbName" cssClass="m-0 h1" runat="server"></asp:Label><span id="followBadge" class="badge badge-secondary" runat="server" visible="false">Follows you</span><br />
+                    <asp:Label ID="lbName" cssClass="m-0 h1" runat="server"></asp:Label><br />
                     <asp:Label ID="lbUsername" class="m-0 text-muted" runat="server">@</asp:Label><br />
                     <span id="lbBio" class="bio-span d-block font-italic py-3" runat="server"></span>
                     <i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp;
@@ -23,15 +23,9 @@
             </div>
             <div style="height:200px">
                 <input id="btEditProfile" name="btEditProfile" onclick="location.href ='/Profile/EditProfile.aspx'" class="btn btn-outline-primary float-right m-5 px-4"  value="Edit Profile" type="button" runat="server" />
-                <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />
-                        <asp:Button ID="btMessage" runat="server" Text="Message" CssClass="btn btn-outline-secondary float-right my-5 px-4" OnClick="btMessage_Click" UseSubmitBehavior="false" />
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="btFollow" EventName="Click" />
-                    </Triggers>
-                </asp:UpdatePanel>
+                <%--<asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />--%>
+                <button id="btFollowProfile" class="btn btn-outline-primary m-5 px-4 btn-follow float-right" type="button" followingId=<%= requestedUser.Id %> followerId=<%= currentUser.Id %>>Follow</button>
+                <asp:Button ID="btMessage" runat="server" Text="Message" CssClass="btn btn-outline-secondary float-right my-5 px-4" OnClick="btMessage_Click" UseSubmitBehavior="false" />
             </div>
 
             <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
@@ -50,8 +44,8 @@
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
-                    <div id="userPostsContainer" class="container py-5 px-7" runat="server">
-                        <h4 id="postWarning" class="text-center" runat="server">You have not made any posts yet</h4>
+                    <div id="userPostsContainer" class="container py-5 px-7">
+                        <h4 id="no-post-message" class="text-center">You have not made any posts yet</h4>
                     </div>
                 </div>
                 <div class="tab-pane fade show active" id="pills-circles" role="tabpanel" aria-labelledby="pills-circles-tab">
@@ -142,7 +136,7 @@
                                     <div class="card-footer">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <asp:Button runat="server" cssClass="btn btn-primary px-4 w-100" Text="Following" CommandName="Unfollow" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> Enabled="<%# requestedUser.Id == currentUser.Id %>" />
+                                                <button class="btn btn-primary px-4 w-100 btn-follow" type="button" followingId=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> followerId=<%# currentUser.Id %>>Follow</button>
                                             </div>
                                             <div class="col-md-6">
                                                 <asp:Button runat="server" cssClass="btn btn-outline-secondary px-4 w-100" Text="Message" CommandName="Message" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "User.Id")%> />
@@ -157,19 +151,51 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="pills-events" role="tabpanel" aria-labelledby="pills-events-tab">
+                <div class="tab-pane fade p-6" id="pills-events" role="tabpanel" aria-labelledby="pills-events-tab">
                     <div class="row">
-                         <div class="col-md-3 border-right">
-                            <div class="nav flex-column nav-pills" id="v-pills-tab-events" role="tablist" aria-orientation="vertical">
-                               <a class="nav-link" id=v-pills-createEvent-tab data-toggle="pill" href=#v-pills-createEvent role="tab" aria-controls=v-pills-createEvent>EventCreated</a>
-                            </div>
-                         
-                        </div>
-                        <div class="col-9">
-                   
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>eventID</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Notify</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <asp:Repeater ID="rpViewEventPageCreated" runat="server" ItemType="MyCircles.BLL.Event">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <%-- <td><%#DataBinder.Eval(Container.DataItem, "eventId") %> </td>--%>
+                                                <td>
+                                                    <label class="eventId"><%#DataBinder.Eval(Container.DataItem, "eventId") %> </label>
+                                                </td>
+                                                <td>
+                                                    <%#DataBinder.Eval(Container.DataItem, "eventStartDate") %> - <%#DataBinder.Eval(Container.DataItem, "eventEndDate") %>
+                                                </td>
+                                                <td>
+                                                    <%#DataBinder.Eval(Container.DataItem, "eventStartTime") %> - <%#DataBinder.Eval(Container.DataItem, "eventEndTime") %>
+                                                </td>
+                                                <td>
+                                                    <asp:Button ID="Button1" runat="server" Text="Edit" class="btn" type="Button" UseSubmitBehavior="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Button ID="Button2" runat="server" Text="Delete" class="btn" type="Button" UseSubmitBehavior="False" />
+                                                </td>
+                                                <td>
+                                                    <button id="notifyBtn" class="notifyBtn btn" type="Button" eventid='<%#DataBinder.Eval(Container.DataItem, "eventId") %>'>Notify</button>
+                                                </td>
+
+                                            </tr>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                   <%--  <asp:Button runat="server" cssClass="btn btn-primary px-4 w-100" Text="Notify EveryOne"  />--%>
                 </div>
 
             </div>
@@ -200,7 +226,7 @@
                                                     <ItemTemplate>
                                                         <div class="mb-2 d-inline-flex">
                                                             <div class="border border-primary p-2 rounded d-inline mr-1">
-                                                                <span class="text-primary"><%#DataBinder.Eval(Container.DataItem, "CircleId")%>&nbsp;&nbsp;|&nbsp;&nbsp;<%#DataBinder.Eval(Container.DataItem, "Points")%>points</span>&nbsp;
+                                                                <span class="text-primary"><%#DataBinder.Eval(Container.DataItem, "CircleId")%>&nbsp;&nbsp;|&nbsp;&nbsp;<%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>&nbsp;
                                                                 <asp:Button ID="btRemove" runat="server" CssClass="text-danger bg-transparent border-0" Text="&times;" CausesValidation="False" CommandName="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Id")%> />
                                                             </div>
                                                         </div>
@@ -262,15 +288,21 @@
             noResultsText: 'Create new circle called "{keyword}"',
         });
 
-        
- <%--       addNotification({
-            Action: "Message",
-            Source: "<%= currentUser.Name %>",
-            UserId: <%= recieverUser.Id %>,
-            AdditionalMessage: chatRoomAttributes["messageContent"],
-            CallToAction: "View Message",
-            CallToActionLink: `/Profile/Chat.aspx?chatroom=${chatRoomAttributes.chatRoomId}`,
-        });--%>
+        $(document).ready(function () {
+            ajaxHelper(`${postUri}/<%= requestedUser.Id %>`, 'GET', null).done(function (data) {
+                if (data.length) {
+                    if (data[0].IsPost) {
+                        var postHtml = getPostDom(data);
+                        $('#no-post-message').css("display", "none");
+                        $('#userPostsContainer').append(postHtml);
+                    } else {
+                        $('#no-post-message').css("display", "block");
+                    }
+                } else {
+                    $('#no-post-message').css("display", "block");
+                }
+            });
+        });
     </script>
 </asp:Content>
 

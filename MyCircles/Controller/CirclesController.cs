@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Linq.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,25 +19,38 @@ namespace MyCircles.Controller
         private MyCirclesEntityModel db = new MyCirclesEntityModel();
 
         // GET: api/Circles
+        [HttpGet]
+        [Route("api/Circles")]
         public IQueryable<Circle> GetCircles()
         {
             return db.Circles;
         }
 
         // GET: api/Circles/5
+        [HttpGet]
+        [Route("api/Circles/{searchQuery}")]
         [ResponseType(typeof(Circle))]
-        public async Task<IHttpActionResult> GetCircle(string id)
+        public async Task<IHttpActionResult> GetCircle(string searchQuery)
         {
-            Circle circle = await db.Circles.FindAsync(id);
-            if (circle == null)
+            var circles = 
+                await
+                    (from c in db.Circles
+                    where SqlMethods.Like(c.Id, searchQuery)
+                    select new { UserCircle = c }
+                )
+                .ToListAsync();
+
+            if (circles == null)
             {
                 return NotFound();
             }
 
-            return Ok(circle);
+            return Ok(circles);
         }
 
         // PUT: api/Circles/5
+        [HttpPut]
+        [Route("api/Circles")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutCircle(string id, Circle circle)
         {
@@ -72,6 +86,8 @@ namespace MyCircles.Controller
         }
 
         // POST: api/Circles
+        [HttpPost]
+        [Route("api/Circles")]
         [ResponseType(typeof(Circle))]
         public async Task<IHttpActionResult> PostCircle(Circle circle)
         {
@@ -102,6 +118,8 @@ namespace MyCircles.Controller
         }
 
         // DELETE: api/Circles/5
+        [HttpDelete]
+        [Route("api/Circles/{id}")]
         [ResponseType(typeof(Circle))]
         public async Task<IHttpActionResult> DeleteCircle(string id)
         {

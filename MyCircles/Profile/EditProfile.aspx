@@ -8,7 +8,7 @@
         <div class="card card-body">
             <form id="form1" runat="server">
                 <div class="form-group">
-                    <label id="NameLB">UserName</label>
+                    <label id="NameLB">Name</label>
                     <asp:TextBox type="text" class="form-control" ID="nameTB" runat="server"></asp:TextBox>
                 </div>
 

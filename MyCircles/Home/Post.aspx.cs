@@ -1,4 +1,5 @@
-﻿using MyCircles.DAL;
+﻿using MyCircles.BLL;
+using MyCircles.DAL;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -75,8 +76,41 @@ namespace MyCircles.Home
                 newPost.Image = GeneralHelpers.UploadFile(FileUpload1);
                 PostDAO.AddPost(newPost);
 
-                refreshGv();
+                rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+                rptUserPosts.DataBind();
 
+                UserCircleDAO.ChangeUserCirclePoints(
+                    userId: currentUser.Id,
+                    circleName: newPost.CircleId,
+                    points: 30,
+                    source: "creating a new post",
+                    addNotification: true
+                );
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
+            }
+        }
+
+        protected void Comment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (RepeaterItem item in rptUserPosts.Items)
+                {
+                    TextBox comment = (TextBox)item.FindControl("hello");
+                    var newPost = new BLL.Post();
+                    newPost.Comment = comment.Text;
+                    newPost.UserId = currentUser.Id;
+                    newPost.CircleId = "gym";
+                    PostDAO.AddPost(newPost);
+
+                    rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
+                    rptUserPosts.DataBind();
+                }
+
+                refreshGv();
             }
             catch (DbEntityValidationException ex)
             {
@@ -196,11 +230,19 @@ namespace MyCircles.Home
                     if (currentUser.Id == selecteduserpost.User.Id)
                     {
 
-                    CommentDAO.DeleteCommentByPostId(selecteduserpost.Post.Id);
+                        CommentDAO.DeleteCommentByPostId(selecteduserpost.Post.Id);
                         ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
                         PostDAO.DeletePost(deleteId);
                         refreshGv();
-                    }
+
+                        UserCircleDAO.ChangeUserCirclePoints(
+                            userId: currentUser.Id,
+                            circleName: selecteduserpost.Post.CircleId,
+                            points: -30,
+                            source: "removing a post",
+                            addNotification: true
+                        );
+                }
 
 
                 }

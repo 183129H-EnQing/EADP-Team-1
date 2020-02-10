@@ -1,4 +1,5 @@
-﻿using MyCircles.DAL;
+﻿using MyCircles.BLL.DTO;
+using MyCircles.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,9 @@ namespace MyCircles.BLL
         public int UserId { get; set; }
         public string CircleId { get; set; }
         public DateTime? DateTime { get; set; }
-        public UserDTO User { get; set; }
+        public UserDTO PostUser { get; set; }
+        public List<CommentDTO> Comments { get; set; }
+        public bool IsPost { get; set; } = true;
 
         //private List<UserComment> _Comments;
         //public List<UserComment> Comments

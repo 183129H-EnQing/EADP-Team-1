@@ -1,6 +1,7 @@
 ﻿var notificationUri = '/api/notifications';
 var followUri = '/api/follows';
 var postUri = '/api/posts';
+var userUri = '/api/users';
 var circlesUri = '/api/circles';
 var signupeventdetailsUri = '/api/signupeventdetails';
 var showNotifications = true;
@@ -79,6 +80,100 @@ function addNotificationToasts(notifications) {
     };
 }
 
+function getPostDom(posts) {
+    var postHtml = "";
+
+    posts.forEach(function (post) {
+        postHtml +=
+            "<div class='row justify-content-md-center search-post border-bottom py-3'>" +
+            "<div class='col-1'>" +
+            `<a href='User.aspx?username=${post.PostUser.Username}' class="text-decoration-none">` +
+            `<img class="rounded-circle object-fit" height="50px" width="50px" src="${post.PostUser.ProfileImage}" />` +
+            `</a>` +
+            `</div>` +
+            `<div class="col-9">` +
+            `<div class="row">` +
+            `<div class="col-12">` +
+            `<a href="User.aspx?username=${post.PostUser.Username}" class="text-decoration-none">` +
+            `<span class="h5">${post.PostUser.Name}&nbsp;<small class="text-muted">@${post.PostUser.Username}</small></span>` +
+            `</a>` +
+            `<span class="float-right">${moment(post.DateTime).format('h:mm a')}</span>` +
+            `</div>` +
+            `</div>` +
+            `<span class="display-2" style="font-size:28px">` +
+            `${post.Content}    •    <span class="text-primary">${post.CircleId}</span>` +
+            `</span><br />`;
+
+        if (post.Image) {
+            postHtml += `<img src="${post.Image}" style="max-height: 300px; width: auto;" class="card-image rounded">`;
+        }
+
+        if (post.Comments.length) {
+            postHtml += `<div class="bg-light rounded p-2 mt-2">`
+
+            post.Comments.forEach(function (comment) {
+                postHtml +=
+                    `<div class="p-2 border-bottom"><div class="row">` +
+                    `<div class="col-1">` +
+                    `<a href="User.aspx?username=${comment.CommentUser.Username}" class="text-decoration-none">` +
+                    `<img class="rounded-circle object-fit" height="35px" width="35px" src="${comment.CommentUser.ProfileImage}" />` +
+                    `</a>` +
+                    `</div>` +
+                    `<div class="col-11">` +
+                    `<div>` +
+                    `<a href="User.aspx?username=${comment.CommentUser.Username}" class="text-decoration-none">` +
+                    `<span class="h6">${comment.CommentUser.Name}&nbsp;<small class="text-muted">@${comment.CommentUser.Username}</small></span>` +
+                    `</a>` +
+                    `<span class="float-right" style="font-size: 13px;">${moment(comment.CommentDate).format('h:mm a')}</span>` +
+                    `</div>` +
+                    `<span class="display-2" style="font-size: 18px">${comment.CommentContent}</span>` +
+                    `</div>` +
+                    `</div></div>`
+            });
+
+            postHtml += `</div>`
+        }
+
+        postHtml += `</div></div>`;
+    });
+
+    return postHtml
+}
+
+function getUserDom(users, currentUserId) {
+    var userHtml = `<div class="user-card-columns card-columns search-user" style="column-count: 2;">`;
+
+    users.forEach(function (user) {
+        userHtml +=
+            `<div class="card border-light-color thick-border shadow-sm">` +
+            `<div class="card-body">` +
+            `<div class="row">` +
+            `<div class="col-md-3 profilepic-container">` +
+            `<a href="User.aspx?username=${user.Username}" class="text-decoration-none">` +
+            `<img class="rounded-circle object-fit" height="80px" width="80px" src="${user.ProfileImage}" />` +
+            `</div>` +
+            `<div class="col-md-9 desc-container">` +
+            `<span class='m-0 h4'>${user.Name}</span><br />` +
+            `<span class='m-0 text-muted'>@${user.Username}</span></a>` +
+            `<span class='d-block font-italic py-1 display-${user.Bio != null}'>${user.Bio}</span><br />` +
+            `<i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;` +
+            `<span>${user.City}</span>` +
+            `</div>` +
+            `</div>` +
+            `</div>` +
+            `<div class="card-footer">` +
+            `<div class="row">` +
+            `<div class="col-md-12"><button class="btn btn-primary px-4 w-100 btn-follow" type="button" followingId=${user.Id} followerId=${currentUserId}>Follow</button></div>` +
+            `</div>` +
+            `</div>` +
+            `</div>`;
+    });
+
+    userHtml += `</div>`
+
+    return userHtml;
+}
+
 function ajaxHelper(uri, method, data) {
     return $.ajax({
         type: method,
@@ -93,7 +188,9 @@ function ajaxHelper(uri, method, data) {
 
 function getUserNotifications(userId) {
     ajaxHelper(`${notificationUri}/${userId}`, 'GET', null).done(function (data) {
-        addNotificationToasts(data);
+        if (showNotifications) {
+            addNotificationToasts(data);
+        }
     });
 }
 
@@ -114,3 +211,24 @@ function addNotification({ Action, Source, UserId, Type = "neutral", AdditionalM
     });
 }
 
+function updateFollowButton(followButtons) {
+    $(followButtons).each(function (i, btn) {
+        var followingId = $(btn).attr('followingId');
+        var followerId = $(btn).attr('followerId');
+
+        if (followingId != followerId) {
+            ajaxHelper(`${followUri}/GetFollowByUsers/${Number(followerId)}/${Number(followingId)}`, 'GET', null)
+            .done(function (followExists) {
+                if (followExists) {
+                    $(btn).addClass('btn-primary').removeClass('btn-outline-primary');
+                    $(btn).html("Following");
+                } else {
+                    $(btn).addClass('btn-outline-primary').removeClass('btn-primary');
+                    $(btn).html("Follow");
+                }
+            });
+        } else {
+            $(btn).addClass('d-none');
+        }
+    });
+}

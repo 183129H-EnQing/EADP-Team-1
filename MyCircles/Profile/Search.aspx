@@ -18,14 +18,14 @@
                 <div class="col-md-3 border-right">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="v-pills-posts-tab" data-toggle="pill" href="#v-pills-posts" role="tab" aria-controls="v-pills-posts" aria-selected="true">Posts</a>
-                        <a class="nav-link" id="v-pills-circles-tab" data-toggle="pill" href="#v-pills-circles" role="tab" aria-controls="v-pills-circles" aria-selected="false">Circles</a>
+                        <%--<a class="nav-link" id="v-pills-circles-tab" data-toggle="pill" href="#v-pills-circles" role="tab" aria-controls="v-pills-circles" aria-selected="false">Circles</a>--%>
                         <a class="nav-link" id="v-pills-people-tab" data-toggle="pill" href="#v-pills-people" role="tab" aria-controls="v-pills-people" aria-selected="false">People</a>
                     </div>
                 </div>
                 <div class="col-md-9 border-left">
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-posts" role="tabpanel" aria-labelledby="v-pills-posts-tab">
-                            <div id="no-posts-message" class="text-center">
+                            <div id="no-post-message" class="text-center">
                                 <span class="h4">
                                     No posts found
                                 </span>
@@ -75,8 +75,18 @@
                                 </div>
                             </div>--%>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-circles" role="tabpanel" aria-labelledby="v-pills-circles-tab">...</div>
-                        <div class="tab-pane fade" id="v-pills-people" role="tabpanel" aria-labelledby="v-pills-people-tab">...</div>
+                        <div class="tab-pane fade" id="v-pills-circles" role="tabpanel" aria-labelledby="v-pills-circles-tab">
+                            <div id="no-circles-message" class="text-center">
+                                <span class="h4">No circles found
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-people" role="tabpanel" aria-labelledby="v-pills-people-tab">
+                            <div id="no-user-message" class="text-center">
+                                <span class="h4">No people found
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,52 +115,58 @@
             $('#tbSearchQuery').attr('list', 'userDataList');
         });
 
-        function addPosts(posts) {
-            posts.forEach(function (post) {
-                let postHtml =
-                    "<div class='row search-post border-bottom py-3'>" +
-                    "<div class='col-1'>" +
-                    `<a href='User.aspx?username=${post.User.Username}' class="text-decoration-none">` +
-                    `<img class="rounded-circle object-fit" height="50px" width="50px" src="${post.User.ProfileImage}" />` +
-                    `</a>` +
-                    `</div>` +
-                    `<div class="col-9">` +
-                    `<div class="row">` +
-                    `<div class="col-12">` +
-                    `<a href="User.aspx?username=${post.User.Username}" class="text-decoration-none">` +
-                    `<span class="h5">${post.User.Name}<small class="text-muted">@${post.User.Username}</small></span>` +
-                    `</a>` +
-                    `<span class="float-right">${moment(parseJsonDate(post.DateTime)).format('h:mm a')}</span>` +
-                    `</div>` +
-                    `</div>` +
-                    `<span class="display-2" style="font-size:28px">` +
-                    `${post.Content}   •    <span class="text-primary">${post.CircleId}</span>` +
-                    `</span><br />`;
-
-                if (post.Image) {
-                    postHtml += `<img src="${post.Image}" style="max-height: 300px; width: auto;" class="card-image rounded">`;
-                }
-
-                postHtml += `</div></div>`;
-
-                $('#v-pills-posts').append(postHtml);
-            }); 
-        }
-
         $('#tbSearchQuery')
         .bind("propertychange change keyup input", function (event) {
             let searchQuery = $('#tbSearchQuery').val();
 
-            ajaxHelper(`${postUri}/${searchQuery}`, 'GET', null).done(function (data) {
+            ajaxHelper(`${postUri}/getbyquery/${searchQuery}`, 'GET', null).done(function (data) {
                 $('.search-post').remove();
+
                 if (data.length) {
-                    $('#no-posts-message').css("display", "none");
-                    addPosts(data);
+                    if (data[0].IsPost) {
+                        var postHtml = getPostDom(data);
+                        $('#no-post-message').css("display", "none");
+                        $('#v-pills-posts').append(postHtml);
+                    } else {
+                        $('#no-post-message').css("display", "block");
+                    }
                 } else {
-                    $('#no-posts-message').css("display", "block");
+                    $('#no-post-message').css("display", "block");
+                }
+            });
+
+            ajaxHelper(`${userUri}/${searchQuery}`, 'GET', null).done(function (data) {
+                $('.search-user').remove();
+
+                if (data.length) {
+                    if (data[0].IsUser) {
+                        var userHtml = getUserDom(data, <%= currentUser.Id %>);
+                        $('#no-user-message').css("display", "none");
+                        $('#v-pills-people').append(userHtml);
+                    } else {
+                        $('#no-user-message').css("display", "block");
+                    }
+                } else {
+                    $('#no-user-message').css("display", "block");
                 }
 
-                console.log(data);
+                updateFollowButton(".btn-follow")
+            });
+
+            ajaxHelper(`${circlesUri}/${searchQuery}`, 'GET', null).done(function (data) {
+                $('.search-circles').remove();
+
+                conosle.log(data);
+
+                if (data.length) {
+                    if (data[0].IsUser) {
+                        $('#no-user-message').css("display", "none");
+                    } else {
+                        $('#no-user-message').css("display", "block");
+                    }
+                } else {
+                    $('#no-user-message').css("display", "block");
+                }
             });
         });
     </script>

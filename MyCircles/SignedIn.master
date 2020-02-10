@@ -50,24 +50,35 @@
     </nav>
 
     <div aria-live="polite" aria-atomic="true" style="z-index:1; position:relative;">
-        <div style="position: absolute; top: 30px; right: 15px;" class="toast-container">
-        </div>
+        <div style="position: absolute; top: 30px; right: 15px;" class="toast-container"></div>
     </div>
 
-    <asp:ContentPlaceHolder ID="SignedInContentPlaceholder" runat="server" />
+    <div id="master-container">
+        <asp:ContentPlaceHolder ID="SignedInContentPlaceholder" runat="server" />
+    </div>
+
 
     <script>
         $(document).ready(function () {
             getUserNotifications(<%= currentUser.Id %>);
+            updateFollowButton(".btn-follow")
         });
 
-        if (showNotifications) {
-            setInterval(function () {
-                getUserNotifications(<%= currentUser.Id %>)
-            }, 5000);
-        }
+        $('#master-container').on('click', '.btn-follow', function () {
+            var btn = this;
+            var follow = {
+                FollowerId: $(btn).attr('followerId'),
+                FollowingId: $(btn).attr('followingId')
+            };
 
-        //
+            ajaxHelper(followUri, 'POST', follow).done(function (item) {
+                updateFollowButton([btn]);
+            });
+        });
+
+        setInterval(function () {
+            getUserNotifications(<%= currentUser.Id %>)
+        }, 5000);
     </script>
 </asp:Content>
 
