@@ -153,7 +153,7 @@ function getUserDom(users, currentUserId) {
             `<img class="rounded-circle object-fit" height="80px" width="80px" src="${user.ProfileImage}" />` +
             `</div>` +
             `<div class="col-md-9 desc-container">` +
-            `<span class='m-0 h3'>${user.Name}</span><br />` +
+            `<span class='m-0 h4'>${user.Name}</span><br />` +
             `<span class='m-0 text-muted'>@${user.Username}</span></a>` +
             `<span class='d-block font-italic py-1 display-${user.Bio != null}'>${user.Bio}</span><br />` +
             `<i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;` +

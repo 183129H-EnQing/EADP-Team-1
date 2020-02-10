@@ -23,17 +23,9 @@
             </div>
             <div style="height:200px">
                 <input id="btEditProfile" name="btEditProfile" onclick="location.href ='/Profile/EditProfile.aspx'" class="btn btn-outline-primary float-right m-5 px-4"  value="Edit Profile" type="button" runat="server" />
-                <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <asp:CheckBox ID="cbMakeEventHost" runat="server" Visible="false" CssClass="float-right" OnCheckedChanged="cbMakeEventHost_CheckedChanged" Text="Event Host" AutoPostBack="true"/>
-                        <%--<asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />--%>
-                        <button id="btFollowProfile" class="btn btn-outline-primary m-5 px-4 btn-follow float-right" type="button" followingId=<%= requestedUser.Id %> followerId=<%= currentUser.Id %>>Follow</button>
-                        <asp:Button ID="btMessage" runat="server" Text="Message" CssClass="btn btn-outline-secondary float-right my-5 px-4" OnClick="btMessage_Click" UseSubmitBehavior="false" />
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="cbMakeEventHost" EventName="CheckedChanged"/>
-                    </Triggers>
-                </asp:UpdatePanel>
+                <%--<asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />--%>
+                <button id="btFollowProfile" class="btn btn-outline-primary m-5 px-4 btn-follow float-right" type="button" followingId=<%= requestedUser.Id %> followerId=<%= currentUser.Id %>>Follow</button>
+                <asp:Button ID="btMessage" runat="server" Text="Message" CssClass="btn btn-outline-secondary float-right my-5 px-4" OnClick="btMessage_Click" UseSubmitBehavior="false" />
             </div>
 
             <ul class="nav nav-pills mb-3 nav-justified px-6 border-bottom" id="pills-tab" role="tablist">
@@ -202,7 +194,7 @@
                                                     <ItemTemplate>
                                                         <div class="mb-2 d-inline-flex">
                                                             <div class="border border-primary p-2 rounded d-inline mr-1">
-                                                                <span class="text-primary"><%#DataBinder.Eval(Container.DataItem, "CircleId")%>&nbsp;&nbsp;|&nbsp;&nbsp;<%#DataBinder.Eval(Container.DataItem, "Points")%>points</span>&nbsp;
+                                                                <span class="text-primary"><%#DataBinder.Eval(Container.DataItem, "CircleId")%>&nbsp;&nbsp;|&nbsp;&nbsp;<%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>&nbsp;
                                                                 <asp:Button ID="btRemove" runat="server" CssClass="text-danger bg-transparent border-0" Text="&times;" CausesValidation="False" CommandName="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Id")%> />
                                                             </div>
                                                         </div>
@@ -265,7 +257,7 @@
         });
 
         $(document).ready(function () {
-            ajaxHelper(`${postUri}`, 'GET', null).done(function (data) {
+            ajaxHelper(`${postUri}/<%= requestedUser.Id %>`, 'GET', null).done(function (data) {
                 if (data.length) {
                     if (data[0].IsPost) {
                         var postHtml = getPostDom(data);

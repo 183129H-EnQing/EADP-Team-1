@@ -414,7 +414,6 @@
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\CirclesController.cs" />
-    <Compile Include="Controller\EventController.cs" />
     <Compile Include="Controller\FollowsController.cs" />
     <Compile Include="Controller\EventSchedulesController.cs" />
     <Compile Include="Controller\NotificationController.cs" />

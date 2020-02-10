@@ -27,11 +27,6 @@ namespace MyCircles
                 List<UserCircle> existingUserCircle = UserCircleDAO.GetAllUserCircles(currentUser.Id);
                 if (existingUserCircle.Count.Equals(0) && !isAddingUserCircles) HttpContext.Current.Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username.Trim() + "&addingCircles=true");
                 else if (!existingUserCircle.Count.Equals(0) && isAddingUserCircles) HttpContext.Current.Response.Redirect("/Profile/User.aspx?username=" + currentUser.Username.Trim());
-
-                if (currentUser.Longitude == null || currentUser.Latitude == null)
-                {
-                    HttpContext.Current.Response.Redirect("/Redirect.aspx");
-                }
             }
         }
     }
