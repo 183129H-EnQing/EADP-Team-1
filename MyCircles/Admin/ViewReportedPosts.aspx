@@ -101,7 +101,7 @@
             $('#viewPostModal').modal('hide')
         }
 
-        function viewReportedPost_onload() {
+        function drawChart() {
             var dateToCount = JSON.parse('<%=jsonStringDict %>');
             console.log(dateToCount);
 
@@ -137,6 +137,6 @@
             });
         }
         
-        window.addEventListener("load", viewReportedPost_onload, false);
+        window.addEventListener("load", drawChart, false);
     </script>
 </asp:Content>

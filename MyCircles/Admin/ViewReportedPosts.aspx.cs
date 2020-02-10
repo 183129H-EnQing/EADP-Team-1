@@ -46,6 +46,7 @@ namespace MyCircles.Admin
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "closeViewPostModal();", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Javascript", "javascript:drawChart();", true);
         }
 
         protected void gvReportedPosts_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -73,6 +74,7 @@ namespace MyCircles.Admin
                 case "DeletePost":
                     System.Diagnostics.Debug.WriteLine("gvReportedPosts_RowCommand, DeletePost:" + e.CommandArgument);
                     deleteOp(idx);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Javascript", "javascript:drawChart();", true);
                     break;
             }
         }
