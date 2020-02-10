@@ -10,61 +10,61 @@
 namespace MyCircles.Events {
     
     
-    public partial class SignUpFreeEventPage {
+    public partial class EventSchedulePage {
         
         /// <summary>
-        /// nameTB control.
+        /// startTimeDLL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nameTB;
+        protected global::System.Web.UI.WebControls.DropDownList startTimeDLL;
         
         /// <summary>
-        /// dateDDL control.
+        /// endTimeDLL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dateDDL;
+        protected global::System.Web.UI.WebControls.DropDownList endTimeDLL;
         
         /// <summary>
-        /// contactNumberTB control.
+        /// eventNameEventSchedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox contactNumberTB;
+        protected global::System.Web.UI.WebControls.TextBox eventNameEventSchedule;
         
         /// <summary>
-        /// NumberOfBookingSlotsTB control.
+        /// eventDescriptionTBEventSchedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NumberOfBookingSlotsTB;
+        protected global::System.Web.UI.WebControls.TextBox eventDescriptionTBEventSchedule;
         
         /// <summary>
-        /// NumberOfBookingSlotsDLL control.
+        /// startDateTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList NumberOfBookingSlotsDLL;
+        protected global::System.Web.UI.WebControls.TextBox startDateTB;
         
         /// <summary>
-        /// rpEventSchedule control.
+        /// endDateTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpEventSchedule;
+        protected global::System.Web.UI.WebControls.TextBox endDateTB;
         
         /// <summary>
         /// submitButt control.

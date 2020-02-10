@@ -2,6 +2,7 @@
 var followUri = '/api/follows';
 var postUri = '/api/posts';
 var circlesUri = '/api/circles';
+var signupeventdetailsUri = '/api/signupeventdetails';
 var showNotifications = true;
 
 
@@ -112,3 +113,4 @@ function addNotification({ Action, Source, UserId, Type = "neutral", AdditionalM
         console.log(item);
     });
 }
+
