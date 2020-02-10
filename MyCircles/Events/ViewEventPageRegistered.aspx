@@ -5,32 +5,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>eventID</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Slots Booked</th>
-                                <th>Selected Event to participate</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <asp:Repeater ID="rpViewEventPageRegistered" runat="server" ItemType="MyCircles.BLL.EventSchedule">
-                                <ItemTemplate>
-                                  
-                                    <tr>
-                                        <td><%#DataBinder.Eval(Container.DataItem, "startTime") %> - <%#DataBinder.Eval(Container.DataItem, "endTime") %></td>
-                                        <td>
-                                            <asp:Label ID="eventDescription" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "eventDescription") %>'> </asp:Label>
-                                        </td>
-                                        <td><asp:CheckBox ID="optInCB" runat="server" /></td>
+                    <form runat="server">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>eventID</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Slots Booked</th>
+                                    <th>Selected Event to participate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <asp:Repeater ID="rpViewEventPageRegistered" runat="server" ItemType="MyCircles.BLL.SignUpEventDetail">
+                                    <ItemTemplate>
 
-                                    </tr>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </tbody>
-                    </table>
+                                        <tr>
+                                            <td><%#DataBinder.Eval(Container.DataItem, "eventId") %></td>
+                                             <td><%#DataBinder.Eval(Container.DataItem, "date") %></td>
+                                            <td></td>
+                                            <td><%#DataBinder.Eval(Container.DataItem, "numberOfBookingSlot") %></td>
+                                            <% foreach (var x in startTimeList) {%>
+                                            <td><%=x %></td>
+                                            <%} %>
+
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
