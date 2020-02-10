@@ -38,7 +38,7 @@ background: #fff;
                <asp:BoundField DataField="Username" HeaderText="Circle User's" />
                 <asp:TemplateField ShowHeader="False">
             <ItemTemplate>
-                <button class="btn btn-info btn-follow " type="button" followingId=<%= currentUser.Id %> follower=<%= currentUser.Id %>>Follow</button>
+                <button class="btn btn-info btn-follow " type="button" followingId=<%= requestedUser.Id %> follower=<%= currentUser.Id %>>Follow</button>
             </ItemTemplate>
                     </asp:TemplateField>             
            </Columns>
