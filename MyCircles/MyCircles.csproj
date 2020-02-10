@@ -184,6 +184,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="ItineraryPlanner\LocationDetail.aspx" />
+    <Content Include="ItineraryPlanner\Weather1.aspx" />
+    <Content Include="ItineraryPlanner\Weather2.aspx" />
     <Content Include="Profile\Search.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
@@ -530,6 +532,20 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.designer.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Weather1.aspx.cs">
+      <DependentUpon>Weather1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Weather1.aspx.designer.cs">
+      <DependentUpon>Weather1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Weather2.aspx.cs">
+      <DependentUpon>Weather2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\Weather2.aspx.designer.cs">
+      <DependentUpon>Weather2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Common.cs" />
     <Compile Include="Models\PaypalConfiguration.cs" />
