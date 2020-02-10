@@ -39,7 +39,7 @@
             </div>--%>
 
             <div class="col-12">
-                <div class="card card-body">
+                <div class="card card-body" style="left: 0px; top: 0px">
                     <form runat="server">
                         <%-- basic info collaspe --%>
                     <div class="d-flex justify-content-between">
@@ -350,7 +350,7 @@
                             </div>
                         </div>
 
-                        <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" />
+                        <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" OnClick="submitButt_Click" />
                     </form>
                 </div>
             </div>

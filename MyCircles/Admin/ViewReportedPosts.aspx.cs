@@ -71,7 +71,7 @@ namespace MyCircles.Admin
 
                     lblModalContent.Text = post.Content;
 
-                    lblModalTimeLocation.Text = post.DateTime.Value.ToString("h:mm tt") + ", " + postCreator.City;
+                    lblModalTimeLocation.Text = post.DateTime.Value.ToString("d\\/MM\\/yyyy") + ", " + post.DateTime.Value.ToString("h:mm tt") + ", " + postCreator.City;
 
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openViewPostModal();", true);
                     break;

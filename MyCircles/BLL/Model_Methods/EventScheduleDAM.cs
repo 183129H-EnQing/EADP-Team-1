@@ -24,5 +24,10 @@ namespace MyCircles.BLL {
             return EventScheduleDAO.GetAllEventRegisteredByUser(userId);
         }
 
+        public void AddNewEventSchedule()
+        {
+            EventScheduleDAO.AddNewEventSchedule(this);
+        }
+        
     }
 }

@@ -62,7 +62,20 @@ namespace MyCircles.DAL
             }
 
         }
-        
+
+        public static void AddNewEventSchedule(EventSchedule eventSchedule)
+        {
+
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                    db.EventSchedules.Add(eventSchedule);
+
+                    db.SaveChanges();
+                }
+
+        }
+
+
 
         //public static void UpdateIsEventHost(int id, bool isEventHost)
         //{
