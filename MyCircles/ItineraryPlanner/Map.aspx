@@ -8,7 +8,8 @@
             <div class="col-md-8">
                 <div class="row d-flex justify-content-center">
                     <%-- need insert title of Plan if possible--%>
-                    <h2><asp:Label ID="lbPlannerName" runat="server" Text="January Outing"></asp:Label></h2>
+                    <h2>
+                        <asp:Label ID="lbPlannerName" runat="server" Text="January Outing"></asp:Label></h2>
                 </div>
             </div>
             <div class="col-md-2"></div>
@@ -22,8 +23,13 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
+            <script>
+                function changetext(){
+                    window.location.reload(false);
+                    }
+            </script>
             <div class="col-md-8">
-                <div id="map" style="width:100%; height: 400px;"></div>
+                <div id="map" style="width: 100%; height: 400px;"></div>
                 <%--<script>
                     var map;
                     function initMap() {
@@ -33,7 +39,6 @@
                         })
                     }
                 </script>--%>
-               
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-1"></div>

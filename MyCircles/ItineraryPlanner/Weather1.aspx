@@ -9,7 +9,7 @@
                     <h2>Weather Report</h2>
                 </div>
                 <div class="col-md-2">
-                    <a href="Weather2.aspx" onclick="changeView()">2-hour Region Forecast</a>
+                    <a href="Weather2.aspx">2-hour Region Forecast</a>
                 </div>
             </div>
             <div class="row mt-3">
@@ -69,8 +69,8 @@
                     var json = JSON.parse(xhr.responseText);
                     //console.log(json);
 
-                    //var items0 = json["items"]["0"];
-                    //console.log(items0);
+                    var items0 = json["items"]["0"];
+                    console.log(items0);
 
                     var items0g = json["items"]["0"]["general"];
                     //console.log(items0g);
