@@ -7,6 +7,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8 d-flex justify-content-center">
                     <h2>2 Hour Weather Report</h2>
+                    <i class="fas fa-wind"></i>
                 </div>
                 <div class="col-md-2">
                     <a href="Weather1.aspx">24-hour Forecast</a>
@@ -21,8 +22,6 @@
                 <div class="col-md-4" style="height: 400px; overflow: auto;">
                     <div id="demo"></div>
                 </div>
-                
-            </div>
             <div class="row mt-3">
                 <div class="col-md-1"></div>
                 <div class="col-md-10" >

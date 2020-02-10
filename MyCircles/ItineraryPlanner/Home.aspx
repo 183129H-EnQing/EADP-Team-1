@@ -142,7 +142,7 @@
                 <div class="row mb-3">
                     <asp:Repeater ID="rpItinerary" runat="server" ItemType="MyCircles.BLL.Itinerary">
                         <ItemTemplate>
-                            <div class="card mr-4" style="width: 18rem; background-color: ">
+                            <div class="card mr-4" style="width: 18rem;">
                                 <div class="card-body">
                                     <div class="row" style="height:5px; background-color: green;"></div>
                                     <h5 class="card-title"><b><%#DataBinder.Eval(Container.DataItem, "itineraryName") %> </b></h5>

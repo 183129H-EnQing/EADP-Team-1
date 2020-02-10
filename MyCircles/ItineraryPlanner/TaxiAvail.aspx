@@ -8,7 +8,6 @@
                 <h2>Taxis Available - &nbsp</h2><h2 id="avail">4324</h2>
             </div>
             <div class="col-md-2"></div>
-            </div>
         </div>
         <div class="row mt-3">
             <div class="col-md-1"></div>
@@ -16,6 +15,9 @@
                 <iframe width="100%;" height="400" src="https://data.gov.sg/dataset/taxi-availability/resource/9d217820-1350-4032-a7a3-3cd83e222eb7/view/5ad2510e-6b51-4ffe-9504-6661061a708c" frameBorder="0"> </iframe> 
             </div>
             <script>
+                //window.setInterval(function () {
+                    
+                //},5000);
                 var date = new Date();
                 var currentdate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds())); //this is UTC date set using Date.UTC
                 jsonconvert = currentdate.toJSON(); //returns the UTC Date
