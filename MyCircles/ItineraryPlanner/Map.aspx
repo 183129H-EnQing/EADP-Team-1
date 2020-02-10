@@ -3,11 +3,33 @@
 <asp:Content ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <form id="form1" runat="server">
         <%--<h1>hello map</h1>--%>
-        <div class="row mt-5">
-            <div class="col-md-1"></div>
-            <div class="col-md-1"></div>
+        <div class="row mt-5 sticky-top bg-warning mb-5">
+            <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div id="map" style="width:100%; height: 400px;"></div>
+                <div class="row d-flex justify-content-center">
+                    <%-- need insert title of Plan if possible--%>
+                    <h2>
+                        <asp:Label ID="lbPlannerName" runat="server" Text="January Outing"></asp:Label></h2>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-1"></div>
+            <div class="col-md-1">
+                <asp:Repeater ID="rpDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
+                    <ItemTemplate>
+                        <h5><a href="#<%#DataBinder.Eval(Container.DataItem, "dayByDayId") %>" style="text-decoration: none;" onclick="changetext()"><%#DataBinder.Eval(Container.DataItem, "date") %></a></h5>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+            <script>
+                function changetext(){
+                    window.location.reload(false);
+                    }
+            </script>
+            <div class="col-md-8">
+                <div id="map" style="width: 100%; height: 400px;"></div>
                 <%--<script>
                     var map;
                     function initMap() {
@@ -17,12 +39,12 @@
                         })
                     }
                 </script>--%>
-               
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-1"></div>
         </div>
         <%--<script>
+
             let userLatitude = 1.4043, userLongitude = 103.793;
             let userLocation = { lat: userLatitude, lng: userLongitude };
 
@@ -102,10 +124,7 @@
 
                 return bounds;
             }
-        </script>--%>
-        <script>
-
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlz2KBmeCFI5fsKZd0S0asMYbPIHOLpy0&callback=initMap" defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlz2KBmeCFI5fsKZd0S0asMYbPIHOLpy0&callback=initMap" defer></script>--%>
     </form>
 </asp:Content>

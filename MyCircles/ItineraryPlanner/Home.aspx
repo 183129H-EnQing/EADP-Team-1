@@ -64,7 +64,7 @@
                     <asp:Label ID="Label4" runat="server" Text="OR"></asp:Label>
                 </div>
                 <div class="row mb-3">
-                    <asp:Button ID="btnImportActivity" class="btn btn-lg" BackColor="Orange" runat="server" Text="Import Activity" ForeColor="White" />
+                    <a href="Weather1.aspx" class="btn btn-lg" style="background-color: orange; color :white;">View Weather</a>
                     <a href="ViewLocation.aspx" class="btn btn-lg">Explore Locations</a>
                 </div>
                 <br />
