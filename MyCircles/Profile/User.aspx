@@ -151,19 +151,51 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="pills-events" role="tabpanel" aria-labelledby="pills-events-tab">
+                <div class="tab-pane fade p-6" id="pills-events" role="tabpanel" aria-labelledby="pills-events-tab">
                     <div class="row">
-                         <div class="col-md-3 border-right">
-                            <div class="nav flex-column nav-pills" id="v-pills-tab-events" role="tablist" aria-orientation="vertical">
-                               <a class="nav-link" id=v-pills-createEvent-tab data-toggle="pill" href=#v-pills-createEvent role="tab" aria-controls=v-pills-createEvent>EventCreated</a>
-                            </div>
-                         
-                        </div>
-                        <div class="col-9">
-                   
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>eventID</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Notify</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <asp:Repeater ID="rpViewEventPageCreated" runat="server" ItemType="MyCircles.BLL.Event">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <%-- <td><%#DataBinder.Eval(Container.DataItem, "eventId") %> </td>--%>
+                                                <td>
+                                                    <label class="eventId"><%#DataBinder.Eval(Container.DataItem, "eventId") %> </label>
+                                                </td>
+                                                <td>
+                                                    <%#DataBinder.Eval(Container.DataItem, "eventStartDate") %> - <%#DataBinder.Eval(Container.DataItem, "eventEndDate") %>
+                                                </td>
+                                                <td>
+                                                    <%#DataBinder.Eval(Container.DataItem, "eventStartTime") %> - <%#DataBinder.Eval(Container.DataItem, "eventEndTime") %>
+                                                </td>
+                                                <td>
+                                                    <asp:Button ID="Button1" runat="server" Text="Edit" class="btn" type="Button" UseSubmitBehavior="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Button ID="Button2" runat="server" Text="Delete" class="btn" type="Button" UseSubmitBehavior="False" />
+                                                </td>
+                                                <td>
+                                                    <button id="notifyBtn" class="notifyBtn btn" type="Button" eventid='<%#DataBinder.Eval(Container.DataItem, "eventId") %>'>Notify</button>
+                                                </td>
+
+                                            </tr>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                   <%--  <asp:Button runat="server" cssClass="btn btn-primary px-4 w-100" Text="Notify EveryOne"  />--%>
                 </div>
 
             </div>

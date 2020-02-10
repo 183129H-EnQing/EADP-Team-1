@@ -1,4 +1,5 @@
-﻿using MyCircles.DAL;
+﻿using MyCircles.BLL;
+using MyCircles.DAL;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -224,11 +225,19 @@ namespace MyCircles.Home
                     if (currentUser.Id == selecteduserpost.User.Id)
                     {
 
-                    CommentDAO.DeleteCommentByPostId(selecteduserpost.Post.Id);
+                        CommentDAO.DeleteCommentByPostId(selecteduserpost.Post.Id);
                         ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
                         PostDAO.DeletePost(deleteId);
                         refreshGv();
-                    }
+
+                        UserCircleDAO.ChangeUserCirclePoints(
+                            userId: currentUser.Id,
+                            circleName: selecteduserpost.Post.CircleId,
+                            points: -30,
+                            source: "removing a post",
+                            addNotification: true
+                        );
+                }
 
 
                 }

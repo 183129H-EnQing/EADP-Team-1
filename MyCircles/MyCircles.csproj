@@ -789,7 +789,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\Shared\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
