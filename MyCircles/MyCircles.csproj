@@ -184,12 +184,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="ItineraryPlanner\LocationDetail.aspx" />
-<<<<<<< HEAD
     <Content Include="Profile\EditProfile.aspx" />
-=======
     <Content Include="ItineraryPlanner\Weather1.aspx" />
     <Content Include="ItineraryPlanner\Weather2.aspx" />
->>>>>>> 9b94820e89c4810b24a17236cde810ac202b5c2d
     <Content Include="Profile\Search.aspx" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Auth\GoogleSignIn.aspx" />
@@ -420,11 +417,8 @@
     <Compile Include="DAL\Joint_Models\CircleFollowerDetails.cs" />
     <Compile Include="DAL\Joint_Models\DayLocation.cs" />
     <Compile Include="DAL\Joint_Models\FollowingUsers.cs" />
-<<<<<<< HEAD
     <Compile Include="DAL\Joint_Models\SignUpAndEventScheduleDetails.cs" />
-=======
     <Compile Include="DAL\Joint_Models\ReportedPostCount.cs" />
->>>>>>> 9b94820e89c4810b24a17236cde810ac202b5c2d
     <Compile Include="DAL\Joint_Models\UserChatRoom.cs" />
     <Compile Include="DAL\Joint_Models\UserComment.cs" />
     <Compile Include="DAL\Joint_Models\UserPost.cs" />
