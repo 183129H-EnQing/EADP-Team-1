@@ -11,7 +11,7 @@ namespace MyCircles.BLL
     {
         public int dayId { get; set; }
 
-        public DateTime? date { get; set; }
+        public DateTime date { get; set; }
 
         public int dayByDayId { get; set; }
 
@@ -22,6 +22,8 @@ namespace MyCircles.BLL
         public DateTime endTime { get; set; }
 
         public int locationId { get; set; }
+
+        public string notes { get; set; }
 
         public virtual DayByDay DayByDay { get; set; }
 
