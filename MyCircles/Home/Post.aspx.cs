@@ -81,28 +81,7 @@ namespace MyCircles.Home
 
           
         }
-        protected void Comment_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (RepeaterItem item in rptUserPosts.Items)
-                {
-                    TextBox comment = (TextBox)item.FindControl("hello");
-                    var newPost = new BLL.Post();
-                    newPost.Comment = comment.Text;
-                    newPost.UserId = currentUser.Id;
-                    newPost.CircleId = "gym";
-                    PostDAO.AddPost(newPost);
-
-                    refreshGv();
-                }
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
-            }
-
-        }
+       
 
 
         protected string UploadThisFile(FileUpload upload)
@@ -186,7 +165,8 @@ namespace MyCircles.Home
                     RadioButtonList report = (e.Item.FindControl("RadioButtonList1") as RadioButtonList);
                     var userpostindex = e.Item.ItemIndex;
                     var rpt = report.SelectedValue;
-                    UserPost selecteduserpost = UserPosts[userpostindex];
+                    List<UserPost> userposts = new List<UserPost>();
+                    UserPost selecteduserpost = ((List<UserPost>)rptUserPosts.DataSource)[userpostindex];
                     var newReport = new BLL.ReportedPost();
                     newReport.postId = selecteduserpost.Post.Id;
                     newReport.reason = rpt;
