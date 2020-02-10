@@ -148,6 +148,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\ManageCircles.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="Admin\Overview.aspx" />
     <Content Include="Admin\ViewReportedPosts.aspx" />
@@ -318,6 +319,13 @@
     </Compile>
     <Compile Include="Admin\Admin.master.designer.cs">
       <DependentUpon>Admin.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageCircles.aspx.cs">
+      <DependentUpon>ManageCircles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageCircles.aspx.designer.cs">
+      <DependentUpon>ManageCircles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageUsers.aspx.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
