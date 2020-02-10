@@ -28,13 +28,25 @@ namespace MyCircles.DAL
             }
         }
 
-        public static void AddNewEvent(Event eventData)
+        public static Event AddNewEvent(Event eventData)
         {
+            Event evt = null;
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
-                db.Events.Add(eventData);
+                evt = db.Events.Add(eventData);
 
                 db.SaveChanges();
+            }
+            return evt;
+        }
+
+        public static List<Event> GetAllEventCreatedByUser(int userId)
+        {
+            List<Event> eventList = new List<Event>();
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                eventList = db.Events.Where(event1 => event1.eventHolderId == userId).ToList();
+                return eventList;
             }
         }
 

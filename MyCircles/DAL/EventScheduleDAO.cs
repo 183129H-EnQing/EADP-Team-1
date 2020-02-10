@@ -48,6 +48,34 @@ namespace MyCircles.DAL
             }
         }
 
+        public static List<EventSchedule> GetAllEventRegisteredByUser(int userId)
+        {
+            List<EventSchedule> EventScheduleList = new List<EventSchedule>();
+
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                EventScheduleList = db.EventSchedules.Where(eventSchedule => eventSchedule.usersOptIn.Contains(userId.ToString())).ToList();
+
+                //EventScheduleList = db.EventSchedules.ToList();
+
+                return EventScheduleList;
+            }
+
+        }
+
+        public static void AddNewEventSchedule(EventSchedule eventSchedule)
+        {
+
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                    db.EventSchedules.Add(eventSchedule);
+
+                    db.SaveChanges();
+                }
+
+        }
+
+
 
         //public static void UpdateIsEventHost(int id, bool isEventHost)
         //{

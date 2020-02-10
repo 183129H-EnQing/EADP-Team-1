@@ -64,8 +64,9 @@
                     <asp:Label ID="Label4" runat="server" Text="OR"></asp:Label>
                 </div>
                 <div class="row mb-3">
-                    <asp:Button ID="btnImportActivity" class="btn btn-lg" BackColor="Orange" runat="server" Text="Import Activity" ForeColor="White" />
+                    <a href="Weather1.aspx" class="btn btn-lg" style="background-color: orange; color :white;">View Weather</a>
                     <a href="ViewLocation.aspx" class="btn btn-lg">Explore Locations</a>
+                    <a href="TaxiAvail.aspx" class="btn btn-lg mt-2" style="background-color: orange; color :white;">Taxi Availability</a>
                 </div>
                 <br />
                 <br />
@@ -143,13 +144,12 @@
                     <asp:Repeater ID="rpItinerary" runat="server" ItemType="MyCircles.BLL.Itinerary">
                         <ItemTemplate>
                             <div class="card mr-4" style="width: 18rem;">
-                                <img class="card-img-top" src="..." alt="Card image cap">
                                 <div class="card-body">
+                                    <div class="row" style="height:5px; background-color: green;"></div>
                                     <h5 class="card-title"><b><%#DataBinder.Eval(Container.DataItem, "itineraryName") %> </b></h5>
                                     <h6 class="card-subtitle mb-2 text-muted">Created by you</h6>
-                                    <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate") %> to <%#DataBinder.Eval(Container.DataItem, "endDate") %></p>
+                                    <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "startDate", "{0:dd MMM}") %> to <%#DataBinder.Eval(Container.DataItem, "endDate", "{0:dd MMM}") %></p>
                                     <p class="card-text"><%#DataBinder.Eval(Container.DataItem, "groupSize") %> Youth</p>
-
                                     <a href="Timeline.aspx?Id=<%#DataBinder.Eval(Container.DataItem, "itineraryId") %>" class="btn btn-primary">Click to view</a>
                                 </div>
                             </div>

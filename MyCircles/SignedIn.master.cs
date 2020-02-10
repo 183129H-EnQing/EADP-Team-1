@@ -15,7 +15,7 @@ namespace MyCircles
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            RedirectValidator.isUser();
+            //RedirectValidator.isUser();
 
             currentUser = (User)Session["currentUser"];
             ProfileLink.HRef = "Profile/User.aspx?username=" + currentUser.Username;

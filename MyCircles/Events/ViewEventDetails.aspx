@@ -99,12 +99,18 @@
 
                                     <div class="col-sm-6 col-md-12 col-lg-4">
                                         <p class="font-italic">Avaliable Slots </p>
-							            <p class="text-info"><%=totalAvaliableSlots %></p>
+                                        <%if (totalAvaliableSlots == 0) { %>
+                                            <p class="text-info"><%=avaliableSlotsText %></p>
+                                        <%} %>     
+                                        
+                                        <%else { %>
+                                             <p class="text-info"><%=totalAvaliableSlots %></p>
+                                        <%} %>
                                     </div>
 
                                     <div class="col-sm-6 col-md-12 col-lg-4">
                                         <p class="font-italic">Organizer</p>
-							            <p class="text-info">Nanyang Polytechnic</p>
+							            <p class="text-info"><%=singleEventDetails.eventHolderName %></p>
                                     </div>
                                 </div>
 
@@ -114,8 +120,8 @@
                                     </div>
                                     <div class="col-6" style="padding-left:0px;">
                                         <!--data-toggle="modal" data-target=".bd-example-modal-lg"-->
-                                        <a href="/Events/SignUpFreeEventPage.aspx?eventID=<%=singleEventDetails.eventId %>" class="btn btn-primary"  style="width:100%;">Register</a>
-                                      
+                                         <a href="/Events/SignUpFreeEventPage.aspx?eventID=<%=singleEventDetails.eventId %>" class="btn btn-primary"  style="width:100%;">Register</a>
+
                                         <!--sign up page modal-->
                                         <!--
                                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

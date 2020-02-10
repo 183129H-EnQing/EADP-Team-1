@@ -4,11 +4,11 @@
     <form id="formRegister" class="my-5" runat="server">
         <h5 class="p-2 text-left">Register for a new account</h5>
         <div class="row signedOutInputContainer text-center p-2">
-            <div class="col-md-6 pr-1">
+            <div class="col-md-6 pr-md-1">
                 <asp:TextBox ID="tbName" runat="server" CssClass="form-control-lg m-1" type="text" placeholder="Display Name"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Name is required" ControlToValidate="tbName" Display="None" ValidationGroup="registerErrGroup" />
             </div>
-            <div class="col-md-6 pl-1">
+            <div class="col-md-6 pl-md-1">
                 <asp:TextBox ID="tbUsername" runat="server" CssClass="form-control-lg m-1" type="text" placeholder="Username"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvUsername" runat="server" ErrorMessage="Username is required" ControlToValidate="tbUsername" Display="None" ValidationGroup="registerErrGroup" />
             </div>

@@ -14,6 +14,34 @@
         #hoverdiv:focus {
             display: block;
         }*/
+
+        #foo {
+            position: fixed;
+            bottom: 25px;
+            right: 70px;
+            border-radius: 15%;
+        }
+
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            /*position: fixed;
+            bottom: 70px;
+            right: 40px;*/
+        }
+
+            .rating > span {
+                display: inline-block;
+                position: relative;
+                width: 1.1em;
+                font-size: 30px;
+            }
+
+                .rating > span:hover:before,
+                .rating > span:hover ~ span:before {
+                    content: "\2605";
+                    position: absolute;
+                }
     </style>
     <script>
         $(document).ready(function () {
@@ -72,6 +100,29 @@
         });
     </script>--%>
     <form id="form1" runat="server">
+       <%-- <div id="foo" class="btn btn-success" onclick="showRatingBar()">Rate Us</div>
+
+        <script>
+            function showRatingBar() {
+                document.getElementById("ratingbar").style.display = "block";
+            }
+        </script>
+
+        <div class="rating">
+            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+        </div>
+        <script>
+            $('[data-role="ratingbar"]')
+                .ratingbar()
+                .click(function () {
+
+                    // Grab value
+                    alert($(this).attr('data-value'));
+
+                    return false;
+                });
+        </script>--%>
+
         <div class="row mt-5 sticky-top bg-warning mb-5">
             <div class="col-md-1"></div>
             <div class="col-md-1 sticky-top">
@@ -95,7 +146,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="RequestFund.aspx">Request Fund</a>
-                        <a class="dropdown-item" href="#" onclick="openDeleteModal()" >Delete Planner</a>
+                        <a class="dropdown-item" href="#" onclick="openDeleteModal()">Delete Planner</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +171,7 @@
                         <p>Are you sure you want to delete this plan?</p>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" onclick="btnDelete_Click" CssClass="btn btn-primary"/>
+                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" OnClick="btnDelete_Click" CssClass="btn btn-primary" />
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -212,9 +263,9 @@
                                     <div class="row pt-3 pl-3">
                                         <div class="col-md-1 mr-5 col-sm-1">
                                             <br />
-                                            <h6><%#DataBinder.Eval(Container.DataItem, "startTime") %></h6>
+                                            <h6><%#DataBinder.Eval(Container.DataItem, "startTime", "{0:HH:mm}") %></h6>
                                             <br />
-                                            <h6><%#DataBinder.Eval(Container.DataItem, "endTime") %></h6>
+                                            <h6><%#DataBinder.Eval(Container.DataItem, "endTime", "{0:HH:mm}") %></h6>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <asp:Image runat='server' Height='160px' Width='250px' ImageUrl='<%#DataBinder.Eval(Container.DataItem, "locaPic") %>' />
@@ -239,9 +290,7 @@
                                                     <i class='fa fa-ellipsis-v'></i>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#" onclick="openViewPostModal()">Edit Time</a>
-                                                    <a class="dropdown-item" href="#">Delete Event</a>
-                                                    <a class="dropdown-item" href="#">Add Notes</a>
+                                                    <a class="dropdown-item" href="#" onclick="openViewPostModal()">Add Notes</a>
                                                 </div>
                                             </div>
                                             <script>
@@ -263,7 +312,9 @@
                                 </div>
                                 <div id="notesdiv<%#DataBinder.Eval(Container.DataItem, "dayId") %>" class="row pl-3 border border-primary border-top-0 mb-5" style="display: none;">
                                     <div class="col-md-1 mr-5"></div>
-                                    <div class="col-md-1"><h6>Notes:</h6></div>
+                                    <div class="col-md-1">
+                                        <h6>Notes:</h6>
+                                    </div>
                                     <div class="col-md-7">
                                         <p id="notesData<%#DataBinder.Eval(Container.DataItem, "dayId") %>"><%#DataBinder.Eval(Container.DataItem, "notes") %></p>
                                     </div>
@@ -306,83 +357,24 @@
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-md-6">
-                                                        <%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>
-                                                        <%--<asp:TextBox ID="tbeventDate<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>" runat="server"></asp:TextBox>--%>
-                                                        <%--<input id='tbeventDate<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>' runat="server" />--%>
+                                                        <p><%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "date") %></p>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <%-- <asp:DropDownList ID="ddlstartTime<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1"> --%>
-                                                        <asp:DropDownList ID="ddlstartTime" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1">
-                                                            <asp:ListItem Value="0800" />
-                                                            <asp:ListItem Value="0830" />
-                                                            <asp:ListItem Value="0900" />
-                                                            <asp:ListItem Value="0930" />
-                                                            <asp:ListItem Value="1000" />
-                                                            <asp:ListItem Value="1030" />
-                                                            <asp:ListItem Value="1100" />
-                                                            <asp:ListItem Value="1130" />
-                                                            <asp:ListItem Value="1200" />
-                                                            <asp:ListItem Value="1230" />
-                                                            <asp:ListItem Value="1300" />
-                                                            <asp:ListItem Value="1300" />
-                                                            <asp:ListItem Value="1400" />
-                                                            <asp:ListItem Value="1430" />
-                                                            <asp:ListItem Value="1500" />
-                                                            <asp:ListItem Value="1530" />
-                                                            <asp:ListItem Value="1600" />
-                                                            <asp:ListItem Value="1630" />
-                                                            <asp:ListItem Value="1700" />
-                                                            <asp:ListItem Value="1730" />
-                                                            <asp:ListItem Value="1800" />
-                                                            <asp:ListItem Value="1830" />
-                                                            <asp:ListItem Value="1900" />
-                                                            <asp:ListItem Value="1930" />
-                                                            <asp:ListItem Value="2000" />
-                                                            <asp:ListItem Value="2030" />
-                                                            <asp:ListItem Value="2100" />
-                                                        </asp:DropDownList>
+                                                        <p><%#DataBinder.Eval(Container.DataItem, "startTime", "{0:HH:mm}") %></p>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <%-- <asp:DropDownList ID="ddlendTime<%#DataBinder.Eval(DirectCast(DirectCast(Container, Control).NamingContainer.NamingContainer, IDataItemContainer).DataItem, "dayByDayId") %>" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1">--%>
-                                                        <asp:DropDownList ID="ddlendTime" runat="server" onmouseover="javascript:this.size=5" onmouseout="javascript:this.size=1">
-                                                            <asp:ListItem Value="0800" />
-                                                            <asp:ListItem Value="0830" />
-                                                            <asp:ListItem Value="0900" />
-                                                            <asp:ListItem Value="0930" />
-                                                            <asp:ListItem Value="1000" />
-                                                            <asp:ListItem Value="1030" />
-                                                            <asp:ListItem Value="1100" />
-                                                            <asp:ListItem Value="1130" />
-                                                            <asp:ListItem Value="1200" />
-                                                            <asp:ListItem Value="1230" />
-                                                            <asp:ListItem Value="1300" />
-                                                            <asp:ListItem Value="1300" />
-                                                            <asp:ListItem Value="1400" />
-                                                            <asp:ListItem Value="1430" />
-                                                            <asp:ListItem Value="1500" />
-                                                            <asp:ListItem Value="1530" />
-                                                            <asp:ListItem Value="1600" />
-                                                            <asp:ListItem Value="1630" />
-                                                            <asp:ListItem Value="1700" />
-                                                            <asp:ListItem Value="1730" />
-                                                            <asp:ListItem Value="1800" />
-                                                            <asp:ListItem Value="1830" />
-                                                            <asp:ListItem Value="1900" />
-                                                            <asp:ListItem Value="1930" />
-                                                            <asp:ListItem Value="2000" />
-                                                            <asp:ListItem Value="2030" />
-                                                            <asp:ListItem Value="2100" />
-                                                        </asp:DropDownList>
+                                                        <p><%#DataBinder.Eval(Container.DataItem, "endTime", "{0:HH:mm}") %></p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <asp:TextBox ID="tbnote" TextMode="MultiLine" runat="server" Style="width: 100%" placeholder="Add Notes"></asp:TextBox>
+                                                        <asp:TextBox ID="tbNotes" TextMode="MultiLine" runat="server" Style="width: 100%" placeholder="Add Notes"></asp:TextBox>
+                                                        <%--<asp:Label ID="lbDay" runat="server"><%#DataBinder.Eval(Container.DataItem, "dayId") %></asp:Label>--%>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <asp:Button ID="btnSaveChanges" runat="server" CssClass="btn btn-primary" Text="Save changes" OnClick="btnSaveChanges_Click" />
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeViewPostModal()">Close</button>
                                             </div>
                                         </div>

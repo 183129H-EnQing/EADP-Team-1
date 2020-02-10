@@ -24,7 +24,7 @@ namespace MyCircles.Admin
             else
             {
                 System.Diagnostics.Debug.WriteLine("page load no postback!");
-                Session[keySessionList] = null;
+                Session[keySessionList] = RetrieveNonAdminUsers();
                 gvUsers.DataSource = RetrieveNonAdminUsers();
                 gvUsers.DataBind();
             }
@@ -35,7 +35,7 @@ namespace MyCircles.Admin
             int queryTypeId = int.Parse(ddlQueryType.SelectedValue);
             System.Diagnostics.Debug.WriteLine("query type id:" + queryTypeId);
 
-            string inputStr = tbSearchInput.Text;
+            string inputStr = tbSearchInput.Text.ToLower();
             List<User> users = RetrieveNonAdminUsers();
 
             System.Diagnostics.Debug.WriteLine("search submit with:" + inputStr);
@@ -50,16 +50,16 @@ namespace MyCircles.Admin
                     switch (queryTypeId)
                     {
                         case 0: // All
-                            shouldAddUser = user.Username.Contains(inputStr) || user.Name.Contains(inputStr) || user.EmailAddress.Contains(inputStr);
+                            shouldAddUser = user.Username.ToLower().Contains(inputStr) || user.Name.ToLower().Contains(inputStr) || user.EmailAddress.ToLower().Contains(inputStr);
                             break;
                         case 1: // Username
-                            shouldAddUser = user.Username.Contains(inputStr);
+                            shouldAddUser = user.Username.ToLower().Contains(inputStr);
                             break;
                         case 2: // Display Name
-                            shouldAddUser = user.Name.Contains(inputStr);
+                            shouldAddUser = user.Name.ToLower().Contains(inputStr);
                             break;
                         case 3: // Email
-                            shouldAddUser = user.EmailAddress.Contains(inputStr);
+                            shouldAddUser = user.EmailAddress.ToLower().Contains(inputStr);
                             break;
                     }
 
@@ -76,31 +76,49 @@ namespace MyCircles.Admin
             }
         }
 
+        protected void btnChgUserStatus_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+
+            List<User> usersList = (List<User>)Session[keySessionList];
+
+            System.Diagnostics.Debug.WriteLine("btnChgUserStatus_Click cmdArg:" + btn.CommandArgument.ToString());
+            int idx = int.Parse(btn.CommandArgument.ToString()) + (10 * gvUsers.PageIndex);
+
+            System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand index:" + idx);
+            User user = usersList[idx];
+
+            user.UpdateIsDisabled(!user.IsDeleted);
+            System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand ChgUserStatus, is Button:" + (sender is Button));
+            refreshGridView(RetrieveNonAdminUsers());
+        }
+
+        protected void gvUsers_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            Control ctrl = e.Row.FindControl("btnChgUserStatus");
+
+            if (ctrl != null)
+            {
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowCreated, ctrl is fine!");
+                ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(ctrl as Button);
+            }
+        }
+
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "ChgUserStatus" || e.CommandName == "UserProfile")
+            if (e.CommandName == "UserProfile")
             {
                 System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand pageIndex:" + gvUsers.PageIndex);
                 List<User> usersList = (List<User>)Session[keySessionList];
-                if (usersList == null) usersList = RetrieveNonAdminUsers();
-
-                int idx = int.Parse(e.CommandArgument.ToString()) + (10 * gvUsers.PageIndex);
 
                 System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand cmdName:" + e.CommandName);
-                System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand cmdArg:" + int.Parse(e.CommandArgument.ToString()));
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand cmdArg:" + e.CommandArgument.ToString());
+                int idx = int.Parse(e.CommandArgument.ToString()) + (10 * gvUsers.PageIndex);
+
                 System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand index:" + idx);
                 User user = usersList[idx];
-                switch (e.CommandName)
-                {
-                    case "ChgUserStatus":
-                        user.UpdateIsDisabled(!user.IsDeleted);
-                        refreshGridView(usersList);
-                        break;
-                    case "UserProfile":
-                        string profileLink = "/Profile/User.aspx?username=" + usersList[idx].Username;
-                        Response.Redirect(profileLink);
-                        break;
-                }
+                string profileLink = "/Profile/User.aspx?username=" + usersList[idx].Username;
+                Response.Redirect(profileLink);
             }
         }
 
@@ -110,9 +128,8 @@ namespace MyCircles.Admin
             {
                 System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound pageIndex:" + gvUsers.PageIndex);
                 List<User> usersList = (List<User>)Session[keySessionList];
-                if (usersList == null) usersList = RetrieveNonAdminUsers();
                 int idx = e.Row.RowIndex + (10 * gvUsers.PageIndex);
-                System.Diagnostics.Debug.WriteLine("gvUsers_RowCommand index:" + idx);
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound index:" + idx);
                 User user = usersList[idx];
 
                 string displayChgUserStatus = "User";
@@ -120,13 +137,14 @@ namespace MyCircles.Admin
                     displayChgUserStatus = "Re-enable " + displayChgUserStatus;
                 else // if enabled
                     displayChgUserStatus = "Disable " + displayChgUserStatus;
+                System.Diagnostics.Debug.WriteLine("gvUsers_RowDataBound IsDeleted:" + user.IsDeleted);
 
                 //Control 
                 try
                 {
                     Button someCtrl = e.Row.FindControl("btnChgUserStatus") as Button;
                     someCtrl.Text = displayChgUserStatus;
-                    System.Diagnostics.Debug.WriteLine("are you running?");
+                    System.Diagnostics.Debug.WriteLine("are you running? Text:" + displayChgUserStatus);
                     System.Diagnostics.Debug.WriteLine(someCtrl == null);
                 } catch (Exception ex)
                 {
@@ -138,10 +156,9 @@ namespace MyCircles.Admin
         protected void gvUsers_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvUsers.PageIndex = e.NewPageIndex;
-            System.Diagnostics.Debug.WriteLine("pagerindex");
+            System.Diagnostics.Debug.WriteLine("pagerindex:" + e.NewPageIndex);
 
             List<User> usersList = (List<User>)Session[keySessionList];
-            if (usersList == null) usersList = RetrieveNonAdminUsers();
             refreshGridView(usersList);
         }
 

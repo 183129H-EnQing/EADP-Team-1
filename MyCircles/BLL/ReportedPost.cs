@@ -13,7 +13,7 @@ namespace MyCircles.BLL
         [Required]
         public string reason { get; set; }
 
-        public int postId { get; set; }
+        public int? postId { get; set; }
 
         public int reporterUserId { get; set; }
 

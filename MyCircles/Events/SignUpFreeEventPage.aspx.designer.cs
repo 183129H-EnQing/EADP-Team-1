@@ -40,6 +40,15 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.TextBox contactNumberTB;
         
         /// <summary>
+        /// NumberOfBookingSlotsTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NumberOfBookingSlotsTB;
+        
+        /// <summary>
         /// NumberOfBookingSlotsDLL control.
         /// </summary>
         /// <remarks>

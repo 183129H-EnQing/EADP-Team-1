@@ -34,13 +34,19 @@ namespace MyCircles.Home
                 DropDownList1.DataTextField = "CircleId";
                 DropDownList1.DataValueField = "CircleId";
                 DropDownList1.DataBind();
+
+                DropDownList2.DataSource = circlesname;
+                DropDownList2.DataTextField = "CircleId";
+                DropDownList2.DataValueField = "CircleId";
+                DropDownList2.DataBind();
+
+                
             }
            
             this.Title = "Home";
-            CircleDAO.AddCircle("gym");
-            UserPosts = PostDAO.GetPostsByCircle("gym");
-            rptUserPosts.DataSource = UserPosts;
-            rptUserPosts.DataBind();
+            //CircleDAO.AddCircle("gym");
+            refreshGv();
+            
         }
 
         protected void ImageMap1_Click(object sender, ImageMapEventArgs e)
@@ -81,6 +87,7 @@ namespace MyCircles.Home
                 var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
             }
         }
+
         protected void Comment_Click(object sender, EventArgs e)
         {
             try
@@ -96,15 +103,18 @@ namespace MyCircles.Home
 
                     rptUserPosts.DataSource = PostDAO.GetPostsByCircle("gym");
                     rptUserPosts.DataBind();
-
                 }
+
+                refreshGv();
             }
             catch (DbEntityValidationException ex)
             {
                 var err = ex.EntityValidationErrors.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage;
             }
 
+          
         }
+       
 
 
         protected string UploadThisFile(FileUpload upload)
@@ -141,18 +151,21 @@ namespace MyCircles.Home
             repeater.DataSource = CommentDAO.GetCommentByPost(userpost.Post.Id);
             repeater.DataBind();
             var deltee = e.Item.ItemIndex;
-            UserPost user = UserPosts[deltee];
-            var dletepost = user.User.Id;
+            
+            var dletepost = userpost.User.Id;
             Button delte = (e.Item.FindControl("Delete") as Button);
+            HyperLink report = (e.Item.FindControl("mreport") as HyperLink);
 
             if (currentUser.Id == dletepost )
             {
           
                 delte.Visible = true;
+         
             }
             else
             {
                 delte.Visible = false;
+               
             }
             
           
@@ -165,65 +178,116 @@ namespace MyCircles.Home
             //}
 
         }
-
+   
         protected void rptUserPosts_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            if(e.CommandName == "Comment")
-            {
-                TextBox comment = (e.Item.FindControl("hello") as TextBox);
-                var comt = comment.Text;
-                var newComment = new BLL.Comment();
-                newComment.UserId = currentUser.Id;
-                newComment.PostId = Convert.ToInt32(e.CommandArgument);
-                newComment.comment_date = DateTime.Now;
-                newComment.comment_text = comment.Text;
-                CommentDAO.AddComment(newComment);
-            }
-            if(e.CommandName == "Report")
-            {
-               
-                RadioButtonList report = (e.Item.FindControl("RadioButtonList1") as RadioButtonList);
-                var userpostindex = e.Item.ItemIndex;
-                var rpt = report.SelectedValue;
-                UserPost selecteduserpost = UserPosts[userpostindex];
-                var newReport = new BLL.ReportedPost();
-                newReport.postId = selecteduserpost.Post.Id;
-                newReport.reason = rpt;
-                newReport.dateCreated = DateTime.Now;
-                newReport.reporterUserId = currentUser.Id;
-                ReportedPostDAO.AddReport(newReport);
-            }
+            Repeater repeater = (e.Item.FindControl("rptComment") as Repeater);
+            if (e.CommandName == "Comment")
+                {
+                    TextBox comment = (e.Item.FindControl("hello") as TextBox);
+                    var comt = comment.Text;
+                    var newComment = new BLL.Comment();
+                    newComment.UserId = currentUser.Id;
+                    newComment.PostId = Convert.ToInt32(e.CommandArgument);
+                    newComment.comment_date = DateTime.Now;
+                    newComment.comment_text = comment.Text;
+                    CommentDAO.AddComment(newComment);
 
-            if(e.CommandName == "Delete")
-            {         
-                var deleteId = Convert.ToInt32(e.CommandArgument);
-                var userpostindex = e.Item.ItemIndex;
-                UserPost selecteduserpost = UserPosts[userpostindex];
-               
-              
-
-                if (currentUser.Id == selecteduserpost.User.Id)
+                    repeater.DataSource = CommentDAO.GetCommentByPost(Convert.ToInt32(e.CommandArgument));
+                    repeater.DataBind();
+            }
+                if (e.CommandName == "Report")
                 {
 
-                    ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
-                    PostDAO.DeletePost(deleteId);
+                    RadioButtonList report = (e.Item.FindControl("RadioButtonList1") as RadioButtonList);
+                    var userpostindex = e.Item.ItemIndex;
+                    var rpt = report.SelectedValue;
+                    List<UserPost> userposts = new List<UserPost>();
+                    UserPost selecteduserpost = ((List<UserPost>)rptUserPosts.DataSource)[userpostindex];
+                    var newReport = new BLL.ReportedPost();
+                    newReport.postId = selecteduserpost.Post.Id;
+                    newReport.reason = rpt;
+                    newReport.dateCreated = DateTime.Now;
+                    newReport.reporterUserId = currentUser.Id;
+                    ReportedPostDAO.AddReport(newReport);
+                     
+                }
+
+                if (e.CommandName == "Delete")
+                {
+                    var deleteId = Convert.ToInt32(e.CommandArgument);
+                    var userpostindex = e.Item.ItemIndex;
+                    UserPost selecteduserpost = ((List<UserPost>)rptUserPosts.DataSource)[userpostindex];
+
+
+
+                    if (currentUser.Id == selecteduserpost.User.Id)
+                    {
+
+                    CommentDAO.DeleteCommentByPostId(selecteduserpost.Post.Id);
+                        ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
+                        PostDAO.DeletePost(deleteId);
+                        refreshGv();
+                    }
+
 
                 }
-              
 
             }
 
-          
-            
 
+        
+
+
+
+        public void refreshGv()
+        {
+            List<UserPost> userposts = new List<UserPost>();
+            List<BLL.UserCircle> userCircles = UserCircleDAO.GetAllUserCircles(currentUser.Id);
+
+            foreach (BLL.UserCircle circle in userCircles)
+            {
+                List<UserPost> posts = PostDAO.GetPostsByCircle(circle.CircleId);
+                foreach (UserPost post in posts)
+                {
+                    userposts.Add(post);
+                }
+            }
+            
+            rptUserPosts.DataSource = userposts;
+            rptUserPosts.DataBind();
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Profile/User.aspx");
+        }
+
+        protected void rptComment_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
+          if(e.CommandName == "Remove")
+            {
+                var commentId = Convert.ToInt32(e.CommandArgument);
+                var userpostindex = e.Item.ItemIndex;
+                BLL.Comment selecteduserpost = CommentDAO.GetCommentById(commentId);
+                if (currentUser.Id == selecteduserpost.UserId)
+                {                   
+                    CommentDAO.DeleteComment(commentId);
+                    refreshGv();
+                }
+
+            }
 
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void rptComment_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            Button delte = (e.Item.FindControl("remove") as Button);
+            var data = e.Item.DataItem;
 
-           
-
+            DAL.UserComment usercomment = data as DAL.UserComment;
+            delte.Visible = usercomment.User.Id == currentUser.Id;
         }
     }
 }

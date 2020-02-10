@@ -1,6 +1,6 @@
-﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="ViewLocation.aspx.cs" Inherits="MyCircles.ItineraryPlanner.ViewLocation" Title="Locations"%>
+﻿<%@ Page MasterPageFile="~/SignedIn.master" AutoEventWireup="true" CodeBehind="ViewLocation.aspx.cs" Inherits="MyCircles.ItineraryPlanner.ViewLocation" Title="Locations"%>
 
-<asp:Content ContentPlaceHolderId="BodyContentPlaceHolder" runat="server">
+<asp:Content ContentPlaceHolderId="SignedInContentPlaceholder" runat="server">
     <form id="form1" runat="server">
         <div class="row d-flex justify-content-center mt-4">
             <h2><asp:Label ID="lbPlannerName" runat="server" Text="Explore Locations"></asp:Label></h2>
@@ -9,7 +9,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-2 position-sticky">
                 <div class="row">
-                    <asp:CheckBox ID="chkShowPlanItems" runat="server" Text=" &nbsp Show items in my plan" AutoPostBack="true" />
+                    <asp:CheckBox ID="chkShowPlanItems" runat="server" Text=" &nbsp Show items in my plan" AutoPostBack="true" OnCheckedChanged="chkShowPlanItems_CheckedChanged"/>
                 </div>
                 <br />
                 <div class="row">

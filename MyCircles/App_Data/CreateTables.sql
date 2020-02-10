@@ -341,12 +341,13 @@ CREATE TABLE [dbo].[DayByDay] (
 -- Day Table
 CREATE TABLE [dbo].[Day] (
     [dayId]       INT          IDENTITY (1, 1) NOT NULL,
-    [date]        DATETIME     NULL,
+    [date]        DATETIME     NOT NULL,
     [dayByDayId]  INT          NOT NULL,
     [itineraryId] INT          NOT NULL,
     [startTime]   DATETIME     NOT NULL,
     [endTime]     DATETIME     NOT NULL,
     [locationId]  INT          NOT NULL,
+    [notes]       NCHAR(100)  NULL,
     CONSTRAINT [PK_dbo.Day] PRIMARY KEY CLUSTERED ([dayId] ASC),
     CONSTRAINT [FK_dbo.Day_dbo.Location_locationId] FOREIGN KEY ([locationId]) REFERENCES [dbo].[Location] ([locaId]),
     CONSTRAINT [FK_dbo.Day_dbo.DayByDay_dayByDayId] FOREIGN KEY ([dayByDayId]) REFERENCES [dbo].[DayByDay] ([dayBydayId])
@@ -397,23 +398,14 @@ CREATE TABLE [dbo].[Admin] (
 -- ReportedPosts Table
 
 CREATE TABLE [dbo].[ReportedPosts] (
-
     [Id]             INT           IDENTITY (1, 1) NOT NULL,
-
     [reason]         VARCHAR (MAX) NOT NULL,
-
-    [postId]         INT           NOT NULL,
-
+    [postId]         INT           NULL,
     [reporterUserId] INT           NOT NULL,
-
     [dateCreated]    DATE          NOT NULL,
-
-	PRIMARY KEY CLUSTERED ([Id] ASC),
-
+    PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_ReportedPosts_ToTable] FOREIGN KEY ([postId]) REFERENCES [dbo].[Post] ([Id]),
-
     CONSTRAINT [FK_ReporterUserId_ToUserTable] FOREIGN KEY ([reporterUserId]) REFERENCES [dbo].[User] ([Id])
-
 );
 
 

@@ -39,7 +39,7 @@
             </div>--%>
 
             <div class="col-12">
-                <div class="card card-body">
+                <div class="card card-body" style="left: 0px; top: 0px">
                     <form runat="server">
                         <%-- basic info collaspe --%>
                     <div class="d-flex justify-content-between">
@@ -340,14 +340,16 @@
                            
                         </div>
                     </div>
-                          <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
-                                <div class="signedOutErrorBlock">
-                                    <i class="fas fa-exclamation-triangle"></i>&nbsp;
-                                    <asp:Label ID="lbErrorMsg" runat="server">
-                                        <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addEvent" />
-                                    </asp:Label>
-                                </div>
-                           </div>
+
+                        <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
+                            <div class="signedOutErrorBlock">
+                                <i class="fas fa-exclamation-triangle"></i>&nbsp;
+                            <asp:Label ID="lbErrorMsg" runat="server">
+                                <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="addEvent" />
+                            </asp:Label>
+                            </div>
+                        </div>
+
                         <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" OnClick="submitButt_Click" />
                     </form>
                 </div>
@@ -372,7 +374,28 @@
                 });
         });
 
-<%--          var quill = new Quill('#editor', {
+
+        window.onload = function () {
+            hideOrShowExtraTB();
+        }
+
+
+        function addEventScheduleData()
+        {
+            console.log("value:", document.getElementById("endDateTBEventSchedule").value);
+
+            $.ajax({
+                url: "/",
+                type: "POST",
+                data: {
+                    "someData": document.getElementById("endDateTBEventSchedule").value
+                },
+                "success": (data) => {
+                    console.log("success");
+                    console.log(data);
+                }
+            })
+        }<%--          var quill = new Quill('#editor', {
             theme: 'snow'
         });
         var editor_content = quill.container.innerHTML;
@@ -385,7 +408,7 @@
             var maxTimeAPersonCanRegisterDLLValue = document.getElementById("maxTimeAPersonCanRegisterDLL").value;
             var maxSlotAvaliableDDLValue = document.getElementById("maxSlotAvaliableDDL").value;
 
-            console.log(maxSlotAvaliableDDLValue)
+            //console.log(maxSlotAvaliableDDLValue)
 
             if (locationDDLValue == "Venue") {
                 document.getElementById("LocationTBContainer").style.display = "block";

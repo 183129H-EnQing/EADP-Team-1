@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCircles.ItineraryPlanner {
-    
-    
-    public partial class Home {
-        
+namespace MyCircles.ItineraryPlanner
+{
+
+
+    public partial class Home
+    {
+
         /// <summary>
         /// formIPHome control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm formIPHome;
-        
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// Label4 control.
         /// </summary>
@@ -38,16 +40,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// btnImportActivity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnImportActivity;
-        
+
         /// <summary>
         /// btnViewPlan control.
         /// </summary>
@@ -56,7 +49,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnViewPlan;
-        
+
         /// <summary>
         /// tbName control.
         /// </summary>
@@ -65,7 +58,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbName;
-        
+
         /// <summary>
         /// tbStartDate control.
         /// </summary>
@@ -74,7 +67,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbStartDate;
-        
+
         /// <summary>
         /// tbEndDate control.
         /// </summary>
@@ -83,7 +76,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEndDate;
-        
+
         /// <summary>
         /// tbNoPeople control.
         /// </summary>
@@ -92,7 +85,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbNoPeople;
-        
+
         /// <summary>
         /// cbBeaches control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbBeaches;
-        
+
         /// <summary>
         /// cbOutdoors control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbOutdoors;
-        
+
         /// <summary>
         /// cbMuseums control.
         /// </summary>
@@ -119,7 +112,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbMuseums;
-        
+
         /// <summary>
         /// cbHistoric control.
         /// </summary>
@@ -128,7 +121,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbHistoric;
-        
+
         /// <summary>
         /// cbShopping control.
         /// </summary>
@@ -137,7 +130,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbShopping;
-        
+
         /// <summary>
         /// cbWildlife control.
         /// </summary>
@@ -146,7 +139,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbWildlife;
-        
+
         /// <summary>
         /// btnSubmitPlan control.
         /// </summary>
@@ -155,7 +148,7 @@ namespace MyCircles.ItineraryPlanner {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitPlan;
-        
+
         /// <summary>
         /// rpItinerary control.
         /// </summary>

@@ -3,6 +3,7 @@ var followUri = '/api/follows';
 var postUri = '/api/posts';
 var userUri = '/api/users';
 var circlesUri = '/api/circles';
+var signupeventdetailsUri = '/api/signupeventdetails';
 var showNotifications = true;
 
 

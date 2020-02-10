@@ -119,7 +119,7 @@
                                     <div class="row">
                                         <div class="col-sm-3 col-md-12 ">
                                             <!-- event image -->
-                                               <img alt="Card image cap" class="card-img-top img-fluid" src="..<%=singleEvent.eventImage %>" style="width: 200px; height: 150px;" />
+                                               <img alt="Card image cap" class="card-img-top img-fluid" src="..<%=singleEvent.eventImage %>" style="width:100%;" />
                                         </div>
                                         <div class="col-sm-9 col-md-12 col-lg-12">
                                             <div class="row">

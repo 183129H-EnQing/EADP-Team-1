@@ -6,20 +6,28 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyCircles.BLL;
 using static MyCircles.DAL.UserDAO;
+using MyCircles.DAL;
 
 namespace MyCircles.Events
 {
     public partial class CreateEventPage : System.Web.UI.Page
     {
         public BLL.User currentUser, requestedUser;
+        public BLL.Circle circleData;
         protected void Page_Load(object sender, EventArgs e)
         {
             LocationDLL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
             entryFeeStatusDDL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
             maxTimeAPersonCanRegisterDLL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
             maxSlotAvaliableDDL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
+
+            getAllCircleData();
         }
 
+        protected void eventScheduleDataAddTB(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("hello world testing");
+        }
         protected void submitButt_Click(object sender, EventArgs e)
         {  
             Event newEventData = new Event();
@@ -83,7 +91,36 @@ namespace MyCircles.Events
                 GeneralHelpers.AddValidationError(Page, "addEvent", "Start Date nor filled up under Date And Time");
             }
 
-            System.Diagnostics.Debug.WriteLine("Remember to validate date and time ");
+            DateTime startDate;
+            DateTime endDate;
+
+            DateTime.TryParse(startDateTB.Text,out startDate);
+            DateTime.TryParse(endDateTB.Text, out endDate);
+
+            string startTime = startTimeDLL.Text;
+            string endTime = endTimeDLL.Text;
+
+            string startTimeHour = startTime.Substring(0, 2);
+            string startTimeMinutes = startTime.Substring(2, 2);
+            string endTimeHour = endTime.Substring(0, 2);
+            string endTimeMinutes = endTime.Substring(2, 2);
+
+
+            if (startDate > endDate)
+            {
+                GeneralHelpers.AddValidationError(Page, "addEvent", "why start date later than end date?");
+            }
+            else
+            {
+                if(startDate == endDate)
+                {
+                    if (Int32.Parse(startTimeHour) > Int32.Parse(endTimeHour))
+                    {
+                        GeneralHelpers.AddValidationError(Page, "addEvent", "Start Time cannot be Later than End Time Since Date is the same");
+                    }
+                }
+          
+            }
 
             if (entryFeeStatusDDL.Text == "Not Free")
             {
@@ -144,7 +181,7 @@ namespace MyCircles.Events
             {
                 newEventData.eventName = eventTitleTB.Text;
                 newEventData.eventDescription = eventDescriptionTB.Text;
-                newEventData.eventCategory = CategoryDropDownList.Text;
+                newEventData.eventCategory = CategoryDropDownList.Text;              
                 newEventData.eventHolderName = organizerTB.Text;
                 newEventData.eventHolderId = currentUser.Id;
                 if (LocationDLL.Text == "To Be Announced")
@@ -165,7 +202,7 @@ namespace MyCircles.Events
                 newEventData.eventEntryFeesStatus = entryFeeStatusDDL.Text;
 
                 var imagePath = GeneralHelpers.UploadFile(imageUpload);
-                System.Diagnostics.Debug.WriteLine("hello world testing",imagePath);
+                //System.Diagnostics.Debug.WriteLine("hello world testing",imagePath);
                 newEventData.eventImage = imagePath;
 
                 newEventData.eventStatus = "onGoing";
@@ -202,11 +239,31 @@ namespace MyCircles.Events
                     newEventData.eventMaxSlot = maxSlotTB.Text;
                 }
 
-                newEventData.AddNewEvent();
-            }
-        
+                UserCircleDAO.ChangeUserCirclePoints(currentUser.Id, CategoryDropDownList.Text, 20, "Creating An Event",true);
+                Event newCreatedEvt = newEventData.AddNewEvent();
 
-            //Response.Redirect("ViewAllEventPage.aspx");
+                Response.Redirect("EventSchedulePage.aspx?eventID=" + newCreatedEvt.eventId);
+            }
+
+
+        }
+
+
+        private void getAllCircleData()
+        {
+            Circle retrieveAllCircleData = new Circle();
+            List<Circle> allCircleData = new List<Circle>();
+            List<String> circleDataList = new List<String>();
+
+            allCircleData = CircleDAO.GetAllCircles();
+            foreach (Circle singleCircleData in allCircleData)
+            {
+                circleDataList.Add(singleCircleData.Id);
+            }
+            System.Diagnostics.Debug.WriteLine("hello world testing", circleDataList);
+            CategoryDropDownList.DataSource = circleDataList;
+            CategoryDropDownList.DataBind();
+
         }
     }
 

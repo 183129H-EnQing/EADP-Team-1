@@ -37,8 +37,9 @@ namespace MyCircles.ItineraryPlanner
             foreach(var i in itineraryList)
             {
                 lbPlannerName.Text = i.itineraryName;
+                Session["itineraryName"] = i.itineraryName;
             }
-
+            
             GetExisting();
         }
         #region getMonthDate
@@ -157,6 +158,25 @@ namespace MyCircles.ItineraryPlanner
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             Itinerary.DeletePlanner(Id);
+            Response.Redirect("/ItineraryPlanner/Home.aspx");
+        }
+
+        protected void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            int dayId;
+            string notes;
+            foreach (RepeaterItem item in rpParentDates.Items)
+            {
+                Label d = (Label)item.FindControl("lbDay");
+                if (d.Text != "")
+                {
+                    dayId = int.Parse(d.Text);
+                }
+                TextBox n = (TextBox)item.FindControl("tbNotes");
+                notes = n.Text;
+                //Day.UpdateDay(dayId, notes);
+            }
+            Response.Redirect(HttpContext.Current.Request.Url.ToString(), true);
         }
     }
 }

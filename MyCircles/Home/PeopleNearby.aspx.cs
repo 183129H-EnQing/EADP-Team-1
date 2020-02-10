@@ -1,4 +1,5 @@
-﻿using Reimers.Google.Map;
+﻿using MyCircles.DAL;
+using Reimers.Google.Map;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,21 +12,17 @@ namespace MyCircles.Home
 {
     public partial class PeopleNearby : System.Web.UI.Page
     {
-        public BLL.User currentUser;
+        public BLL.User currentUser, requestedUser;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
-            var followinguser = new BLL.User();
-             
+            var notfollow = UserDAO.GetNewUser(currentUser.Id);
             
-
-            
-           
-
-
+            GridViewFollow.DataSource = notfollow;
+            GridViewFollow.DataBind();
 
             GMap.ApiKey = ConfigurationManager.AppSettings["MapKey"];
 
@@ -44,9 +41,12 @@ namespace MyCircles.Home
             }
         }
 
-        protected void rptNearbyPost_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void GridViewFollow_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+           //if(e.CommandName = "Follow")
+           // {
 
+           // }
         }
     }
 }

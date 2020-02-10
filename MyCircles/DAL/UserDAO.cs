@@ -48,6 +48,23 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void EditUser(User editedUser)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                User currentUser = db.Users.Where(u => u.Id == editedUser.Id).FirstOrDefault();
+
+                currentUser.Id = editedUser.Id;
+                currentUser.Username = editedUser.Username;
+                currentUser.Bio = editedUser.Bio;
+                currentUser.ProfileImage = editedUser.ProfileImage;
+
+               
+                db.SaveChanges();
+            }
+
+        }
+
         public static User GetUserByIdentifier(string identifier)
         {
             User user = new User();
@@ -150,6 +167,30 @@ namespace MyCircles.DAL
             using (MyCirclesEntityModel db = new MyCirclesEntityModel())
             {
                 return db.Users.ToList();
+            }
+        }
+
+        public static List<User>GetNewUser(int id)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                var followuser = FollowDAO.GetAllFollowingUsers(id);
+                var getUser = db.Users.Where(u => u.Id != id).ToList();
+                var notFollowuser = new List<User>();
+
+                for (int i = 0; followuser.Count > i; i++ )
+                {
+                    for (int j=0; getUser.Count > j; j++)
+                    {
+                        if (followuser[i].User.Id != getUser[j].Id)
+                        { 
+                            notFollowuser.Add(getUser[j]);
+                        }
+                    }
+                }
+
+                return notFollowuser;
+                     
             }
         }
 

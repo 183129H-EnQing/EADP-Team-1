@@ -66,6 +66,21 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void UpdateDay(int dayId, string notes)
+        {
+            using (MyCirclesEntityModel db = new MyCirclesEntityModel())
+            {
+                List<Day> dayList = new List<Day>();
+                dayList = db.Days.Where(i => i.dayId == dayId).ToList();
+                foreach (Day d in dayList)
+                {
+                    d.notes = notes;
+                }
+
+                db.SaveChanges();
+            }
+        }
+
         public static void AddDay(Itinerary itinerary)
         {
             using (var db = new MyCirclesEntityModel())
@@ -81,7 +96,7 @@ namespace MyCircles.DAL
 
                 foreach (Location location in locations)
                 {
-                    TimeSpan nextEventFinishTime = userDateTime.AddHours(int.Parse(location.locaRecom)).TimeOfDay;
+                    TimeSpan nextEventFinishTime = userDateTime.AddMinutes(int.Parse(location.locaRecom)).TimeOfDay;
 
                     if ((nextEventFinishTime > endTime))
                     {
@@ -103,12 +118,12 @@ namespace MyCircles.DAL
                     newDay.locationId = location.locaId;
                     newDay.startTime = userDateTime;
                     newDay.dayByDayId = dayByDay.dayBydayId;
-                    newDay.endTime = userDateTime.AddHours(int.Parse(location.locaRecom));
+                    newDay.endTime = userDateTime.AddMinutes(int.Parse(location.locaRecom));
 
                     db.Days.Add(newDay);
                     db.SaveChanges();
 
-                    userDateTime = userDateTime.AddHours(int.Parse(location.locaRecom));
+                    userDateTime = userDateTime.AddMinutes(int.Parse(location.locaRecom));
                     userDateTime = userDateTime.AddMinutes(interval);
                 }
             }

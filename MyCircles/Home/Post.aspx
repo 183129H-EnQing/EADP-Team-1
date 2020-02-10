@@ -100,6 +100,67 @@
 	border-radius: 50%;
 	background: white;
 }
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+ 
     </style>
 
 
@@ -107,53 +168,44 @@
 <form id="form1" runat="server">
     <div class="container">
         <div class="row mt-3">
-            <div class="col-md-4 col-lg-3 d-none d-lg-block">
+            <div class="col-md-4 col-lg-3 d-none d-lg-block">               
                  <div class="card">
                     <div class="card-header">
-                        <h3 class="text-info">Circles</h3>
+                        <h3 class="text-info">Your Circles</h3>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>#Guitar</div>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">                            
                             <div>
-                                <asp:Button ID="Btncircle" runat="server" Text="Add"  usesubmitbehavior="false" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px" OnClick="Btncircle_Click" ></asp:button>
+                                <asp:DropDownList ID="DropDownList2" CssClass="custom-select "   Width="200" runat="server">
+                                </asp:DropDownList>
+                            </div>
+                        </li>                       
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>Add Circles..</div>
+                            <div>
+                                <asp:Button ID="Button3" runat="server" Text="Add" OnClick="Button3_Click"  class="btn btn-primary" style="border-radius:10px"></asp:button>
                             </div>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>#Starwars</div>
-                            <div>
-                                <asp:Button ID="Btnc" runat="server" Text="Add" class="btn btn-primary" data-toggle="popover" data-content="you have added this circle" style="border-radius:10px"></asp:button>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>#VisualStudio</div>
-                            <div>
-                                <asp:Button ID="Button3" runat="server" Text="Add" class="btn btn-primary" style="border-radius:10px"></asp:button>
-                            </div>
-                        </li>
-                    </ul>
-                <%-- <div class="col">   <div class="card" style="width: 18rem;">
-                            <div class="card-header">
-                                <h3 class="text-dark">Upcoming Events</h3>
-                                None.
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                            </ul>
-                        </div>
-                    </div>--%>
+                    </ul>             
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-7">
+            <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="row">
                     <div class="col">
                         <div class="border border-secondary px-3" style =" border-radius:16px 16px;" >
                             <div class="form-group mb-2 mt-3">
-                                <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox><asp:DropDownList ID="DropDownList1"  runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
-                            </div>
                             <div class="form-group justify-content-between d-flex">
                                 <div>
-                                    <asp:FileUpload ID="FileUpload1"  runat="server" />                         
+                                     <asp:TextBox ID="activity"  class="form-control" runat="server" placeholder="Post Your activity.." Width="400" ></asp:TextBox>
+                                </div>
+                                <div>
+                                <asp:DropDownList ID="DropDownList1"  CssClass="btn btn-info dropdown-toggle" runat="server"  ></asp:DropDownList>
+                                </div>                                                              
+                            </div>
+                               </div>
+                            <div class="form-group justify-content-between d-flex">
+                                <div>
+                                    <asp:FileUpload ID="FileUpload1" CssClass="btn btn-default" runat="server" />                         
                                 </div>
                                 <div>
                                     <asp:Button ID="btnPost" runat="server" Text="Post" CssClass="btn btn-primary" style="border-radius:12px" OnClick="btnPost_Click"></asp:button>
@@ -182,8 +234,8 @@
                                                         <i class='fa fa-ellipsis-v'></i>
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>">                                                
-                                                        <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete"  CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>  Text="Delete" />
-                                                        <a class="dropdown-item" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
+                                                        <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete"  CommandArgument='<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>'  Text="Delete" />
+                                                        <a class="dropdown-item" ID="Report" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
                                                     </div>
                                                 </div> 
                                                      
@@ -200,7 +252,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="d-flex justify-content-end">
-                                                    <p><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%>, <%#DataBinder.Eval(Container.DataItem, "User.City")%></p>
+                                                    <p><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:d/MM/yyyy}")%>, <%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%>, <%#DataBinder.Eval(Container.DataItem, "User.City")%></p>
                                                 </div>
                                             </div>
                                             <div class="card-footer">
@@ -214,7 +266,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <asp:Repeater ID="rptComment" runat="server" EnableViewState="false"  ItemType="MyCircles.DAL.UserComment">
+                                            <asp:Repeater ID="rptComment" runat="server" OnItemCommand="rptComment_ItemCommand" OnItemDataBound="rptComment_ItemDataBound"   EnableViewState="false"   ItemType="MyCircles.DAL.UserComment">
                                                 <ItemTemplate>
                                                     <div class="m-3">
                                                         <div class="media mb-3">
@@ -222,7 +274,7 @@
                                                             <div class="media-body">
                                                                 <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%></i></small></h4>
                                                                 <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>                                                            
-                                                                  <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName ="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
+                                                                  <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
                                                             </div>
                                                         </div>                                              
                                                     </div>
@@ -279,10 +331,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-12">
+            <div class="col-lg-3 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-info">Connectt</h3></div>
+                        <h3 class="text-info">Connect More</h3></div>
                     <ul class="list-group list-group-flush">
                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>Jamal</div>
