@@ -184,6 +184,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ItineraryPlanner\Calendar.aspx" />
     <Content Include="ItineraryPlanner\LocationDetail.aspx" />
+    <Content Include="ItineraryPlanner\TaxiAvail.aspx" />
     <Content Include="ItineraryPlanner\Weather1.aspx" />
     <Content Include="ItineraryPlanner\Weather2.aspx" />
     <Content Include="Profile\Search.aspx" />
@@ -526,6 +527,13 @@
     </Compile>
     <Compile Include="ItineraryPlanner\RequestFund.aspx.designer.cs">
       <DependentUpon>RequestFund.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItineraryPlanner\TaxiAvail.aspx.cs">
+      <DependentUpon>TaxiAvail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItineraryPlanner\TaxiAvail.aspx.designer.cs">
+      <DependentUpon>TaxiAvail.aspx</DependentUpon>
     </Compile>
     <Compile Include="ItineraryPlanner\Timeline.aspx.cs">
       <DependentUpon>Timeline.aspx</DependentUpon>

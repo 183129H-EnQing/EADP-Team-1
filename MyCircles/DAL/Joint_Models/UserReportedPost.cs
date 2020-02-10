@@ -11,13 +11,6 @@ namespace MyCircles.DAL.Joint_Models
         public string reason { get; set; }
         public System.DateTime dateCreated { get; set; }
 
-        public int landmarkType { get; set; }
-        public string locaPic { get; set; }
-        public string locaName { get; set; }
-
-
-
-
         public UserReportedPost(ReportedPost reportedPost, User reporterUser)
         {
             this.id = reportedPost.Id;

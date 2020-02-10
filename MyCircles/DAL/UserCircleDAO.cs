@@ -119,6 +119,15 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void RemoveUserCircleByCircleId(string circleId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.UserCircles.RemoveRange(db.UserCircles.Where(uc => uc.CircleId == circleId));
+                db.SaveChanges();
+            }
+        }
+
         public static List<CircleFollowerDetails> GetCircleFollowerDetails(string circleId)
         {
             using (var db = new MyCirclesEntityModel())
