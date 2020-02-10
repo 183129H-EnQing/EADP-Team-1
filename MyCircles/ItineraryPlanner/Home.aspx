@@ -66,6 +66,7 @@
                 <div class="row mb-3">
                     <a href="Weather1.aspx" class="btn btn-lg" style="background-color: orange; color :white;">View Weather</a>
                     <a href="ViewLocation.aspx" class="btn btn-lg">Explore Locations</a>
+                    <a href="TaxiAvail.aspx" class="btn btn-lg mt-2" style="background-color: orange; color :white;">Taxi Availability</a>
                 </div>
                 <br />
                 <br />

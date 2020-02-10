@@ -1,13 +1,15 @@
-﻿<%@ Page MasterPageFile="Header.master"AutoEventWireup="true" CodeBehind="TaxiAvail.aspx.cs" Inherits="MyCircles.ItineraryPlanner.TaxiAvail" Title="Taxi Availability" %>
+﻿<%@ Page MasterPageFile="~/SignedIn.master"AutoEventWireup="true" CodeBehind="TaxiAvail.aspx.cs" Inherits="MyCircles.ItineraryPlanner.TaxiAvail" Title="Taxi Availability" %>
 
-<asp:Content ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
+<asp:Content ContentPlaceHolderID="SignedInContentPlaceholder" runat="server">
     <form id="form1" runat="server">
         <div class="row mt-4">
-            <div class="col-md-2"></div>
-            <div class="col-md-8 d-flex justify-content-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 d-flex justify-content-center">
                 <h2>Taxis Available - &nbsp</h2><h2 id="avail">4324</h2>
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <p id="yourlocation"></p>
+            </div>
         </div>
         <div class="row mt-3">
             <div class="col-md-1"></div>
@@ -34,8 +36,15 @@
                         var json = JSON.parse(xhr.responseText);
                         //console.log(json);
 
-                        var userlat = 103.62299;
-                        var uselong = 1.29065;
+                        var userlong = 103.8489;
+                        var userlat = 1.3800;
+
+                        document.getElementById("yourlocation").innerHTML = "Your location: <br /> 180 Ang Mo Kio Avenue 8, Singapore 569830 <br />" + "Lng: " + userlong + " Lat: " + userlat;
+                        var lon = userlong + 0.02;
+                        var lonn = userlong - 0.02;
+
+                        var lat = userlat + 0.02;
+                        var latt = userlat - 0.02;
 
                         var geometry = json["features"]["0"]["geometry"]["coordinates"];
                         //console.log(geometry);
