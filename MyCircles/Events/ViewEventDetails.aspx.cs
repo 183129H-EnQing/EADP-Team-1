@@ -18,6 +18,7 @@ namespace MyCircles.Events
         public string avaliableSlotsText = "";
         public int TotalBookedSlot = 0;
         public string toEditPage = "";
+        
         public BLL.User currentUser, requestedUser;
         // public BLL.Event event1 = 
         // List<String> means the list inside must be string ,List<EventSchedule> means the list must be include EventSchedule fields in table 

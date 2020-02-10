@@ -8,9 +8,9 @@ namespace MyCircles.BLL {    // partial - means the extend the modal
     // EventDAM class name can be changed to the modal name,example event table
     public partial class Event
     {
-        public void AddNewEvent()
+        public Event AddNewEvent()
         {
-            EventDAO.AddNewEvent(this);
+            return EventDAO.AddNewEvent(this);
         }
 
         public static Event GetEvent(int eventId)

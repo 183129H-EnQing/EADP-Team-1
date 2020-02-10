@@ -146,9 +146,10 @@ namespace MyCircles.Home
 
         }
    
-            protected void rptUserPosts_ItemCommand(object source, RepeaterCommandEventArgs e)
-            {
-                if (e.CommandName == "Comment")
+        protected void rptUserPosts_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            Repeater repeater = (e.Item.FindControl("rptComment") as Repeater);
+            if (e.CommandName == "Comment")
                 {
                     TextBox comment = (e.Item.FindControl("hello") as TextBox);
                     var comt = comment.Text;
@@ -158,7 +159,10 @@ namespace MyCircles.Home
                     newComment.comment_date = DateTime.Now;
                     newComment.comment_text = comment.Text;
                     CommentDAO.AddComment(newComment);
-                }
+
+                    repeater.DataSource = CommentDAO.GetCommentByPost(Convert.ToInt32(e.CommandArgument));
+                    repeater.DataBind();
+            }
                 if (e.CommandName == "Report")
                 {
 
@@ -189,17 +193,15 @@ namespace MyCircles.Home
 
                         ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
                         PostDAO.DeletePost(deleteId);
-
+                        refreshGv();
                     }
 
 
                 }
 
-
-
-
-
             }
+
+
         
 
 
@@ -225,6 +227,33 @@ namespace MyCircles.Home
         protected void Button3_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Profile/User.aspx");
+        }
+
+        protected void rptComment_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
+          if(e.CommandName == "Remove")
+            {
+                var commentId = Convert.ToInt32(e.CommandArgument);
+                var userpostindex = e.Item.ItemIndex;
+                BLL.Comment selecteduserpost = CommentDAO.GetCommentById(commentId);
+                if (currentUser.Id == selecteduserpost.UserId)
+                {                   
+                    CommentDAO.DeleteComment(commentId);
+                    refreshGv();
+                }
+
+            }
+
+        }
+
+        protected void rptComment_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Button delte = (e.Item.FindControl("remove") as Button);
+            var data = e.Item.DataItem;
+
+            DAL.UserComment usercomment = data as DAL.UserComment;
+            delte.Visible = usercomment.User.Id == currentUser.Id;
         }
     }
 }

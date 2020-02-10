@@ -266,7 +266,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <asp:Repeater ID="rptComment" runat="server" EnableViewState="false"  ItemType="MyCircles.DAL.UserComment">
+                                            <asp:Repeater ID="rptComment" runat="server" OnItemCommand="rptComment_ItemCommand" OnItemDataBound="rptComment_ItemDataBound"   EnableViewState="false"   ItemType="MyCircles.DAL.UserComment">
                                                 <ItemTemplate>
                                                     <div class="m-3">
                                                         <div class="media mb-3">
@@ -274,7 +274,7 @@
                                                             <div class="media-body">
                                                                 <h4><%#DataBinder.Eval(Container.DataItem, "User.Username")%><small> <i>Posted on<%#DataBinder.Eval(Container.DataItem, "Comment.comment_date","{0:t}")%></i></small></h4>
                                                                 <p class="mb-0"><%#DataBinder.Eval(Container.DataItem, "Comment.comment_text")%></p>                                                            
-                                                                  <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName ="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
+                                                                  <asp:Button ID ="remove"  runat ="server" class="btn btn-warning  p-1 pl-2 pr-2"  style="font-size: 12px;" CommandName="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Comment.Id")%> Text="remove" />                                                             
                                                             </div>
                                                         </div>                                              
                                                     </div>
