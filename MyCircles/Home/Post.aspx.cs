@@ -224,7 +224,7 @@ namespace MyCircles.Home
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            Response.Redirect("User.aspx");
+            Response.Redirect("/Profile/User.aspx");
         }
     }
 }

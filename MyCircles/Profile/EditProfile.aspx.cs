@@ -19,10 +19,7 @@ namespace MyCircles.Profile
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
 
-            nameTB.Text = currentUser.Username;
-
-            bioTB.Text = currentUser.Bio;
-
+           
 
 
         }
@@ -30,11 +27,16 @@ namespace MyCircles.Profile
         protected void submitButt_Click(object sender, EventArgs e)
         {
             var newProfile = new BLL.User();
+            newProfile.Id = currentUser.Id;
             newProfile.Username = nameTB.Text;
             newProfile.Bio = bioTB.Text;
             newProfile.ProfileImage = GeneralHelpers.UploadFile(imageUpload);
 
             UserDAO.EditUser(newProfile);
+
+            Response.Redirect("/Home/Post.aspx");
+
+
 
        
            

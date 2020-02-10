@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div style="height:200px">
-                <input id="btEditProfile" name="btEditProfile" class="btn btn-outline-primary float-right m-5 px-4" value="Edit Profile" type="button" runat="server" />
+                <input id="btEditProfile" name="btEditProfile" onclick="location.href ='/Profile/EditProfile.aspx'" class="btn btn-outline-primary float-right m-5 px-4"  value="Edit Profile" type="button" runat="server" />
                 <asp:UpdatePanel ID="FollowUpdatePanel" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:Button ID="btFollow" runat="server" Text="Follow" CssClass="btn btn-outline-primary float-right m-5 px-4" OnClick="btFollow_Click" UseSubmitBehavior="false" />
@@ -134,9 +134,7 @@
                                             </div>
                                             <div class="col-md-9 desc-container">
                                                 <span class='m-0 h3'><%#DataBinder.Eval(Container.DataItem, "User.Name")%></span><br />
-                                                <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span></a>
-                                                <span class='d-block font-italic py-1 display-<%# DataBinder.Eval(Container.DataItem, "User.Bio") != null %>'><%# DataBinder.Eval(Container.DataItem, "User.Bio") %></span><br />
-                                                <i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;
+                                                <span class='m-0 text-muted'>@<%#DataBinder.Eval(Container.DataItem, "User.Username")%></span></a><span class='d-block font-italic py-1 display-<%# DataBinder.Eval(Container.DataItem, "User.Bio") != null %>'><%# DataBinder.Eval(Container.DataItem, "User.Bio") %></span><br /><i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;
                                                 <span><%#DataBinder.Eval(Container.DataItem, "User.City")%></span>
                                             </div>
                                         </div>
@@ -202,7 +200,7 @@
                                                     <ItemTemplate>
                                                         <div class="mb-2 d-inline-flex">
                                                             <div class="border border-primary p-2 rounded d-inline mr-1">
-                                                                <span class="text-primary"><%#DataBinder.Eval(Container.DataItem, "CircleId")%>&nbsp;&nbsp;|&nbsp;&nbsp;<%#DataBinder.Eval(Container.DataItem, "Points")%> points</span>&nbsp;
+                                                                <span class="text-primary"><%#DataBinder.Eval(Container.DataItem, "CircleId")%>&nbsp;&nbsp;|&nbsp;&nbsp;<%#DataBinder.Eval(Container.DataItem, "Points")%>points</span>&nbsp;
                                                                 <asp:Button ID="btRemove" runat="server" CssClass="text-danger bg-transparent border-0" Text="&times;" CausesValidation="False" CommandName="Remove" CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Id")%> />
                                                             </div>
                                                         </div>

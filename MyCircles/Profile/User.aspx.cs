@@ -417,6 +417,12 @@ namespace MyCircles.Profile
             }
         }
 
+        protected void nonfollowers()
+        {
+        //List<BLL.User> allUsers = GetNewUser();
+
+        }
+
         protected void updateFollowButton()
         {
             Follow existingFollow = FollowDAO.SearchFollow(currentUser.Id, requestedUser.Id);
