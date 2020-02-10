@@ -285,11 +285,6 @@ namespace MyCircles.BLL
                 .Property(e => e.CircleId)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Post>()
-                .HasMany(e => e.ReportedPosts)
-                .WithRequired(e => e.Post)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Pref>()
                 .Property(e => e.prefName)
                 .IsUnicode(false);

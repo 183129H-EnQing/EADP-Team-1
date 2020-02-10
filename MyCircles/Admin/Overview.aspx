@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeBehind="Overview.aspx.cs" Inherits="MyCircles.Admin.Overview" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+<div class="m-4">
     <h2 class="text-center">
         Overview
     </h2>
@@ -11,7 +12,7 @@
                 <div class="col mb-3">
                     <div class="card border-black h-100">
                         <div class="card-body font-weight-bold">
-                            Reported Posts
+                            Posts Reported
                         </div>
                         <div class="card-footer number-thingy">
                             <%=numOfReportedPosts %>
@@ -58,4 +59,5 @@
             </div>
         </div>
     </div>
+</div>
 </asp:Content>

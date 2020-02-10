@@ -21,7 +21,12 @@ namespace MyCircles.DAL.Joint_Models
         public UserReportedPost(ReportedPost reportedPost, User reporterUser)
         {
             this.id = reportedPost.Id;
-            this.postId = reportedPost.postId;
+
+            if (reportedPost.postId.HasValue)
+                this.postId = reportedPost.postId.Value;
+            else
+                this.postId = -1;
+
             this.reporterUserId = reportedPost.reporterUserId;
             this.reporterUsername = reporterUser.Username;
             this.reason = reportedPost.reason;

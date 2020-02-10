@@ -81,7 +81,13 @@ namespace MyCircles.DAL
         {
             using (var db = new MyCirclesEntityModel())
             {
-                db.ReportedPosts.RemoveRange(db.ReportedPosts.Where(p => p.postId == postId));
+                List<ReportedPost> posts = db.ReportedPosts.Where(p => p.postId == postId).ToList();
+
+                foreach (ReportedPost post in posts)
+                {
+                    post.postId = null;
+                }
+
                 db.SaveChanges();
             }
         }

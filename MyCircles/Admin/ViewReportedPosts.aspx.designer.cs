@@ -22,13 +22,13 @@ namespace MyCircles.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ViewReportedPostsScriptManager control.
+        /// ReportedPostsScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ViewReportedPostsScriptManager;
+        protected global::System.Web.UI.ScriptManager ReportedPostsScriptManager;
         
         /// <summary>
         /// ViewReportedPostsUpdatePanel control.
