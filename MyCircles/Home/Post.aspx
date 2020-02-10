@@ -173,8 +173,8 @@
                                                         <i class='fa fa-ellipsis-v'></i>
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>">                                                
-                                                        <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete"  CommandArgument=<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>  Text="Delete" />
-                                                        <a class="dropdown-item" ID="mreport" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
+                                                        <asp:Button ID="Delete" runat="server" CssClass="dropdown-item" CommandName="Delete"  CommandArgument='<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>'  Text="Delete" />
+                                                        <a class="dropdown-item" ID="Report" href="#"  onclick="openViewPostModal(<%#DataBinder.Eval(Container.DataItem, "Post.Id")%>)">Report</a>
                                                     </div>
                                                 </div> 
                                                      
