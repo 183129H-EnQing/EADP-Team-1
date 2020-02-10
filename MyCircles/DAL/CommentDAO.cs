@@ -40,5 +40,15 @@ namespace MyCircles.DAL
                 return commentList;
             }
         }
+
+        public static void DeleteComment(int Id)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Comments.RemoveRange(db.Comments.Where(p => p.Id == Id));
+                db.SaveChanges();
+            }
+        }
+
     }
 }
