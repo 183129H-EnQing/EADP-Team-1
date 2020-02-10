@@ -27,6 +27,8 @@ namespace MyCircles.DAL.Joint_Models
         public string locaWeb { get; set; }
         public string locaOpenHour { get; set; }
         public string locaCloseHour { get; set; }
+        public double? locaLatitude { get; set; }
+        public double? locaLongitude { get; set; }
 
         public DayLocation(Day d, Location l)
         {
@@ -47,6 +49,8 @@ namespace MyCircles.DAL.Joint_Models
             locaWeb = l.locaWeb;
             locaOpenHour = l.locaOpenHour;
             locaCloseHour = l.locaCloseHour;
+            locaLatitude = l.locaLatitude;
+            locaLongitude = l.locaLongitude;
         }
     }
 }
