@@ -20,7 +20,7 @@ namespace MyCircles.Home
             currentUser = (BLL.User)Session["currentUser"];
 
             var notfollow = UserDAO.GetNewUser(currentUser.Id);
-
+            
             GridViewFollow.DataSource = notfollow;
             GridViewFollow.DataBind();
 
@@ -41,9 +41,12 @@ namespace MyCircles.Home
             }
         }
 
-        protected void rptNearbyPost_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void GridViewFollow_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+           //if(e.CommandName = "Follow")
+           // {
 
+           // }
         }
     }
 }

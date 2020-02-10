@@ -6,12 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyCircles.DAL.Joint_Models;
 using MyCircles.BLL;
+using Newtonsoft.Json;
 
 namespace MyCircles.Admin
 {
     public partial class ViewReportedPosts : System.Web.UI.Page
     {
         private string keySessionRowIdx = "ViewReportedPostsRowIdx";
+        public string jsonStringDict = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +23,15 @@ namespace MyCircles.Admin
             }
 
             refreshGridView();
+
+
+            IDictionary<string, int> dateToReportsDict = new Dictionary<string, int>();
+            foreach (ReportedPostCount count in ReportedPost.GetReportedPostCountByDate())
+            {
+                dateToReportsDict.Add(count.dateCreated.ToString("dd/MMM/yyyy"), count.reportsCount);
+            }
+            jsonStringDict = JsonConvert.SerializeObject(dateToReportsDict);
+            System.Diagnostics.Debug.WriteLine(jsonStringDict);
         }
 
         protected void ModalDeleteBtn_Click(object sender, EventArgs e)
@@ -35,6 +46,7 @@ namespace MyCircles.Admin
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "closeViewPostModal();", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Javascript", "javascript:drawChart();", true);
         }
 
         protected void gvReportedPosts_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -52,16 +64,21 @@ namespace MyCircles.Admin
                     Session[keySessionRowIdx] = idx;
 
                     lblModalPostCreatorName.Text = postCreator.Username;
+                    lblModalCircleId.Text = post.CircleId;
 
                     imgModalPost.ImageUrl = post.Image;
                     imgModalPost.Visible = post.Image != null;
 
                     lblModalContent.Text = post.Content;
+
+                    lblModalTimeLocation.Text = post.DateTime.Value.ToString("h:mm tt") + ", " + postCreator.City;
+
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openViewPostModal();", true);
                     break;
                 case "DeletePost":
                     System.Diagnostics.Debug.WriteLine("gvReportedPosts_RowCommand, DeletePost:" + e.CommandArgument);
                     deleteOp(idx);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Javascript", "javascript:drawChart();", true);
                     break;
             }
         }

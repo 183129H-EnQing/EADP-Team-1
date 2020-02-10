@@ -8,13 +8,13 @@
         <div class="card card-body">
             <form id="form1" runat="server">
                 <div class="form-group">
-                    <label id="NameLB">Name</label>
+                    <label id="NameLB">UserName</label>
                     <asp:TextBox type="text" class="form-control" ID="nameTB" runat="server"></asp:TextBox>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
-                        <label>Main Event Image</label>
+                        <label>Profile Pic</label>
                     </div>
                 </div>
                 <div class="row">

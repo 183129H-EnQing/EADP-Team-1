@@ -37,5 +37,14 @@ namespace MyCircles.DAL
                 return existingCircleList;
             }
         }
+
+        public static void RemoveUserCircleByCircleId(string circleId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Circles.RemoveRange(db.Circles.Where(circle => circle.Id == circleId));
+                db.SaveChanges();
+            }
+        }
     }
 }

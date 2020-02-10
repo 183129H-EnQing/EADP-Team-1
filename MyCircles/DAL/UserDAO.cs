@@ -48,11 +48,18 @@ namespace MyCircles.DAL
             }
         }
 
-        public static void EditUser(User newUser)
+        public static void EditUser(User editedUser)
         {
             using (var db = new MyCirclesEntityModel())
             {
-                db.Users.Add(newUser);
+                User currentUser = db.Users.Where(u => u.Id == editedUser.Id).FirstOrDefault();
+
+                currentUser.Id = editedUser.Id;
+                currentUser.Username = editedUser.Username;
+                currentUser.Bio = editedUser.Bio;
+                currentUser.ProfileImage = editedUser.ProfileImage;
+
+               
                 db.SaveChanges();
             }
 

@@ -14,6 +14,19 @@
         #hoverdiv:focus {
             display: block;
         }*/
+
+        #foo {
+            position: fixed;
+            bottom: 25px;
+            right: 70px;
+            border-radius: 15%;
+        }
+        #ratingbar {
+            position: fixed;
+            bottom: 65px;
+            right: 200px;
+            /*display: none;*/
+        }
     </style>
     <script>
         $(document).ready(function () {
@@ -72,6 +85,35 @@
         });
     </script>--%>
     <form id="form1" runat="server">
+        <div id="foo" class="btn btn-success" onclick="showRatingBar()">Rate Us</div>
+        
+        <script>
+            function showRatingBar() {
+                document.getElementById("ratingbar").style.display = "block";
+            }
+        </script>
+        
+        <div id="ratingbar" data-role="ratingbar" data-steps="3" style="font-size: 10px">
+          <ul>
+            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+          </ul>
+        </div>
+        <script>
+            $('[data-role="ratingbar"]')
+                .ratingbar()
+                .click(function () {
+
+                    // Grab value
+                    alert($(this).attr('data-value'));
+
+                    return false;
+                });
+        </script>
+
         <div class="row mt-5 sticky-top bg-warning mb-5">
             <div class="col-md-1"></div>
             <div class="col-md-1 sticky-top">
@@ -316,7 +358,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <asp:TextBox ID="tbNotes" TextMode="MultiLine" runat="server" Style="width: 100%" placeholder="Add Notes"></asp:TextBox>
-                                                        <asp:Label ID="lbDay" runat="server"><%#DataBinder.Eval(Container.DataItem, "dayId") %></asp:Label>
+                                                        <%--<asp:Label ID="lbDay" runat="server"><%#DataBinder.Eval(Container.DataItem, "dayId") %></asp:Label>--%>
              
                                                     </div>
                                                 </div>
