@@ -534,7 +534,6 @@
     </Compile>
     <Compile Include="ItineraryPlanner\Map.aspx.cs">
       <DependentUpon>Map.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ItineraryPlanner\Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>

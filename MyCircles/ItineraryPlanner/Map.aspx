@@ -17,17 +17,14 @@
         <div class="row mt-3">
             <div class="col-md-1"></div>
             <div class="col-md-1">
-                <asp:Repeater ID="rpDates" runat="server" ItemType="MyCircles.BLL.DayByDay">
+                <asp:Repeater ID="rpDates" runat="server" ItemType="MyCircles.ItineraryPlanner.Idk">
                     <ItemTemplate>
-                        <h5><a href="#<%#DataBinder.Eval(Container.DataItem, "dayByDayId") %>" style="text-decoration: none;" onclick="changetext()"><%#DataBinder.Eval(Container.DataItem, "date") %></a></h5>
+                        <h5><button type="button" class="btn btn-primary" style="text-decoration: none;" onclick='changetext(<%#DataBinder.Eval(Container.DataItem, "locations") %>)'><%#DataBinder.Eval(Container.DataItem, "date") %></button></h5>
+                        
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
-            <script>
-                function changetext(){
-                    window.location.reload(false);
-                    }
-            </script>
+
             <div class="col-md-8">
                 <div id="map" style="width: 100%; height: 400px;"></div>
                 <%--<script>
@@ -43,21 +40,60 @@
             <div class="col-md-1"></div>
             <div class="col-md-1"></div>
         </div>
-        <%--<script>
+       <%-- <script>
+            <asp:Repeater Id="rptLocationScript" runat="server" ItemType="MyCircles.DAL.DayLocation">
+                let userLocation<%#DataBinder.Eval(Container.DataItem, "Id")%> = {lat: <%#DataBinder.Eval(Container.DataItem, "locaLatitude")%>, lng: <%#DataBinder.Eval(Container.DataItem, "locaLongitude")%>, date: <%#DataBinder.Eval(Container.DataItem, "date")%> };
+                console.log(userLocation<%#DataBinder.Eval(Container.DataItem, "Id")%>)
+            </asp:Repeater>
 
-            let userLatitude = 1.4043, userLongitude = 103.793;
-            let userLocation = { lat: userLatitude, lng: userLongitude };
+<%--            <% foreach (List<DayLocation> location in daysList) { %>
+                let userLocation<%=location.Id%> = { lat: <%=location.locaLatitude%>, lng: <%=location.locaLongitude%>, date: <%=location.date%> };
+                console.log(userLocation<%=location.Id%>)
+            <% } %>
+        </script>--%>
+     <script>
+         var locations = {
+             "singapore-zoo": { lat: 1.4043, lng: 103.793 },
+             "buddha-tooth-relic-temple": { lat: 1.281509, lng: 103.844189 }
+         };
 
-            let locationLatitude = 1.281509, locationLongitude = 103.844149;
-            let locationLocation = { lat: locationLatitude, lng: locationLongitude };
+         function changetext(someJsonThingIdk) {
+             console.log("someJsonThingIdk");
+             console.log(someJsonThingIdk);
+             console.log("converted to Json");
+             console.log(parseFloat(someJsonThingIdk[0]["locaLatitude"]));
+             console.log(parseFloat(someJsonThingIdk[0]["locaLongitude"]));
+             //window.location.reload(false);
 
-            function initMap() {
+             let userLatitude = 1.4043, userLongitude = 103.793;
+             userLatitude = parseFloat(someJsonThingIdk[0]["locaLatitude"]), userLongitude = parseFloat(someJsonThingIdk[0]["locaLongitude"]);
+             let userLocation = { lat: userLatitude, lng: userLongitude };
+
+             let locationLatitude = 1.281509, locationLongitude = 103.844149;
+             locationLatitude = parseFloat(someJsonThingIdk[1]["locaLatitude"]), locationLongitude = parseFloat(someJsonThingIdk[1]["locaLongitude"]);
+             let locationLocation = { lat: locationLatitude, lng: locationLongitude };
+
+             initMap(userLocation, locationLocation);
+             console.log(userLatitude);
+         }
+
+
+         //   let userLatitude = 1.4043, userLongitude = 103.793;
+         //let userLocation = { lat: userLatitude, lng: userLongitude };
+
+         //   let locationLatitude = 1.281509, locationLongitude = 103.844149;
+         //   let locationLocation = { lat: locationLatitude, lng: locationLongitude };
+
+            function initMap(userLoc, locationLoc) {
                 let map = new google.maps.Map(document.getElementById('map'), { zoom: 18 });
+
+                var userLocation = userLoc;
+                var locationLocation = locationLoc;
 
                 let marker = new google.maps.Marker(
                     {
                         map: map,
-                        //draggable: true,
+                        //draggable:    true,
                         animation: google.maps.Animation.DROP,
                         position: userLocation,
                     }
@@ -125,6 +161,6 @@
                 return bounds;
             }
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlz2KBmeCFI5fsKZd0S0asMYbPIHOLpy0&callback=initMap" defer></script>--%>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlz2KBmeCFI5fsKZd0S0asMYbPIHOLpy0" async defer></script>--%>
     </form>
 </asp:Content>

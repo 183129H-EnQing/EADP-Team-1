@@ -1,4 +1,4 @@
-﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Timeline.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Timeline" Title="Timeline"%>
+﻿<%@ Page MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Timeline.aspx.cs" Inherits="MyCircles.ItineraryPlanner.Timeline" Title="Timeline" %>
 
 <asp:Content ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <%--    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -21,12 +21,27 @@
             right: 70px;
             border-radius: 15%;
         }
-        #ratingbar {
-            position: fixed;
-            bottom: 65px;
-            right: 200px;
-            /*display: none;*/
+
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            /*position: fixed;
+            bottom: 70px;
+            right: 40px;*/
         }
+
+            .rating > span {
+                display: inline-block;
+                position: relative;
+                width: 1.1em;
+                font-size: 30px;
+            }
+
+                .rating > span:hover:before,
+                .rating > span:hover ~ span:before {
+                    content: "\2605";
+                    position: absolute;
+                }
     </style>
     <script>
         $(document).ready(function () {
@@ -85,22 +100,16 @@
         });
     </script>--%>
     <form id="form1" runat="server">
-        <div id="foo" class="btn btn-success" onclick="showRatingBar()">Rate Us</div>
-        
+       <%-- <div id="foo" class="btn btn-success" onclick="showRatingBar()">Rate Us</div>
+
         <script>
             function showRatingBar() {
                 document.getElementById("ratingbar").style.display = "block";
             }
         </script>
-        
-        <div id="ratingbar" data-role="ratingbar" data-steps="3" style="font-size: 10px">
-          <ul>
-            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-          </ul>
+
+        <div class="rating">
+            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
         </div>
         <script>
             $('[data-role="ratingbar"]')
@@ -112,7 +121,7 @@
 
                     return false;
                 });
-        </script>
+        </script>--%>
 
         <div class="row mt-5 sticky-top bg-warning mb-5">
             <div class="col-md-1"></div>
@@ -137,7 +146,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="RequestFund.aspx">Request Fund</a>
-                        <a class="dropdown-item" href="#" onclick="openDeleteModal()" >Delete Planner</a>
+                        <a class="dropdown-item" href="#" onclick="openDeleteModal()">Delete Planner</a>
                     </div>
                 </div>
             </div>
@@ -162,7 +171,7 @@
                         <p>Are you sure you want to delete this plan?</p>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" onclick="btnDelete_Click" CssClass="btn btn-primary"/>
+                        <asp:Button ID="btnDelete" runat="server" Text="Delete Planner" OnClick="btnDelete_Click" CssClass="btn btn-primary" />
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -281,7 +290,7 @@
                                                     <i class='fa fa-ellipsis-v'></i>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#"  onclick="openViewPostModal()">Add Notes</a>
+                                                    <a class="dropdown-item" href="#" onclick="openViewPostModal()">Add Notes</a>
                                                 </div>
                                             </div>
                                             <script>
@@ -303,7 +312,9 @@
                                 </div>
                                 <div id="notesdiv<%#DataBinder.Eval(Container.DataItem, "dayId") %>" class="row pl-3 border border-primary border-top-0 mb-5" style="display: none;">
                                     <div class="col-md-1 mr-5"></div>
-                                    <div class="col-md-1"><h6>Notes:</h6></div>
+                                    <div class="col-md-1">
+                                        <h6>Notes:</h6>
+                                    </div>
                                     <div class="col-md-7">
                                         <p id="notesData<%#DataBinder.Eval(Container.DataItem, "dayId") %>"><%#DataBinder.Eval(Container.DataItem, "notes") %></p>
                                     </div>
@@ -359,12 +370,11 @@
                                                     <div class="col-md-12">
                                                         <asp:TextBox ID="tbNotes" TextMode="MultiLine" runat="server" Style="width: 100%" placeholder="Add Notes"></asp:TextBox>
                                                         <%--<asp:Label ID="lbDay" runat="server"><%#DataBinder.Eval(Container.DataItem, "dayId") %></asp:Label>--%>
-             
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <asp:Button ID="btnSaveChanges" runat="server" CssClass="btn btn-primary" Text="Save changes" OnClick="btnSaveChanges_Click"/>
+                                                <asp:Button ID="btnSaveChanges" runat="server" CssClass="btn btn-primary" Text="Save changes" OnClick="btnSaveChanges_Click" />
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeViewPostModal()">Close</button>
                                             </div>
                                         </div>
