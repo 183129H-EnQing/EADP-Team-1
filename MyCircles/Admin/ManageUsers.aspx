@@ -7,7 +7,7 @@
     <form runat="server">
         <asp:ScriptManager ID="ManageUsersScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
 
-        <asp:UpdatePanel ID="ManageUsersUpdatePanel" runat="server">
+        <asp:UpdatePanel ID="ManageUsersUpdatePanel" runat="server" ChildrenAsTriggers="true">
             <ContentTemplate>
                 <div class="row">
                     <div class="col d-flex justify-content-end">
@@ -26,7 +26,7 @@
 
                 <div class="row mt-3">
                     <div class="col table-responsive">
-                        <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvUsers_RowCommand" OnRowDataBound="gvUsers_RowDataBound" AllowPaging="True" OnPageIndexChanging="gvUsers_PageIndexChanging">
+                        <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvUsers_RowCommand" OnRowDataBound="gvUsers_RowDataBound" AllowPaging="True" OnPageIndexChanging="gvUsers_PageIndexChanging" OnRowCreated="gvUsers_RowCreated">
                             <Columns>
                                 <asp:BoundField DataField="Username" HeaderText="Username" />
                                 <asp:BoundField DataField="Name" HeaderText="Display Name" />
@@ -39,7 +39,7 @@
                                 
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:Button runat="server" CommandName="ChgUserStatus" ID="btnChgUserStatus" Text="Disable User" CssClass="btn btn-danger" UseSubmitBehavior="false"/>
+                                        <asp:Button runat="server" ID="btnChgUserStatus" Text="" CssClass="btn btn-danger" UseSubmitBehavior="false" CommandName="btnChgUserStatus" CommandArgument="<%#Container.DataItemIndex %>" OnClick="btnChgUserStatus_Click"/>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

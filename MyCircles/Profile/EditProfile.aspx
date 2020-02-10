@@ -28,7 +28,7 @@
                     <asp:TextBox type="text" class="form-control" ID="bioTB" runat="server"></asp:TextBox>
                 </div>
 
-                <asp:Button ID="submitButt" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" />
+                <asp:Button ID="submitButt" OnClick="submitButt_Click" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Submit" />
             </form>
         </div>
                     </div>

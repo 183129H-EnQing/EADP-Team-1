@@ -1,4 +1,5 @@
 ﻿using MyCircles.DAL;
+using MyCircles.DAL.Joint_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,12 @@ namespace MyCircles.BLL
             return ReportedPostDAO.GetAllReportedPosts();
         }
 
-        public static List<DAL.Joint_Models.UserReportedPost> GetAllUserReportedPosts()
+        public static List<UserReportedPost> GetAllUserReportedPosts()
         {
             return ReportedPostDAO.GetAllUserReportedPosts();
         }
 
-        public static List<DAL.Joint_Models.UserReportedPost> GetAllUserReportedPostsSortByPostId()
+        public static List<UserReportedPost> GetAllUserReportedPostsSortByPostId()
         {
             return ReportedPostDAO.GetAllUserReportedPostsSortByPostId();
         }
@@ -31,6 +32,11 @@ namespace MyCircles.BLL
         public static void DeleteReportedPostByPostId(int postId)
         {
             ReportedPostDAO.DeleteReportedPostByPostId(postId);
+        }
+
+        public static List<ReportedPostCount> GetReportedPostCountByDate()
+        {
+            return ReportedPostDAO.GetReportedPostCountByDate();
         }
     }
 }

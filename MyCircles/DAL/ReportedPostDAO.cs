@@ -91,5 +91,25 @@ namespace MyCircles.DAL
                 db.SaveChanges();
             }
         }
+
+        public static List<ReportedPostCount> GetReportedPostCountByDate()
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                List<ReportedPostCount> counts = db.ReportedPosts
+                    .ToList()
+                    .GroupBy(
+                        post => post.dateCreated
+                    )
+                    .Select(reportStat => new ReportedPostCount(reportStat.Key, reportStat.Count()))
+                    .ToList();
+
+                //var query = from post in db.ReportedPosts
+                //            group post by post.dateCreated into reportStat
+                //            select new ReportedPostCount(reportStat.Key, reportStat.Count());
+
+                return counts;
+            }
+        }
     }
 }

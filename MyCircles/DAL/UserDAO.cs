@@ -48,6 +48,16 @@ namespace MyCircles.DAL
             }
         }
 
+        public static void EditUser(User newUser)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Users.Add(newUser);
+                db.SaveChanges();
+            }
+
+        }
+
         public static User GetUserByIdentifier(string identifier)
         {
             User user = new User();
