@@ -40,9 +40,13 @@ namespace MyCircles.Home
                 DropDownList2.DataValueField = "CircleId";
                 DropDownList2.DataBind();
 
+
                 
             }
-           
+            var notfollow = UserDAO.GetNewUser(currentUser.Id);
+            Repeater1.DataSource = notfollow;
+            Repeater1.DataBind();
+
             this.Title = "Home";
             //CircleDAO.AddCircle("gym");
             refreshGv();
@@ -159,6 +163,7 @@ namespace MyCircles.Home
                     newComment.comment_date = DateTime.Now;
                     newComment.comment_text = comment.Text;
                     CommentDAO.AddComment(newComment);
+                    comment.Text = String.Empty;
 
                     repeater.DataSource = CommentDAO.GetCommentByPost(Convert.ToInt32(e.CommandArgument));
                     repeater.DataBind();

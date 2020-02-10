@@ -41,12 +41,38 @@ namespace MyCircles.Home
             }
         }
 
+        protected void GridViewFollow_DataBound(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        protected void GridViewFollow_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var data = e.Row.DataItem;
+                BLL.User userpost = data as BLL.User;
+               
+              
+
+                var circlesname = UserCircleDAO.GetAllUserCircles(userpost.Id);
+
+                DropDownList DropDownList1 = (e.Row.FindControl("DropDownList1") as DropDownList);
+                DropDownList1.DataSource = circlesname;
+                DropDownList1.DataTextField = "CircleId";
+                DropDownList1.DataValueField = "CircleId";
+                DropDownList1.DataBind();
+
+            }
+
+        }
+
         protected void GridViewFollow_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-           //if(e.CommandName = "Follow")
-           // {
+           
 
-           // }
+
         }
     }
 }
