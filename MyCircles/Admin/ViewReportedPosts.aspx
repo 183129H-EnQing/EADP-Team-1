@@ -1,24 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeBehind="ViewReportedPosts.aspx.cs" Inherits="MyCircles.Admin.ViewReportedPosts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+<div class="my-4">
     <h2 class="text-center">
-        View Reported Posts
+        Reported Posts
     </h2>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ViewReportedPostsScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+        <asp:ScriptManager ID="ReportedPostsScriptManager" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
 
         <asp:UpdatePanel ID="ViewReportedPostsUpdatePanel" runat="server">
             <ContentTemplate>
-                <div class="row">
-                    <div class="col table-responsive">
-                        <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvReportedPosts_RowCommand" OnDataBound="gvReportedPosts_DataBound">
-                            <Columns>
-                                <asp:BoundField DataField="reporterUsername" HeaderText="Reporter's Username" />
-                                <asp:BoundField DataField="reason" HeaderText="Reason" />
-                                <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd\/MMM\/yyyy}" />
-                                <asp:ButtonField CommandName="ViewPost" Text="View Post" ButtonType="Button" ControlStyle-CssClass="btn btn-primary" />
-                                <asp:ButtonField CommandName="DeletePost" Text="Delete Report & Post" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
-                            </Columns>
-                        </asp:GridView>
+                <ul class="nav nav-pills mb-3 border-bottom px-4" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="pill" href="#pillStats" role="tab" aria-controls="pill-stats" aria-selected="true">Stats</a>
+                    </li>
+                    <li class="nav-item">
+                        <%--<a>Reported Posts</a>--%>
+                        <a class="nav-link" data-toggle="pill" href="#pill-reportedposts" role="tab" aria-controls="pill-reportedposts" aria-selected="false">Reported Posts</a>
+                    </li>
+                </ul>
+                <div class="tab-content mx-6">
+                    <div class="tab-pane fade show active" id="pillStats" role="tabpanel" aria-labelledby="pill-stats-pane">
+                        Stats
+                    </div>
+                    <div class="tab-pane fade" id="pill-reportedposts" role="tabpanel" aria-labelledby="pill-reportedposts-pane">
+                        
+                        <div class="row">
+                            <div class="col table-responsive">
+                                <asp:GridView ID="gvReportedPosts" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True" CssClass="table admin-table" OnRowCommand="gvReportedPosts_RowCommand" OnDataBound="gvReportedPosts_DataBound">
+                                    <Columns>
+                                        <asp:BoundField DataField="reporterUsername" HeaderText="Reporter's Username" />
+                                        <asp:BoundField DataField="reason" HeaderText="Reason" />
+                                        <asp:BoundField DataField="dateCreated" HeaderText="Date Reported" DataFormatString="{0:dd\/MMM\/yyyy}" />
+                                        <asp:ButtonField CommandName="ViewPost" Text="View Post" ButtonType="Button" ControlStyle-CssClass="btn btn-primary" />
+                                        <asp:ButtonField CommandName="DeletePost" Text="Delete Report & Post" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -58,6 +77,7 @@
             </Triggers>
         </asp:UpdatePanel>
     </form>
+</div>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="JSPlaceHolder" runat="server">

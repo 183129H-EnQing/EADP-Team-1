@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeBehind="ManageUsers.aspx.cs" Inherits="MyCircles.Admin.ManageUsers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+<div class="m-4">
     <h2 class="text-center">Manage Users</h2>
 
     <form runat="server">
@@ -52,4 +53,5 @@
             </Triggers>
         </asp:UpdatePanel>
     </form>
+</div>
 </asp:Content>
