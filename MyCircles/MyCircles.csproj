@@ -450,13 +450,6 @@
     <Compile Include="Events\CreateEventPage.aspx.designer.cs">
       <DependentUpon>CreateEventPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Events\EditRegisterationPage.aspx.cs">
-      <DependentUpon>EditRegisterationPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Events\EditRegisterationPage.aspx.designer.cs">
-      <DependentUpon>EditRegisterationPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Events\testing1.aspx.cs">
       <DependentUpon>testing1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
