@@ -353,24 +353,42 @@
                         </h5>
                         <div class="card card-body">
                               <div class="form-group">
-                                    <asp:Button ID="Button1" type="Button" CssClass="form-check-label btn btn-success btn-block mt-4" runat="server" Text="Add" UseSubmitBehavior="false" OnClick="eventScheduleDataAddTB"/>
+                                    <button ID="Button1" type="Button" class="form-check-label btn btn-success btn-block mt-4" onclick="addEventScheduleData()">Add</button>
                               </div>
                               <div class="row">
-                                  <div class="col-4">
+                                  <div class="col-6">
                                        <label>Start Time</label>
                                        <asp:TextBox type="text" class="form-control" ID="TextBox1" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
                                   </div>
-                                  <div class="col-4">
+                                  <div class="col-6">
                                       <label>End Time</label>
                                        <asp:TextBox type="text" class="form-control" ID="TextBox2" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
                                   </div>
-                                  <div class="col-4">
-                                       <label>Event Name</label>
-                                       <asp:TextBox type="text" class="form-control" ID="TextBox3" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
-                                  </div>
-                                 
                               </div>     
+
+                              <div class="row">
+                                  <div class="col-6 mt-2">
+                                       <label>Event Name</label>
+                                       <asp:TextBox type="text" class="form-control" ID="eventNameEventSchedule" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
+                                  </div>
+                                  <div class="col-6 mt-2">
+                                      <label>Event Description</label>
+                                      <asp:TextBox type="text" class="form-control" ID="eventDescriptionTBEventSchedule" runat="server" placeholder="Enter Your Venue Here" ></asp:TextBox>
+                                  </div>
+                              </div>                            
+                           
+                            <div class="row">
+                                <div class="col-6 mt-2">
+                                    <label>startDate</label>
+                                    <asp:TextBox type="text" class="form-control" ID="startDateTBEventSchedule" runat="server" placeholder="Enter Your Venue Here"></asp:TextBox>
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <label>endDate</label>
+                                    <input type="text" class="form-control" id="endDateTBEventSchedule" placeholder="Enter Your Venue Here"></input>
+                                </div>
+                            </div>     
                         </div>
+
                     </div>
 
                         <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
@@ -410,8 +428,24 @@
         window.onload = function () {
             hideOrShowExtraTB();
         }
-       
-<%--          var quill = new Quill('#editor', {
+
+
+        function addEventScheduleData()
+        {
+            console.log("value:", document.getElementById("endDateTBEventSchedule").value);
+
+            $.ajax({
+                url: "/",
+                type: "POST",
+                data: {
+                    "someData": document.getElementById("endDateTBEventSchedule").value
+                },
+                "success": (data) => {
+                    console.log("success");
+                    console.log(data);
+                }
+            })
+        }<%--          var quill = new Quill('#editor', {
             theme: 'snow'
         });
         var editor_content = quill.container.innerHTML;

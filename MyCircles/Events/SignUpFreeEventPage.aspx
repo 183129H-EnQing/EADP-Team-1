@@ -28,9 +28,19 @@
                     <div class="form-group">
                         <label for="inputNumberOfBookingSlots">Number of Booking slots</label>
 
-                        <asp:DropDownList ID="NumberOfBookingSlotsDLL" class="form-control" runat="server" ClientIDMode="Static">
+                         <% if(singleEventDetails.maxTimeAPersonCanRegister == "No Limit"){  %>
+                                <asp:TextBox type="Number" ID="NumberOfBookingSlotsTB" runat="server" class="form-control" ClientIDMode="Static"  onchange="getBookingSlotsAmount(this)"></asp:TextBox>
+                        <%} %>
+                        <% else{ %>
+                          <asp:DropDownList ID="NumberOfBookingSlotsDLL" class="form-control" runat="server" ClientIDMode="Static" >
 
-                        </asp:DropDownList>
+                          </asp:DropDownList>
+                        <%}%>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label>Total Cost</label>
+                        <label id="TotalCost"></label>
                     </div>
 
                     <table class="table table-bordered">
@@ -66,9 +76,19 @@
         </div>
     </div>
 
-     <div class="timetable"></div>
+<%--     <div class="timetable"></div>--%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
+    <script>
+        var retrieveTicketPrice = '<%=singleEventDetails.eventTicketCost %>';
+        var ticketPrice = retrieveTicketPrice.slice(1);
+        function getBookingSlotsAmount() {
+            //var numberOfBookingSlotDDL = document.getElementById("NumberOfBookingSlotsDLL").innerText;
+            var numberOfBookingSlotTB = document.getElementById("NumberOfBookingSlotsTB").value;
+            //console.log(numberOfBookingSlotDDL);
+            console.log(ticketPrice);
+        }
+    </script>
 <%--    <script src="/Content/timetable.js-master/dist/scripts/timetable.js"></script>
     <script>
         var x = '<%=testing %>';

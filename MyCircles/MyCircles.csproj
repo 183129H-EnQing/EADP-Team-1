@@ -178,6 +178,7 @@
     <Content Include="Content\images\UserOutlineOnline.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Events\CreateEventPage.aspx" />
+    <Content Include="Events\EditRegisterationPage.aspx" />
     <Content Include="Events\testing1.aspx" />
     <Content Include="Events\ViewEventPageCreated.aspx" />
     <Content Include="Events\ViewEventPageRegistered.aspx" />
@@ -366,6 +367,7 @@
     <Compile Include="BLL\Day.cs" />
     <Compile Include="BLL\DayByDay.cs" />
     <Compile Include="BLL\DTO\CircleDTO.cs" />
+    <Compile Include="BLL\DTO\EventSignUpDetailsDTO.cs" />
     <Compile Include="BLL\DTO\NotificationDTO.cs" />
     <Compile Include="BLL\DTO\PostDTO.cs" />
     <Compile Include="BLL\DTO\UserDTO.cs" />
@@ -399,9 +401,10 @@
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\CirclesController.cs" />
-    <Compile Include="Controller\EventController.cs" />
+    <Compile Include="Controller\EventSchedulesController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PostsController.cs" />
+    <Compile Include="Controller\SignUpEventDetailsController.cs" />
     <Compile Include="Controller\UsersController.cs" />
     <Compile Include="DAL\AdminDAO.cs" />
     <Compile Include="DAL\ChatRoomDAO.cs" />
@@ -438,6 +441,13 @@
     </Compile>
     <Compile Include="Events\CreateEventPage.aspx.designer.cs">
       <DependentUpon>CreateEventPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Events\EditRegisterationPage.aspx.cs">
+      <DependentUpon>EditRegisterationPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events\EditRegisterationPage.aspx.designer.cs">
+      <DependentUpon>EditRegisterationPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Events\testing1.aspx.cs">
       <DependentUpon>testing1.aspx</DependentUpon>

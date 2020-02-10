@@ -23,7 +23,7 @@
                             <tr>
                                <%-- <td><%#DataBinder.Eval(Container.DataItem, "eventId") %> </td>--%>
                                 <td>
-                                    <%#DataBinder.Eval(Container.DataItem, "eventId") %> 
+                                    <label class="eventId"><%#DataBinder.Eval(Container.DataItem, "eventId") %> </label>
                                 </td>
                                 <td>
                                     <%#DataBinder.Eval(Container.DataItem, "eventStartDate") %> - <%#DataBinder.Eval(Container.DataItem, "eventEndDate") %>
@@ -38,7 +38,7 @@
                                      <asp:Button ID="Button2" runat="server" Text="Delete" class="btn" type="Button" UseSubmitBehavior="False"/>
                                 </td>  
                                 <td>
-                                     <asp:Button ID="Button3" runat="server" Text="Notify" class="btn" type="Button" UseSubmitBehavior="False"/>
+                                    <button ID="notifyBtn" class="notifyBtn btn" type="Button" eventId=<%#DataBinder.Eval(Container.DataItem, "eventId") %> >Notify</button>
                                 </td>  
                                 
                             </tr>
@@ -50,6 +50,28 @@
               </div>
           </div>
       </div>
+    <script>
+        $(".notifyBtn").click(function () {
+          //  alert($(this).attr("eventId"));
+                var eventId = $(this).attr("eventId")
+                ajaxHelper(`${signupeventdetailsUri}/${Number(eventId)}`, 'GET', null).done(function (data) {
+                   // addNotificationToasts(data);
+                    console.log(data);
+                    for (i = 0; i < data.length; i++) {
+                        console.log(data[i].userId)
+                            addNotification({                 
+                            Action: "Event has Stopped",
+                            Source: "From Organizer",
+                            UserId: data[i].userId,
+                            Type: "negative",
+                        });
+                       
+
+                      }
+            });
+        });
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SignedInDeferredScriptsPlaceholder" runat="server">
 </asp:Content>
