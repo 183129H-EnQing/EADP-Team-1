@@ -44,7 +44,7 @@ namespace MyCircles.Admin
             {
                 case "ViewPost":
                     System.Diagnostics.Debug.WriteLine("gvReportedPosts_RowCommand, ViewPost:" + e.CommandArgument);
-                    UserReportedPost userReportedPost = getDataList()[idx];
+                    UserReportedPost userReportedPost = GetReports(true)[idx];
                     Post post = Post.GetPostById(userReportedPost.postId);
                     User postCreator = BLL.User.GetUserById(post.UserId);
 
@@ -72,9 +72,9 @@ namespace MyCircles.Admin
             int currPostId = -1;
             int rowSpan = 0;
 
-            for (int idx = 0; idx < getDataList().Count; idx++)
+            for (int idx = 0; idx < GetReports(true).Count; idx++)
             {
-                UserReportedPost report = getDataList()[idx];
+                UserReportedPost report = GetReports(true)[idx];
                 GridViewRow row = gvReportedPosts.Rows[idx];
 
                 if (report.postId != currPostId) // new post for current report, not the same post as previous report
@@ -101,7 +101,7 @@ namespace MyCircles.Admin
                     rowSpan += 1;
                 }
 
-                if (idx == (getDataList().Count-1)) // when reaches the end of the row, we must assign the topRow thingy and stuffs
+                if (idx == (GetReports(true).Count-1)) // when reaches the end of the row, we must assign the topRow thingy and stuffs
                 {
                     GridViewRow topRow = gvReportedPosts.Rows[topRowIdx];
                     topRow.Cells[3].RowSpan = rowSpan;
@@ -119,7 +119,7 @@ namespace MyCircles.Admin
         {
             // TODO deleting from modal, index is out of range
             System.Diagnostics.Debug.WriteLine("deleteOp, index:" + index);
-            UserReportedPost userReportedPost = getDataList()[index];
+            UserReportedPost userReportedPost = GetReports(true)[index];
             Post post = Post.GetPostById(userReportedPost.postId);
 
             System.Diagnostics.Debug.WriteLine("deleteOp, postId:" + post.Id);
@@ -139,13 +139,29 @@ namespace MyCircles.Admin
 
         private void refreshGridView()
         {
-            gvReportedPosts.DataSource = getDataList();
+            gvReportedPosts.DataSource = GetReports(true);
             gvReportedPosts.DataBind();
         }
 
-        private List<UserReportedPost> getDataList()
+        private List<UserReportedPost> GetReports(bool WantValid) // means want to get reports that has postId if true
         {
-            return ReportedPost.GetAllUserReportedPostsSortByPostId();
+            List<UserReportedPost> data = new List<UserReportedPost>();
+
+            foreach (UserReportedPost post in ReportedPost.GetAllUserReportedPosts())
+            {
+                System.Diagnostics.Debug.WriteLine(post.reason + "," + post.postId);
+                if (WantValid)
+                {
+                    if (post.postId > -1)
+                        data.Add(post);
+                }
+                else
+                {
+                    data.Add(post);
+                }
+            }
+
+            return data;
         }
     }
 }
