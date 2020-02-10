@@ -124,7 +124,7 @@ namespace MyCircles.Admin
 
             System.Diagnostics.Debug.WriteLine("deleteOp, postId:" + post.Id);
 
-            // delete reportedpost data
+            // Set reportedpost data's postId to null, to indicate post got deleted
             ReportedPost rp = ReportedPost.GetReportedPostById(userReportedPost.id);
             System.Diagnostics.Debug.WriteLine("deleteOp, reportedPost:" + rp.reason);
             ReportedPost.DeleteReportedPostByPostId(userReportedPost.postId);
