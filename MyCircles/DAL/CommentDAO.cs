@@ -58,5 +58,14 @@ namespace MyCircles.DAL
             }
         }
 
+
+        public static void DeleteCommentByPostId(int postId)
+        {
+            using (var db = new MyCirclesEntityModel())
+            {
+                db.Comments.RemoveRange(db.Comments.Where(p => p.PostId == postId));
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -252,7 +252,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="d-flex justify-content-end">
-                                                    <p><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%>, <%#DataBinder.Eval(Container.DataItem, "User.City")%></p>
+                                                    <p><%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:d/MM/yyyy}")%>, <%#DataBinder.Eval(Container.DataItem, "Post.DateTime","{0:t}")%>, <%#DataBinder.Eval(Container.DataItem, "User.City")%></p>
                                                 </div>
                                             </div>
                                             <div class="card-footer">

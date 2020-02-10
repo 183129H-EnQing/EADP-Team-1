@@ -191,6 +191,7 @@ namespace MyCircles.Home
                     if (currentUser.Id == selecteduserpost.User.Id)
                     {
 
+                    CommentDAO.DeleteCommentByPostId(selecteduserpost.Post.Id);
                         ReportedPostDAO.DeleteReportedPostByPostId(selecteduserpost.Post.Id);
                         PostDAO.DeletePost(deleteId);
                         refreshGv();
