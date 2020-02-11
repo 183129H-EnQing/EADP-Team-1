@@ -160,8 +160,8 @@
                                         <th>eventID</th>
                                         <th>Date</th>
                                         <th>Time</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                         <%--               <th>Edit</th>
+                                        <th>Delete</th>--%>
                                         <th>Notify</th>
                                     </tr>
                                 </thead>
@@ -179,12 +179,12 @@
                                                 <td>
                                                     <%#DataBinder.Eval(Container.DataItem, "eventStartTime") %> - <%#DataBinder.Eval(Container.DataItem, "eventEndTime") %>
                                                 </td>
-                                                <td>
+                                  <%--              <td>
                                                     <asp:Button ID="Button1" runat="server" Text="Edit" class="btn" type="Button" UseSubmitBehavior="False" />
                                                 </td>
                                                 <td>
                                                     <asp:Button ID="Button2" runat="server" Text="Delete" class="btn" type="Button" UseSubmitBehavior="False" />
-                                                </td>
+                                                </td>--%>
                                                 <td>
                                                     <button id="notifyBtn" class="notifyBtn btn" type="Button" eventid='<%#DataBinder.Eval(Container.DataItem, "eventId") %>'>Notify</button>
                                                 </td>
