@@ -60,41 +60,53 @@ namespace MyCircles.Events
 
             }
 
-            newEventSignUpEventData.name = nameTB.Text;
-            newEventSignUpEventData.contactNumber = contactNumberTB.Text;
-            currentUser = (BLL.User)Session["currentUser"];
-            newEventSignUpEventData.userId = currentUser.Id;
 
-            if (String.IsNullOrEmpty(NumberOfBookingSlotsDLL.Text))
+            //if (String.IsNullOrEmpty(NumberOfBookingSlotsTB.Text))
+            //{
+            //    GeneralHelpers.AddValidationError(Page, "registerEvent", "Booking Slot Amount is empty");
+            //}
+
+            if (NumberOfBookingSlotsDLL.Text == "Please Select Number of Slots")
             {
-                GeneralHelpers.AddValidationError(Page, "registerEvent", "Booking Slot Amount is empty");
+                GeneralHelpers.AddValidationError(Page, "registerEvent", "Please select numbers only");
             }
-            if (String.IsNullOrEmpty(NumberOfBookingSlotsTB.Text))
+
+
+            if (!Page.IsValid)
             {
-                GeneralHelpers.AddValidationError(Page, "registerEvent", "Booking Slot Amount is empty");
-            }
-            System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
-            if (NumberOfBookingSlotsDLL.Text != "")
-            {
-                newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.Text;
+                signedOutErrorContainer.Visible = true;
+                lbErrorMsg.Text = GeneralHelpers.GetFirstValidationError(Page.Validators);
             }
             else
             {
-                newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsTB.Text;
+                newEventSignUpEventData.name = nameTB.Text;
+                newEventSignUpEventData.contactNumber = contactNumberTB.Text;
+                currentUser = (BLL.User)Session["currentUser"];
+                newEventSignUpEventData.userId = currentUser.Id;
+
+                System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
+                if (NumberOfBookingSlotsDLL.Text != "")
+                {
+                    newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsDLL.Text;
+                }
+                else
+                {
+                    newEventSignUpEventData.numberOfBookingSlot = NumberOfBookingSlotsTB.Text;
+                }
+                newEventSignUpEventData.selectedEventToParticipate = selectedEventToParticipate;
+                newEventSignUpEventData.eventId = currentEventID;
+                newEventSignUpEventData.date = dateDDL.Text;
+                //  System.Diagnostics.Debug.WriteLine(String.Join("\n", userOptInEvent));
+                //System.Diagnostics.Debug.WriteLine(currentUser.Name);
+
+                //System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
+                newEventSignUpEventData.Add();
+                eventSchedule.AddAndUpdateUserOptIn(selectedEventToParticipate, currentUser.Id);
+                var ticketPrice = singleEventDetails.eventTicketCost;
+
+                Response.Redirect("ViewAllEventPage.aspx");
             }
-
-            newEventSignUpEventData.selectedEventToParticipate = selectedEventToParticipate;
-            newEventSignUpEventData.eventId = currentEventID;
-            newEventSignUpEventData.date = dateDDL.Text ;
-            //  System.Diagnostics.Debug.WriteLine(String.Join("\n", userOptInEvent));
-            //System.Diagnostics.Debug.WriteLine(currentUser.Name);
-
-            //System.Diagnostics.Debug.WriteLine("gh say hello: " + NumberOfBookingSlotsDLL.Text);
-            newEventSignUpEventData.Add();
-            eventSchedule.AddAndUpdateUserOptIn(selectedEventToParticipate, currentUser.Id);
-            var ticketPrice = singleEventDetails.eventTicketCost;
-
-            Response.Redirect("ViewAllEventPage.aspx");
+     
         }
 
         public void GetDates()
@@ -153,7 +165,7 @@ namespace MyCircles.Events
             {
                 int maxSlot = System.Convert.ToInt16(singleEventDetails.maxTimeAPersonCanRegister);
                 List<String> slotList = new List<String>();
-
+                slotList.Add("Please Select Number of Slots");
                 for (var x = 1; x < maxSlot + 1; x++)
                 {
                     var avaliableSlotOption = x.ToString();
