@@ -44,7 +44,8 @@ background: #fff;
                  </asp:TemplateField> 
                 <asp:TemplateField ShowHeader="False">
             <ItemTemplate>
-                <button class="btn btn-info btn-follow " type="button" followingId=<%= currentUser.Id %> follower=<%= currentUser.Id %>>Follow</button>
+               
+                <asp:Button ID="Button1" OnClick="Button1_Click" runat="server" CssClass="btn btn-info" Text="Follow" />
             </ItemTemplate>
                     </asp:TemplateField>             
            </Columns>

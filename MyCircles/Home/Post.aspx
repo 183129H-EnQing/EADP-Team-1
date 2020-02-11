@@ -349,7 +349,7 @@
                         </li>                             
                         </ItemTemplate>
                     </asp:Repeater>                                                               
-                        <li class="list-group-item"><asp:Button ID="btn6" runat="server" Text="Follow Them" class="btn btn-primary" style="border-radius:12px"  usesubmitbehavior="false" OnClick="btn6_Click"></asp:button></li>
+                        <li class="list-group-item"><asp:Button ID="btn6" runat="server" Text="VIew Them" class="btn btn-primary" style="border-radius:12px"  usesubmitbehavior="false" OnClick="btn6_Click"></asp:button></li>
                     </ul>
                 </div>
             </div>

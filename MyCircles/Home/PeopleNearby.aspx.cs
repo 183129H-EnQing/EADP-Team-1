@@ -68,6 +68,11 @@ namespace MyCircles.Home
 
         }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Profile/User.aspx");
+        }
+
         protected void GridViewFollow_RowCommand(object sender, GridViewCommandEventArgs e)
         {
            
