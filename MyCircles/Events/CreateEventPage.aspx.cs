@@ -239,6 +239,15 @@ namespace MyCircles.Events
                     newEventData.eventMaxSlot = maxSlotTB.Text;
                 }
 
+                if (LocationDLL.Text == "To Be Announced")
+                {
+                    newEventData.eventLocation = "To Be Announced";
+                }
+                else
+                {
+                    newEventData.eventLocation = LocationTB.Text;
+                }
+
                 UserCircleDAO.ChangeUserCirclePoints(currentUser.Id, CategoryDropDownList.Text, 20, "Creating An Event",true);
                 Event newCreatedEvt = newEventData.AddNewEvent();
 

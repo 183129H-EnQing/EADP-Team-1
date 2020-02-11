@@ -303,6 +303,26 @@
                 }
             });
         });
+
+            $(".notifyBtn").click(function () {
+          //  alert($(this).attr("eventId"));
+                var eventId = $(this).attr("eventId")
+                ajaxHelper(`${signupeventdetailsUri}/${Number(eventId)}`, 'GET', null).done(function (data) {
+                   // addNotificationToasts(data);
+                    console.log(data);
+                    for (i = 0; i < data.length; i++) {
+                        console.log(data[i].userId)
+                            addNotification({                 
+                            Action: "Event has Stopped",
+                            Source: "From Organizer",
+                            UserId: data[i].userId,
+                            Type: "negative",
+                        });
+                       
+
+                      }
+            });
+        });
     </script>
 </asp:Content>
 

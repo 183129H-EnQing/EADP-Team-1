@@ -457,8 +457,8 @@
     <Compile Include="BLL\DayByDay.cs" />
     <Compile Include="BLL\DTO\CircleDTO.cs" />
     <Compile Include="BLL\DTO\CommentDTO.cs" />
-    <Compile Include="BLL\DTO\FollowDTO.cs" />
     <Compile Include="BLL\DTO\EventSignUpDetailsDTO.cs" />
+    <Compile Include="BLL\DTO\FollowDTO.cs" />
     <Compile Include="BLL\DTO\NotificationDTO.cs" />
     <Compile Include="BLL\DTO\PostDTO.cs" />
     <Compile Include="BLL\DTO\UserDTO.cs" />
@@ -492,7 +492,6 @@
     <Compile Include="BLL\User.cs" />
     <Compile Include="BLL\UserCircle.cs" />
     <Compile Include="Controller\CirclesController.cs" />
-    <Compile Include="Controller\FollowsController.cs" />
     <Compile Include="Controller\EventSchedulesController.cs" />
     <Compile Include="Controller\NotificationController.cs" />
     <Compile Include="Controller\PostsController.cs" />
@@ -867,6 +866,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\Shared\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

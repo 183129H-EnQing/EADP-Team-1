@@ -16,7 +16,7 @@
                
                 <!-- Hide if screen smaller than lg-->
                 <div class=" col-md-4 col-lg-3 d-none d-lg-block">
-                    <div class="card card-body mt-3">
+                   <%-- <div class="card card-body mt-3">
                         <div class="left-filter-container">
                             <div class="form-inline">
                                 <asp:Label runat="server" Text="MyInterestedCircle"></asp:Label>
@@ -88,10 +88,10 @@
 
                         </div>
                         
-                    </div>
+                    </div>--%>
                 </div>
-   
-                <div class="col-sm-12 col-md-12 col-lg-9">
+                <%-- For now col-lg-12 because fliter option not working . the original col-lg-9 --%>
+                <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-body mt-3">
                         <div class="row">
                             <!-- my auto basically center your text-->

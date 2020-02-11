@@ -29,19 +29,29 @@
                         <label for="inputNumberOfBookingSlots">Number of Booking slots</label>
 
                          <% if(singleEventDetails.maxTimeAPersonCanRegister == "No Limit"){  %>
-                                <asp:TextBox type="Number" ID="NumberOfBookingSlotsTB" runat="server" class="form-control" ClientIDMode="Static"  onchange="getBookingSlotsAmount(this)"></asp:TextBox>
+                                <asp:TextBox type="Number" ID="NumberOfBookingSlotsTB" runat="server" class="form-control" ClientIDMode="Static"  onchange="getBookingSlotsAmountTB(this)"></asp:TextBox>
                         <%} %>
                         <% else{ %>
-                          <asp:DropDownList ID="NumberOfBookingSlotsDLL" class="form-control" runat="server" ClientIDMode="Static" >
+                          <asp:DropDownList ID="NumberOfBookingSlotsDLL" class="form-control" runat="server" ClientIDMode="Static" onchange="getBookingSlotsAmountDDL(this)">
 
                           </asp:DropDownList>
                         <%}%>
                       
                     </div>
-                    <div class="form-group">
-                        <label>Total Cost</label>
-                        <label id="TotalCost"></label>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Total Cost</label>
+
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <asp:Label ID="TotalCost" runat="server" ClientIDMode="Static"></asp:Label>
+                        </div>
+                    </div>
+
+                                          
 
                     <table class="table table-bordered">
                         <thead>
@@ -69,7 +79,18 @@
                             </asp:Repeater>
                         </tbody>
                     </table>
+
+                      <div id="signedOutErrorContainer" class="signedOutErrorContainer col-md-12 my-4 p-0" runat="server" visible="false">
+                            <div class="signedOutErrorBlock">
+                                <i class="fas fa-exclamation-triangle"></i>&nbsp;
+                            <asp:Label ID="lbErrorMsg" runat="server">
+                                <asp:ValidationSummary ID="vsAddCircles" runat="server" ShowSummary="false" DisplayMode="List" ValidationGroup="registerEvent" />
+                            </asp:Label>
+                            </div>
+                        </div>
                     <asp:Button ID="submitButt" runat="server" Text="Submit" ClientIDMode="Static" CssClass="form-check-label btn btn-success btn-block mt-2" OnClick="submitButt_Click" />
+
+
                 </form>
                   
             </div>
@@ -82,11 +103,18 @@
     <script>
         var retrieveTicketPrice = '<%=singleEventDetails.eventTicketCost %>';
         var ticketPrice = retrieveTicketPrice.slice(1);
-        function getBookingSlotsAmount() {
-            //var numberOfBookingSlotDDL = document.getElementById("NumberOfBookingSlotsDLL").innerText;
+
+        function getBookingSlotsAmountTB() {        
             var numberOfBookingSlotTB = document.getElementById("NumberOfBookingSlotsTB").value;
-            //console.log(numberOfBookingSlotDDL);
+          
+
             console.log(ticketPrice);
+            console.log(numberOfBookingSlotTB);
+           document.getElementById("TotalCost").innerText = ticketPrice * numberOfBookingSlotTB;
+        }
+        function getBookingSlotsAmountDDL() {
+            var numberOfBookingSlotDDL = document.getElementById("NumberOfBookingSlotsDLL").value;
+              document.getElementById("TotalCost").innerText = ticketPrice * numberOfBookingSlotDDL;
         }
     </script>
 <%--    <script src="/Content/timetable.js-master/dist/scripts/timetable.js"></script>

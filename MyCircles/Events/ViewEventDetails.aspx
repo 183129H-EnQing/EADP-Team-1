@@ -26,7 +26,7 @@
                         <div class="col-12">
                             <i class="fas fa-filter"></i>
                             <!--insert event location to the span-->
-                            <span>Nanyang Poly</span> 
+                            <span> <%=singleEventDetails.eventLocation %></span> 
                         </div>
                     </div>
                   

@@ -58,6 +58,15 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.DropDownList NumberOfBookingSlotsDLL;
         
         /// <summary>
+        /// TotalCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalCost;
+        
+        /// <summary>
         /// rpEventSchedule control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,33 @@ namespace MyCircles.Events {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpEventSchedule;
+        
+        /// <summary>
+        /// signedOutErrorContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl signedOutErrorContainer;
+        
+        /// <summary>
+        /// lbErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbErrorMsg;
+        
+        /// <summary>
+        /// vsAddCircles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsAddCircles;
         
         /// <summary>
         /// submitButt control.
