@@ -110,7 +110,11 @@ namespace MyCircles.DAL
 
                 if (user != null)
                 {
-                    if (!user.IsGoogleUser)
+                    if (user.IsDeleted)
+                    {
+                        throw new ArgumentException("Your account is disabled");
+                    }
+                    else if (!user.IsGoogleUser)
                     {
                         if (!Crypto.VerifyHashedPassword(user.Password, testUser.Password))
                         {
