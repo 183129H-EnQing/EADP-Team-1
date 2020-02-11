@@ -18,12 +18,12 @@ namespace MyCircles.Admin
             {
                 if (BLL.Admin.RetrieveAdmin(loggedInUser) == null)
                 {
-                    if (loggedInUser.Username.Contains("DineshGod"))
+                    if (loggedInUser.Username.Equals("Admin"))
                     {
                         BLL.Admin admin = new BLL.Admin();
                         admin.UserId = loggedInUser.Id;
                         admin.Add();
-                        System.Diagnostics.Debug.WriteLine("Making DineshGod admin");
+                        System.Diagnostics.Debug.WriteLine("Making admin");
                     }
                     else
                     {
