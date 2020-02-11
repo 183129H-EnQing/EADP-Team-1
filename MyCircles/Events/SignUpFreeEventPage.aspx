@@ -47,7 +47,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                              <label id="TotalCost"></label>
+                            <asp:Label ID="TotalCost" runat="server" ClientIDMode="Static"></asp:Label>
                         </div>
                     </div>
 
@@ -89,6 +89,8 @@
                             </div>
                         </div>
                     <asp:Button ID="submitButt" runat="server" Text="Submit" ClientIDMode="Static" CssClass="form-check-label btn btn-success btn-block mt-2" OnClick="submitButt_Click" />
+
+
                 </form>
                   
             </div>

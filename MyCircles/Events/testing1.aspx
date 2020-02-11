@@ -7,9 +7,10 @@
         <form runat="server">
         <div class="row">
             <div class="col-12">
-                <asp:Label ID="Label1" runat="server" Text="$29.00"></asp:Label>
+          <%--      <asp:Label ID="Label1" runat="server" Text="$29.00"></asp:Label>
                 <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />--%>
+                <label>Successful Payment</label>
             </div>
         </div>
          </form>

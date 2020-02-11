@@ -58,6 +58,15 @@ namespace MyCircles.Events {
         protected global::System.Web.UI.WebControls.DropDownList NumberOfBookingSlotsDLL;
         
         /// <summary>
+        /// TotalCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalCost;
+        
+        /// <summary>
         /// rpEventSchedule control.
         /// </summary>
         /// <remarks>
