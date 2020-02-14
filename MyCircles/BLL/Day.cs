@@ -23,6 +23,7 @@ namespace MyCircles.BLL
 
         public int locationId { get; set; }
 
+        [StringLength(100)]
         public string notes { get; set; }
 
         public virtual DayByDay DayByDay { get; set; }
