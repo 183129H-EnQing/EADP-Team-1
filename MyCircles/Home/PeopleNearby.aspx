@@ -38,14 +38,13 @@ background: #fff;
                <asp:BoundField DataField="Username" HeaderText="Users" />
                 <asp:TemplateField HeaderText="Circles">                   
                     <ItemTemplate>
-                        <asp:DropDownList ID="DropDownList1" CssClass="form-control" Width="150" runat="server"></asp:DropDownList>  
-                       
+                        <asp:DropDownList ID="DropDownList1" CssClass="form-control" Width="150" runat="server"></asp:DropDownList>
                     </ItemTemplate> 
                  </asp:TemplateField> 
                 <asp:TemplateField ShowHeader="False">
-            <ItemTemplate>
-               <button id="peopleNearbyFollowBtn" runat="server" class="btn btn-outline-primary btn-follow float-right" type="button" followingid="1" followerid="1" ClientIDMode="Static">Follow</button>
-            </ItemTemplate>
+                <ItemTemplate>
+                    <asp:Button ID="peopleNearbyFollowBtn" runat="server" CssClass="btn btn-outline-primary btn-follow float-right" Text="Follow" UseSubmitBehavior="false" />
+                </ItemTemplate>
              </asp:TemplateField>             
            </Columns>
        </asp:GridView>

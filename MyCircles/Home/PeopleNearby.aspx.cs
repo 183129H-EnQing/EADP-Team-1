@@ -57,7 +57,7 @@ namespace MyCircles.Home
                 DropDownList1.DataValueField = "CircleId";
                 DropDownList1.DataBind();
 
-                HtmlInputButton followButton = (e.Row.FindControl("peopleNearbyFollowBtn") as HtmlInputButton);
+                Button followButton = (e.Row.FindControl("peopleNearbyFollowBtn") as Button);
                 followButton.Attributes["followingid"] = userpost.Id.ToString();
                 followButton.Attributes["followerid"] = currentUser.Id.ToString();
             }
