@@ -200,6 +200,11 @@ namespace MyCircles.Events
             var apiContext = PaypalConfiguration.GetAPIContext();
 
             string payerId = Request.Params["PayerID"];
+            string itemPrice = singleEventDetails.eventTicketCost.Substring(1,singleEventDetails.eventTicketCost.Length - 1);
+            System.Diagnostics.Debug.WriteLine(itemPrice);
+            int total = (Int32.Parse(itemPrice) * bookingQuantity);
+            System.Diagnostics.Debug.WriteLine(total);
+            int quantity = bookingQuantity;
             if (string.IsNullOrEmpty(payerId))
             {
                 // ###Items
@@ -211,9 +216,9 @@ namespace MyCircles.Events
                         new Item()
                         {
                             name = "Item Name",
-                            currency = "USD",
-                            price = "15",
-                            quantity = "5",
+                            currency = "SGD",
+                            price = itemPrice,
+                            quantity = quantity.ToString(),
                             sku = "sku"
                         }
                     }
@@ -240,17 +245,17 @@ namespace MyCircles.Events
                 // Let's you specify details of a payment amount.
                 var details = new Details()
                 {
-                    tax = "15",
-                    shipping = "10",
-                    subtotal = "75"
+                    tax = "0",
+                    shipping = "0",
+                    subtotal = total.ToString()
                 };
 
                 // ###Amount
                 // Let's you specify a payment amount.
                 var amount = new Amount()
                 {
-                    currency = "USD",
-                    total = "100.00", // Total must be equal to sum of shipping, tax and subtotal.
+                    currency = "SGD",
+                    total = total.ToString(), // Total must be equal to sum of shipping, tax and subtotal.
                     details = details
                 };
 
