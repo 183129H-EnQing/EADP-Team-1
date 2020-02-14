@@ -13,7 +13,7 @@ namespace MyCircles.Home
 {
     public partial class PeopleNearby : System.Web.UI.Page
     {
-        public BLL.User currentUser, requestedUser;
+        public BLL.User currentUser;
 
         protected void Page_Load(object sender, EventArgs e)
         {
