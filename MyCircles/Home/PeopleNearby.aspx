@@ -32,7 +32,7 @@ background: #fff;
      
         <div>
         <h1 class="text-primary">Suggested Users</h1> 
-       <asp:GridView ID="GridViewFollow"  AutoGenerateColumns ="False" CssClass="table table-condensed table-hover" OnDataBound="GridViewFollow_DataBound" OnRowDataBound="GridViewFollow_RowDataBound" OnRowCommand="GridViewFollow_RowCommand" runat="server">
+       <asp:GridView ID="GridViewFollow"  AutoGenerateColumns ="False" CssClass="table table-condensed table-hover" OnRowDataBound="GridViewFollow_RowDataBound" runat="server">
            <Columns>
                <asp:ImageField DataImageUrlField="ProfileImage" HeaderText="DP" ControlStyle-Width="40" ControlStyle-Height = "40"></asp:ImageField>         
                <asp:BoundField DataField="Username" HeaderText="Users" />
