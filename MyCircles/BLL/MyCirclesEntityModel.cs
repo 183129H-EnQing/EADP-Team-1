@@ -68,6 +68,10 @@ namespace MyCircles.BLL
                 .Property(e => e.comment_by)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Day>()
+                .Property(e => e.notes)
+                .IsFixedLength();
+
             modelBuilder.Entity<DayByDay>()
                 .Property(e => e.date)
                 .IsUnicode(false);
