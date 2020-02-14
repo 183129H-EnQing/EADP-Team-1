@@ -58,7 +58,6 @@ namespace MyCircles.DAL
                 currentUser.Username = editedUser.Username;
                 currentUser.Bio = editedUser.Bio;
                 currentUser.ProfileImage = editedUser.ProfileImage;
-
                
                 db.SaveChanges();
             }

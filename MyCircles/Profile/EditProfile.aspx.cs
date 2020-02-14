@@ -18,10 +18,8 @@ namespace MyCircles.Profile
         {
             RedirectValidator.isUser();
             currentUser = (BLL.User)Session["currentUser"];
-
-           
-
-
+            bioTB.Text = currentUser.Bio;
+            nameTB.Text = currentUser.Name;
         }
 
         protected void submitButt_Click(object sender, EventArgs e)

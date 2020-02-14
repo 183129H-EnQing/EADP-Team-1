@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace MyCircles.Home
 {
@@ -41,20 +42,12 @@ namespace MyCircles.Home
             }
         }
 
-        protected void GridViewFollow_DataBound(object sender, EventArgs e)
-        {
-           
-
-        }
-
         protected void GridViewFollow_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 var data = e.Row.DataItem;
                 BLL.User userpost = data as BLL.User;
-               
-              
 
                 var circlesname = UserCircleDAO.GetAllUserCircles(userpost.Id);
 
@@ -64,6 +57,9 @@ namespace MyCircles.Home
                 DropDownList1.DataValueField = "CircleId";
                 DropDownList1.DataBind();
 
+                HtmlInputButton followButton = (e.Row.FindControl("peopleNearbyFollowBtn") as HtmlInputButton);
+                followButton.Attributes["followingid"] = userpost.Id.ToString();
+                followButton.Attributes["followerid"] = currentUser.Id.ToString();
             }
 
         }

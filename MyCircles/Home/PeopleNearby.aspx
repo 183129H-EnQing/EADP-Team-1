@@ -44,10 +44,9 @@ background: #fff;
                  </asp:TemplateField> 
                 <asp:TemplateField ShowHeader="False">
             <ItemTemplate>
-               
-                <asp:Button ID="Button1" OnClick="Button1_Click" runat="server" CssClass="btn btn-info" Text="Follow" />
+               <button id="peopleNearbyFollowBtn" runat="server" class="btn btn-outline-primary btn-follow float-right" type="button" followingid="1" followerid="1" ClientIDMode="Static">Follow</button>
             </ItemTemplate>
-                    </asp:TemplateField>             
+             </asp:TemplateField>             
            </Columns>
        </asp:GridView>
                        

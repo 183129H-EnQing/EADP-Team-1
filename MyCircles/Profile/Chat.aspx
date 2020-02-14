@@ -52,19 +52,22 @@
                 <div class="col-md-8 pl-0 border-left">
                     <header class="position-sticky chat-header border-bottom bg-light rounded-top">
                         <div class="p-4">
-                            <a href="/Profile/User.aspx?username=<%= recieverUser.Username %>" class="text-decoration-none">
-                                <div class="row justify-content-between">
-                                    <div class="col-1 profilepic-container">
+                            <div class="row justify-content-between">
+                                <div class="col-1 profilepic-container">
+                                    <a href="/Profile/User.aspx?username=<%= recieverUser.Username %>" class="text-decoration-none">
                                         <asp:Image ID="requestedUserProfilePicture" runat='server' CssClass="small-profilepic rounded-circle" />
-                                    </div>
-                                    <div class="col-5 desc-container pl-0">
+                                    </a>
+                                </div>
+                                <div class="col-5 desc-container pl-0">
+                                    <a href="/Profile/User.aspx?username=<%= recieverUser.Username %>" class="text-decoration-none">
                                         <span class='m-0 h5'><%= recieverUser.Name %></span><span class='IsLoggedIn-<%= recieverUser.IsLoggedIn %>'>   •   <%= (recieverUser.IsLoggedIn) ? "Online" : "Offline" %></span><br />
                                         <span class='m-0 text-muted'>@<%= recieverUser.Username %></span>
-                                    </div>
-                                    <div class="col-5 desc-container text-right">
-                                        <asp:Button ID="btSubmit" runat="server" CssClass="btn btn-primary" Text="Follow" CausesValidation="False" />
-                                    </div>
+                                    </a>
                                 </div>
+                                <div class="col-5 desc-container text-right">
+                                    <button class="btn btn-outline-primary btn-follow float-right" type="button" followingid="<%= recieverUser.Id %>" followerid="<%= currentUser.Id %>">Follow</button>
+                                </div>
+                            </div>
                             </a>
                         </div>
                     </header>
