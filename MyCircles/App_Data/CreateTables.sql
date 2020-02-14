@@ -2,9 +2,9 @@
 
     [Id]            INT           IDENTITY (1, 1) NOT NULL,
 
-    [Username]      VARCHAR (32)  NOT NULL,
+    [Username]      VARCHAR (128)  NOT NULL,
 
-    [EmailAddress]  VARCHAR (32)  NOT NULL,
+    [EmailAddress]  VARCHAR (128)  NOT NULL,
 
     [Password]      VARCHAR (256) NULL,
 

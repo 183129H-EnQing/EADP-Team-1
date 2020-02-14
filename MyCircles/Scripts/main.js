@@ -105,7 +105,7 @@ function getPostDom(posts) {
             `</span><br />`;
 
         if (post.Image) {
-            postHtml += `<img src="${post.Image}" style="max-height: 300px; width: auto;" class="card-image rounded">`;
+            postHtml += `<img src="${post.Image}" style="max-height: 300px; width: auto;" class="card-image rounded py-2">`;
         }
 
         if (post.Comments.length) {

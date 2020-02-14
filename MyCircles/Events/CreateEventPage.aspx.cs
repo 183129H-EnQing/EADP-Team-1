@@ -21,7 +21,10 @@ namespace MyCircles.Events
             maxTimeAPersonCanRegisterDLL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
             maxSlotAvaliableDDL.Attributes["onChange"] = "hideOrShowExtraTB(this.value)";
 
-            getAllCircleData();
+          
+            if (!IsPostBack) {
+                getAllCircleData();
+            }
         }
 
         protected void eventScheduleDataAddTB(object sender, EventArgs e)
@@ -181,7 +184,10 @@ namespace MyCircles.Events
             {
                 newEventData.eventName = eventTitleTB.Text;
                 newEventData.eventDescription = eventDescriptionTB.Text;
-                newEventData.eventCategory = CategoryDropDownList.Text;              
+                newEventData.eventCategory = CategoryDropDownList.SelectedItem.Text;
+                System.Diagnostics.Debug.WriteLine("hello world testing11" + CategoryDropDownList.SelectedItem.Text);
+                System.Diagnostics.Debug.WriteLine("hello world testing12" +  CategoryDropDownList.SelectedValue);
+                System.Diagnostics.Debug.WriteLine("hello world testing13" +  CategoryDropDownList.SelectedItem.Value);
                 newEventData.eventHolderName = organizerTB.Text;
                 newEventData.eventHolderId = currentUser.Id;
                 if (LocationDLL.Text == "To Be Announced")
